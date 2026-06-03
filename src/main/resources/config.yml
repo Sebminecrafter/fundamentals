@@ -1,0 +1,17 @@
+# Config file for Fundamentals
+
+# Enable or disable modules
+enabled:
+  checks:
+    opchecker: true
+
+  cmds:
+    # Player commands
+    msg: true
+
+    # Staff commands
+    freeze: true
+    invsee: true
+    staffmsg: true
+    staffmode: true
+

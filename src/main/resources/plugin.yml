@@ -1,0 +1,66 @@
+name: "Fundamentals"
+description: "Everything you need for your server, all in one package."
+prefix: "Fundamentals"
+version: "1.0-SNAPSHOT"
+
+main: io.github.sebminecrafter.fundamentals.Main
+api-version: '26.1'
+load: STARTUP
+
+authors: [ "Sebminecrafter" ]
+website: "modrinth.com/user/Sebminecrafter"
+
+commands:
+  staffmode:
+    description: "Enter staff mode"
+    usage: "Usage: /<command>"
+    permission: fundamentals.staff.staffmode
+    aliases: ['sm', 'watch']
+  invsee: # TODO
+    description: "Not implemented yet!"
+    usage: "Usage: /<command> [player]"
+    permission: fundamentals.staff.invsee
+    aliases: ['viewinv', 'inventorysee']
+  freeze: # TODO
+    description: "Not implemented yet!"
+    usage: "Usage: /<command> [player]"
+    permission: fundamentals.staff.freeze
+    aliases: []
+  staffmsg: # TODO
+    description: "Not implemented yet!"
+    usage: "Usage: /<command> [player] [message]"
+    permission: fundamentals.staff.staffmsg
+    aliases: ['speakto']
+  msg: # TODO
+    description: "Not implemented yet!"
+    usage: "Usage: /<command> [player] [message]"
+    permission: fundamentals.player.msg
+    aliases: ['w', 'whisper']
+  ignore: # TODO
+    description: "Not implemented yet!"
+    usage: "Usage: /<command> [player]"
+    permission: fundamentals.player.ignore
+    aliases: []
+
+default-permission: op
+permissions:
+  fundamentals.staff:
+    description: "Staff commands parent permission"
+    default: op
+    children:
+      fundamentals.staff.freeze:
+        description: "Ability to use the freeze command to freeze players"
+      fundamentals.staff.invsee:
+        description: "Ability to use the invsee command to view a player's inventory"
+      fundamentals.staff.staffmsg:
+        description: "Ability to use the staffmsg command on players"
+      fundamentals.staff.staffmode:
+        description: "Ability to use the staffmode command"
+  fundamentals.player:
+    description: "Player commands parent permission"
+    default: true
+    children:
+      fundamentals.player.msg:
+        description: "Message other players privately"
+      fundamentals.player.ignore:
+        description: "Ignore messages and tp requests from a player"

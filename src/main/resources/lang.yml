@@ -1,0 +1,62 @@
+# Lang file for Fundamentals
+
+started: "Started Fundamentals"
+stopped: "Stopped Fundamentals"
+
+# Player commands
+# Placeholders: PLAYER
+cmds:
+  # Msg
+  msg: # Can use legacy colors and placeholders: OTHER, MSG
+    log: "PLAYER said to OTHER: MSG"
+    send: "You -> OTHER: MSG"
+    receive: "PLAYER -> You: MSG"
+
+# Staff commands
+# Placeholders: PLAYER, VICTIM
+staffcmds:
+  # Freeze command
+  freeze: # log, staff, and player messages
+    log:
+      on: "PLAYER froze VICTIM!"
+      off: "PLAYER unfroze VICTIM!"
+    staff:
+      on: "Froze VICTIM"
+      off: "Unfroze VICTIM"
+    player:
+      on: "You have been frozen"
+      actionbar: "You are frozen"
+      off: "You were unfrozen"
+  # Invsee
+  invsee: # log and staff messages
+    log: "PLAYER opened VICTIM's inventory!"
+    staff: "Opened VICTIM's inventory"
+  # Staffmsg
+  staffmsg: # log, staff, and player messages, can use MSG placeholder and legacy colors
+    log: "PLAYER messaged VICTIM: MSG"
+    staff: "Staff -> VICTIM: MSG"
+    player: "Staff -> You: MSG"
+  # Staffmode
+  staffmode: # log and staff message, No VICTIM placeholder
+    log:
+      on: "PLAYER entered staffmode"
+      off: "PLAYER exited staffmode"
+    staff:
+      on: "Entered staffmode"
+      off: "Exited staffmode"
+
+# OpChecker logging
+ops:
+  # CMD, EXECUTOR, and PLAYER will be replaced where applicable
+  # When op/deop are run from console (pretty reliable)
+  console:
+    op: "Console op'd! CMD"
+    deop: "Console deop'd! CMD"
+  # When a player runs op/deop (unreliable)
+  player:
+    op: "Player EXECUTOR op'd! CMD"
+    deop: "Player EXECUTOR deop'd! CMD"
+  # When the plugin detects a player has gained or lost the op permission via Bukkit API (most reliable/useful)
+  detect:
+    op: "PLAYER was opped!"
+    deop: "PLAYER was deopped!"
