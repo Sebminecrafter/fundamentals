@@ -14,6 +14,7 @@ import java.util.Map;
 public class Commands implements CommandExecutor {
 
     private final Staffmode staffmode;
+    private final Msg msg;
     private final Map<String, Object> commands = new HashMap<>();
     private final Config config;
 
@@ -23,6 +24,9 @@ public class Commands implements CommandExecutor {
 
         staffmode = new Staffmode(plugin);
         commands.put("staffmode", staffmode);
+
+        msg = new Msg();
+        commands.put("msg", msg);
     }
 
     public Object getCommand(String commandName) {
@@ -41,6 +45,11 @@ public class Commands implements CommandExecutor {
         if (command.getName().equalsIgnoreCase("staffmode")) {
             if (args.length != 0) {return false;}
             staffmode.execute(sender);
+            return true;
+        }
+        if (command.getName().equalsIgnoreCase("msg")) {
+            if (!(args.length >= 2)) {return false;}
+            msg.execute(sender, args);
             return true;
         }
         return false;

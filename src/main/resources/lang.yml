@@ -1,4 +1,5 @@
 # Lang file for Fundamentals
+# You can use legacy colors like: &4
 
 started: "Started Fundamentals"
 stopped: "Stopped Fundamentals"
@@ -7,10 +8,11 @@ stopped: "Stopped Fundamentals"
 # Placeholders: PLAYER
 cmds:
   # Msg
-  msg: # Can use legacy colors and placeholders: OTHER, MSG
+  msg: # Placeholders: OTHER, MSG
     log: "PLAYER said to OTHER: MSG"
-    send: "You -> OTHER: MSG"
-    receive: "PLAYER -> You: MSG"
+    send: "&5&lYou &9-> &1&lOTHER&9: &rMSG"
+    receive: "&1&lPLAYER &9-> &5&lYou&9: &rMSG"
+    offline: "&cPlayer OTHER is not online."
 
 # Staff commands
 # Placeholders: PLAYER, VICTIM
@@ -34,16 +36,16 @@ staffcmds:
   # Staffmsg
   staffmsg: # log, staff, and player messages, can use MSG placeholder and legacy colors
     log: "PLAYER messaged VICTIM: MSG"
-    staff: "Staff -> VICTIM: MSG"
-    player: "Staff -> You: MSG"
+    staff: "&4&lStaff &c-> &a&lVICTIM&4: &rMSG"
+    player: "&4&lStaff &c-> &a&lYou&4: &rMSG"
   # Staffmode
   staffmode: # log and staff message, No VICTIM placeholder
     log:
       on: "PLAYER entered staffmode"
       off: "PLAYER exited staffmode"
     staff:
-      on: "Entered staffmode"
-      off: "Exited staffmode"
+      on: "&bEntered staffmode"
+      off: "&bExited staffmode"
 
 # OpChecker logging
 ops:

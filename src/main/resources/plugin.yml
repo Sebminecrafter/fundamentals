@@ -18,27 +18,27 @@ commands:
     aliases: ['sm', 'watch']
   invsee: # TODO
     description: "Not implemented yet!"
-    usage: "Usage: /<command> [player]"
+    usage: "Usage: /<command> <player>"
     permission: fundamentals.staff.invsee
     aliases: ['viewinv', 'inventorysee']
   freeze: # TODO
     description: "Not implemented yet!"
-    usage: "Usage: /<command> [player]"
+    usage: "Usage: /<command> <player>"
     permission: fundamentals.staff.freeze
     aliases: []
   staffmsg: # TODO
     description: "Not implemented yet!"
-    usage: "Usage: /<command> [player] [message]"
+    usage: "Usage: /<command> <player> <message>"
     permission: fundamentals.staff.staffmsg
     aliases: ['speakto']
-  msg: # TODO
-    description: "Not implemented yet!"
-    usage: "Usage: /<command> [player] [message]"
+  msg:
+    description: "Message a player"
+    usage: "Usage: /<command> <player> <message>"
     permission: fundamentals.player.msg
     aliases: ['w', 'whisper']
   ignore: # TODO
     description: "Not implemented yet!"
-    usage: "Usage: /<command> [player]"
+    usage: "Usage: /<command> <player>"
     permission: fundamentals.player.ignore
     aliases: []
 

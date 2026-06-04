@@ -17,6 +17,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import static org.bukkit.Bukkit.getServer;
+
 public class Staffmode implements Listener {
 
     private final Map<UUID, GameMode> savedGameModes = new HashMap<>();
@@ -27,6 +29,8 @@ public class Staffmode implements Listener {
     public Staffmode(JavaPlugin plugin) {
         this.plugin = plugin;
         this.logger = Main.logger;
+
+        getServer().getPluginManager().registerEvents(this, plugin);
     }
 
     public void execute(CommandSender sender) {
@@ -87,6 +91,8 @@ public class Staffmode implements Listener {
     @EventHandler
     public void onPlayerGameModeChange(@NonNull PlayerGameModeChangeEvent event) {
         Player player = event.getPlayer();
+        if (player.getGameMode() != GameMode.SPECTATOR) return;
+        if (event.getNewGameMode() == GameMode.SPECTATOR) return;
         if (savedGameModes.containsKey(player.getUniqueId())) {
             player.sendMessage("You have left staff mode.");
             logger.log(player.getName()+" exited staff mode.");
