@@ -6,12 +6,9 @@ import io.github.sebminecrafter.fundamentals.Commands.Staffmode;
 import io.github.sebminecrafter.fundamentals.IO.Config;
 import io.github.sebminecrafter.fundamentals.IO.Lang;
 import io.github.sebminecrafter.fundamentals.IO.Logging;
-import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public final class Main extends JavaPlugin {

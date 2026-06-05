@@ -17,8 +17,6 @@ import java.util.Map;
 
 public class Commands implements CommandExecutor, TabCompleter {
 
-    private final Staffmode staffmode;
-    private final Msg msg;
     private final Lang lang;
     private final Map<String, FundamentalCommand> commands = new HashMap<>();
     private final Config config;
@@ -27,10 +25,10 @@ public class Commands implements CommandExecutor, TabCompleter {
         this.config = Main.config;
         this.lang = Main.lang;
 
-        staffmode = new Staffmode(plugin);
+        Staffmode staffmode = new Staffmode(plugin);
         commands.put("staffmode", staffmode);
 
-        msg = new Msg();
+        Msg msg = new Msg();
         commands.put("msg", msg);
     }
 
