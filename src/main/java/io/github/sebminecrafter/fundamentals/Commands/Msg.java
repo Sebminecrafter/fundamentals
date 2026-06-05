@@ -1,28 +1,24 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
 import io.github.sebminecrafter.fundamentals.IO.Lang;
+import io.github.sebminecrafter.fundamentals.IO.Logging;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
 import io.github.sebminecrafter.fundamentals.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.Arrays;
-
-import static org.bukkit.Bukkit.getServer;
-
 public class Msg implements FundamentalCommand {
     private final Lang lang;
+    private final Logging logger;
 
     public Msg() {
         this.lang = Main.lang;
+        this.logger = Main.logger;
     }
-
-    private void log(String a) {getServer().getLogger().info(a);}
 
     @Override
     public boolean execute(CommandSender sender, String[] args) {
-        log(Arrays.toString(args));
         if (args.length < 2) {
             return false;
         }
@@ -31,7 +27,6 @@ public class Msg implements FundamentalCommand {
             message.append(args[i]);
             message.append(" ");
         }
-        log(message.toString());
         Player receiver = Bukkit.getPlayer(args[0]);
         PlaceholderHelper helper = new PlaceholderHelper();
         helper.add("PLAYER", sender.getName());
@@ -41,8 +36,9 @@ public class Msg implements FundamentalCommand {
             sender.sendMessage(lang.getKey("cmds.msg.offline", helper.getReplace()));
             return true;
         }
-        receiver.sendMessage(lang.getKey("cmds.msg.recieve", helper.getReplace()));
+        receiver.sendMessage(lang.getKey("cmds.msg.receive", helper.getReplace()));
         sender.sendMessage(lang.getKey("cmds.msg.send", helper.getReplace()));
+        logger.log(lang.getKey("cmds.msg.log", helper.getReplace()));
         return true;
     }
 
