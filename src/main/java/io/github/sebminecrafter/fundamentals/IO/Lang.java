@@ -8,8 +8,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 
 public class Lang {
@@ -23,7 +25,12 @@ public class Lang {
             plugin.saveResource("lang.yml", false);
         }
         try {
+            // Load lang file
             langFile.load(file);
+            // Load defaults
+            InputStreamReader reader = new InputStreamReader(Objects.requireNonNull(plugin.getResource(fileName)));
+            YamlConfiguration defaults = YamlConfiguration.loadConfiguration(reader);
+            langFile.setDefaults(defaults);
         } catch (IOException | InvalidConfigurationException e) {
             logger.log(Level.SEVERE, "Error loading lang file!");
             logger.log(Level.SEVERE, e.getMessage());
