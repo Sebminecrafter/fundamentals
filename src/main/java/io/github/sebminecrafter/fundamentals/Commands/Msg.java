@@ -49,7 +49,7 @@ public class Msg implements FundamentalCommand {
     @Override
     public String[]  tabComplete(CommandSender sender, String[] args) {
         String[] strings;
-        if (args.length == 0) {
+        if (args.length < 2) {
             Player[] onlinePlayers = Bukkit.getOnlinePlayers().toArray(new Player[0]);
             strings = new String[onlinePlayers.length];
             for (int i=0;i<onlinePlayers.length;i++) {
@@ -57,7 +57,7 @@ public class Msg implements FundamentalCommand {
             }
         } else {
             strings = new String[1];
-            strings[0] = args[1];
+            strings[0] = args[2];
         }
         return strings;
     }
