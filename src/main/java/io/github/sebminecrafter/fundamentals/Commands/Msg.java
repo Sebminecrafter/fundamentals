@@ -57,7 +57,7 @@ public class Msg implements FundamentalCommand {
             }
         } else {
             strings = new String[1];
-            strings[0] = args[2];
+            strings[0] = args[1];
         }
         return strings;
     }
