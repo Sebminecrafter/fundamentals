@@ -63,6 +63,10 @@ public class Lang {
 
     // Internal method to simplify code
     private String _getKey(String key) {
-        return config.getString(key);
+        String crKey = config.getString(key);
+        if (crKey == null) {
+            crKey = key;
+        }
+        return crKey;
     }
 }

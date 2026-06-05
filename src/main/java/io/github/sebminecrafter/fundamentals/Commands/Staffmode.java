@@ -52,16 +52,16 @@ public class Staffmode implements Listener, FundamentalCommand {
             restore(player);
             PlaceholderHelper helper = new PlaceholderHelper();
             helper.add("PLAYER", player.getName());
-            player.sendMessage(lang.getKey("staffcmds.staffmode.staff.off", helper.getReplace()));
-            logger.log(lang.getKey("staffcmds.staffmode.log.off", helper.getReplace()));
+            player.sendMessage(lang.getKey("staffcmds.staffmode.staff.exit", helper.getReplace()));
+            logger.log(lang.getKey("staffcmds.staffmode.log.exit", helper.getReplace()));
         } else {
             savedGameModes.put(uuid, player.getGameMode());
             savedLocations.put(uuid, player.getLocation().clone());
             player.setGameMode(GameMode.SPECTATOR);
             PlaceholderHelper helper = new PlaceholderHelper();
             helper.add("PLAYER", player.getName());
-            player.sendMessage(lang.getKey("staffcmds.staffmode.staff.on", helper.getReplace()));
-            logger.log(lang.getKey("staffcmds.staffmode.log.on", helper.getReplace()));
+            player.sendMessage(lang.getKey("staffcmds.staffmode.staff.enter", helper.getReplace()));
+            logger.log(lang.getKey("staffcmds.staffmode.log.enter", helper.getReplace()));
         }
         return true;
     }
@@ -113,8 +113,8 @@ public class Staffmode implements Listener, FundamentalCommand {
         if (savedGameModes.containsKey(player.getUniqueId())) {
             PlaceholderHelper helper = new PlaceholderHelper();
             helper.add("PLAYER", player.getName());
-            player.sendMessage(lang.getKey("staffcmds.staffmode.staff.off", helper.getReplace()));
-            logger.log(lang.getKey("staffcmds.staffmode.log.off", helper.getReplace()));
+            player.sendMessage(lang.getKey("staffcmds.staffmode.staff.exit", helper.getReplace()));
+            logger.log(lang.getKey("staffcmds.staffmode.log.exit", helper.getReplace()));
             removePlayer(player);
         }
     }

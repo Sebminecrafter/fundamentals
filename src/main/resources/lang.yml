@@ -8,7 +8,8 @@ stopped: "Stopped Fundamentals"
 # Placeholders: PLAYER
 cmds:
   # Msg
-  msg: # Placeholders: OTHER, MSG
+  # Placeholders: OTHER, MSG
+  msg:
     log: "PLAYER said to OTHER: MSG"
     send: "&5&lYou &9-> &1&lOTHER&9: &rMSG"
     receive: "&1&lPLAYER &9-> &5&lYou&9: &rMSG"
@@ -17,7 +18,8 @@ cmds:
 # Placeholders: PLAYER, VICTIM
 staffcmds:
   # Freeze command
-  freeze: # log, staff, and player messages
+  # log, staff, and player messages
+  freeze:
     log:
       on: "PLAYER froze VICTIM!"
       off: "PLAYER unfroze VICTIM!"
@@ -29,28 +31,32 @@ staffcmds:
       actionbar: "&cYou are frozen"
       off: "&2You were unfrozen!"
   # Invsee
-  invsee: # log and staff messages
+  # log and staff messages
+  invsee:
     log: "PLAYER opened VICTIM's inventory!"
     staff: "&2Opened VICTIM's inventory"
   # Staffmsg
-  staffmsg: # log, staff, and player messages, can use MSG placeholder and legacy colors
+  # log, staff, and player messages, can use MSG placeholder and legacy colors
+  staffmsg:
     log: "PLAYER messaged VICTIM: MSG"
     staff: "&4&lStaff &c-> &a&lVICTIM&4: &rMSG"
     player: "&4&lStaff &c-> &a&lYou&4: &rMSG"
   # Staffmode
-  staffmode: # log and staff message, No VICTIM placeholder
+  # log and staff message, No VICTIM placeholder
+  staffmode:
     log:
-      on: "PLAYER entered staffmode"
-      off: "PLAYER exited staffmode"
+      enter: "PLAYER entered staffmode"
+      exit: "PLAYER exited staffmode"
     staff:
-      on: "&bEntered staffmode"
-      off: "&bExited staffmode"
+      enter: "&bEntered staffmode"
+      exit: "&bExited staffmode"
   # Feed
   feed:
     log: "PLAYER fed VICTIM"
     staff: "Fed VICTIM"
 
-msgs: # No placeholders, extra messages
+# No placeholders, extra messages
+msgs:
   playeronly: "&cThis command can only be run by a player."
   disabled: "&cThis command is disabled."
   notfound: "&cCommand not found."
