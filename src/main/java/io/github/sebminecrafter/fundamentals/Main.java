@@ -6,8 +6,12 @@ import io.github.sebminecrafter.fundamentals.Commands.Staffmode;
 import io.github.sebminecrafter.fundamentals.IO.Config;
 import io.github.sebminecrafter.fundamentals.IO.Lang;
 import io.github.sebminecrafter.fundamentals.IO.Logging;
+import org.bukkit.Bukkit;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public final class Main extends JavaPlugin {
@@ -33,7 +37,13 @@ public final class Main extends JavaPlugin {
             opchecker = new OpChecker(this);
         }
 
-        Objects.requireNonNull(this.getCommand("staffmode")).setExecutor(commands);
+        for (String commandName : getDescription().getCommands().keySet()) {
+            PluginCommand command = getCommand(commandName);
+            if (command != null) {
+                command.setExecutor(commands);
+                command.setTabCompleter(commands);
+            }
+        }
 
         logger.log(lang.getKey("started"));
     }

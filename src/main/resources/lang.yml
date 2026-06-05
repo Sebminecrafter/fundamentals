@@ -47,6 +47,11 @@ staffcmds:
       on: "&bEntered staffmode"
       off: "&bExited staffmode"
 
+msgs: # No placeholders, extra messages
+  playeronly: "This command can only be run by a player."
+  disabled: "This command is disabled."
+  notfound: "Command not found."
+
 # OpChecker logging
 ops:
   # CMD, EXECUTOR, and PLAYER will be replaced where applicable
