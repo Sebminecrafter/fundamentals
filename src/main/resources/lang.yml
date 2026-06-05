@@ -38,11 +38,11 @@ staffcmds:
   # Staffmsg
   # log, staff, and player messages, can use MSG placeholder and legacy colors
   staffmsg:
-    log: "PLAYER messaged VICTIM: MSG"
+    log: "PLAYER staff-messaged VICTIM: MSG"
     staff: "&4&lStaff &c-> &a&lVICTIM&4: &rMSG"
     player: "&4&lStaff &c-> &a&lYou&4: &rMSG"
   # Staffmode
-  # log and staff message, No VICTIM placeholder
+  # log and staff message, VICTIM placeholder only if a name was entered (/staffmode [player to spectate - not required])
   staffmode:
     log:
       enter: "PLAYER entered staffmode"
@@ -50,6 +50,7 @@ staffcmds:
     staff:
       enter: "&bEntered staffmode"
       exit: "&bExited staffmode"
+    addon: ", spectating VICTIM"
   # Feed
   feed:
     log: "PLAYER fed VICTIM"

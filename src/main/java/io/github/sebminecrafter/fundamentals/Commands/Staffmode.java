@@ -4,6 +4,7 @@ import io.github.sebminecrafter.fundamentals.IO.Lang;
 import io.github.sebminecrafter.fundamentals.IO.Logging;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
 import io.github.sebminecrafter.fundamentals.Main;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
@@ -39,36 +40,46 @@ public class Staffmode implements Listener, FundamentalCommand {
 
     @Override
     public boolean execute(CommandSender sender, String[] args) {
+        Player wantsToTpTo = null;
         if (!(sender instanceof Player player)) {
             sender.sendMessage(lang.getKey("msgs.playeronly"));
             return true;
-        } else if (args.length != 0) {
+        } else if (args.length > 1) {
             return false;
+        } else if (args.length == 1) {
+            wantsToTpTo = Bukkit.getPlayer(args[0]);
         }
 
         UUID uuid = player.getUniqueId();
 
-        if (savedGameModes.containsKey(uuid)) {
-            restore(player);
-            PlaceholderHelper helper = new PlaceholderHelper();
-            helper.add("PLAYER", player.getName());
-            player.sendMessage(lang.getKey("staffcmds.staffmode.staff.exit", helper.getReplace()));
-            logger.log(lang.getKey("staffcmds.staffmode.log.exit", helper.getReplace()));
+        if (wantsToTpTo == null) {
+            if (savedGameModes.containsKey(uuid)) {
+                restore(player);
+                PlaceholderHelper helper = new PlaceholderHelper();
+                helper.add("PLAYER", player.getName());
+                player.sendMessage(lang.getKey("staffcmds.staffmode.staff.exit", helper.getReplace()));
+                logger.log(lang.getKey("staffcmds.staffmode.log.exit", helper.getReplace()));
+            } else {
+                savedGameModes.put(uuid, player.getGameMode());
+                savedLocations.put(uuid, player.getLocation().clone());
+                player.setGameMode(GameMode.SPECTATOR);
+                PlaceholderHelper helper = new PlaceholderHelper();
+                helper.add("PLAYER", player.getName());
+                player.sendMessage(lang.getKey("staffcmds.staffmode.staff.enter", helper.getReplace()));
+                logger.log(lang.getKey("staffcmds.staffmode.log.enter", helper.getReplace()));
+            }
         } else {
             savedGameModes.put(uuid, player.getGameMode());
             savedLocations.put(uuid, player.getLocation().clone());
             player.setGameMode(GameMode.SPECTATOR);
+            player.teleport(wantsToTpTo);
             PlaceholderHelper helper = new PlaceholderHelper();
             helper.add("PLAYER", player.getName());
-            player.sendMessage(lang.getKey("staffcmds.staffmode.staff.enter", helper.getReplace()));
-            logger.log(lang.getKey("staffcmds.staffmode.log.enter", helper.getReplace()));
+            helper.add("VICTIM", wantsToTpTo.getName());
+            player.sendMessage(lang.getKey("staffcmds.staffmode.staff.enter", helper.getReplace())+lang.getKey("staffcmds.staffmode.addon", helper.getReplace()));
+            logger.log(lang.getKey("staffcmds.staffmode.log.enter", helper.getReplace())+lang.getKey("staffcmds.staffmode.addon", helper.getReplace()));
         }
         return true;
-    }
-
-    @Override
-    public String[] tabComplete(CommandSender sender, String[] args) {
-        return new String[0];
     }
 
     private void restore(Player player) {

@@ -13,9 +13,9 @@ website: "modrinth.com/user/Sebminecrafter"
 commands:
   staffmode:
     description: "Enter staff mode"
-    usage: "Usage: /<command>"
+    usage: "Usage: /<command> [player]"
     permission: fundamentals.staff.staffmode
-    aliases: ['sm', 'watch']
+    aliases: ['sm', 'spectate']
   invsee: # TODO
     description: "Not implemented yet!"
     usage: "Usage: /<command> <player>"
@@ -26,8 +26,8 @@ commands:
     usage: "Usage: /<command> <player>"
     permission: fundamentals.staff.freeze
     aliases: []
-  staffmsg: # TODO
-    description: "Not implemented yet!"
+  staffmsg:
+    description: "Message a player as \"staff\""
     usage: "Usage: /<command> <player> <message>"
     permission: fundamentals.staff.staffmsg
     aliases: ['speakto']
