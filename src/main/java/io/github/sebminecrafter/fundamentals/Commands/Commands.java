@@ -27,9 +27,10 @@ public class Commands implements CommandExecutor, TabCompleter {
 
         Staffmode staffmode = new Staffmode(plugin);
         commands.put("staffmode", staffmode);
-
         Msg msg = new Msg();
         commands.put("msg", msg);
+        Feed feed = new Feed();
+        commands.put("feed", feed);
     }
 
     public FundamentalCommand getCommand(String commandName) {

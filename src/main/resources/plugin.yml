@@ -31,16 +31,21 @@ commands:
     usage: "Usage: /<command> <player> <message>"
     permission: fundamentals.staff.staffmsg
     aliases: ['speakto']
+  feed:
+    description: "Fill a player's hunger"
+    usage: "Usage: /<command> <player>"
+    permission: fundamentals.staff.feed
+    aliases: []
   msg:
     description: "Message a player"
     usage: "Usage: /<command> <player> <message>"
     permission: fundamentals.player.msg
     aliases: ['w', 'whisper']
   ignore: # TODO
-    description: "Not implemented yet!"
+    description: "Ignore a player's messages and tp requests"
     usage: "Usage: /<command> <player>"
     permission: fundamentals.player.ignore
-    aliases: []
+    aliases: ['block']
 
 default-permission: op
 permissions:
@@ -56,6 +61,8 @@ permissions:
         description: "Ability to use the staffmsg command on players"
       fundamentals.staff.staffmode:
         description: "Ability to use the staffmode command"
+      fundamentals.staff.feed:
+        description: "Ability to use the feed command on players"
   fundamentals.player:
     description: "Player commands parent permission"
     default: true

@@ -14,4 +14,4 @@ enabled:
     invsee: true
     staffmsg: true
     staffmode: true
-
+    feed: true

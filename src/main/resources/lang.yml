@@ -12,7 +12,6 @@ cmds:
     log: "PLAYER said to OTHER: MSG"
     send: "&5&lYou &9-> &1&lOTHER&9: &rMSG"
     receive: "&1&lPLAYER &9-> &5&lYou&9: &rMSG"
-    offline: "&cPlayer OTHER is not online."
 
 # Staff commands
 # Placeholders: PLAYER, VICTIM
@@ -23,16 +22,16 @@ staffcmds:
       on: "PLAYER froze VICTIM!"
       off: "PLAYER unfroze VICTIM!"
     staff:
-      on: "Froze VICTIM"
-      off: "Unfroze VICTIM"
+      on: "&cFroze VICTIM"
+      off: "&cUnfroze VICTIM"
     player:
-      on: "You have been frozen"
-      actionbar: "You are frozen"
-      off: "You were unfrozen"
+      on: "&cYou have been frozen!"
+      actionbar: "&cYou are frozen"
+      off: "&2You were unfrozen!"
   # Invsee
   invsee: # log and staff messages
     log: "PLAYER opened VICTIM's inventory!"
-    staff: "Opened VICTIM's inventory"
+    staff: "&2Opened VICTIM's inventory"
   # Staffmsg
   staffmsg: # log, staff, and player messages, can use MSG placeholder and legacy colors
     log: "PLAYER messaged VICTIM: MSG"
@@ -46,11 +45,16 @@ staffcmds:
     staff:
       on: "&bEntered staffmode"
       off: "&bExited staffmode"
+  # Feed
+  feed:
+    log: "PLAYER fed VICTIM"
+    staff: "Fed VICTIM"
 
 msgs: # No placeholders, extra messages
-  playeronly: "This command can only be run by a player."
-  disabled: "This command is disabled."
-  notfound: "Command not found."
+  playeronly: "&cThis command can only be run by a player."
+  disabled: "&cThis command is disabled."
+  notfound: "&cCommand not found."
+  offline: "&cPlayer is not online."
 
 # OpChecker logging
 ops:
