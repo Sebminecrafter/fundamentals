@@ -18,7 +18,7 @@ public class Staffmsg implements FundamentalCommand {
     }
 
     @Override
-    public boolean execute(CommandSender sender, String[] args) {
+    public boolean execute(CommandSender sender, String[] args, String label) {
         if (args.length < 2) {
             return false;
         }

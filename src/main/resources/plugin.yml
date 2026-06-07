@@ -36,6 +36,11 @@ commands:
     usage: "Usage: /<command> <player>"
     permission: fundamentals.staff.feed
     aliases: []
+  gamemode:
+    description: "Change gamemode"
+    usage: "Usage: /<command> [player] <gamemode>"
+    permission: fundamentals.staff.gamemode
+    aliases: ['gm', 'gms', 'gmc', 'gma', 'gmsp']
   msg:
     description: "Message a player"
     usage: "Usage: /<command> <player> <message>"
@@ -46,6 +51,11 @@ commands:
     usage: "Usage: /<command> <player>"
     permission: fundamentals.player.ignore
     aliases: ['block']
+  tpa: # TODO
+    description: "Request to teleport to a player"
+    usage: "Usage: /<command> <player>"
+    permission: fundamentals.player.tpa
+    aliases: ['tprequest']
 
 default-permission: op
 permissions:
@@ -71,3 +81,5 @@ permissions:
         description: "Message other players privately"
       fundamentals.player.ignore:
         description: "Ignore messages and tp requests from a player"
+      fundamentals.player.tpa:
+        description: "Request to teleport to players"

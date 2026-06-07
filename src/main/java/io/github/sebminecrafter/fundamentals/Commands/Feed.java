@@ -19,11 +19,17 @@ public class Feed implements FundamentalCommand {
         logger = Main.logger;
     }
 
-    public boolean execute(CommandSender sender, String[] args) {
-        if (args.length != 1) {
+    @Override
+    public boolean execute(CommandSender sender, String[] args, String label) {
+        Player player;
+        if (args.length > 1) {
             return false;
+        } else if (args.length == 1) {
+            player = Bukkit.getPlayer(args[0]);
+        } else {
+            if (!(sender instanceof Player)) return false;
+            player = Bukkit.getPlayer(sender.getName());
         }
-        Player player = Bukkit.getPlayer(args[0]);
         if (player == null) {
             sender.sendMessage(lang.getKey("msgs.offline"));
             return true;

@@ -54,7 +54,11 @@ staffcmds:
   # Feed
   feed:
     log: "PLAYER fed VICTIM"
-    staff: "Fed VICTIM"
+    staff: "&6Fed VICTIM"
+  # Gamemode, GM placeholder
+  gamemode:
+    log: "PLAYER changed VICTIM's gamemode to GM"
+    staff: "&5Changed &dVICTIM&5's gamemode to &b&lGM"
 
 # No placeholders, extra messages
 msgs:
@@ -62,6 +66,7 @@ msgs:
   disabled: "&cThis command is disabled."
   notfound: "&cCommand not found."
   offline: "&cPlayer is not online."
+  invalid: "&cInvalid argument!"
 
 # OpChecker logging
 ops:

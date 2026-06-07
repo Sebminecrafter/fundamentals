@@ -30,6 +30,8 @@ public class Commands implements CommandExecutor, TabCompleter {
         commands.put("msg", new Msg());
         commands.put("feed", new Feed());
         commands.put("staffmsg", new Staffmsg());
+        commands.put("gamemode", new GamemodeSimplifier());
+        commands.put("tpa", new Tpa());
     }
 
     public FundamentalCommand getCommand(String commandName) {
@@ -51,7 +53,7 @@ public class Commands implements CommandExecutor, TabCompleter {
             sender.sendMessage(lang.getKey("msgs.notfound"));
             return true;
         } else {
-            return commandObj.execute(sender, args);
+            return commandObj.execute(sender, args, label);
         }
     }
 
@@ -67,7 +69,7 @@ public class Commands implements CommandExecutor, TabCompleter {
             sender.sendMessage(lang.getKey("msgs.notfound"));
             return List.of();
         } else {
-            return List.of(commandObj.tabComplete(sender, args));
+            return commandObj.tabComplete(sender, args);
         }
     }
 }

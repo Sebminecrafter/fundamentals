@@ -39,7 +39,7 @@ public class Staffmode implements Listener, FundamentalCommand {
     }
 
     @Override
-    public boolean execute(CommandSender sender, String[] args) {
+    public boolean execute(CommandSender sender, String[] args, String label) {
         Player wantsToTpTo = null;
         if (!(sender instanceof Player player)) {
             sender.sendMessage(lang.getKey("msgs.playeronly"));
