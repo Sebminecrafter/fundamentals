@@ -27,7 +27,7 @@ public class Msg implements FundamentalCommand {
             message.append(args[i]);
             message.append(" ");
         }
-        Player receiver = Bukkit.getPlayer(args[0]);
+        Player receiver = Bukkit.getPlayerExact(args[0]);
         PlaceholderHelper helper = new PlaceholderHelper();
         helper.add("PLAYER", sender.getName());
         helper.add("OTHER", args[0]);

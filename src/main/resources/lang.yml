@@ -8,11 +8,44 @@ stopped: "Stopped Fundamentals"
 # Placeholders: PLAYER
 cmds:
   # Msg
-  # Placeholders: OTHER, MSG
+  # Extra placeholders: OTHER, MSG
   msg:
     log: "PLAYER said to OTHER: MSG"
     send: "&5&lYou &9-> &1&lOTHER&9: &rMSG"
     receive: "&1&lPLAYER &9-> &5&lYou&9: &rMSG"
+  # Tpa/Tpahere/Tpaccept/Tpdeny/Tpacancel
+  # Extra placeholders: OTHER
+  tpa:
+    multiple: "&cYou already have an outgoing tp request! &eCancel it with &l/tpacancel"
+    none: "&cYou have no incoming tp requests!"
+    expired:
+      log: "PLAYER's request to OTHER expired"
+      sent: "&cYour teleport request to &1&lOTHER&c expired!"
+      receive: "&cTeleport request from &1&lPLAYER&c expired!"
+    cancelled:
+      log: "PLAYER cancelled request to OTHER"
+      sent: "&5Cancelled outgoing request to &1&lOTHER"
+      receive: "&cTpa request from &1&lPLAYER&c was cancelled!"
+    denied:
+      log: "OTHER denied request from PLAYER"
+      sent: "&1&lOTHER&c denied your tp request!"
+      receive: "&cTpa request from &1&lPLAYER&c was denied!"
+    request:
+      tpa:
+        log: "PLAYER sent tpa request to OTHER"
+        sent: "&5Requested to teleport to &1&lOTHER"
+        receive: "&1&lPLAYER&5 has requested to teleport to you. &eUse &l/tpaccept&e to accept this request."
+      tpahere:
+        log: "PLAYER sent tpahere request to OTHER"
+        sent: "&5Requested &1&lOTHER&5 to teleport here."
+        receive: "&1&lPLAYER&5 has requested you teleport to them. &eUse &l/tpaccept&e to accept this request."
+    accepted:
+      log: "OTHER accepted PLAYER's teleport request"
+      sent: "&1&lOTHER&5 accepted your teleport request!"
+      receive: "&5Accepted &1&lPLAYER&5's teleport request!"
+    standstill: "&eDon't move! &dTeleporting in 5 seconds!"
+    # Countdown: will show in actionbar and can use SECS placeholder
+    countdown: "&5Teleporting in &lSECS&5..."
 
 # Staff commands
 # Placeholders: PLAYER, VICTIM

@@ -25,10 +25,10 @@ public class Feed implements FundamentalCommand {
         if (args.length > 1) {
             return false;
         } else if (args.length == 1) {
-            player = Bukkit.getPlayer(args[0]);
+            player = Bukkit.getPlayerExact(args[0]);
         } else {
             if (!(sender instanceof Player)) return false;
-            player = Bukkit.getPlayer(sender.getName());
+            player = (Player) sender;
         }
         if (player == null) {
             sender.sendMessage(lang.getKey("msgs.offline"));

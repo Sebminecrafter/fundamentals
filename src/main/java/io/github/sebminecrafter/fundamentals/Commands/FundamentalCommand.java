@@ -14,7 +14,11 @@ public interface FundamentalCommand {
     }
     default List<String> tabComplete(CommandSender sender, String[] args) {
         if (args.length < 2) {
-            return Bukkit.getOnlinePlayers().stream()
+            String args0 = "";
+            if (args.length == 1) {
+                args0 = args[0];
+            }
+            return Bukkit.matchPlayer(args0).stream()
                     .map(Player::getName)
                     .collect(Collectors.toList());
         } else {

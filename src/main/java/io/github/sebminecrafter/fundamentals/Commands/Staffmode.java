@@ -47,7 +47,7 @@ public class Staffmode implements Listener, FundamentalCommand {
         } else if (args.length > 1) {
             return false;
         } else if (args.length == 1) {
-            wantsToTpTo = Bukkit.getPlayer(args[0]);
+            wantsToTpTo = Bukkit.getPlayerExact(args[0]);
         }
 
         UUID uuid = player.getUniqueId();

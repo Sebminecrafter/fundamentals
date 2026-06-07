@@ -11,16 +11,17 @@ authors: [ "Sebminecrafter" ]
 website: "modrinth.com/user/Sebminecrafter"
 
 commands:
+  # Staff commands
   staffmode:
     description: "Enter staff mode"
     usage: "Usage: /<command> [player]"
     permission: fundamentals.staff.staffmode
     aliases: ['sm', 'spectate']
-  invsee: # TODO
-    description: "Not implemented yet!"
+  invsee:
+    description: "View a player's inventory"
     usage: "Usage: /<command> <player>"
     permission: fundamentals.staff.invsee
-    aliases: ['viewinv', 'inventorysee']
+    aliases: ['inventorysee']
   freeze: # TODO
     description: "Not implemented yet!"
     usage: "Usage: /<command> <player>"
@@ -30,7 +31,7 @@ commands:
     description: "Message a player as \"staff\""
     usage: "Usage: /<command> <player> <message>"
     permission: fundamentals.staff.staffmsg
-    aliases: ['speakto']
+    aliases: []
   feed:
     description: "Fill a player's hunger"
     usage: "Usage: /<command> <player>"
@@ -41,6 +42,8 @@ commands:
     usage: "Usage: /<command> [player] <gamemode>"
     permission: fundamentals.staff.gamemode
     aliases: ['gm', 'gms', 'gmc', 'gma', 'gmsp']
+
+  # Player commands
   msg:
     description: "Message a player"
     usage: "Usage: /<command> <player> <message>"
@@ -51,11 +54,11 @@ commands:
     usage: "Usage: /<command> <player>"
     permission: fundamentals.player.ignore
     aliases: ['block']
-  tpa: # TODO
-    description: "Request to teleport to a player"
-    usage: "Usage: /<command> <player>"
+  tpa:
+    description: "Teleport requests"
+    usage: "Usage varies: /tpa <player>, /tpahere <player>, /tpacancel, /tpaccept [player], /tpdeny [player]"
     permission: fundamentals.player.tpa
-    aliases: ['tprequest']
+    aliases: ['tpaccept', 'tpdeny', 'tpacancel', 'tpahere']
 
 default-permission: op
 permissions:

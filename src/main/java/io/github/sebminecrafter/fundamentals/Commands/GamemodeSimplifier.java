@@ -68,25 +68,25 @@ public class GamemodeSimplifier implements FundamentalCommand {
 
         if (name.equals("gm") || name.equals("gamemode")) {
             if (args.length > 1) {
-                player = Bukkit.getPlayer(args[0]);
+                player = Bukkit.getPlayerExact(args[0]);
             } else {
                 if (!(sender instanceof Player)) {
                     sender.sendMessage(lang.getKey("msgs.playeronly"));
                     return true;
                 }
-                player = Bukkit.getPlayer(sender.getName());
+                player = (Player) sender;
             }
         } else {
             if (args.length > 1) {
                 return false;
             } else if (args.length == 1) {
-                player = Bukkit.getPlayer(args[0]);
+                player = Bukkit.getPlayerExact(args[0]);
             } else {
                 if (!(sender instanceof Player)) {
                     sender.sendMessage(lang.getKey("msgs.playeronly"));
                     return true;
                 }
-                player = Bukkit.getPlayer(sender.getName());
+                player = (Player) sender;
             }
         }
         if (player == null) {

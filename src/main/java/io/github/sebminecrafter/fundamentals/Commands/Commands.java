@@ -31,7 +31,8 @@ public class Commands implements CommandExecutor, TabCompleter {
         commands.put("feed", new Feed());
         commands.put("staffmsg", new Staffmsg());
         commands.put("gamemode", new GamemodeSimplifier());
-        commands.put("tpa", new Tpa());
+        commands.put("invsee", new Invsee());
+        commands.put("tpa", new Tpa(config.getInt("tpa.expiresafter")));
     }
 
     public FundamentalCommand getCommand(String commandName) {
@@ -61,7 +62,6 @@ public class Commands implements CommandExecutor, TabCompleter {
     public List<String> onTabComplete(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
         String commandName = command.getName().toLowerCase(Locale.ENGLISH);
         if (!config.isEnabled("cmds."+commandName)) {
-            sender.sendMessage(lang.getKey("msgs.disabled"));
             return List.of();
         }
         FundamentalCommand commandObj = getCommand(commandName);
