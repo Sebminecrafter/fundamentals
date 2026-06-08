@@ -10,6 +10,7 @@ enabled:
     msg: true
     tpa: true
     tpahere: true
+    ignore: true
 
     # Staff commands
     freeze: true
