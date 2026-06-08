@@ -26,7 +26,7 @@ public class Freeze implements FundamentalCommand {
         this.lang = Main.lang;
         this.logger = Main.logger;
         this.frozenPlayers = new HashMap<>();
-        this.task = Bukkit.getScheduler().runTaskTimer(plugin, this::runFreeze, 0L, 50L);
+        this.task = Bukkit.getScheduler().runTaskTimer(plugin, this::runFreeze, 0L, 5L);
     }
 
     @Override
@@ -65,13 +65,10 @@ public class Freeze implements FundamentalCommand {
     private void runFreeze() {
         for (UUID uuid : frozenPlayers.keySet()) {
             Player player = Bukkit.getPlayer(uuid);
+            if (player == null) continue;
             Location location = frozenPlayers.get(uuid);
-            if (player == null) {
-                frozenPlayers.remove(uuid);
-                continue;
-            }
             player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacy(lang.getKey("staffcmds.freeze.player.actionbar")));
-            player.addPotionEffect(PotionEffectType.SLOWNESS.createEffect(50, 255));
+            player.addPotionEffect(PotionEffectType.SLOWNESS.createEffect(20, 255));
             player.teleport(location);
         }
     }
