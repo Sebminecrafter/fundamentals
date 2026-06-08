@@ -26,8 +26,9 @@ public class Tpa implements FundamentalCommand {
     private final HashMap<UUID, BukkitTask> tpatasks;
     private final HashMap<UUID, BukkitTask> tpaheretasks;
     private final int countdownTime;
+    private final Ignore ignore;
 
-    public Tpa(long requestExpiry) {
+    public Tpa(long requestExpiry, Ignore ignore) {
         this.lang = Main.lang;
         this.logger = Main.logger;
         this.requestExpiry = requestExpiry;
@@ -36,6 +37,7 @@ public class Tpa implements FundamentalCommand {
         this.tpatasks = new HashMap<>();
         this.tpaheretasks = new HashMap<>();
         this.countdownTime = 5;
+        this.ignore = ignore;
     }
 
     @Override
@@ -53,7 +55,11 @@ public class Tpa implements FundamentalCommand {
                     sender.sendMessage(lang.getKey("msgs.offline"));
                     return true;
                 } else if (player == executor) {
-                    sender.sendMessage(lang.getKey("msgs.invalid"));
+                    sender.sendMessage(lang.getKey("cmds.tpa.self"));
+                    return true;
+                } else if (ignore.isIgnoring(player.getUniqueId(), executor.getUniqueId())) {
+                    sender.sendMessage(lang.getKey("msgs.ignored"));
+                    return true;
                 }
             }
             sendTpRequest(executor, player);
@@ -71,7 +77,11 @@ public class Tpa implements FundamentalCommand {
                     sender.sendMessage(lang.getKey("msgs.offline"));
                     return true;
                 } else if (player == executor) {
-                    sender.sendMessage(lang.getKey("msgs.invalid"));
+                    sender.sendMessage(lang.getKey("cmds.tpa.self"));
+                    return true;
+                } else if (ignore.isIgnoring(player.getUniqueId(), executor.getUniqueId())) {
+                    sender.sendMessage(lang.getKey("msgs.ignored"));
+                    return true;
                 }
             }
             sendTpHereRequest(executor, player);

@@ -18,6 +18,7 @@ cmds:
   tpa:
     multiple: "&cYou already have an outgoing tp request! &eCancel it with &l/tpacancel"
     none: "&cYou have no incoming tp requests!"
+    self: "&cYou can't teleport to yourself!"
     expired:
       log: "PLAYER's request to OTHER expired"
       sent: "&cYour teleport request to &1&lOTHER&c expired!"
@@ -46,6 +47,15 @@ cmds:
     standstill: "&eDon't move! &dTeleporting in 5 seconds!"
     # Countdown: will show in actionbar and can use SECS placeholder
     countdown: "&5Teleporting in &lSECS&5..."
+  # Ignore
+  # Extra placeholders: OTHER
+  ignore:
+    ignore:
+      log: "PLAYER ignored OTHER"
+      send: "&5Ignored &1&lOTHER!"
+    unignore:
+      log: "PLAYER unignored OTHER"
+      send: "&5Stopped ignoring &1&lOTHER"
 
 # Staff commands
 # Placeholders: PLAYER, VICTIM
@@ -100,6 +110,8 @@ msgs:
   notfound: "&cCommand not found."
   offline: "&cPlayer is not online."
   invalid: "&cInvalid argument!"
+  fileerror: "&cAn error occurred and the server couldn't save that change."
+  ignored: "&cThis player is ignoring you!"
 
 # OpChecker logging
 ops:

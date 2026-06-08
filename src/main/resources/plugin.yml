@@ -49,7 +49,7 @@ commands:
     usage: "Usage: /<command> <player> <message>"
     permission: fundamentals.player.msg
     aliases: ['w', 'whisper']
-  ignore: # TODO
+  ignore:
     description: "Ignore a player's messages and tp requests"
     usage: "Usage: /<command> <player>"
     permission: fundamentals.player.ignore

@@ -11,10 +11,12 @@ import org.bukkit.entity.Player;
 public class Msg implements FundamentalCommand {
     private final Lang lang;
     private final Logging logger;
+    private final Ignore ignore;
 
-    public Msg() {
+    public Msg(Ignore ignore) {
         this.lang = Main.lang;
         this.logger = Main.logger;
+        this.ignore = ignore;
     }
 
     @Override
@@ -34,6 +36,10 @@ public class Msg implements FundamentalCommand {
         helper.add("MSG", message.toString());
         if (receiver == null) {
             sender.sendMessage(lang.getKey("msgs.offline", helper.getReplace()));
+            return true;
+        }
+        if ((sender instanceof Player player) && ignore.isIgnoring(receiver.getUniqueId(), player.getUniqueId())) {
+            sender.sendMessage(lang.getKey("msgs.ignored"));
             return true;
         }
         receiver.sendMessage(lang.getKey("cmds.msg.receive", helper.getReplace()));

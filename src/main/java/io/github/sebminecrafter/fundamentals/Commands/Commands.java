@@ -27,12 +27,14 @@ public class Commands implements CommandExecutor, TabCompleter {
 
         // Add each command class
         commands.put("staffmode", new Staffmode(plugin));
-        commands.put("msg", new Msg());
         commands.put("feed", new Feed());
         commands.put("staffmsg", new Staffmsg());
         commands.put("gamemode", new GamemodeSimplifier());
         commands.put("invsee", new Invsee());
-        commands.put("tpa", new Tpa(config.getInt("tpa.expiresafter")));
+        Ignore ignore = new Ignore(plugin);
+        commands.put("ignore", ignore);
+        commands.put("msg", new Msg(ignore));
+        commands.put("tpa", new Tpa(config.getInt("tpa.expiresafter"), ignore));
     }
 
     public FundamentalCommand getCommand(String commandName) {
