@@ -58,21 +58,21 @@ cmds:
       send: "&5Stopped ignoring &1&lOTHER"
 
 # Staff commands
-# Placeholders: PLAYER, VICTIM
+# Placeholders: PLAYER, VICTIM (Player might show up as "CONSOLE" in some cases)
 staffcmds:
   # Freeze command
   # log, staff, and player messages
   freeze:
     log:
-      on: "PLAYER froze VICTIM!"
-      off: "PLAYER unfroze VICTIM!"
+      start: "PLAYER froze VICTIM!"
+      stop: "PLAYER unfroze VICTIM!"
     staff:
-      on: "&cFroze VICTIM"
-      off: "&cUnfroze VICTIM"
+      start: "&cFroze VICTIM"
+      stop: "&cUnfroze VICTIM"
     player:
-      on: "&cYou have been frozen!"
+      start: "&cYou have been frozen!"
       actionbar: "&cYou are frozen"
-      off: "&2You were unfrozen!"
+      stop: "&2You were unfrozen!"
   # Invsee
   # log and staff messages
   invsee:

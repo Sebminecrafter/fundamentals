@@ -48,6 +48,8 @@ public final class Main extends JavaPlugin {
     @Override
     public void onDisable() {
 
+        commands.freeze.cleanup();
+
         if (opchecker != null) {
             opchecker.stopTask();
         }

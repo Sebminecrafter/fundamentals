@@ -22,8 +22,8 @@ commands:
     usage: "Usage: /<command> <player>"
     permission: fundamentals.staff.invsee
     aliases: ['inventorysee']
-  freeze: # TODO
-    description: "Not implemented yet!"
+  freeze:
+    description: "Freeze a player"
     usage: "Usage: /<command> <player>"
     permission: fundamentals.staff.freeze
     aliases: []

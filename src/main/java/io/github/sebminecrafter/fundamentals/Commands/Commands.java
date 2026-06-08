@@ -20,10 +20,12 @@ public class Commands implements CommandExecutor, TabCompleter {
     private final Lang lang;
     private final Map<String, FundamentalCommand> commands = new HashMap<>();
     private final Config config;
+    public final Freeze freeze;
 
     public Commands(JavaPlugin plugin) {
         this.config = Main.config;
         this.lang = Main.lang;
+        this.freeze = new Freeze(plugin);
 
         // Add each command class
         commands.put("staffmode", new Staffmode(plugin));
@@ -31,6 +33,7 @@ public class Commands implements CommandExecutor, TabCompleter {
         commands.put("staffmsg", new Staffmsg());
         commands.put("gamemode", new GamemodeSimplifier());
         commands.put("invsee", new Invsee());
+        commands.put("freeze", freeze);
         Ignore ignore = new Ignore(plugin);
         commands.put("ignore", ignore);
         commands.put("msg", new Msg(ignore));
