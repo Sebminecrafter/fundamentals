@@ -1,6 +1,7 @@
 # Fundamentals
+
 > [!WARNING]
-> This plugin is currently in the very early stages of beta, and is not currently recommended for use.
+> This plugin is currently in beta.
 
 A nice, featureful, everything you need Bukkit plugin.
 
@@ -10,6 +11,7 @@ The perfect plugin to set up your Minecraft server:
 - All compatible
 - Together
 - In one plugin
+- Fully customizable messages in YAML language file `lang.yml`
 
 ## Features
 
@@ -17,7 +19,7 @@ The perfect plugin to set up your Minecraft server:
 
 These are commands for players on your server to use.
 
-- Custom `/msg`
+- Message a player with `/msg`
 - Teleport requests with `/tpa`, `/tpahere`
 - Ignore a player's messages and requests `/ignore`
 
