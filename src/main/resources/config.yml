@@ -19,6 +19,8 @@ enabled:
     staffmode: true
     feed: true
     gamemode: true
+    tpo: true
+    fly: true
 
 tpa:
   # Time it takes for a tp request to expire (default: 600 ticks/30 seconds)

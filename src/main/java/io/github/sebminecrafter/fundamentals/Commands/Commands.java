@@ -27,13 +27,17 @@ public class Commands implements CommandExecutor, TabCompleter {
         this.lang = Main.lang;
         this.freeze = new Freeze(plugin);
 
-        // Add each command class
+        // Staff commands
         commands.put("staffmode", new Staffmode(plugin));
         commands.put("feed", new Feed());
         commands.put("staffmsg", new Staffmsg());
         commands.put("gamemode", new GamemodeSimplifier());
         commands.put("invsee", new Invsee());
         commands.put("freeze", freeze);
+        commands.put("tpo", new Tpo());
+        commands.put("fly", new Fly());
+
+        // Player commands
         Ignore ignore = new Ignore(plugin);
         commands.put("ignore", ignore);
         commands.put("msg", new Msg(ignore));

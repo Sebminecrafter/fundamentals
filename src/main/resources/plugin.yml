@@ -42,6 +42,16 @@ commands:
     usage: "Usage: /<command> [player] <gamemode>"
     permission: fundamentals.staff.gamemode
     aliases: ['gm', 'gms', 'gmc', 'gma', 'gmsp']
+  tpo:
+    description: "Teleport to an offline player"
+    usage: "Usage: /<command> <target>"
+    permission: fundamentals.staff.tpo
+    aliases: ['tpoffline']
+  fly:
+    description: "Enable fly mode"
+    usage: "Usage: /<command>"
+    permission: fundamentals.staff.fly
+    aliases: []
 
   # Player commands
   msg:
@@ -76,6 +86,10 @@ permissions:
         description: "Ability to use the staffmode command"
       fundamentals.staff.feed:
         description: "Ability to use the feed command on players"
+      fundamentals.staff.tpo:
+        description: "Ability to use the tpoffline command"
+      fundamentals.staff.fly:
+        description: "Ability to use the fly command"
   fundamentals.player:
     description: "Player commands parent permission"
     default: true

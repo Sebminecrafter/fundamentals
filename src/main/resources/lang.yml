@@ -98,10 +98,24 @@ staffcmds:
   feed:
     log: "PLAYER fed VICTIM"
     staff: "&6Fed VICTIM"
-  # Gamemode, GM placeholder
+  # Gamemode
+  # GM placeholder
   gamemode:
     log: "PLAYER changed VICTIM's gamemode to GM"
     staff: "&5Changed &dVICTIM&5's gamemode to &b&lGM"
+  # Tpoffline
+  tpo:
+    log: "PLAYER teleported to offline player VICTIM"
+    staff: "&5Teleported to &dVICTIM&5!"
+    error: "&c&lVICTIM&c couldn't be found!"
+  # Fly
+  fly:
+    enter:
+      log: "PLAYER entered fly!"
+      staff: "&5Entered fly mode!"
+    exit:
+      log: "PLAYER exited fly!"
+      staff: "&5Exited fly mode!"
 
 # No placeholders, extra messages
 msgs:
