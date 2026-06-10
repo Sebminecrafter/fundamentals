@@ -18,7 +18,6 @@ cmds:
   tpa:
     multiple: "&cYou already have an outgoing tp request! &eCancel it with &l/tpacancel"
     none: "&cYou have no incoming tp requests!"
-    self: "&cYou can't teleport to yourself!"
     expired:
       log: "PLAYER's request to OTHER expired"
       sent: "&cYour teleport request to &1&lOTHER&c expired!"
@@ -126,6 +125,7 @@ msgs:
   invalid: "&cInvalid argument!"
   fileerror: "&cAn error occurred and the server couldn't save that change."
   ignored: "&cThis player is ignoring you!"
+  self: "&cYou can't use this command on yourself!"
 
 # OpChecker logging
 ops:

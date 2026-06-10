@@ -6,6 +6,7 @@ import io.github.sebminecrafter.fundamentals.Main;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
@@ -20,8 +21,8 @@ import static org.bukkit.Bukkit.getServer;
 
 public class OpChecker implements Listener {
 
-    static BukkitTask task;
-    private final Map<UUID, Boolean> opStatus = new HashMap<>();
+    private final BukkitTask task;
+    private final Map<UUID, Boolean> opStatus;
     private final Logging logger;
     private final Lang lang;
 
@@ -29,10 +30,15 @@ public class OpChecker implements Listener {
         this.logger = Main.logger;
         this.lang = Main.lang;
 
+        this.opStatus = new HashMap<>();
+        for (OfflinePlayer player : Bukkit.getOfflinePlayers()) {
+            opStatus.put(player.getUniqueId(), player.isOp());
+        }
+
         // Enable listener
         getServer().getPluginManager().registerEvents(this, plugin);
 
-        task = Bukkit.getScheduler().runTaskTimer(
+        this.task = Bukkit.getScheduler().runTaskTimer(
                 plugin,
                 this::checkForOps,
                 0L,
@@ -76,7 +82,7 @@ public class OpChecker implements Listener {
     }
 
     public void checkForOps() {
-        for (OfflinePlayer player : Bukkit.getOfflinePlayers()) {
+        for (Player player : Bukkit.getOnlinePlayers()) {
             boolean current = player.isOp();
             boolean previous = opStatus.getOrDefault(player.getUniqueId(), current);
             if (current != previous) {

@@ -50,6 +50,9 @@ public class Ignore implements FundamentalCommand {
         if (other == null) {
             sender.sendMessage(lang.getKey("msgs.offline"));
             return true;
+        } else if (player == other) {
+            sender.sendMessage(lang.getKey("msgs.self"));
+            return true;
         }
         UUID playerUUID = player.getUniqueId();
         UUID otherUUID = other.getUniqueId();

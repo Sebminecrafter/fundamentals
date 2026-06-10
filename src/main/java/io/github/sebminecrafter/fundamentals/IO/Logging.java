@@ -27,8 +27,7 @@ public class Logging {
         try {
             FileHandler slFh = new FileHandler(logFile.getPath(), true);
             secondaryLogger.addHandler(slFh);
-            Formatter simpleFormatter = new logFormatter();
-            slFh.setFormatter(simpleFormatter);
+            slFh.setFormatter(new LogFormatter());
         } catch (SecurityException | IOException e) {
             logger.severe(Arrays.toString(e.getStackTrace()));
         }

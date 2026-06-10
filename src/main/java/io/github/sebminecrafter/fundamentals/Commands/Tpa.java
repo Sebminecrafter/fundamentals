@@ -15,6 +15,7 @@ import org.bukkit.scheduler.BukkitTask;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 public class Tpa implements FundamentalCommand {
@@ -27,6 +28,8 @@ public class Tpa implements FundamentalCommand {
     private final HashMap<UUID, BukkitTask> tpaheretasks;
     private final int countdownTime;
     private final Ignore ignore;
+    private final Map<UUID, Location> locations;
+    private final Map<UUID, Double> healths;
 
     public Tpa(long requestExpiry, Ignore ignore) {
         this.lang = Main.lang;
@@ -38,6 +41,8 @@ public class Tpa implements FundamentalCommand {
         this.tpaheretasks = new HashMap<>();
         this.countdownTime = 5;
         this.ignore = ignore;
+        this.locations = new HashMap<>();
+        this.healths = new HashMap<>();
     }
 
     @Override
@@ -55,7 +60,7 @@ public class Tpa implements FundamentalCommand {
                     sender.sendMessage(lang.getKey("msgs.offline"));
                     return true;
                 } else if (player == executor) {
-                    sender.sendMessage(lang.getKey("cmds.tpa.self"));
+                    sender.sendMessage(lang.getKey("msgs.self"));
                     return true;
                 } else if (ignore.isIgnoring(player.getUniqueId(), executor.getUniqueId())) {
                     sender.sendMessage(lang.getKey("msgs.ignored"));
@@ -77,7 +82,7 @@ public class Tpa implements FundamentalCommand {
                     sender.sendMessage(lang.getKey("msgs.offline"));
                     return true;
                 } else if (player == executor) {
-                    sender.sendMessage(lang.getKey("cmds.tpa.self"));
+                    sender.sendMessage(lang.getKey("msgs.self"));
                     return true;
                 } else if (ignore.isIgnoring(player.getUniqueId(), executor.getUniqueId())) {
                     sender.sendMessage(lang.getKey("msgs.ignored"));
@@ -122,7 +127,8 @@ public class Tpa implements FundamentalCommand {
         helper.add("PLAYER", sender.getName());
         helper.add("OTHER", receiver.getName());
         List<List<String>> replace = helper.getReplace();
-        if (tparequests.containsKey(sender.getUniqueId())) {
+        if (tparequests.containsValue(sender.getUniqueId()) ||
+                tpahererequests.containsValue(sender.getUniqueId())) {
             sender.sendMessage(lang.getKey("cmds.tpa.multiple", replace));
         } else {
             tparequests.put(receiver.getUniqueId(), sender.getUniqueId());
@@ -141,8 +147,8 @@ public class Tpa implements FundamentalCommand {
         helper.add("PLAYER", sender.getName());
         helper.add("OTHER", receiver.getName());
         List<List<String>> replace = helper.getReplace();
-        if (tparequests.containsKey(sender.getUniqueId()) ||
-                tpahererequests.containsKey(sender.getUniqueId())) {
+        if (tparequests.containsValue(sender.getUniqueId()) ||
+                tpahererequests.containsValue(sender.getUniqueId())) {
             sender.sendMessage(lang.getKey("cmds.tpa.multiple", replace));
         } else {
             tpahererequests.put(receiver.getUniqueId(), sender.getUniqueId());
@@ -312,25 +318,22 @@ public class Tpa implements FundamentalCommand {
         if (task != null) task.cancel();
     }
 
-    private Location tpaStartLocation = null;
-    private double tpaStartHealth = -1;
-
     private void countdownTpFunc(Player requester, Player receiver, Integer seconds, Countdown countdown) {
 
         if (seconds == 5) {
-            tpaStartLocation = requester.getLocation();
-            tpaStartHealth = requester.getHealth();
+            locations.put(requester.getUniqueId(), requester.getLocation());
+            healths.put(requester.getUniqueId(), requester.getHealth());
         }
 
         // Check if player moved or took damage since countdown started
-        if (tpaStartLocation != null) {
-            boolean hasMoved = requester.getLocation().distanceSquared(tpaStartLocation) > 0.01;
-            boolean tookDamage = requester.getHealth() < tpaStartHealth;
+        if (locations.get(requester.getUniqueId()) != null) {
+            boolean hasMoved = requester.getLocation().distanceSquared(locations.get(requester.getUniqueId())) > 0.01;
+            boolean tookDamage = requester.getHealth() < healths.get(requester.getUniqueId());
 
             if (hasMoved || tookDamage) {
                 countdown.cancel();
-                tpaStartLocation = null;
-                tpaStartHealth = -1;
+                locations.remove(requester.getUniqueId());
+                healths.remove(requester.getUniqueId());
                 return;
             }
         }

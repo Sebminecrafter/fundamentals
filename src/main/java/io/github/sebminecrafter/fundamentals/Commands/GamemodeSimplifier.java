@@ -112,7 +112,7 @@ public class GamemodeSimplifier implements FundamentalCommand {
             for (Player player : onlinePlayers) {
                 list.add(player.getName());
             }
-        } else if (args.length == 3) {
+        } else if (args.length < 3) {
             list = List.of(
                     "adventure",
                     "creative",

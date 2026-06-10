@@ -10,23 +10,24 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.potion.PotionEffectType;
-import org.bukkit.scheduler.BukkitTask;
 
 import java.util.*;
 
-public class Freeze implements FundamentalCommand {
+public class Freeze implements FundamentalCommand, Listener {
     private final Lang lang;
     private final Logging logger;
     private final Map<UUID, Location> frozenPlayers;
-    private final BukkitTask task;
 
     public Freeze(JavaPlugin plugin) {
         this.lang = Main.lang;
         this.logger = Main.logger;
         this.frozenPlayers = new HashMap<>();
-        this.task = Bukkit.getScheduler().runTaskTimer(plugin, this::runFreeze, 0L, 5L);
+
+        Bukkit.getPluginManager().registerEvents(this, plugin);
     }
 
     @Override
@@ -36,7 +37,7 @@ public class Freeze implements FundamentalCommand {
         }
         Player target = Bukkit.getPlayerExact(args[0]);
         if (target == null) {
-            sender.sendMessage();
+            sender.sendMessage(lang.getKey("msgs.offline"));
             return true;
         }
 
@@ -58,23 +59,27 @@ public class Freeze implements FundamentalCommand {
             logger.log(lang.getKey("staffcmds.freeze.log.start", replace));
             sender.sendMessage(lang.getKey("staffcmds.freeze.staff.start", replace));
             target.sendMessage(lang.getKey("staffcmds.freeze.player.start", replace));
+            runFreeze(target);
         }
         return true;
     }
 
-    private void runFreeze() {
-        for (UUID uuid : frozenPlayers.keySet()) {
-            Player player = Bukkit.getPlayer(uuid);
-            if (player == null) continue;
-            Location location = frozenPlayers.get(uuid);
-            player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacy(lang.getKey("staffcmds.freeze.player.actionbar")));
-            player.addPotionEffect(PotionEffectType.SLOWNESS.createEffect(20, 255));
-            player.teleport(location);
+    private void runFreeze(Player player) {
+        if (player == null) return;
+        Location location = frozenPlayers.get(player.getUniqueId());
+        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacy(lang.getKey("staffcmds.freeze.player.actionbar")));
+        player.teleport(location);
+    }
+
+    @EventHandler
+    public void onPlayerMove(PlayerMoveEvent event) {
+        Player player = event.getPlayer();
+        if (frozenPlayers.containsKey(player.getUniqueId())) {
+            runFreeze(player);
         }
     }
 
     public void cleanup() {
         frozenPlayers.clear();
-        task.cancel();
     }
 }

@@ -32,6 +32,9 @@ public class Invsee implements FundamentalCommand {
             if (player == null) {
                 sender.sendMessage(lang.getKey("msgs.offline"));
                 return true;
+            } else if (player == executor) {
+                sender.sendMessage(lang.getKey("msgs.self"));
+                return true;
             }
         }
 

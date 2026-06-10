@@ -4,7 +4,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.LogRecord;
 
-class logFormatter extends java.util.logging.Formatter {
+class LogFormatter extends java.util.logging.Formatter {
     private static final DateTimeFormatter F = DateTimeFormatter.ofPattern("HH:mm:ss");
 
     @Override
