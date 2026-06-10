@@ -14,17 +14,20 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitTask;
 
 import java.util.*;
 
 public class Freeze implements FundamentalCommand, Listener {
     private final Lang lang;
     private final Logging logger;
-    private final Map<UUID, Location> frozenPlayers;
+    private final JavaPlugin plugin;
+    private final Map<UUID, BukkitTask> frozenPlayers;
 
     public Freeze(JavaPlugin plugin) {
         this.lang = Main.lang;
         this.logger = Main.logger;
+        this.plugin = plugin;
         this.frozenPlayers = new HashMap<>();
 
         Bukkit.getPluginManager().registerEvents(this, plugin);
@@ -50,32 +53,39 @@ public class Freeze implements FundamentalCommand, Listener {
         List<List<String>> replace = helper.getReplace();
 
         if (frozenPlayers.containsKey(uuid)) {
+            // Remove task and unfreeze
+            frozenPlayers.get(uuid).cancel();
             frozenPlayers.remove(uuid);
+
             logger.log(lang.getKey("staffcmds.freeze.log.stop", replace));
             sender.sendMessage(lang.getKey("staffcmds.freeze.staff.stop", replace));
             target.sendMessage(lang.getKey("staffcmds.freeze.player.stop", replace));
         } else {
-            frozenPlayers.put(uuid, target.getLocation());
+            // Schedule message task and freeze
+            BukkitTask task = Bukkit.getScheduler().runTaskTimer(plugin, () -> sendMsg(target), 0L, 60L);
+            frozenPlayers.put(uuid, task);
+
             logger.log(lang.getKey("staffcmds.freeze.log.start", replace));
             sender.sendMessage(lang.getKey("staffcmds.freeze.staff.start", replace));
             target.sendMessage(lang.getKey("staffcmds.freeze.player.start", replace));
-            runFreeze(target);
         }
         return true;
     }
 
-    private void runFreeze(Player player) {
+    private void sendMsg(Player player) {
         if (player == null) return;
-        Location location = frozenPlayers.get(player.getUniqueId());
         player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacy(lang.getKey("staffcmds.freeze.player.actionbar")));
-        player.teleport(location);
     }
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
         Player player = event.getPlayer();
-        if (frozenPlayers.containsKey(player.getUniqueId())) {
-            runFreeze(player);
+        if (!frozenPlayers.containsKey(player.getUniqueId())) return;
+        Location from = event.getFrom();
+        Location to = event.getTo();
+        // Only block actual position changes, not head rotation
+        if (to != null && (from.getX() != to.getX() || from.getY() != to.getY() || from.getZ() != to.getZ())) {
+            event.setTo(from); // Cancel the movement instead of teleporting
         }
     }
 
