@@ -90,6 +90,9 @@ public class Freeze implements FundamentalCommand, Listener {
     }
 
     public void cleanup() {
+        for (UUID uuid : frozenPlayers.keySet()) {
+            frozenPlayers.get(uuid).cancel();
+        }
         frozenPlayers.clear();
     }
 }
