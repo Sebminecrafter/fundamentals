@@ -1,9 +1,6 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
-import io.github.sebminecrafter.fundamentals.IO.Countdown;
-import io.github.sebminecrafter.fundamentals.IO.Lang;
-import io.github.sebminecrafter.fundamentals.IO.Logging;
-import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
+import io.github.sebminecrafter.fundamentals.IO.*;
 import io.github.sebminecrafter.fundamentals.Main;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -21,6 +18,7 @@ import java.util.UUID;
 public class Tpa implements FundamentalCommand {
     private final Lang lang;
     private final Logging logger;
+    private final Config config;
     private final long requestExpiry;
     private final HashMap<UUID, UUID> tparequests;
     private final HashMap<UUID, UUID> tpahererequests;
@@ -34,6 +32,8 @@ public class Tpa implements FundamentalCommand {
     public Tpa(long requestExpiry, Ignore ignore) {
         this.lang = Main.lang;
         this.logger = Main.logger;
+        this.config = Main.config;
+
         this.requestExpiry = requestExpiry;
         this.tparequests = new HashMap<>();
         this.tpahererequests = new HashMap<>();
@@ -70,6 +70,10 @@ public class Tpa implements FundamentalCommand {
             sendTpRequest(executor, player);
             return true;
         } else if (label.equalsIgnoreCase("tpahere")) {
+            if (!config.isEnabled("cmds.tpahere")) {
+                sender.sendMessage(lang.getKey("msgs.disabled"));
+                return true;
+            }
             Player player;
             if (!(sender instanceof Player executor)) {
                 sender.sendMessage(lang.getKey("msgs.playeronly"));

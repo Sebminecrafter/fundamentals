@@ -127,6 +127,24 @@ msgs:
   ignored: "&cThis player is ignoring you!"
   self: "&cYou can't use this command on yourself!"
 
+# Most non-command chat messages
+# Can use PLAYER placeholder for most
+chat:
+  # All chat
+  # Can use MSG placeholder
+  format: "&7PLAYER: MSG"
+  # Joins
+  join: "&f&l[&a&l+&f&l] &7PLAYER"
+  firstjoin: "&a&lPLAYER joined the server for the first time! &5Everyone welcome &1&lPLAYER&5!"
+  leave: "&f&l[&c&l-&f&l] &7PLAYER"
+  # Death message
+  # Can use DEATH placeholder
+  death: "&c💀 PLAYER - DEATH"
+  # Messages
+  # No placeholders
+  nolinks: "&cYou can't use links in chat!"
+  disallowed: "&cThat's not appropriate!"
+
 # OpChecker logging
 ops:
   # CMD, EXECUTOR, and PLAYER will be replaced where applicable

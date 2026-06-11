@@ -1,5 +1,6 @@
 package io.github.sebminecrafter.fundamentals;
 
+import io.github.sebminecrafter.fundamentals.Chat.GlobalChat;
 import io.github.sebminecrafter.fundamentals.Checks.OpChecker;
 import io.github.sebminecrafter.fundamentals.Commands.Commands;
 import io.github.sebminecrafter.fundamentals.Commands.Staffmode;
@@ -16,6 +17,7 @@ public final class Main extends JavaPlugin {
     public static Logging logger;
     public static Lang lang;
     public static Config config;
+    public static GlobalChat chat;
     private OpChecker opchecker;
     private Commands commands;
 
@@ -29,6 +31,7 @@ public final class Main extends JavaPlugin {
         lang = new Lang(this, "lang.yml");
         config = new Config(this, "config.yml");
         commands = new Commands(this);
+        chat = new GlobalChat(this);
 
         if (config.isEnabled("checks.opchecker")) {
             opchecker = new OpChecker(this);
