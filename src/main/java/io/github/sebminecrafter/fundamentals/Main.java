@@ -30,8 +30,8 @@ public final class Main extends JavaPlugin {
         logger = new Logging(this);
         lang = new Lang(this, "lang.yml");
         config = new Config(this, "config.yml");
-        commands = new Commands(this);
         chat = new GlobalChat(this);
+        commands = new Commands(this);
 
         if (config.isEnabled("checks.opchecker")) {
             opchecker = new OpChecker(this);
