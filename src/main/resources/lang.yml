@@ -139,7 +139,7 @@ chat:
   leave: "&f&l[&c&l-&f&l] &7PLAYER"
   # Death message
   # Can use DEATH placeholder
-  death: "&c☠ PLAYER - DEATH"
+  death: "&c☠ PLAYER DEATH"
   # Messages
   # No placeholders
   nolinks: "&cYou can't use links in chat!"

@@ -23,9 +23,16 @@ public class DeathMessage implements Listener {
     public void onDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
 
+        String playerName = player.getName();
+        String deathMsg = event.getDeathMessage();
+
+        deathMsg = deathMsg == null ? "" : deathMsg;
+        deathMsg = deathMsg.replaceFirst(playerName, "");
+        deathMsg = deathMsg.trim();
+
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", player.getDisplayName());
-        helper.add("DEATH", event.getDeathMessage());
+        helper.add("PLAYER", playerName);
+        helper.add("DEATH", deathMsg);
 
         event.setDeathMessage(lang.getKey("chat.death", helper.getReplace()));
     }
