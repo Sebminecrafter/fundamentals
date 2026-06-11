@@ -46,7 +46,7 @@ public class GlobalChat implements Listener {
     public void onChat(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
         String message = event.getMessage();
-        if (message.startsWith("/") && !message.startsWith("/msg")) return;
+        if (message.startsWith("/")) return;
         if (!config.isEnabled("chat.globalchat")) {
             event.setCancelled(true);
             return;
