@@ -39,7 +39,7 @@ public class Tpa implements FundamentalCommand {
         this.tpahererequests = new HashMap<>();
         this.tpatasks = new HashMap<>();
         this.tpaheretasks = new HashMap<>();
-        this.countdownTime = 5;
+        this.countdownTime = config.getInt("tpa.delay");
         this.ignore = ignore;
         this.locations = new HashMap<>();
         this.healths = new HashMap<>();

@@ -12,6 +12,11 @@ website: "modrinth.com/user/Sebminecrafter"
 
 commands:
   # Staff commands
+  broadcast:
+    description: "Broadcast a message to everyone online"
+    usage: "Usage: /<command> <message>"
+    permission: fundamentals.staff.broadcast
+    aliases: ['announce']
   staffmode:
     description: "Enter staff mode"
     usage: "Usage: /<command> [player]"
@@ -69,6 +74,16 @@ commands:
     usage: "Usage varies: /tpa <player>, /tpahere <player>, /tpacancel, /tpaccept [player], /tpdeny [player]"
     permission: fundamentals.player.tpa
     aliases: ['tpaccept', 'tpdeny', 'tpacancel', 'tpahere']
+  home:
+    description: "Homes"
+    usage: "Usage varies: /home <name>, /sethome <name>, /delhome <name>, /listhomes, /homes"
+    permission: fundamentals.player.homes
+    aliases: ['sethome', 'delhome', 'listhomes', 'homes']
+  welcome:
+    description: "Welcome a player"
+    usage: "/welcome <player>"
+    permission: fundamentals.player.welcome
+    aliases: ['greet']
 
 default-permission: op
 permissions:
@@ -76,6 +91,8 @@ permissions:
     description: "Staff commands parent permission"
     default: op
     children:
+      fundamentals.staff.broadcast:
+        description: "Ability to use the broadcast command"
       fundamentals.staff.freeze:
         description: "Ability to use the freeze command to freeze players"
       fundamentals.staff.invsee:
@@ -100,3 +117,7 @@ permissions:
         description: "Ignore messages and tp requests from a player"
       fundamentals.player.tpa:
         description: "Request to teleport to players"
+      fundamentals.player.homes:
+        description: "Set, delete, and teleport to, homes"
+      fundamentals.player.welcome:
+        description: "Welcome a player!"

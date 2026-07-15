@@ -55,11 +55,22 @@ cmds:
     unignore:
       log: "PLAYER unignored OTHER"
       send: "&5Stopped ignoring &1&lOTHER"
+  # Welcome
+  # Extra placeholders: OTHER
+  welcome:
+    log: "PLAYER welcomed OTHER"
+    send: "&1PLAYER &5welcomes &1&lOTHER&5!"
 
 # Staff commands
-# Placeholders: PLAYER, VICTIM (Player might show up as "CONSOLE" in some cases)
+# Placeholders: PLAYER, and sometimes VICTIM (Player might show up as "CONSOLE" in some cases)
 staffcmds:
-  # Freeze command
+  # Broadcast
+  # log, staff, and player messages, can use MSG placeholder
+  broadcast:
+    log: "PLAYER broadcasted: \"MSG\""
+    staff: "&2&lBroadcasted message:&r MSG"
+    player: "&5&lBROADCAST:&r MSG"
+  # Freeze
   # log, staff, and player messages
   freeze:
     log:
@@ -78,7 +89,7 @@ staffcmds:
     log: "PLAYER opened VICTIM's inventory!"
     staff: "&2Opened VICTIM's inventory"
   # Staffmsg
-  # log, staff, and player messages, can use MSG placeholder and legacy colors
+  # log, staff, and player messages, can use MSG placeholder
   staffmsg:
     log: "PLAYER staff-messaged VICTIM: MSG"
     staff: "&4&lStaff &c-> &a&lVICTIM&4: &rMSG"

@@ -28,6 +28,7 @@ public class Commands implements CommandExecutor, TabCompleter {
         this.freeze = new Freeze(plugin);
 
         // Staff commands
+        commands.put("broadcast", new Broadcast());
         commands.put("staffmode", new Staffmode(plugin));
         commands.put("feed", new Feed());
         commands.put("staffmsg", new Staffmsg());
@@ -42,6 +43,8 @@ public class Commands implements CommandExecutor, TabCompleter {
         commands.put("ignore", ignore);
         commands.put("msg", new Msg(ignore));
         commands.put("tpa", new Tpa(config.getInt("tpa.expiresafter"), ignore));
+        commands.put("home", new Homes(plugin));
+        commands.put("welcome", new Welcome());
     }
 
     public FundamentalCommand getCommand(String commandName) {
