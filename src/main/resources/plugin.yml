@@ -1,7 +1,7 @@
 name: "Fundamentals"
 description: "Everything you need for your server, all in one package."
 prefix: "Fundamentals"
-version: 1.0.2-SNAPSHOT
+version: ${project.version}
 
 main: io.github.sebminecrafter.fundamentals.Main
 api-version: '26.1'

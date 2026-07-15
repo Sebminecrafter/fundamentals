@@ -1,5 +1,7 @@
 # Fundamentals
 
+![Logo](logo.png)
+
 > [!WARNING]
 > This plugin is currently in beta.
 
@@ -12,6 +14,10 @@ The perfect plugin to set up your Minecraft server:
 - Together
 - In one plugin
 - Fully customizable messages in YAML language file `lang.yml`
+
+## Download
+
+Head over to the [Modrinth](https://modrinth.com/plugin/fundamentalswastaken) page or [Github Releases](https://github.com/Sebminecrafter/fundamentals/releases)
 
 ## Features
 
