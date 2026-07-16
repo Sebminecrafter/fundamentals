@@ -254,8 +254,10 @@ public class Tpa implements FundamentalCommand {
             requester.sendMessage(lang.getKey("cmds.tpa.accepted.receive", helper.getReplace()));
             cancelTask(tpatasks, receiver.getUniqueId());
             tparequests.remove(receiver.getUniqueId());
+            requester.sendMessage(lang.getKey("cmds.tpa.teleporting"));
             TeleportCountdown teleportCountdown = new TeleportCountdown(requester, receiver.getLocation(), countdownTime);
-            teleportCountdown.start(seconds -> sendCountdownActionBar(requester, receiver, seconds), null);
+            teleportCountdown.start(seconds -> sendCountdownActionBar(requester, seconds),
+                    () -> requester.sendMessage(lang.getKey("msgs.tpcancelled")));
         } else if (tpahererequests.containsKey(receiver.getUniqueId())) {
             Player requester = Bukkit.getPlayer(tpahererequests.get(receiver.getUniqueId()));
             if (requester == null) {
@@ -270,8 +272,10 @@ public class Tpa implements FundamentalCommand {
             requester.sendMessage(lang.getKey("cmds.tpa.accepted.receive", helper.getReplace()));
             cancelTask(tpaheretasks, receiver.getUniqueId());
             tpahererequests.remove(receiver.getUniqueId());
+            receiver.sendMessage(lang.getKey("cmds.tpa.teleporting"));
             TeleportCountdown teleportCountdown = new TeleportCountdown(receiver, requester.getLocation(), countdownTime);
-            teleportCountdown.start(seconds -> sendCountdownActionBar(receiver, requester, seconds), null);
+            teleportCountdown.start(seconds -> sendCountdownActionBar(receiver, seconds),
+                    () -> receiver.sendMessage(lang.getKey("msgs.tpcancelled")));
         } else {
             receiver.sendMessage(lang.getKey("cmds.tpa.none"));
         }
@@ -314,11 +318,9 @@ public class Tpa implements FundamentalCommand {
         if (task != null) task.cancel();
     }
 
-    private void sendCountdownActionBar(Player teleportingPlayer, Player otherPlayer, int seconds) {
+    private void sendCountdownActionBar(Player p, int seconds) {
         PlaceholderHelper countdownHelper = new PlaceholderHelper();
-        countdownHelper.add("PLAYER", teleportingPlayer.getName());
-        countdownHelper.add("OTHER", otherPlayer.getName());
         countdownHelper.add("SECS", String.valueOf(seconds));
-        teleportingPlayer.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacy(lang.getKey("cmds.tpa.countdown", countdownHelper.getReplace())));
+        p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacy(lang.getKey("cmds.tpa.countdown", countdownHelper.getReplace())));
     }
 }

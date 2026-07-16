@@ -9,6 +9,8 @@ import io.github.sebminecrafter.fundamentals.IO.Logging;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
 import io.github.sebminecrafter.fundamentals.IO.TeleportCountdown;
 import io.github.sebminecrafter.fundamentals.Main;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -103,13 +105,8 @@ public class Homes implements FundamentalCommand, Listener {
                     player.sendMessage(lang.getKey("cmds.home.teleporting", helper.getReplace()));
                     TeleportCountdown teleportCountdown = new TeleportCountdown(player, destination, homeDelay);
                     teleportCountdown.start(
-                            seconds -> {
-                                PlaceholderHelper tickHelper = new PlaceholderHelper();
-                                tickHelper.add("HOME", args[0]);
-                                tickHelper.add("SECS", String.valueOf(seconds));
-                                player.sendMessage(lang.getKey("cmds.home.countdown", tickHelper.getReplace()));
-                            },
-                            () -> player.sendMessage(lang.getKey("cmds.home.cancelled", helper.getReplace()))
+                            seconds -> sendCountdownActionBar(player, seconds),
+                            () -> player.sendMessage(lang.getKey("msgs.tpcancelled"))
                     );
                 } else {
                     player.sendMessage(lang.getKey("cmds.home.missing", helper.getReplace()));
@@ -179,5 +176,11 @@ public class Homes implements FundamentalCommand, Listener {
         storage.save(uuid, cache.get(uuid));
         cache.remove(uuid);
         logger.log("Saved homes for player " + player.getName());
+    }
+
+    private void sendCountdownActionBar(Player p, int seconds) {
+        PlaceholderHelper countdownHelper = new PlaceholderHelper();
+        countdownHelper.add("SECS", String.valueOf(seconds));
+        p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacy(lang.getKey("cmds.home.countdown", countdownHelper.getReplace())));
     }
 }

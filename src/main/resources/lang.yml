@@ -43,7 +43,7 @@ cmds:
       log: "OTHER accepted PLAYER's teleport request"
       sent: "&1&lOTHER&5 accepted your teleport request!"
       receive: "&5Accepted &1&lPLAYER&5's teleport request!"
-    standstill: "&eDon't move! &dTeleporting in 5 seconds!"
+    teleporting: "&eDon't move! &dTeleporting in 5 seconds!"
     # Countdown: will show in actionbar and can use SECS placeholder
     countdown: "&5Teleporting in &lSECS&5..."
   # Ignore
@@ -67,6 +67,7 @@ cmds:
     nohomes: "&cYou don't have any homes."
     # /home, /delhome - missing home - can use HOME name placeholder
     missing: "&cYou don't have a home named '&lHOME&c'"
+    countdown: "&5Teleporting in &lSECS&5..."
     # /sethome - can use HOME name placeholder
     set: "&5Successfully set a home named '&1&lHOME&5'"
     setlog: "PLAYER created home HOME" # Can use PLAYER placeholder for log
@@ -74,8 +75,9 @@ cmds:
     # /delhome - can use HOME name placeholder
     deleted: "&5Successfully deleted home '&1&lHOME&5'"
     deletedlog: "PLAYER deleted home HOME" # Can use PLAYER placeholder for log
-    # All - if homes storage fails to load
-    error: "&cUnable to load homes, please restart the server."
+    # All
+    error: "&cUnable to load homes, please restart the server." # If homes storage fails to load
+    teleporting: "&eDon't move! &dTeleporting in 5 seconds!"    # Teleporting warning
 
 # Staff commands
 # Placeholders: PLAYER, and sometimes VICTIM (Player might show up as "CONSOLE" in some cases)
@@ -153,6 +155,7 @@ msgs:
   fileerror: "&cAn error occurred and the server couldn't save that change."
   ignored: "&cThis player is ignoring you!"
   self: "&cYou can't use this command on yourself!"
+  tpcancelled: "&cYou moved!"
 
 # Most non-command chat messages
 # Can use PLAYER placeholder for most
