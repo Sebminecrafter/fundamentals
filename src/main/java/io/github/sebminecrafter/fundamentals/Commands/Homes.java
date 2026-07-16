@@ -69,8 +69,8 @@ public class Homes implements FundamentalCommand, Listener {
             case "listhomes", "homes" -> {
                 if (args.length != 0)
                     return false;
-                if (homes != null) {
-                    player.sendMessage(lang.getKey("cmds.home.list"));
+                if (!homes.isEmpty()) {
+                    StringBuilder message = new StringBuilder(lang.getKey("cmds.home.list"));
                     boolean i = false;
                     for (String home : homes.keySet()) {
                         String text = home;
@@ -78,8 +78,9 @@ public class Homes implements FundamentalCommand, Listener {
                             text = ", " + text;
                         else
                             i = true;
-                        player.sendMessage(text);
+                        message.append(text);
                     }
+                    player.sendMessage(message.toString());
                 } else {
                     player.sendMessage(lang.getKey("cmds.home.nohomes"));
                 }
