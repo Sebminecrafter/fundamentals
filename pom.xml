@@ -6,7 +6,7 @@
 
     <groupId>io.github.sebminecrafter</groupId>
     <artifactId>Fundamentals</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.4-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Fundamentals</name>

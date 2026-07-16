@@ -41,81 +41,87 @@ public class Tpa implements FundamentalCommand {
 
     @Override
     public boolean execute(CommandSender sender, String[] args, String label) {
-        if (label.equalsIgnoreCase("tpa")) {
-            Player player;
-            if (!(sender instanceof Player executor)) {
-                sender.sendMessage(lang.getKey("msgs.playeronly"));
+        switch (label.toLowerCase()) {
+            case "tpa" -> {
+                Player player;
+                if (!(sender instanceof Player executor)) {
+                    sender.sendMessage(lang.getKey("msgs.playeronly"));
+                    return true;
+                } else if (args.length != 1) {
+                    return false;
+                } else {
+                    player = Bukkit.getPlayerExact(args[0]);
+                    if (player == null) {
+                        sender.sendMessage(lang.getKey("msgs.offline"));
+                        return true;
+                    } else if (player == executor) {
+                        sender.sendMessage(lang.getKey("msgs.self"));
+                        return true;
+                    } else if (ignore.isIgnoring(player.getUniqueId(), executor.getUniqueId())) {
+                        sender.sendMessage(lang.getKey("msgs.ignored"));
+                        return true;
+                    }
+                }
+                sendTpRequest(executor, player);
                 return true;
-            } else if (args.length != 1) {
-                return false;
-            } else {
-                player = Bukkit.getPlayerExact(args[0]);
-                if (player == null) {
-                    sender.sendMessage(lang.getKey("msgs.offline"));
-                    return true;
-                } else if (player == executor) {
-                    sender.sendMessage(lang.getKey("msgs.self"));
-                    return true;
-                } else if (ignore.isIgnoring(player.getUniqueId(), executor.getUniqueId())) {
-                    sender.sendMessage(lang.getKey("msgs.ignored"));
+            }
+            case "tpahere" -> {
+                if (!config.isEnabled("cmds.tpahere")) {
+                    sender.sendMessage(lang.getKey("msgs.disabled"));
                     return true;
                 }
-            }
-            sendTpRequest(executor, player);
-            return true;
-        } else if (label.equalsIgnoreCase("tpahere")) {
-            if (!config.isEnabled("cmds.tpahere")) {
-                sender.sendMessage(lang.getKey("msgs.disabled"));
-                return true;
-            }
-            Player player;
-            if (!(sender instanceof Player executor)) {
-                sender.sendMessage(lang.getKey("msgs.playeronly"));
-                return true;
-            } else if (args.length != 1) {
-                return false;
-            } else {
-                player = Bukkit.getPlayerExact(args[0]);
-                if (player == null) {
-                    sender.sendMessage(lang.getKey("msgs.offline"));
+                Player player;
+                if (!(sender instanceof Player executor)) {
+                    sender.sendMessage(lang.getKey("msgs.playeronly"));
                     return true;
-                } else if (player == executor) {
-                    sender.sendMessage(lang.getKey("msgs.self"));
-                    return true;
-                } else if (ignore.isIgnoring(player.getUniqueId(), executor.getUniqueId())) {
-                    sender.sendMessage(lang.getKey("msgs.ignored"));
-                    return true;
+                } else if (args.length != 1) {
+                    return false;
+                } else {
+                    player = Bukkit.getPlayerExact(args[0]);
+                    if (player == null) {
+                        sender.sendMessage(lang.getKey("msgs.offline"));
+                        return true;
+                    } else if (player == executor) {
+                        sender.sendMessage(lang.getKey("msgs.self"));
+                        return true;
+                    } else if (ignore.isIgnoring(player.getUniqueId(), executor.getUniqueId())) {
+                        sender.sendMessage(lang.getKey("msgs.ignored"));
+                        return true;
+                    }
                 }
-            }
-            sendTpHereRequest(executor, player);
-            return true;
-        } else if (label.equalsIgnoreCase("tpaccept")) {
-            if (!(sender instanceof Player executor)) {
-                sender.sendMessage(lang.getKey("msgs.playeronly"));
+                sendTpHereRequest(executor, player);
                 return true;
-            } else if (args.length != 0) {
-                return false;
             }
-            acceptTpRequest(executor);
-            return true;
-        } else if (label.equalsIgnoreCase("tpdeny")) {
-            if (!(sender instanceof Player executor)) {
-                sender.sendMessage(lang.getKey("msgs.playeronly"));
+            case "tpaccept" -> {
+                if (!(sender instanceof Player executor)) {
+                    sender.sendMessage(lang.getKey("msgs.playeronly"));
+                    return true;
+                } else if (args.length != 0) {
+                    return false;
+                }
+                acceptTpRequest(executor);
                 return true;
-            } else if (args.length != 0) {
-                return false;
             }
-            denyTpRequest(executor);
-            return true;
-        } else if (label.equalsIgnoreCase("tpacancel")) {
-            if (!(sender instanceof Player executor)) {
-                sender.sendMessage(lang.getKey("msgs.playeronly"));
+            case "tpdeny" -> {
+                if (!(sender instanceof Player executor)) {
+                    sender.sendMessage(lang.getKey("msgs.playeronly"));
+                    return true;
+                } else if (args.length != 0) {
+                    return false;
+                }
+                denyTpRequest(executor);
                 return true;
-            } else if (args.length != 0) {
-                return false;
             }
-            removeTpRequest(executor);
-            return true;
+            case "tpacancel" -> {
+                if (!(sender instanceof Player executor)) {
+                    sender.sendMessage(lang.getKey("msgs.playeronly"));
+                    return true;
+                } else if (args.length != 0) {
+                    return false;
+                }
+                removeTpRequest(executor);
+                return true;
+            }
         }
         return false;
     }
