@@ -151,15 +151,9 @@ public class Homes implements FundamentalCommand, Listener {
 
     @Override
     public List<String> tabComplete(CommandSender sender, String[] args) {
-        if (!(sender instanceof Player player)) {
-            return null;
-        }
+        if (!(sender instanceof Player player)) return List.of();
         Map<String, Home> homes = cache.get(player.getUniqueId()).getHomes();
-        if (homes != null) {
-            return homes.keySet().stream().toList();
-        } else {
-            return null;
-        }
+        return homes.keySet().stream().toList();
     }
 
     @EventHandler

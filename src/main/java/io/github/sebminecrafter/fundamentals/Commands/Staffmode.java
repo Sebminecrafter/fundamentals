@@ -16,11 +16,10 @@ import org.bukkit.event.player.PlayerGameModeChangeEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jspecify.annotations.NonNull;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-
-import static org.bukkit.Bukkit.getServer;
 
 public class Staffmode implements Listener, FundamentalCommand {
 
@@ -35,7 +34,7 @@ public class Staffmode implements Listener, FundamentalCommand {
         this.logger = Main.logger;
         this.lang = Main.lang;
 
-        getServer().getPluginManager().registerEvents(this, plugin);
+        Bukkit.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
     @Override
@@ -92,7 +91,7 @@ public class Staffmode implements Listener, FundamentalCommand {
     }
 
     public void restoreAll() {
-        for (UUID uuid : savedGameModes.keySet()) {
+        for (UUID uuid : new ArrayList<>(savedGameModes.keySet())) {
             Player player = plugin.getServer().getPlayer(uuid);
             if (player != null && player.isOnline()) {
                 restore(player);

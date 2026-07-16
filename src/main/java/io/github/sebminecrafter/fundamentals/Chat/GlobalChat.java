@@ -66,8 +66,9 @@ public class GlobalChat implements Listener {
         helper.add("PLAYER", player.getDisplayName());
         helper.add("MSG", message);
 
-        event.setMessage(lang.getKey("chat.format", helper.getReplace()));
-        event.setFormat(event.getMessage());
+        String formattedMessage = lang.getKey("chat.format", helper.getReplace());
+        event.setCancelled(true);
+        Bukkit.broadcastMessage(formattedMessage);
     }
 
     public boolean notAllowed(String message, Player player) {

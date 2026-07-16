@@ -63,5 +63,6 @@ public final class Main extends JavaPlugin {
         }
 
         logger.log(lang.getKey("stopped"));
+        logger.closeFileHandler();
     }
 }

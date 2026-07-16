@@ -30,7 +30,8 @@ public class JsonHomeStorage implements HomeStorage {
             return new PlayerHomes();
 
         try (Reader reader = Files.newBufferedReader(file)) {
-            return gson.fromJson(reader, PlayerHomes.class);
+            PlayerHomes homes = gson.fromJson(reader, PlayerHomes.class);
+            return homes != null ? homes : new PlayerHomes();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

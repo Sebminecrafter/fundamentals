@@ -29,8 +29,8 @@ public class Broadcast implements FundamentalCommand {
         List<List<String>> replace = helper.getReplace();
         logger.logBoth(lang.getKey("staffcmds.broadcast.log", replace));
         sender.sendMessage(lang.getKey("staffcmds.broadcast.staff", replace));
+        Bukkit.broadcastMessage(lang.getKey("staffcmds.broadcast.player", replace));
         for (Player player : Bukkit.getOnlinePlayers()) {
-            player.sendMessage(lang.getKey("staffcmds.broadcast.player", replace));
             player.sendTitle(lang.getKey("staffcmds.broadcast.player", replace), null, 20, 60, 20);
         }
         return true;

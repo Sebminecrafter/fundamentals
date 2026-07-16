@@ -11,6 +11,7 @@ import java.util.logging.*;
 public class Logging {
     private final Logger logger;
     private final Logger secondaryLogger;
+    private FileHandler fileHandler;
 
     public Logging(@NonNull JavaPlugin plugin) {
         logger = plugin.getLogger();
@@ -25,11 +26,20 @@ public class Logging {
             log(Level.SEVERE, "Stack trace: "+ Arrays.toString(e.getStackTrace()));
         }
         try {
-            FileHandler slFh = new FileHandler(logFile.getPath(), true);
-            secondaryLogger.addHandler(slFh);
-            slFh.setFormatter(new LogFormatter());
+            fileHandler = new FileHandler(logFile.getPath(), true);
+            secondaryLogger.addHandler(fileHandler);
+            fileHandler.setFormatter(new LogFormatter());
         } catch (SecurityException | IOException e) {
             logger.severe(Arrays.toString(e.getStackTrace()));
+        }
+    }
+
+    public void closeFileHandler() {
+        if (fileHandler != null) {
+            fileHandler.close();
+            if (secondaryLogger != null) {
+                secondaryLogger.removeHandler(fileHandler);
+            }
         }
     }
 

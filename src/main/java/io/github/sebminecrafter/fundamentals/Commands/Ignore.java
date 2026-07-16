@@ -30,10 +30,12 @@ public class Ignore implements FundamentalCommand {
         this.ignorelistFile = new File(plugin.getDataFolder(), "ignorelist.yml");
         this.ignorelist = new YamlConfiguration();
 
-        try {
-            ignorelist.load(ignorelistFile);
-        } catch (IOException | InvalidConfigurationException e) {
-            logger.log(Level.SEVERE, "ignorelist.yml could not be loaded!");
+        if (ignorelistFile.exists()) {
+            try {
+                ignorelist.load(ignorelistFile);
+            } catch (IOException | InvalidConfigurationException e) {
+                logger.log(Level.SEVERE, "ignorelist.yml could not be loaded!");
+            }
         }
     }
 
