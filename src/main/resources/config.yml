@@ -44,3 +44,7 @@ tpa:
   delay: 5
   # Time it takes for a tp request to expire (default: 600 ticks/30 seconds)
   expiresafter: 600
+
+home:
+  # Delay before home teleport (seconds, can be 0)
+  delay: 5

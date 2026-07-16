@@ -60,6 +60,20 @@ cmds:
   welcome:
     log: "PLAYER welcomed OTHER"
     send: "&1PLAYER &5welcomes &1&lOTHER&5!"
+  # Home command
+  home:
+    # /homes and /listhomes - comma seperated list of homes will be appended after
+    list: "&5&lHomes: &e" # home1, home2, etc
+    nohomes: "&cYou don't have any homes."
+    # /home, /delhome - missing home - can use HOME name placeholder
+    missing: "&cYou don't have a home named '&lHOME&c'"
+    # /sethome - can use HOME name placeholder
+    set: "&5Successfully set a home named '&1&lHOME&5'"
+    setlog: "PLAYER created home HOME" # Can use PLAYER placeholder for log
+    conflict: "&cA home named '&lHOME&c' already exists!"
+    # /delhome - can use HOME name placeholder
+    deleted: "&5Successfully deleted home '&1&lHOME&5'"
+    deletedlog: "PLAYER deleted home HOME" # Can use PLAYER placeholder for log
 
 # Staff commands
 # Placeholders: PLAYER, and sometimes VICTIM (Player might show up as "CONSOLE" in some cases)

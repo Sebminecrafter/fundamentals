@@ -5,14 +5,12 @@ import io.github.sebminecrafter.fundamentals.Main;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitTask;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 public class Tpa implements FundamentalCommand {
@@ -26,8 +24,6 @@ public class Tpa implements FundamentalCommand {
     private final HashMap<UUID, BukkitTask> tpaheretasks;
     private final int countdownTime;
     private final Ignore ignore;
-    private final Map<UUID, Location> locations;
-    private final Map<UUID, Double> healths;
 
     public Tpa(long requestExpiry, Ignore ignore) {
         this.lang = Main.lang;
@@ -41,8 +37,6 @@ public class Tpa implements FundamentalCommand {
         this.tpaheretasks = new HashMap<>();
         this.countdownTime = config.getInt("tpa.delay");
         this.ignore = ignore;
-        this.locations = new HashMap<>();
-        this.healths = new HashMap<>();
     }
 
     @Override
@@ -254,12 +248,8 @@ public class Tpa implements FundamentalCommand {
             requester.sendMessage(lang.getKey("cmds.tpa.accepted.receive", helper.getReplace()));
             cancelTask(tpatasks, receiver.getUniqueId());
             tparequests.remove(receiver.getUniqueId());
-            Countdown countdown = new Countdown(countdownTime);
-            countdown.start(integer -> {
-                    countdownTpFunc(requester, receiver, integer, countdown);
-                    return null;
-                },
-                () -> requester.teleport(receiver.getLocation()));
+            TeleportCountdown teleportCountdown = new TeleportCountdown(requester, receiver.getLocation(), countdownTime);
+            teleportCountdown.start(seconds -> sendCountdownActionBar(requester, receiver, seconds), null);
         } else if (tpahererequests.containsKey(receiver.getUniqueId())) {
             Player requester = Bukkit.getPlayer(tpahererequests.get(receiver.getUniqueId()));
             if (requester == null) {
@@ -274,12 +264,8 @@ public class Tpa implements FundamentalCommand {
             requester.sendMessage(lang.getKey("cmds.tpa.accepted.receive", helper.getReplace()));
             cancelTask(tpaheretasks, receiver.getUniqueId());
             tpahererequests.remove(receiver.getUniqueId());
-            Countdown countdown = new Countdown(countdownTime);
-            countdown.start(integer -> {
-                    countdownTpFunc(receiver, requester, integer, countdown);
-                    return null;
-                },
-                () -> receiver.teleport(requester.getLocation()));
+            TeleportCountdown teleportCountdown = new TeleportCountdown(receiver, requester.getLocation(), countdownTime);
+            teleportCountdown.start(seconds -> sendCountdownActionBar(receiver, requester, seconds), null);
         } else {
             receiver.sendMessage(lang.getKey("cmds.tpa.none"));
         }
@@ -322,30 +308,11 @@ public class Tpa implements FundamentalCommand {
         if (task != null) task.cancel();
     }
 
-    private void countdownTpFunc(Player requester, Player receiver, Integer seconds, Countdown countdown) {
-
-        if (seconds == 5) {
-            locations.put(requester.getUniqueId(), requester.getLocation());
-            healths.put(requester.getUniqueId(), requester.getHealth());
-        }
-
-        // Check if player moved or took damage since countdown started
-        if (locations.get(requester.getUniqueId()) != null) {
-            boolean hasMoved = requester.getLocation().distanceSquared(locations.get(requester.getUniqueId())) > 0.01;
-            boolean tookDamage = requester.getHealth() < healths.get(requester.getUniqueId());
-
-            if (hasMoved || tookDamage) {
-                countdown.cancel();
-                locations.remove(requester.getUniqueId());
-                healths.remove(requester.getUniqueId());
-                return;
-            }
-        }
-
+    private void sendCountdownActionBar(Player teleportingPlayer, Player otherPlayer, int seconds) {
         PlaceholderHelper countdownHelper = new PlaceholderHelper();
-        countdownHelper.add("PLAYER", requester.getName());
-        countdownHelper.add("OTHER", receiver.getName());
-        countdownHelper.add("SECS", seconds.toString());
-        requester.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacy(lang.getKey("cmds.tpa.countdown", countdownHelper.getReplace())));
+        countdownHelper.add("PLAYER", teleportingPlayer.getName());
+        countdownHelper.add("OTHER", otherPlayer.getName());
+        countdownHelper.add("SECS", String.valueOf(seconds));
+        teleportingPlayer.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacy(lang.getKey("cmds.tpa.countdown", countdownHelper.getReplace())));
     }
 }
