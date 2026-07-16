@@ -22,13 +22,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
+import java.util.logging.Level;
 
 public class Homes implements FundamentalCommand, Listener {
-    private final JsonHomeStorage storage;
+    private JsonHomeStorage storage = null;
     private final Logging logger;
     private final Lang lang;
     private final int homeDelay;
@@ -42,10 +40,18 @@ public class Homes implements FundamentalCommand, Listener {
 
         Path folder = Path.of(plugin.getDataFolder().toString(), "homes");
         try {
+            logger.log("Loaded home storage.");
             this.storage = new JsonHomeStorage(folder);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            logger.logBoth(Level.SEVERE, "Failed to load home storage:");
+            logger.logBoth(Level.SEVERE,
+                    e.getMessage()
+                            + " " +
+                            Arrays.toString(e.getStackTrace()));
+            return;
         }
+        Bukkit.getPluginManager().registerEvents(this, plugin);
+        logger.log("Registered events for homes.");
     }
 
     @Override
@@ -54,11 +60,15 @@ public class Homes implements FundamentalCommand, Listener {
             sender.sendMessage(lang.getKey("msgs.playeronly"));
             return true;
         }
+        if (storage == null) {
+            sender.sendMessage(lang.getKey("cmds.home.error"));
+            return true;
+        }
+        Map<String, Home> homes = cache.get(player.getUniqueId()).getHomes();
         switch (label.toLowerCase()) {
             case "listhomes", "homes" -> {
                 if (args.length != 0)
                     return false;
-                Map<String, Home> homes = cache.get(player.getUniqueId()).getHomes();
                 if (homes != null) {
                     player.sendMessage(lang.getKey("cmds.home.list"));
                     boolean i = false;
@@ -77,7 +87,6 @@ public class Homes implements FundamentalCommand, Listener {
             case "home" -> {
                 if (args.length != 1)
                     return false;
-                Map<String, Home> homes = cache.get(player.getUniqueId()).getHomes();
                 Home home = homes.get(args[0]);
                 PlaceholderHelper helper = new PlaceholderHelper();
                 helper.add("HOME", args[0]);
@@ -108,7 +117,6 @@ public class Homes implements FundamentalCommand, Listener {
             case "sethome" -> {
                 if (args.length != 1)
                     return false;
-                Map<String, Home> homes = cache.get(player.getUniqueId()).getHomes();
                 PlaceholderHelper helper = new PlaceholderHelper();
                 helper.add("HOME", args[0]);
                 if (homes.containsKey(args[0])) {
@@ -128,7 +136,6 @@ public class Homes implements FundamentalCommand, Listener {
             case "delhome" -> {
                 if (args.length != 1)
                     return false;
-                Map<String, Home> homes = cache.get(player.getUniqueId()).getHomes();
                 PlaceholderHelper helper = new PlaceholderHelper();
                 helper.add("HOME", args[0]);
                 if (homes.containsKey(args[0])) {
@@ -161,6 +168,7 @@ public class Homes implements FundamentalCommand, Listener {
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         cache.put(player.getUniqueId(), storage.load(player.getUniqueId()));
+        logger.log("Loaded homes for player " + player.getName());
     }
 
     @EventHandler
@@ -169,5 +177,6 @@ public class Homes implements FundamentalCommand, Listener {
         UUID uuid = player.getUniqueId();
         storage.save(uuid, cache.get(uuid));
         cache.remove(uuid);
+        logger.log("Saved homes for player " + player.getName());
     }
 }

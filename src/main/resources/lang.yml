@@ -74,6 +74,8 @@ cmds:
     # /delhome - can use HOME name placeholder
     deleted: "&5Successfully deleted home '&1&lHOME&5'"
     deletedlog: "PLAYER deleted home HOME" # Can use PLAYER placeholder for log
+    # All - if homes storage fails to load
+    error: "&cUnable to load homes, please restart the server."
 
 # Staff commands
 # Placeholders: PLAYER, and sometimes VICTIM (Player might show up as "CONSOLE" in some cases)
