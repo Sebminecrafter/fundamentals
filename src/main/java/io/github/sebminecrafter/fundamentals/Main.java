@@ -28,8 +28,8 @@ public final class Main extends JavaPlugin {
         }
 
         logger = new Logging(this);
-        lang = new Lang(this, "lang.yml");
-        config = new Config(this, "config.yml");
+        lang = new Lang(this);
+        config = new Config(this);
         chat = new GlobalChat(this);
         commands = new Commands(this);
 

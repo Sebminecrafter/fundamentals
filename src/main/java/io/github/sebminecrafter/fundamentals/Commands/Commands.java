@@ -18,9 +18,9 @@ import java.util.Map;
 public class Commands implements CommandExecutor, TabCompleter {
 
     private final Lang lang;
-    private final Map<String, FundamentalCommand> commands = new HashMap<>();
     private final Config config;
     public final Freeze freeze;
+    public final Map<String, FundamentalCommand> commands = new HashMap<>();
 
     public Commands(JavaPlugin plugin) {
         this.config = Main.config;
@@ -37,6 +37,7 @@ public class Commands implements CommandExecutor, TabCompleter {
         commands.put("freeze", freeze);
         commands.put("tpo", new Tpo());
         commands.put("fly", new Fly());
+        commands.put("fundamentals", new Fundamentals());
 
         // Player commands
         Ignore ignore = new Ignore(plugin);
@@ -57,7 +58,7 @@ public class Commands implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
         String commandName = command.getName().toLowerCase(Locale.ENGLISH);
-        if (!config.isEnabled("cmds."+commandName)) {
+        if (!config.isEnabled("cmds."+commandName) && !label.equalsIgnoreCase("fundamentals")) {
             sender.sendMessage(lang.getKey("msgs.disabled"));
             return true;
         }

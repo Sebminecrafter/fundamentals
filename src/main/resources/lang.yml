@@ -144,6 +144,12 @@ staffcmds:
     exit:
       log: "PLAYER exited fly!"
       staff: "&5Exited fly mode!"
+  # Fundamentals command
+  fundamentals:
+    reloadconfig:
+      log: "PLAYER reloaded fundamentals config!"
+      staff: "&5Reloading fundamentals config..."
+
 
 # No placeholders, extra messages
 msgs:

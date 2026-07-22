@@ -17,10 +17,10 @@ import java.util.logging.Level;
 public class Lang {
     private final YamlConfiguration config;
 
-    public Lang(JavaPlugin plugin, String fileName) {
+    public Lang(JavaPlugin plugin) {
         Logging logger = Main.logger;
         YamlConfiguration langFile = new YamlConfiguration();
-        File file = new File(plugin.getDataFolder() + File.separator + fileName);
+        File file = new File(plugin.getDataFolder() + File.separator + "lang.yml");
         if (!file.exists()) {
             plugin.saveResource("lang.yml", false);
         }
@@ -28,7 +28,7 @@ public class Lang {
             // Load lang file
             langFile.load(file);
             // Load defaults
-            InputStreamReader reader = new InputStreamReader(Objects.requireNonNull(plugin.getResource(fileName)));
+            InputStreamReader reader = new InputStreamReader(Objects.requireNonNull(plugin.getResource("lang.yml")));
             YamlConfiguration defaults = YamlConfiguration.loadConfiguration(reader);
             langFile.setDefaults(defaults);
         } catch (IOException | InvalidConfigurationException e) {

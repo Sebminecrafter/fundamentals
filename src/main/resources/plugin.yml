@@ -57,6 +57,11 @@ commands:
     usage: "Usage: /<command>"
     permission: fundamentals.staff.fly
     aliases: []
+  fundamentals:
+    description: "Various plugin configuration"
+    usage: "Usage: /<command> [reload/enablecommand/disablecommand]"
+    permission: fundamentals.staff.fundamentals
+    aliases: []
 
   # Player commands
   msg:
@@ -107,6 +112,8 @@ permissions:
         description: "Ability to use the tpoffline command"
       fundamentals.staff.fly:
         description: "Ability to use the fly command"
+      fundamentals.staff.fundamentals:
+        description: "Ability to reload and change settings of the plugin"
   fundamentals.player:
     description: "Player commands parent permission"
     default: true
