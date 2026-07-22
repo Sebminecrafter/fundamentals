@@ -2,41 +2,16 @@ package io.github.sebminecrafter.fundamentals.IO;
 
 import io.github.sebminecrafter.fundamentals.Main;
 import org.bukkit.ChatColor;
-import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
-import java.util.logging.Level;
 
 public class Lang {
     private final YamlConfiguration config;
 
     public Lang(JavaPlugin plugin) {
-        Logging logger = Main.logger;
-        YamlConfiguration langFile = new YamlConfiguration();
-        File file = new File(plugin.getDataFolder() + File.separator + "lang.yml");
-        if (!file.exists()) {
-            plugin.saveResource("lang.yml", false);
-        }
-        try {
-            // Load lang file
-            langFile.load(file);
-            // Load defaults
-            InputStreamReader reader = new InputStreamReader(Objects.requireNonNull(plugin.getResource("lang.yml")));
-            YamlConfiguration defaults = YamlConfiguration.loadConfiguration(reader);
-            langFile.setDefaults(defaults);
-        } catch (IOException | InvalidConfigurationException e) {
-            logger.log(Level.SEVERE, "Error loading lang file!");
-            logger.log(Level.SEVERE, e.getMessage());
-            logger.log(Level.SEVERE, Arrays.toString(e.getStackTrace()));
-        }
-        this.config = langFile;
+        this.config = YamlLoader.load(plugin, Main.logger, "lang.yml");
     }
 
     public String formatColorCodes(String string) {

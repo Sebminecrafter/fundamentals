@@ -62,7 +62,7 @@ cmds:
     send: "&1PLAYER &5welcomes &1&lOTHER&5!"
   # Home command
   home:
-    # /homes and /listhomes - comma seperated list of homes will be appended after
+    # /homes and /listhomes - comma separated list of homes will be appended after
     list: "&5&lHomes: &e" # home1, home2, etc
     nohomes: "&cYou don't have any homes."
     # /home, /delhome - missing home - can use HOME name placeholder
@@ -149,6 +149,14 @@ staffcmds:
     reloadconfig:
       log: "PLAYER reloaded fundamentals config!"
       staff: "&5Reloading fundamentals config..."
+    enablecommand:
+      log: "PLAYER enabled command COMMAND"
+      staff: "&5Enabled command COMMAND!&e Reload the config to apply changes."
+      state: "&cCOMMAND is already enabled."
+    disablecommand:
+      log: "PLAYER disabled command COMMAND"
+      staff: "&5Disabled command COMMAND!&e Reload the config to apply changes."
+      state: "&cCOMMAND is already disabled."
 
 
 # No placeholders, extra messages
@@ -159,6 +167,7 @@ msgs:
   offline: "&cPlayer is not online."
   invalid: "&cInvalid argument!"
   fileerror: "&cAn error occurred and the server couldn't save that change."
+  readerror: "&cThe server failed to read required data from disk."
   ignored: "&cThis player is ignoring you!"
   self: "&cYou can't use this command on yourself!"
   tpcancelled: "&cYou moved!"

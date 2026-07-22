@@ -2,15 +2,11 @@ package io.github.sebminecrafter.fundamentals.IO;
 
 import io.github.sebminecrafter.fundamentals.Main;
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.Objects;
 import java.util.logging.Level;
 
 public class Config {
@@ -27,28 +23,18 @@ public class Config {
     }
 
     public void loadConfig() {
-        if (!file.exists()) {
-            plugin.saveResource("config.yml", false);
-        }
-        YamlConfiguration configFile = new YamlConfiguration();
-        try {
-            // Load config file
-            configFile.load(file);
-            // Load defaults
-            InputStreamReader reader = new InputStreamReader(Objects.requireNonNull(plugin.getResource("config.yml")));
-            YamlConfiguration defaults = YamlConfiguration.loadConfiguration(reader);
-            configFile.setDefaults(defaults);
-        } catch (IOException | InvalidConfigurationException | NullPointerException e) {
-            logger.log(Level.SEVERE, "Error loading config file or defaults!");
-            logger.log(Level.SEVERE, e.getMessage());
-            logger.log(Level.SEVERE, Arrays.toString(e.getStackTrace()));
-        }
-        this.config = configFile;
+        this.config = YamlLoader.load(plugin, logger, "config.yml");
     }
 
     public boolean isEnabled(String path) {
         return getBoolean("enabled."+path);
     }
+
+    public void setEnabled(String path, boolean value) {
+        config.set("enabled."+path, value);
+        saveConfig();
+    }
+
     public void saveConfig() {
         try {
             config.save(file);
@@ -58,9 +44,6 @@ public class Config {
         }
     }
 
-    public Object getKey(String path) {
-        return config.get(path);
-    }
     public String getString(String path) {
         return config.getString(path);
     }
