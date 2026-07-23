@@ -29,14 +29,16 @@ public class Welcome implements FundamentalCommand {
             sender.sendMessage(lang.getKey("msgs.offline"));
             return true;
         }
+        if (player.hasPlayedBefore()) {
+            sender.sendMessage(lang.getKey("cmds.welcome.hasplayedbefore"));
+            return true;
+        }
         PlaceholderHelper helper = new PlaceholderHelper();
         helper.add("PLAYER", sender.getName());
         helper.add("OTHER", player.getName());
         List<List<String>> replace = helper.getReplace();
         logger.log(lang.getKey("cmds.welcome.log", replace));
-        for (Player p : Bukkit.getOnlinePlayers()) {
-            p.sendMessage(lang.getKey("cmds.welcome.send", replace));
-        }
+        Bukkit.broadcastMessage(lang.getKey("cmds.welcome.send", replace));
         return true;
     }
 }

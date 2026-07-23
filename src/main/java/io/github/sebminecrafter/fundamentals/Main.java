@@ -3,6 +3,7 @@ package io.github.sebminecrafter.fundamentals;
 import io.github.sebminecrafter.fundamentals.Chat.GlobalChat;
 import io.github.sebminecrafter.fundamentals.Checks.OpChecker;
 import io.github.sebminecrafter.fundamentals.Commands.Commands;
+import io.github.sebminecrafter.fundamentals.Commands.Ignore;
 import io.github.sebminecrafter.fundamentals.Commands.Staffmode;
 import io.github.sebminecrafter.fundamentals.IO.Config;
 import io.github.sebminecrafter.fundamentals.IO.Lang;
@@ -30,8 +31,8 @@ public final class Main extends JavaPlugin {
         logger = new Logging(this);
         lang = new Lang(this);
         config = new Config(this);
-        chat = new GlobalChat(this);
         commands = new Commands(this);
+        chat = new GlobalChat(this, (Ignore) commands.getCommand("ignore"));
 
         if (config.isEnabled("checks.opchecker")) {
             opchecker = new OpChecker(this);

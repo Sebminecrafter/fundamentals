@@ -27,7 +27,9 @@ These are commands for players on your server to use.
 
 - Message a player with `/msg`
 - Teleport requests with `/tpa`, `/tpahere`
+- Homes with `/sethome`, `/delhome`, `/listhomes`.
 - Ignore a player's messages and requests `/ignore`
+- Welcome someone with `/welcome`
 
 ### Staff Commands
 
@@ -38,9 +40,20 @@ These are commands specifically made for moderation or server management.
 - Send a player a private message from "Staff" with `/staffmsg`
 - Enter *staff mode* with `/staffmode`
 - Refill your hunger with `/feed`
-- Custom `/gamemode`, with shorthands like `/gm`, `/gms`, `/gmc`, etc.
+- Custom `/gamemode`, with shorthands like `/gm`, `/gms`, `/gmc`, `/gma`, and `/gmsp`.
 - Teleport an offline player with `/tpo`
 - Fly in survival with `/fly`
+
+### Custom Messages
+
+Fundamentals has custom *chat formatting*, *death messages*, and *join/leave messages*.
+
+**By default**, the chat looks like this: `Player: message!`,
+the deaths are like this: `☠ Player died`,
+and the joins and leaves like this: `[+] Player` / `[-] Player`
+
+Everything supports legacy color codes (like `&c`, for red).
+MiniMessage support is currently unavailable.
 
 ### Server Checks
 

@@ -60,6 +60,8 @@ cmds:
   welcome:
     log: "PLAYER welcomed OTHER"
     send: "&1PLAYER &5welcomes &1&lOTHER&5!"
+    # No placeholders, error message
+    hasplayedbefore: "&cIt's not the player's first time!"
   # Home command
   home:
     # /homes and /listhomes - comma separated list of homes will be appended after
