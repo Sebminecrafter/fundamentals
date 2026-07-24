@@ -10,6 +10,8 @@ import org.bukkit.configuration.ConfigurationSection;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Fundamentals implements FundamentalCommand {
     private final Config config;
@@ -29,7 +31,7 @@ public class Fundamentals implements FundamentalCommand {
         }
         PlaceholderHelper helper = new PlaceholderHelper();
         helper.add("PLAYER", sender.getName());
-        switch (label.toLowerCase()) {
+        switch (args[0].toLowerCase()) {
             case "reloadconfig" -> {
                 if (args.length != 1) {
                     return false;
@@ -37,6 +39,7 @@ public class Fundamentals implements FundamentalCommand {
                 config.loadConfig();
                 logger.log(lang.getKey("staffcmds.fundamentals.reloadconfig.log", helper.getReplace()));
                 sender.sendMessage(lang.getKey("staffcmds.fundamentals.reloadconfig.staff", helper.getReplace()));
+                return true;
             }
             case "enablecommand" -> {
                 if (args.length != 2) {
@@ -53,13 +56,14 @@ public class Fundamentals implements FundamentalCommand {
                     sender.sendMessage(lang.getKey("msgs.notfound"));
                     return true;
                 }
-                if (config.isEnabled(command)) {
+                if (config.isEnabled("cmds." + command)) {
                     sender.sendMessage(lang.getKey("staffcmds.fundamentals.enablecommand.state", helper.getReplace()));
                     return true;
                 }
                 config.setEnabled("cmds."+command, true);
                 logger.log(lang.getKey("staffcmds.fundamentals.enablecommand.log", helper.getReplace()));
                 sender.sendMessage(lang.getKey("staffcmds.fundamentals.enablecommand.staff", helper.getReplace()));
+                return true;
             }
             case "disablecommand" -> {
                 if (args.length != 2) {
@@ -76,13 +80,14 @@ public class Fundamentals implements FundamentalCommand {
                     sender.sendMessage(lang.getKey("msgs.notfound"));
                     return true;
                 }
-                if (!config.isEnabled(command)) {
+                if (!config.isEnabled("cmds." + command)) {
                     sender.sendMessage(lang.getKey("staffcmds.fundamentals.disablecommand.state", helper.getReplace()));
                     return true;
                 }
                 config.setEnabled("cmds."+command, false);
                 logger.log(lang.getKey("staffcmds.fundamentals.disablecommand.log", helper.getReplace()));
                 sender.sendMessage(lang.getKey("staffcmds.fundamentals.disablecommand.staff", helper.getReplace()));
+                return true;
             }
         }
         return false;
@@ -90,18 +95,19 @@ public class Fundamentals implements FundamentalCommand {
 
     @Override
     public List<String> tabComplete(CommandSender sender, String[] args) {
-        if (args.length < 2) {
-            return List.of(
-                    "reloadconfig",
-                    "enablecommand",
-                    "disablecommand"
-            );
+        if (args.length == 1) {
+            String partial = args[0].toLowerCase();
+            return Stream.of("reloadconfig", "enablecommand", "disablecommand")
+                    .filter(s -> s.startsWith(partial))
+                    .collect(Collectors.toList());
         }
-        if (args.length == 2 && (args[1].equalsIgnoreCase("enablecommand") || args[1].equalsIgnoreCase("disablecommand"))) {
+        if (args.length == 2 && (args[0].equalsIgnoreCase("enablecommand") || args[0].equalsIgnoreCase("disablecommand"))) {
             ConfigurationSection cmdsSection = config.getConfigurationSection("enabled.cmds");
-            return cmdsSection != null
-                    ? new ArrayList<>(cmdsSection.getKeys(false))
-                    : new ArrayList<>();
+            if (cmdsSection == null) return new ArrayList<>();
+            String partial = args[1].toLowerCase();
+            return cmdsSection.getKeys(false).stream()
+                    .filter(s -> s.toLowerCase().startsWith(partial))
+                    .collect(Collectors.toList());
         }
         return List.of();
     }

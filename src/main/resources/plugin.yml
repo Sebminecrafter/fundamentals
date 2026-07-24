@@ -58,8 +58,8 @@ commands:
     permission: fundamentals.staff.fly
     aliases: []
   fundamentals:
-    description: "Various plugin configuration"
-    usage: "Usage: /<command> [reload/enablecommand/disablecommand]"
+    description: "Plugin configuration"
+    usage: "Usage: /<command> <reloadconfig/enablecommand/disablecommand> [command]"
     permission: fundamentals.staff.fundamentals
     aliases: []
 

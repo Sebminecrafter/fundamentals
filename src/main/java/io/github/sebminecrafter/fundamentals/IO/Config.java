@@ -7,6 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.logging.Level;
 
 public class Config {
@@ -27,6 +28,7 @@ public class Config {
     }
 
     public boolean isEnabled(String path) {
+        if (Objects.equals(path, "cmds.fundamentals")) return true;
         return getBoolean("enabled."+path);
     }
 

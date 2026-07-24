@@ -58,7 +58,7 @@ public class Commands implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
         String commandName = command.getName().toLowerCase(Locale.ENGLISH);
-        if (!config.isEnabled("cmds."+commandName) && !label.equalsIgnoreCase("fundamentals")) {
+        if (!config.isEnabled("cmds."+commandName)) {
             sender.sendMessage(lang.getKey("msgs.disabled"));
             return true;
         }
