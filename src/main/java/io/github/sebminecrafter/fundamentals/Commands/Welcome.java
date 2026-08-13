@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Welcome implements FundamentalCommand {
     private final Logging logger;
@@ -23,6 +24,9 @@ public class Welcome implements FundamentalCommand {
     public boolean execute(CommandSender sender, String[] args, String label) {
         if (args.length != 1) {
             return false;
+        }
+        if (Objects.equals(args[0], sender.getName())) {
+            sender.sendMessage(lang.getKey("msgs.self"));
         }
         Player player = Bukkit.getPlayerExact(args[0]);
         if (player == null) {

@@ -14,7 +14,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.Objects;
 
 public final class Main extends JavaPlugin {
-
     public static Logging logger;
     public static Lang lang;
     public static Config config;

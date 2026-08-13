@@ -86,9 +86,14 @@ commands:
     aliases: ['sethome', 'delhome', 'listhomes', 'homes']
   welcome:
     description: "Welcome a player"
-    usage: "/welcome <player>"
+    usage: "/<command> <player>"
     permission: fundamentals.player.welcome
     aliases: ['greet']
+  enderchest:
+    description: "Open your or another player's enderchest"
+    usage: "/<command> [player]"
+    permission: fundamentals.player.enderchest
+    aliases: ['ec']
 
 default-permission: op
 permissions:
@@ -114,6 +119,8 @@ permissions:
         description: "Ability to use the fly command"
       fundamentals.staff.fundamentals:
         description: "Ability to reload and change settings of the plugin"
+      fundamentals.staff.enderchest:
+        description: "Open OTHER players enderchest"
   fundamentals.player:
     description: "Player commands parent permission"
     default: true
@@ -128,3 +135,5 @@ permissions:
         description: "Set, delete, and teleport to, homes"
       fundamentals.player.welcome:
         description: "Welcome a player!"
+      fundamentals.player.enderchest:
+        description: "Open own enderchest with command"

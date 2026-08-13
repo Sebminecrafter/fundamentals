@@ -146,6 +146,14 @@ staffcmds:
     exit:
       log: "PLAYER exited fly!"
       staff: "&5Exited fly mode!"
+  # Enderchest command (staff/player)
+  enderchest:
+    log:
+      player: "PLAYER opened their enderchest."
+      staff: "PLAYER opened OTHER's enderchest."
+    message:
+      player: "&5Opened your enderchest!"
+      staff: "&5Opened &dOTHER&5's enderchest!"
   # Fundamentals command
   fundamentals:
     reloadconfig:
@@ -173,6 +181,7 @@ msgs:
   ignored: "&cThis player is ignoring you!"
   self: "&cYou can't use this command on yourself!"
   tpcancelled: "&cYou moved!"
+  noperms: "&cYou don't have permission to do that."
 
 # Most non-command chat messages
 # Can use PLAYER placeholder for most

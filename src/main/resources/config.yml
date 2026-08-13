@@ -7,12 +7,13 @@ enabled:
 
   cmds:
     # Player commands
-    msg: true      # Message someone privately
-    tpa: true      # Request to tp to somebody
-    tpahere: true  # Request to tp somebody to you
-    home: true     # All homes commands are grouped together, as they are almost fully useless if even one of them is disabled
-    ignore: true   # Ignore a player's private messages and tpa requests
-    welcome: true  # Welcome another player
+    msg: true        # Message someone privately
+    tpa: true        # Request to tp to somebody
+    tpahere: true    # Request to tp somebody to you
+    home: true       # All homes commands are grouped together, as they are almost fully useless if even one of them is disabled
+    ignore: true     # Ignore a player's private messages and tpa requests
+    welcome: true    # Welcome another player
+    enderchest: true # Use enderchest command
 
     # Staff commands
     broadcast: true

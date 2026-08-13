@@ -1,6 +1,5 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
-import io.github.sebminecrafter.fundamentals.Chat.GlobalChat;
 import io.github.sebminecrafter.fundamentals.IO.Lang;
 import io.github.sebminecrafter.fundamentals.IO.Logging;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
@@ -13,13 +12,11 @@ public class Msg implements FundamentalCommand {
     private final Lang lang;
     private final Logging logger;
     private final Ignore ignore;
-    private final GlobalChat chat;
 
     public Msg(Ignore ignore) {
         this.lang = Main.lang;
         this.logger = Main.logger;
         this.ignore = ignore;
-        this.chat = Main.chat;
     }
 
     @Override
@@ -49,7 +46,7 @@ public class Msg implements FundamentalCommand {
             sender.sendMessage(lang.getKey("msgs.ignored"));
             return true;
         }
-        if (chat.notAllowed(message.toString(), player)) {
+        if (Main.chat.notAllowed(message.toString(), player)) {
             sender.sendMessage(lang.getKey("chat.disallowed"));
             return true;
         }
