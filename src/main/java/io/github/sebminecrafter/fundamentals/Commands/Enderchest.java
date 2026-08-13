@@ -7,6 +7,7 @@ import io.github.sebminecrafter.fundamentals.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import static org.bukkit.Sound.BLOCK_ENDER_CHEST_OPEN;
 
 public class Enderchest implements FundamentalCommand {
     private final Lang lang;
@@ -42,12 +43,12 @@ public class Enderchest implements FundamentalCommand {
                 helper.add("OTHER", target.getName());
                 logger.log(lang.getKey("staffcmds.enderchest.log.staff", helper.getReplace()));
                 p.sendMessage(lang.getKey("staffcmds.enderchest.message.staff", helper.getReplace()));
+                p.playSound(p, BLOCK_ENDER_CHEST_OPEN, 1.0f, 1.0f);
                 p.openInventory(target.getEnderChest());
-                return true;
             } else {
                 p.sendMessage(lang.getKey("msgs.noperms"));
-                return true;
             }
+            return true;
         }
         return false;
     }

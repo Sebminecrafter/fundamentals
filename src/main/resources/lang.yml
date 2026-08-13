@@ -89,7 +89,7 @@ staffcmds:
   broadcast:
     log: "PLAYER broadcasted: \"MSG\""
     staff: "&2&lBroadcasted message:&r MSG"
-    player: "&5&lBROADCAST:&r MSG"
+    player: "&lMSG"
   # Freeze
   # log, staff, and player messages
   freeze:
