@@ -30,11 +30,11 @@ public class Socialspy implements FundamentalCommand {
         helper.add("PLAYER", player.getName());
         if (spyingPlayers.contains(player.getUniqueId())) {
             logger.log(lang.getKey("staffcmds.socialspy.disable.log", helper.getReplace()));
-            logger.log(lang.getKey("staffcmds.socialspy.disable.staff", helper.getReplace()));
+            player.sendMessage(lang.getKey("staffcmds.socialspy.disable.staff", helper.getReplace()));
             spyingPlayers.remove(player.getUniqueId());
         } else {
             logger.log(lang.getKey("staffcmds.socialspy.enable.log", helper.getReplace()));
-            logger.log(lang.getKey("staffcmds.socialspy.enable.staff", helper.getReplace()));
+            player.sendMessage(lang.getKey("staffcmds.socialspy.enable.staff", helper.getReplace()));
             spyingPlayers.add(player.getUniqueId());
         }
         return true;
