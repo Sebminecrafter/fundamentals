@@ -1,11 +1,7 @@
 package io.github.sebminecrafter.fundamentals.Chat;
 
 import io.github.sebminecrafter.fundamentals.Commands.Ignore;
-import io.github.sebminecrafter.fundamentals.IO.Config;
-import io.github.sebminecrafter.fundamentals.IO.Lang;
-import io.github.sebminecrafter.fundamentals.IO.Logging;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
-import io.github.sebminecrafter.fundamentals.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -17,18 +13,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static io.github.sebminecrafter.fundamentals.Main.*;
+
 public class GlobalChat implements Listener {
-    private final Lang lang;
-    private final Config config;
-    private final Logging logger;
     private final Ignore ignore;
     private final Pattern urlRegex;
     private final Pattern disallowedRegex;
 
     public GlobalChat(JavaPlugin plugin, Ignore ignore) {
-        this.lang = Main.lang;
-        this.config = Main.config;
-        this.logger = Main.logger;
         this.ignore = ignore;
 
         this.urlRegex = Pattern.compile(

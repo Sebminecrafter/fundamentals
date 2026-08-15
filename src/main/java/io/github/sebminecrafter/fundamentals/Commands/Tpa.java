@@ -13,10 +13,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
+import static io.github.sebminecrafter.fundamentals.Main.config;
+import static io.github.sebminecrafter.fundamentals.Main.lang;
+import static io.github.sebminecrafter.fundamentals.Main.logger;
+
 public class Tpa implements FundamentalCommand {
-    private final Lang lang;
-    private final Logging logger;
-    private final Config config;
     private final long requestExpiry;
     private final HashMap<UUID, UUID> tparequests;
     private final HashMap<UUID, UUID> tpahererequests;
@@ -26,10 +27,6 @@ public class Tpa implements FundamentalCommand {
     private final Ignore ignore;
 
     public Tpa(long requestExpiry, Ignore ignore) {
-        this.lang = Main.lang;
-        this.logger = Main.logger;
-        this.config = Main.config;
-
         this.requestExpiry = requestExpiry;
         this.tparequests = new HashMap<>();
         this.tpahererequests = new HashMap<>();
@@ -138,6 +135,7 @@ public class Tpa implements FundamentalCommand {
             tparequests.put(receiver.getUniqueId(), sender.getUniqueId());
             logger.log(lang.getKey("cmds.tpa.request.tpa.log", replace));
             sender.sendMessage(lang.getKey("cmds.tpa.request.tpa.sent", replace));
+            FundamentalSounds.tPSFCSimpler(receiver, "sounds.tpa-receive");
             receiver.sendMessage(lang.getKey("cmds.tpa.request.tpa.receive", replace));
 
             BukkitTask task = Bukkit.getScheduler().runTaskLater(Main.getPlugin(Main.class), () ->
@@ -158,6 +156,7 @@ public class Tpa implements FundamentalCommand {
             tpahererequests.put(receiver.getUniqueId(), sender.getUniqueId());
             logger.log(lang.getKey("cmds.tpa.request.tpahere.log", replace));
             sender.sendMessage(lang.getKey("cmds.tpa.request.tpahere.sent", replace));
+            FundamentalSounds.tPSFCSimpler(receiver, "sounds.tpa-receive");
             receiver.sendMessage(lang.getKey("cmds.tpa.request.tpahere.receive", replace));
 
             BukkitTask task = Bukkit.getScheduler().runTaskLater(Main.getPlugin(Main.class), () ->

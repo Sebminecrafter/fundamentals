@@ -1,8 +1,6 @@
 package io.github.sebminecrafter.fundamentals.Chat;
 
-import io.github.sebminecrafter.fundamentals.IO.Lang;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
-import io.github.sebminecrafter.fundamentals.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -10,12 +8,10 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.plugin.Plugin;
 
+import static io.github.sebminecrafter.fundamentals.Main.lang;
+
 public class DeathMessage implements Listener {
-    private final Lang lang;
-
     public DeathMessage(Plugin plugin) {
-        this.lang = Main.lang;
-
         Bukkit.getPluginManager().registerEvents(this, plugin);
     }
 

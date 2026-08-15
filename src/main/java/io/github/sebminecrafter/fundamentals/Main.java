@@ -3,6 +3,7 @@ package io.github.sebminecrafter.fundamentals;
 import io.github.sebminecrafter.fundamentals.Chat.GlobalChat;
 import io.github.sebminecrafter.fundamentals.Checks.OpChecker;
 import io.github.sebminecrafter.fundamentals.Commands.Commands;
+import io.github.sebminecrafter.fundamentals.Commands.Freeze;
 import io.github.sebminecrafter.fundamentals.Commands.Ignore;
 import io.github.sebminecrafter.fundamentals.Commands.Staffmode;
 import io.github.sebminecrafter.fundamentals.IO.Config;
@@ -51,7 +52,7 @@ public final class Main extends JavaPlugin {
     @Override
     public void onDisable() {
 
-        commands.freeze.cleanup();
+        ((Freeze) commands.getCommand("freeze")).cleanup();
 
         if (opchecker != null) {
             opchecker.stopTask();

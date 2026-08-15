@@ -1,8 +1,5 @@
 package io.github.sebminecrafter.fundamentals.Checks;
 
-import io.github.sebminecrafter.fundamentals.IO.Lang;
-import io.github.sebminecrafter.fundamentals.IO.Logging;
-import io.github.sebminecrafter.fundamentals.Main;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
@@ -17,19 +14,16 @@ import org.bukkit.scheduler.BukkitTask;
 import java.util.*;
 import java.util.logging.Level;
 
+import static io.github.sebminecrafter.fundamentals.Main.lang;
+import static io.github.sebminecrafter.fundamentals.Main.logger;
 import static org.bukkit.Bukkit.getServer;
 
 public class OpChecker implements Listener {
 
     private final BukkitTask task;
     private final Map<UUID, Boolean> opStatus;
-    private final Logging logger;
-    private final Lang lang;
 
     public OpChecker(JavaPlugin plugin) {
-        this.logger = Main.logger;
-        this.lang = Main.lang;
-
         this.opStatus = new HashMap<>();
         for (OfflinePlayer player : Bukkit.getOfflinePlayers()) {
             opStatus.put(player.getUniqueId(), player.isOp());

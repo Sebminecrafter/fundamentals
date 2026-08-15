@@ -1,9 +1,6 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
-import io.github.sebminecrafter.fundamentals.IO.Lang;
-import io.github.sebminecrafter.fundamentals.IO.Logging;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
-import io.github.sebminecrafter.fundamentals.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -11,15 +8,10 @@ import org.bukkit.entity.Player;
 import java.util.List;
 import java.util.Objects;
 
+import static io.github.sebminecrafter.fundamentals.Main.lang;
+import static io.github.sebminecrafter.fundamentals.Main.logger;
+
 public class Welcome implements FundamentalCommand {
-    private final Logging logger;
-    private final Lang lang;
-
-    public Welcome() {
-        logger = Main.logger;
-        lang = Main.lang;
-    }
-
     @Override
     public boolean execute(CommandSender sender, String[] args, String label) {
         if (args.length != 1) {

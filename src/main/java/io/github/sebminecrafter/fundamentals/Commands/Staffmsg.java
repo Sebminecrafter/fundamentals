@@ -1,22 +1,14 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
-import io.github.sebminecrafter.fundamentals.IO.Lang;
-import io.github.sebminecrafter.fundamentals.IO.Logging;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
-import io.github.sebminecrafter.fundamentals.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import static io.github.sebminecrafter.fundamentals.Main.lang;
+import static io.github.sebminecrafter.fundamentals.Main.logger;
+
 public class Staffmsg implements FundamentalCommand {
-    private final Lang lang;
-    private final Logging logger;
-
-    public Staffmsg() {
-        this.lang = Main.lang;
-        this.logger = Main.logger;
-    }
-
     @Override
     public boolean execute(CommandSender sender, String[] args, String label) {
         if (args.length < 2) {

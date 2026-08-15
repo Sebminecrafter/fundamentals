@@ -1,19 +1,13 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
-import io.github.sebminecrafter.fundamentals.IO.Lang;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
-import io.github.sebminecrafter.fundamentals.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import static io.github.sebminecrafter.fundamentals.Main.lang;
+
 public class Ping implements FundamentalCommand {
-    private final Lang lang;
-
-    public Ping() {
-        this.lang = Main.lang;
-    }
-
     @Override
     public boolean execute(CommandSender sender, String[] args, String label) {
         if (args.length > 1) {

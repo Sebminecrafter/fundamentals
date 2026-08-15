@@ -1,9 +1,6 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
-import io.github.sebminecrafter.fundamentals.IO.Lang;
-import io.github.sebminecrafter.fundamentals.IO.Logging;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
-import io.github.sebminecrafter.fundamentals.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.command.CommandSender;
@@ -12,15 +9,10 @@ import org.bukkit.entity.Player;
 import java.util.ArrayList;
 import java.util.List;
 
+import static io.github.sebminecrafter.fundamentals.Main.lang;
+import static io.github.sebminecrafter.fundamentals.Main.logger;
+
 public class GamemodeSimplifier implements FundamentalCommand {
-    private final Lang lang;
-    private final Logging logger;
-
-    public GamemodeSimplifier() {
-        this.lang = Main.lang;
-        this.logger = Main.logger;
-    }
-
     private GameMode switchGm(String string) {
         GameMode gamemode;
         switch (string) {

@@ -1,9 +1,6 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
-import io.github.sebminecrafter.fundamentals.IO.Lang;
-import io.github.sebminecrafter.fundamentals.IO.Logging;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
-import io.github.sebminecrafter.fundamentals.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -18,15 +15,14 @@ import java.util.Objects;
 import java.util.UUID;
 import java.util.logging.Level;
 
+import static io.github.sebminecrafter.fundamentals.Main.lang;
+import static io.github.sebminecrafter.fundamentals.Main.logger;
+
 public class Ignore implements FundamentalCommand {
-    private final Lang lang;
-    private final Logging logger;
     private final File ignorelistFile;
     private final YamlConfiguration ignorelist;
 
     public Ignore(JavaPlugin plugin) {
-        this.lang = Main.lang;
-        this.logger = Main.logger;
         this.ignorelistFile = new File(plugin.getDataFolder(), "ignorelist.yml");
         this.ignorelist = new YamlConfiguration();
 

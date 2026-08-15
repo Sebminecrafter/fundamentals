@@ -20,7 +20,7 @@ They may or may not be added, and are probably not yet in the plugin.
 - [ ] `/heal [player]` heal player or self
 - [ ] `/mute <player> [time]` mute a player
 - [ ] `/sudo <player> <cmd>` run a command as another player
-- [ ] `/socialspy [player]` show all private messages between other players, or a single player
+- [X] `/socialspy [player]` show all private messages between other players, or a single player
 
 ### General features
 

@@ -70,12 +70,18 @@ public class TeleportCountdown {
         countdown.start(seconds -> {
             if (hasMovedOrTookDamage()) {
                 countdown.cancel();
+                FundamentalSounds.tPSFCSimpler(player, "sounds.canceled");
                 if (onCancelled != null) onCancelled.run();
                 return null;
             }
+            FundamentalSounds.tPSFCSimpler(player, "sounds.countdown");
             if (eachTick != null) eachTick.accept(seconds);
             return null;
-        }, () -> player.teleport(destination));
+        }, () -> {
+            FundamentalSounds.tPSFCSimpler(player, "sounds.teleport");
+            player.teleport(destination);
+        }
+        );
     }
 
     private boolean hasMovedOrTookDamage() {

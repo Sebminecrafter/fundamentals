@@ -1,10 +1,6 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
-import io.github.sebminecrafter.fundamentals.IO.Config;
-import io.github.sebminecrafter.fundamentals.IO.Lang;
-import io.github.sebminecrafter.fundamentals.IO.Logging;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
-import io.github.sebminecrafter.fundamentals.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
@@ -15,17 +11,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static io.github.sebminecrafter.fundamentals.Main.*;
+
 public class Fundamentals implements FundamentalCommand {
-    private final Config config;
-    private final Lang lang;
-    private final Logging logger;
-
-    public Fundamentals() {
-        this.config = Main.config;
-        this.lang = Main.lang;
-        this.logger = Main.logger;
-    }
-
     @Override
     public boolean execute(CommandSender sender, String[] args, String label) {
         if (args.length == 0) {

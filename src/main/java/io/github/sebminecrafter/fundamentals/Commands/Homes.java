@@ -4,8 +4,6 @@ import io.github.sebminecrafter.fundamentals.IO.Homes.Home;
 import io.github.sebminecrafter.fundamentals.IO.Homes.JsonHomeStorage;
 import io.github.sebminecrafter.fundamentals.IO.Homes.PlayerHomes;
 import io.github.sebminecrafter.fundamentals.IO.Config;
-import io.github.sebminecrafter.fundamentals.IO.Lang;
-import io.github.sebminecrafter.fundamentals.IO.Logging;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
 import io.github.sebminecrafter.fundamentals.IO.TeleportCountdown;
 import io.github.sebminecrafter.fundamentals.Main;
@@ -27,16 +25,15 @@ import java.nio.file.Path;
 import java.util.*;
 import java.util.logging.Level;
 
+import static io.github.sebminecrafter.fundamentals.Main.lang;
+import static io.github.sebminecrafter.fundamentals.Main.logger;
+
 public class Homes implements FundamentalCommand, Listener {
     private JsonHomeStorage storage = null;
-    private final Logging logger;
-    private final Lang lang;
     private final int homeDelay;
     private final Map<UUID, PlayerHomes> cache = new HashMap<>();
 
     public Homes(JavaPlugin plugin) {
-        this.logger = Main.logger;
-        this.lang = Main.lang;
         Config config = Main.config;
         this.homeDelay = config.getInt("home.delay");
 

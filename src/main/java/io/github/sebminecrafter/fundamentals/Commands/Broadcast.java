@@ -1,24 +1,17 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
-import io.github.sebminecrafter.fundamentals.IO.Lang;
-import io.github.sebminecrafter.fundamentals.IO.Logging;
+import io.github.sebminecrafter.fundamentals.IO.FundamentalSounds;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
-import io.github.sebminecrafter.fundamentals.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.List;
 
+import static io.github.sebminecrafter.fundamentals.Main.lang;
+import static io.github.sebminecrafter.fundamentals.Main.logger;
+
 public class Broadcast implements FundamentalCommand {
-    private final Logging logger;
-    private final Lang lang;
-
-    public Broadcast() {
-        logger = Main.logger;
-        lang = Main.lang;
-    }
-
     @Override
     public boolean execute(CommandSender sender, String[] args, String label) {
         if (args.length < 1) return false;
@@ -31,6 +24,7 @@ public class Broadcast implements FundamentalCommand {
         sender.sendMessage(lang.getKey("staffcmds.broadcast.staff", replace));
         Bukkit.broadcastMessage(lang.getKey("staffcmds.broadcast.player", replace));
         for (Player player : Bukkit.getOnlinePlayers()) {
+            FundamentalSounds.tPSFCSimpler(player, "sounds.broadcast");
             player.sendTitle(lang.getKey("staffcmds.broadcast.player", replace), null, 20, 60, 20);
         }
         return true;

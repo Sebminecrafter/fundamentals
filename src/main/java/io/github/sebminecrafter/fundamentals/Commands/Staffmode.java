@@ -1,9 +1,6 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
-import io.github.sebminecrafter.fundamentals.IO.Lang;
-import io.github.sebminecrafter.fundamentals.IO.Logging;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
-import io.github.sebminecrafter.fundamentals.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -21,19 +18,17 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import static io.github.sebminecrafter.fundamentals.Main.lang;
+import static io.github.sebminecrafter.fundamentals.Main.logger;
+
 public class Staffmode implements Listener, FundamentalCommand {
 
     private final Map<UUID, GameMode> savedGameModes = new HashMap<>();
     private final Map<UUID, Location> savedLocations = new HashMap<>();
     private final JavaPlugin plugin;
-    private final Logging logger;
-    private final Lang lang;
 
     public Staffmode(JavaPlugin plugin) {
         this.plugin = plugin;
-        this.logger = Main.logger;
-        this.lang = Main.lang;
-
         Bukkit.getServer().getPluginManager().registerEvents(this, plugin);
     }
 

@@ -1,8 +1,6 @@
 package io.github.sebminecrafter.fundamentals.Chat;
 
-import io.github.sebminecrafter.fundamentals.IO.Lang;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
-import io.github.sebminecrafter.fundamentals.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -11,12 +9,10 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import static io.github.sebminecrafter.fundamentals.Main.lang;
+
 public class JoinsAndLeaves implements Listener {
-    private final Lang lang;
-
     public JoinsAndLeaves(JavaPlugin plugin) {
-        this.lang = Main.lang;
-
         // Register events
         Bukkit.getPluginManager().registerEvents(this, plugin);
     }

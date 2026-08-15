@@ -69,6 +69,7 @@ cmds:
     nohomes: "&cYou don't have any homes."
     # /home, /delhome - missing home - can use HOME name placeholder
     missing: "&cYou don't have a home named '&lHOME&c'"
+    # Countdown for /home tp - can use SECS placeholder
     countdown: "&5Teleporting in &lSECS&5..."
     # /sethome - can use HOME name placeholder
     set: "&5Successfully set a home named '&1&lHOME&5'"
@@ -171,6 +172,14 @@ staffcmds:
       log: "PLAYER disabled command COMMAND"
       staff: "&5Disabled command COMMAND!&e Reload the config to apply changes."
       state: "&cCOMMAND is already disabled."
+  socialspy:
+    enable:
+      log: "PLAYER enabled socialspy"
+      staff: "&5You can now see all private messages."
+    disable:
+      log: "PLAYER disabled socialspy"
+      staff: "&5You can no longer see all private messages"
+    msg: "&5&lPLAYER &9-> &5&lOTHER&9: &rMSG"
 
 # No placeholders, extra messages
 msgs:

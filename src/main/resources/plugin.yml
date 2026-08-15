@@ -62,6 +62,11 @@ commands:
     usage: "Usage: /<command> <help/reloadconfig/enablecommand/disablecommand> [command]"
     permission: fundamentals.staff.fundamentals
     aliases: []
+  socialspy:
+    description: "Start listening to other's private messages"
+    usage: "Usage: /<command>"
+    permission: fundamentals.staff.socialspy
+    aliases: ['ss', 'listen']
 
   # Player commands
   msg:
@@ -126,6 +131,8 @@ permissions:
         description: "Ability to reload and change settings of the plugin"
       fundamentals.staff.enderchest:
         description: "Open OTHER players enderchest"
+      fundamentals.staff.socialspy:
+        description: "Use socialspy command to see all private messages"
   fundamentals.player:
     description: "Player commands parent permission"
     default: true

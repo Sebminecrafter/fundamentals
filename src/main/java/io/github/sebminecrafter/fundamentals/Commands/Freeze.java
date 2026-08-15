@@ -1,9 +1,6 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
-import io.github.sebminecrafter.fundamentals.IO.Lang;
-import io.github.sebminecrafter.fundamentals.IO.Logging;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
-import io.github.sebminecrafter.fundamentals.Main;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
@@ -18,15 +15,14 @@ import org.bukkit.scheduler.BukkitTask;
 
 import java.util.*;
 
+import static io.github.sebminecrafter.fundamentals.Main.lang;
+import static io.github.sebminecrafter.fundamentals.Main.logger;
+
 public class Freeze implements FundamentalCommand, Listener {
-    private final Lang lang;
-    private final Logging logger;
     private final JavaPlugin plugin;
     private final Map<UUID, BukkitTask> frozenPlayers;
 
     public Freeze(JavaPlugin plugin) {
-        this.lang = Main.lang;
-        this.logger = Main.logger;
         this.plugin = plugin;
         this.frozenPlayers = new HashMap<>();
 

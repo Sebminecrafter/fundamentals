@@ -1,8 +1,5 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
-import io.github.sebminecrafter.fundamentals.IO.Config;
-import io.github.sebminecrafter.fundamentals.IO.Lang;
-import io.github.sebminecrafter.fundamentals.Main;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -15,18 +12,13 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class Commands implements CommandExecutor, TabCompleter {
+import static io.github.sebminecrafter.fundamentals.Main.config;
+import static io.github.sebminecrafter.fundamentals.Main.lang;
 
-    private final Lang lang;
-    private final Config config;
-    public final Freeze freeze;
+public class Commands implements CommandExecutor, TabCompleter {
     public final Map<String, FundamentalCommand> commands = new HashMap<>();
 
     public Commands(JavaPlugin plugin) {
-        this.config = Main.config;
-        this.lang = Main.lang;
-        this.freeze = new Freeze(plugin);
-
         // Staff commands
         commands.put("broadcast", new Broadcast());
         commands.put("staffmode", new Staffmode(plugin));
@@ -34,16 +26,16 @@ public class Commands implements CommandExecutor, TabCompleter {
         commands.put("staffmsg", new Staffmsg());
         commands.put("gamemode", new GamemodeSimplifier());
         commands.put("invsee", new Invsee());
-        commands.put("freeze", freeze);
+        commands.put("freeze", new Freeze(plugin));
         commands.put("tpo", new Tpo());
         commands.put("fly", new Fly());
         commands.put("fundamentals", new Fundamentals());
+        commands.put("socialspy", new Socialspy());
 
         // Player commands
-        Ignore ignore = new Ignore(plugin);
-        commands.put("ignore", ignore);
-        commands.put("msg", new Msg(ignore));
-        commands.put("tpa", new Tpa(config.getInt("tpa.expiresafter"), ignore));
+        commands.put("ignore", new Ignore(plugin));
+        commands.put("msg", new Msg((Ignore) commands.get("ignore"), (Socialspy) commands.get("socialspy")));
+        commands.put("tpa", new Tpa(config.getInt("tpa.expiresafter"), (Ignore) commands.get("ignore")));
         commands.put("home", new Homes(plugin));
         commands.put("welcome", new Welcome());
         commands.put("enderchest", new Enderchest());

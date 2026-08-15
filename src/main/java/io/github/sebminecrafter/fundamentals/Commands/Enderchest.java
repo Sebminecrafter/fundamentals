@@ -1,23 +1,15 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
-import io.github.sebminecrafter.fundamentals.IO.Lang;
-import io.github.sebminecrafter.fundamentals.IO.Logging;
+import io.github.sebminecrafter.fundamentals.IO.FundamentalSounds;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
-import io.github.sebminecrafter.fundamentals.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import static org.bukkit.Sound.BLOCK_ENDER_CHEST_OPEN;
+
+import static io.github.sebminecrafter.fundamentals.Main.lang;
+import static io.github.sebminecrafter.fundamentals.Main.logger;
 
 public class Enderchest implements FundamentalCommand {
-    private final Lang lang;
-    private final Logging logger;
-
-    public Enderchest() {
-        this.lang = Main.lang;
-        this.logger = Main.logger;
-    }
-
     @Override
     public boolean execute(CommandSender sender, String[] args, String label) {
         if (!(sender instanceof Player p)) {
@@ -51,7 +43,7 @@ public class Enderchest implements FundamentalCommand {
                 return true;
             }
         }
-        p.playSound(p, BLOCK_ENDER_CHEST_OPEN, 1.0f, 1.0f);
+        FundamentalSounds.tPSFCSimpler(p, "sounds.ec");
         p.openInventory(target.getEnderChest());
         return true;
     }
