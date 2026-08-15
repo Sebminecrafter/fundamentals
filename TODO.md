@@ -7,9 +7,9 @@ They may or may not be added, and are probably not yet in the plugin.
 ### Key
 
 |   Meaning   | Symbol |
-|-------------|--------|
-| In progress |   ☑   |
-| Not started |   ☐   |
+|:-----------:|:------:|
+| In progress |   ☑    |
+| Not started |   ☐    |
 
 ### Player features/commands
 
