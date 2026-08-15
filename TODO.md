@@ -6,35 +6,35 @@ These are not final, but ideas that are likely to be implemented.
 They may or may not be added, and are probably not yet in the plugin.
 ### Key
 
-|                  Symbol                  |   Meaning   |
-|:----------------------------------------:|:-----------:|
-| <input type="checkbox" checked disabled> | In progress |
-|     <input type="checkbox" disabled>     | Not started |
+|   Meaning   | Symbol |
+|:-----------:|:------:|
+| In progress |  [X]   |
+| Not started |  [ ]   |
 
 ### Player features/commands
 
- - [ ] `/back` on death and teleports
- - [ ] `/reply` / `/r` reply to last private message
+- [ ] `/back` on death and teleports
+- [ ] `/reply` / `/r` reply to last private message
 
 ### Staff features/commands
- - [ ] `/heal [player]` heal player or self
- - [ ] `/mute <player> [time]` mute a player
- - [ ] `/sudo <player> <cmd>` run a command as another player
- - [ ] `/socialspy [player]` show all private messages between other players, or a single player
+- [ ] `/heal [player]` heal player or self
+- [ ] `/mute <player> [time]` mute a player
+- [ ] `/sudo <player> <cmd>` run a command as another player
+- [ ] `/socialspy [player]` show all private messages between other players, or a single player
 
 ### General features
 
- - [ ] Warps \
-    `/warp`, `/setwarp`, `/delwarp`, `/warps` \
-    similar to homes, but for server OR player warps
+- [ ] Warps \
+  `/warp`, `/setwarp`, `/delwarp`, `/warps` \
+  similar to homes, but for server OR player warps
 
- - [ ] AFK \
-    `/afk` + AFK detection \
-    Marks players as AFK, configurable time, option to announce AFK, etc.
+- [ ] AFK \
+  `/afk` + AFK detection \
+  Marks players as AFK, configurable time, option to announce AFK, etc.
 
- - [ ] Proper offline players (hard to implement because of nbt data storage)
+- [ ] Proper offline players (hard to implement because of nbt data storage)
 
- - [ ] MiniMessage in `lang.yml` and chat
+- [ ] MiniMessage in `lang.yml` and chat
 
 ## Bugs
 
