@@ -80,6 +80,10 @@ cmds:
     # All
     error: "&cUnable to load homes, please restart the server." # If homes storage fails to load
     teleporting: "&eDon't move! &dTeleporting in 5 seconds!"    # Teleporting warning
+  # Ping command, can use PING and PLAYER placeholder
+  ping:
+    self: "&5Your ping is &d&lPINGms"
+    other: "&dPLAYER&5's ping is &d&lPINGms"
 
 # Staff commands
 # Placeholders: PLAYER, and sometimes VICTIM (Player might show up as "CONSOLE" in some cases)
@@ -167,7 +171,6 @@ staffcmds:
       log: "PLAYER disabled command COMMAND"
       staff: "&5Disabled command COMMAND!&e Reload the config to apply changes."
       state: "&cCOMMAND is already disabled."
-
 
 # No placeholders, extra messages
 msgs:

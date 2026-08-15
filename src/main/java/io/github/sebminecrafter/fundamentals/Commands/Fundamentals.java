@@ -5,8 +5,10 @@ import io.github.sebminecrafter.fundamentals.IO.Lang;
 import io.github.sebminecrafter.fundamentals.IO.Logging;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
 import io.github.sebminecrafter.fundamentals.Main;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.help.HelpTopic;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -89,6 +91,19 @@ public class Fundamentals implements FundamentalCommand {
                 sender.sendMessage(lang.getKey("staffcmds.fundamentals.disablecommand.staff", helper.getReplace()));
                 return true;
             }
+            case "help" -> {
+                if (args.length != 1) {
+                    return false;
+                }
+                HelpTopic helpTopic = Bukkit.getHelpMap().getHelpTopic("Fundamentals");
+                if (helpTopic == null) {
+                    sender.sendMessage(lang.getKey("msgs.readerror"));
+                    return true;
+                }
+                String helpText = helpTopic.getFullText(sender);
+                sender.sendMessage(helpText);
+                return true;
+            }
         }
         return false;
     }
@@ -97,7 +112,7 @@ public class Fundamentals implements FundamentalCommand {
     public List<String> tabComplete(CommandSender sender, String[] args) {
         if (args.length == 1) {
             String partial = args[0].toLowerCase();
-            return Stream.of("reloadconfig", "enablecommand", "disablecommand")
+            return Stream.of("reloadconfig", "enablecommand", "disablecommand", "help")
                     .filter(s -> s.startsWith(partial))
                     .collect(Collectors.toList());
         }

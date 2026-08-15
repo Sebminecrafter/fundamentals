@@ -47,6 +47,7 @@ public class Commands implements CommandExecutor, TabCompleter {
         commands.put("home", new Homes(plugin));
         commands.put("welcome", new Welcome());
         commands.put("enderchest", new Enderchest());
+        commands.put("ping", new Ping());
     }
 
     public FundamentalCommand getCommand(String commandName) {

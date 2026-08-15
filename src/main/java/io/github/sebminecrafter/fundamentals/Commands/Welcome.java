@@ -27,6 +27,7 @@ public class Welcome implements FundamentalCommand {
         }
         if (Objects.equals(args[0], sender.getName())) {
             sender.sendMessage(lang.getKey("msgs.self"));
+            return true;
         }
         Player player = Bukkit.getPlayerExact(args[0]);
         if (player == null) {

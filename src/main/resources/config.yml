@@ -14,6 +14,7 @@ enabled:
     ignore: true     # Ignore a player's private messages and tpa requests
     welcome: true    # Welcome another player
     enderchest: true # Use enderchest command
+    ping: true       # Use ping command to see your or another player's ping
 
     # Staff commands
     broadcast: true

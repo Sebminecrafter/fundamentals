@@ -8,7 +8,7 @@ api-version: '26.1'
 load: STARTUP
 
 authors: [ "Sebminecrafter" ]
-website: "modrinth.com/user/Sebminecrafter"
+website: "https://github.com/Sebminecrafter/Fundamentals"
 
 commands:
   # Staff commands
@@ -59,7 +59,7 @@ commands:
     aliases: []
   fundamentals:
     description: "Plugin configuration"
-    usage: "Usage: /<command> <reloadconfig/enablecommand/disablecommand> [command]"
+    usage: "Usage: /<command> <help/reloadconfig/enablecommand/disablecommand> [command]"
     permission: fundamentals.staff.fundamentals
     aliases: []
 
@@ -94,6 +94,11 @@ commands:
     usage: "/<command> [player]"
     permission: fundamentals.player.enderchest
     aliases: ['ec']
+  ping:
+    description: "Check your or another player's ping"
+    usage: "/<command> [player]"
+    permission: fundamentals.player.ping
+    aliases: []
 
 default-permission: op
 permissions:
@@ -137,3 +142,5 @@ permissions:
         description: "Welcome a player!"
       fundamentals.player.enderchest:
         description: "Open own enderchest with command"
+      fundamentals.player.ping:
+        description: "Use ping command to check player ping"
