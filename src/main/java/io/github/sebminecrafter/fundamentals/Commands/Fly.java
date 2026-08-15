@@ -33,21 +33,16 @@ public class Fly implements FundamentalCommand {
         helper.add("PLAYER", player.getName());
         List<List<String>> replace = helper.getReplace();
         if (player.getAllowFlight()) {
-            sender.sendMessage(lang.getKey("staffcmds.fly.exit.staff", replace));
+            player.sendMessage(lang.getKey("staffcmds.fly.exit.staff", replace));
             logger.log(lang.getKey("staffcmds.fly.exit.log", replace));
             player.setFlying(false);
             player.setAllowFlight(false);
         } else {
-            sender.sendMessage(lang.getKey("staffcmds.fly.enter.staff", replace));
+            player.sendMessage(lang.getKey("staffcmds.fly.enter.staff", replace));
             logger.log(lang.getKey("staffcmds.fly.enter.log", replace));
             player.setAllowFlight(true);
             player.setFlying(true);
         }
         return true;
-    }
-
-    @Override
-    public List<String> tabComplete(CommandSender sender, String[] args) {
-        return List.of();
     }
 }

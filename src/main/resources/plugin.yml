@@ -54,7 +54,7 @@ commands:
     aliases: ['tpoffline']
   fly:
     description: "Enable fly mode"
-    usage: "Usage: /<command>"
+    usage: "Usage: /<command> [player]"
     permission: fundamentals.staff.fly
     aliases: []
   fundamentals:
