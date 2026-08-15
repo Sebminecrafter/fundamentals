@@ -1,5 +1,6 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
+import io.github.sebminecrafter.fundamentals.IO.FundamentalSounds;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
 import io.github.sebminecrafter.fundamentals.Main;
 import org.bukkit.Bukkit;
@@ -52,6 +53,7 @@ public class Msg implements FundamentalCommand {
         receiver.sendMessage(lang.getKey("cmds.msg.receive", helper.getReplace()));
         sender.sendMessage(lang.getKey("cmds.msg.send", helper.getReplace()));
         logger.log(lang.getKey("cmds.msg.log", helper.getReplace()));
+        FundamentalSounds.tPSFCSimpler(receiver, "sounds.msg");
         socialspy.sendToSpyingPlayers(lang.getKey("staffcmds.socialspy.msg", helper.getReplace()));
         return true;
     }
