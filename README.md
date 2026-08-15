@@ -9,17 +9,17 @@ A nice, featureful, everything you need Bukkit plugin.
 
 The perfect plugin to set up your Minecraft server:
 
-- Everything you need
-- All compatible
-- Together
-- In one plugin
-- Fully customizable messages in YAML language file `lang.yml`
+- Configurable commands with permissions
+- Custom chat, joins/leaves, deaths
+- Everything is customizable in language file `lang.yml`
 
 ## Download
 
 Head over to the [Modrinth](https://modrinth.com/plugin/fundamentalswastaken) page or [GitHub Releases](https://github.com/Sebminecrafter/fundamentals/releases)
 
 ## Features
+
+All of these are currently added, for features that are not added yet refer to [TODO.md](https://github.com/Sebminecrafter/fundamentals/blob/main/TODO.md)
 
 ### Player Commands
 
