@@ -1,12 +1,15 @@
 # TODO
 
+## Explanation
+
+These are not final, but ideas that are likely to be implemented.
+They may or may not be added, and are probably not yet in the plugin.
 ### Key
- - [X] In progress
- - [ ] Not started
 
-## Current ideas
-
-These are not final, but ideas that are likely to be implemented
+|                  Symbol                  |   Meaning   |
+|:----------------------------------------:|:-----------:|
+| <input type="checkbox" checked disabled> | In progress |
+|     <input type="checkbox" disabled>     | Not started |
 
 ### Player features/commands
 
@@ -28,6 +31,10 @@ These are not final, but ideas that are likely to be implemented
  - [ ] AFK \
     `/afk` + AFK detection \
     Marks players as AFK, configurable time, option to announce AFK, etc.
+
+ - [ ] Proper offline players (hard to implement because of nbt data storage)
+
+ - [ ] MiniMessage in `lang.yml` and chat
 
 ## Bugs
 
