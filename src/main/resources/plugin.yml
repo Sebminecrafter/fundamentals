@@ -72,6 +72,11 @@ commands:
     usage: "Usage: /<command> <player> <cmd>"
     permission: fundamentals.staff.sudo
     aliases: []
+  clearchat:
+    description: "Clear chat"
+    usage: "Usage: /<command> [lines]"
+    permission: fundamentals.staff.clearchat
+    aliases: ['cc']
 
   # Player commands
   msg:
@@ -140,6 +145,8 @@ permissions:
         description: "Use socialspy command to see all private messages"
       fundamentals.staff.sudo:
         description: "WARNING: ALLOWS HIGHER PRIVILEGE EXECUTION OF COMMANDS. Run a command as another player"
+      fundamentals.staff.clearchat:
+        description: "Clear chat"
   fundamentals.player:
     description: "Player commands parent permission"
     default: true

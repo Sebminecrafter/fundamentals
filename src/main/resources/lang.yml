@@ -186,6 +186,10 @@ staffcmds:
   sudo:
     log: "PLAYER ran command as VICTIM: CMD"
     staff: "&5Ran command as &d&lVICTIM&5: &rCMD"
+  # clearchat command, can use PLAYER, LINES
+  clearchat:
+    log: "PLAYER cleared chat (LINES lines)"
+    staff: "&5Cleared chat!"
 
 # No placeholders, extra messages
 msgs:
