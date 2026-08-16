@@ -67,6 +67,11 @@ commands:
     usage: "Usage: /<command>"
     permission: fundamentals.staff.socialspy
     aliases: ['ss', 'listen']
+  sudo:
+    description: "Run a command as another player"
+    usage: "Usage: /<command> <player> <cmd>"
+    permission: fundamentals.staff.sudo
+    aliases: []
 
   # Player commands
   msg:
@@ -133,6 +138,8 @@ permissions:
         description: "Open OTHER players enderchest"
       fundamentals.staff.socialspy:
         description: "Use socialspy command to see all private messages"
+      fundamentals.staff.sudo:
+        description: "WARNING: ALLOWS HIGHER PRIVILEGE EXECUTION OF COMMANDS. Run a command as another player"
   fundamentals.player:
     description: "Player commands parent permission"
     default: true

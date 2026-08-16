@@ -27,6 +27,7 @@ enabled:
     tpo: true
     fly: true
     socialspy: true
+    sudo: true
 
   chat:
     # Enable global chat, custom joins/leaves, and custom death messages

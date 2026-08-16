@@ -19,8 +19,6 @@ They may or may not be added, and are probably not yet in the plugin.
 ### Staff features/commands
 - [ ] `/heal [player]` heal player or self
 - [ ] `/mute <player> [time]` mute a player
-- [ ] `/sudo <player> <cmd>` run a command as another player
-- [X] `/socialspy [player]` show all private messages between other players, or a single player
 
 ### General features
 
@@ -34,7 +32,7 @@ They may or may not be added, and are probably not yet in the plugin.
 
 - [ ] Proper offline players (hard to implement because of nbt data storage)
 
-- [ ] MiniMessage in `lang.yml` and chat
+- [ ] MiniMessage in `lang.yml` and chat (Paper libs required on non-Paper servers)
 
 ## Bugs
 

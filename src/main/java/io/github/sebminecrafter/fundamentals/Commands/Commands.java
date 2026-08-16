@@ -40,6 +40,7 @@ public class Commands implements CommandExecutor, TabCompleter {
         commands.put("welcome", new Welcome());
         commands.put("enderchest", new Enderchest());
         commands.put("ping", new Ping());
+        commands.put("sudo", new Sudo());
     }
 
     public FundamentalCommand getCommand(String commandName) {

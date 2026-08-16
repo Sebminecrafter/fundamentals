@@ -172,6 +172,7 @@ staffcmds:
       log: "PLAYER disabled command COMMAND"
       staff: "&5Disabled command COMMAND!&e Reload the config to apply changes."
       state: "&cCOMMAND is already disabled."
+  # Socialspy
   socialspy:
     enable:
       log: "PLAYER enabled socialspy"
@@ -179,7 +180,12 @@ staffcmds:
     disable:
       log: "PLAYER disabled socialspy"
       staff: "&5You can no longer see all private messages"
+    # Can use PLAYER, OTHER, and MSG. Just like normal /msg command
     msg: "&5&lPLAYER &9-> &5&lOTHER&9: &rMSG"
+  # Sudo command, can use PLAYER, VICTIM, CMD
+  sudo:
+    log: "PLAYER ran command as VICTIM: CMD"
+    staff: "&5Ran command as &d&lVICTIM&5: &rCMD"
 
 # No placeholders, extra messages
 msgs:
