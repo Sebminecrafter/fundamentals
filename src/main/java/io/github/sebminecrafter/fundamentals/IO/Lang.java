@@ -1,6 +1,7 @@
 package io.github.sebminecrafter.fundamentals.IO;
 
 import io.github.sebminecrafter.fundamentals.Main;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -9,13 +10,15 @@ import java.util.List;
 
 public class Lang {
     private final YamlConfiguration config;
+    private final MiniMessage miniMessage;
 
     public Lang(JavaPlugin plugin) {
         this.config = YamlLoader.load(plugin, Main.logger, "lang.yml");
+        this.miniMessage = MiniMessage.miniMessage(MiniMessage.Preset.DEFAULT);
     }
 
     public String formatColorCodes(String string) {
-        return ChatColor.translateAlternateColorCodes('&', string);
+        return miniMessage.deserialize(ChatColor.translateAlternateColorCodes('&', string)).toString();
     }
 
     /** Get the translation for `key`
