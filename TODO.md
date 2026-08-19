@@ -32,8 +32,6 @@ They may or may not be added, and are probably not yet in the plugin.
 
 - [ ] Proper offline players (hard to implement because of nbt data storage)
 
-- [X] MiniMessage in `lang.yml` and chat
-
 ## Bugs
 
 Please submit bugs via the

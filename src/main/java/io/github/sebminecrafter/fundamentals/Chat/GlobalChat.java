@@ -2,9 +2,7 @@ package io.github.sebminecrafter.fundamentals.Chat;
 
 import io.github.sebminecrafter.fundamentals.Commands.Ignore;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,7 +18,6 @@ public class GlobalChat implements Listener {
     private final Ignore ignore;
     private final Pattern urlRegex;
     private final Pattern disallowedRegex;
-    private final MiniMessage miniMessage;
 
     public GlobalChat(JavaPlugin plugin, Ignore ignore) {
         this.ignore = ignore;
@@ -32,8 +29,6 @@ public class GlobalChat implements Listener {
         this.disallowedRegex = Pattern.compile(
                 config.getString("enabled.chat.disallowedregex"),
                 Pattern.CASE_INSENSITIVE+Pattern.UNICODE_CASE);
-
-        this.miniMessage = MiniMessage.miniMessage(MiniMessage.Preset.NON_INTERACTABLE);
 
         Bukkit.getPluginManager().registerEvents(this, plugin);
         if (config.isEnabled("chat.customjl")) {
@@ -54,8 +49,7 @@ public class GlobalChat implements Listener {
         if (notAllowed(message, player)) return;
 
         if (config.isEnabled("chat.colors")) {
-            message = ChatColor.translateAlternateColorCodes('&', message);
-            message = miniMessage.deserialize(message).toString();
+            message = lang.formatColors(message);
         }
 
         PlaceholderHelper helper = new PlaceholderHelper();

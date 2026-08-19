@@ -52,8 +52,8 @@ Fundamentals has custom *chat formatting*, *death messages*, and *join/leave mes
 the deaths are like this: `☠ Player died`,
 and the joins and leaves like this: `[+] Player` / `[-] Player`
 
-Everything supports legacy color codes (like `&c`, for red).
-MiniMessage support is currently unavailable.
+Everything supports legacy color codes (like `&c`, for red),
+and MiniMessage (legacy translation, not all features are available).
 
 ### Server Checks
 
