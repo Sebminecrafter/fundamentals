@@ -32,7 +32,7 @@ They may or may not be added, and are probably not yet in the plugin.
 
 - [ ] Proper offline players (hard to implement because of nbt data storage)
 
-- [ ] MiniMessage in `lang.yml` and chat (Paper libs required on non-Paper servers)
+- [X] MiniMessage in `lang.yml` and chat
 
 ## Bugs
 
