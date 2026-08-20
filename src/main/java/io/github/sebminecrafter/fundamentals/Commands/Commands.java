@@ -51,16 +51,26 @@ public class Commands implements CommandExecutor, TabCompleter {
         return null;
     }
 
+    /** Sends a message only if it is non-null and not blank after stripping colour codes. */
+    public static void safeSend(CommandSender sender, String message) {
+        if (message == null || message.isBlank()) return;
+        // Strip Bukkit/Bungee § colour codes before the blank check so a
+        // message that is *only* colour codes (e.g. "§r") is also suppressed.
+        String stripped = message.replaceAll("§[0-9A-Fa-fK-Ok-oRr]", "").strip();
+        if (stripped.isEmpty()) return;
+        sender.sendMessage(message);
+    }
+
     @Override
     public boolean onCommand(@NonNull CommandSender sender, @NonNull Command command, @NonNull String label, String @NonNull [] args) {
         String commandName = command.getName().toLowerCase(Locale.ENGLISH);
         if (!config.isEnabled("cmds."+commandName)) {
-            sender.sendMessage(lang.getKey("msgs.disabled"));
+            safeSend(sender, lang.getKey("msgs.disabled"));
             return true;
         }
         FundamentalCommand commandObj = getCommand(commandName);
         if (commandObj == null) {
-            sender.sendMessage(lang.getKey("msgs.notfound"));
+            safeSend(sender, lang.getKey("msgs.notfound"));
             return true;
         } else {
             return commandObj.execute(sender, args, label);
@@ -75,7 +85,7 @@ public class Commands implements CommandExecutor, TabCompleter {
         }
         FundamentalCommand commandObj = getCommand(commandName);
         if (commandObj == null) {
-            sender.sendMessage(lang.getKey("msgs.notfound"));
+            safeSend(sender, lang.getKey("msgs.notfound"));
             return List.of();
         } else {
             return commandObj.tabComplete(sender, args);

@@ -18,16 +18,16 @@ public class Welcome implements FundamentalCommand {
             return false;
         }
         if (Objects.equals(args[0], sender.getName())) {
-            sender.sendMessage(lang.getKey("msgs.self"));
+            Commands.safeSend(sender, lang.getKey("msgs.self"));
             return true;
         }
         Player player = Bukkit.getPlayerExact(args[0]);
         if (player == null) {
-            sender.sendMessage(lang.getKey("msgs.offline"));
+            Commands.safeSend(sender, lang.getKey("msgs.offline"));
             return true;
         }
         if (player.hasPlayedBefore()) {
-            sender.sendMessage(lang.getKey("cmds.welcome.hasplayedbefore"));
+            Commands.safeSend(sender, lang.getKey("cmds.welcome.hasplayedbefore"));
             return true;
         }
         PlaceholderHelper helper = new PlaceholderHelper();

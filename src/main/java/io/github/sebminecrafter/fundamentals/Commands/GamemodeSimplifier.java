@@ -54,7 +54,7 @@ public class GamemodeSimplifier implements FundamentalCommand {
         }
         // Check valid gamemode
         if (gamemode == null) {
-            sender.sendMessage(lang.getKey("msgs.invalid"));
+            Commands.safeSend(sender, lang.getKey("msgs.invalid"));
             return true;
         }
 
@@ -63,7 +63,7 @@ public class GamemodeSimplifier implements FundamentalCommand {
                 player = Bukkit.getPlayerExact(args[0]);
             } else {
                 if (!(sender instanceof Player)) {
-                    sender.sendMessage(lang.getKey("msgs.playeronly"));
+                    Commands.safeSend(sender, lang.getKey("msgs.playeronly"));
                     return true;
                 }
                 player = (Player) sender;
@@ -75,14 +75,14 @@ public class GamemodeSimplifier implements FundamentalCommand {
                 player = Bukkit.getPlayerExact(args[0]);
             } else {
                 if (!(sender instanceof Player)) {
-                    sender.sendMessage(lang.getKey("msgs.playeronly"));
+                    Commands.safeSend(sender, lang.getKey("msgs.playeronly"));
                     return true;
                 }
                 player = (Player) sender;
             }
         }
         if (player == null) {
-            sender.sendMessage(lang.getKey("msgs.offline"));
+            Commands.safeSend(sender, lang.getKey("msgs.offline"));
             return true;
         }
         PlaceholderHelper helper = new PlaceholderHelper();
@@ -90,7 +90,7 @@ public class GamemodeSimplifier implements FundamentalCommand {
         helper.add("VICTIM", player.getName());
         helper.add("GM", gamemode.name());
         player.setGameMode(gamemode);
-        player.sendMessage(lang.getKey("staffcmds.gamemode.staff", helper.getReplace()));
+        Commands.safeSend(player, lang.getKey("staffcmds.gamemode.staff", helper.getReplace()));
         logger.log(lang.getKey("staffcmds.gamemode.log", helper.getReplace()));
         return true;
     }

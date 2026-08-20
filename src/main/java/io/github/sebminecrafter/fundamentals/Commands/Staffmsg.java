@@ -25,11 +25,11 @@ public class Staffmsg implements FundamentalCommand {
         helper.add("VICTIM", args[0]);
         helper.add("MSG", message.toString());
         if (receiver == null) {
-            sender.sendMessage(lang.getKey("msgs.offline", helper.getReplace()));
+            Commands.safeSend(sender, lang.getKey("msgs.offline", helper.getReplace()));
             return true;
         }
-        receiver.sendMessage(lang.getKey("staffcmds.staffmsg.player", helper.getReplace()));
-        sender.sendMessage(lang.getKey("staffcmds.staffmsg.staff", helper.getReplace()));
+        Commands.safeSend(receiver, lang.getKey("staffcmds.staffmsg.player", helper.getReplace()));
+        Commands.safeSend(sender, lang.getKey("staffcmds.staffmsg.staff", helper.getReplace()));
         logger.log(lang.getKey("staffcmds.staffmsg.log", helper.getReplace()));
         return true;
     }

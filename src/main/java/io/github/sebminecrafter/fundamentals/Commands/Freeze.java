@@ -36,7 +36,7 @@ public class Freeze implements FundamentalCommand, Listener {
         }
         Player target = Bukkit.getPlayerExact(args[0]);
         if (target == null) {
-            sender.sendMessage(lang.getKey("msgs.offline"));
+            Commands.safeSend(sender, lang.getKey("msgs.offline"));
             return true;
         }
 
@@ -54,16 +54,16 @@ public class Freeze implements FundamentalCommand, Listener {
             frozenPlayers.remove(uuid);
 
             logger.log(lang.getKey("staffcmds.freeze.log.stop", replace));
-            sender.sendMessage(lang.getKey("staffcmds.freeze.staff.stop", replace));
-            target.sendMessage(lang.getKey("staffcmds.freeze.player.stop", replace));
+            Commands.safeSend(sender, lang.getKey("staffcmds.freeze.staff.stop", replace));
+            Commands.safeSend(target, lang.getKey("staffcmds.freeze.player.stop", replace));
         } else {
             // Schedule message task and freeze
             BukkitTask task = Bukkit.getScheduler().runTaskTimer(plugin, () -> sendMsg(target), 0L, 60L);
             frozenPlayers.put(uuid, task);
 
             logger.log(lang.getKey("staffcmds.freeze.log.start", replace));
-            sender.sendMessage(lang.getKey("staffcmds.freeze.staff.start", replace));
-            target.sendMessage(lang.getKey("staffcmds.freeze.player.start", replace));
+            Commands.safeSend(sender, lang.getKey("staffcmds.freeze.staff.start", replace));
+            Commands.safeSend(target, lang.getKey("staffcmds.freeze.player.start", replace));
         }
         return true;
     }

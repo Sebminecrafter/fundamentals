@@ -24,7 +24,7 @@ public class Clearchat implements FundamentalCommand {
                 invalid = true;
             }
             if (invalid) {
-                sender.sendMessage(lang.getKey("msgs.invalid"));
+                Commands.safeSend(sender, lang.getKey("msgs.invalid"));
                 return true;
             }
         } else if (args.length > 1) {
@@ -37,7 +37,7 @@ public class Clearchat implements FundamentalCommand {
             Bukkit.getOnlinePlayers().forEach(player -> player.sendMessage(""));
         }
         logger.log(lang.getKey("staffcmds.clearchat.log", helper.getReplace()));
-        sender.sendMessage(lang.getKey("staffcmds.clearchat.staff", helper.getReplace()));
+        Commands.safeSend(sender, lang.getKey("staffcmds.clearchat.staff", helper.getReplace()));
         return true;
     }
 

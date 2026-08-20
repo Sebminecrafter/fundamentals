@@ -16,14 +16,14 @@ public class Fly implements FundamentalCommand {
         Player player;
         if (args.length == 0) {
             if (!(sender instanceof Player p)) {
-                sender.sendMessage(lang.getKey("msgs.playeronly"));
+                Commands.safeSend(sender, lang.getKey("msgs.playeronly"));
                 return true;
             }
             player = p;
         } else if (args.length == 1) {
             player = Bukkit.getPlayerExact(args[0]);
             if (player == null) {
-                sender.sendMessage(lang.getKey("msgs.offline"));
+                Commands.safeSend(sender, lang.getKey("msgs.offline"));
                 return true;
             }
         } else {
@@ -33,12 +33,12 @@ public class Fly implements FundamentalCommand {
         helper.add("PLAYER", player.getName());
         List<List<String>> replace = helper.getReplace();
         if (player.getAllowFlight()) {
-            player.sendMessage(lang.getKey("staffcmds.fly.exit.staff", replace));
+            Commands.safeSend(player, lang.getKey("staffcmds.fly.exit.staff", replace));
             logger.log(lang.getKey("staffcmds.fly.exit.log", replace));
             player.setFlying(false);
             player.setAllowFlight(false);
         } else {
-            player.sendMessage(lang.getKey("staffcmds.fly.enter.staff", replace));
+            Commands.safeSend(player, lang.getKey("staffcmds.fly.enter.staff", replace));
             logger.log(lang.getKey("staffcmds.fly.enter.log", replace));
             player.setAllowFlight(true);
             player.setFlying(true);

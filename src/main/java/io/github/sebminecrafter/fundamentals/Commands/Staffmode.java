@@ -36,7 +36,7 @@ public class Staffmode implements Listener, FundamentalCommand {
     public boolean execute(CommandSender sender, String[] args, String label) {
         Player wantsToTpTo = null;
         if (!(sender instanceof Player player)) {
-            sender.sendMessage(lang.getKey("msgs.playeronly"));
+            Commands.safeSend(sender, lang.getKey("msgs.playeronly"));
             return true;
         } else if (args.length > 1) {
             return false;
@@ -51,7 +51,7 @@ public class Staffmode implements Listener, FundamentalCommand {
                 restore(player);
                 PlaceholderHelper helper = new PlaceholderHelper();
                 helper.add("PLAYER", player.getName());
-                player.sendMessage(lang.getKey("staffcmds.staffmode.staff.exit", helper.getReplace()));
+                Commands.safeSend(player, lang.getKey("staffcmds.staffmode.staff.exit", helper.getReplace()));
                 logger.log(lang.getKey("staffcmds.staffmode.log.exit", helper.getReplace()));
             } else {
                 savedGameModes.put(uuid, player.getGameMode());
@@ -59,7 +59,7 @@ public class Staffmode implements Listener, FundamentalCommand {
                 player.setGameMode(GameMode.SPECTATOR);
                 PlaceholderHelper helper = new PlaceholderHelper();
                 helper.add("PLAYER", player.getName());
-                player.sendMessage(lang.getKey("staffcmds.staffmode.staff.enter", helper.getReplace()));
+                Commands.safeSend(player, lang.getKey("staffcmds.staffmode.staff.enter", helper.getReplace()));
                 logger.log(lang.getKey("staffcmds.staffmode.log.enter", helper.getReplace()));
             }
         } else {
@@ -70,7 +70,7 @@ public class Staffmode implements Listener, FundamentalCommand {
             PlaceholderHelper helper = new PlaceholderHelper();
             helper.add("PLAYER", player.getName());
             helper.add("VICTIM", wantsToTpTo.getName());
-            player.sendMessage(lang.getKey("staffcmds.staffmode.staff.enter", helper.getReplace())+lang.getKey("staffcmds.staffmode.addon", helper.getReplace()));
+            Commands.safeSend(player, lang.getKey("staffcmds.staffmode.staff.enter", helper.getReplace())+lang.getKey("staffcmds.staffmode.addon", helper.getReplace()));
             logger.log(lang.getKey("staffcmds.staffmode.log.enter", helper.getReplace())+lang.getKey("staffcmds.staffmode.addon", helper.getReplace()));
         }
         return true;
@@ -118,7 +118,7 @@ public class Staffmode implements Listener, FundamentalCommand {
         if (savedGameModes.containsKey(player.getUniqueId())) {
             PlaceholderHelper helper = new PlaceholderHelper();
             helper.add("PLAYER", player.getName());
-            player.sendMessage(lang.getKey("staffcmds.staffmode.staff.exit", helper.getReplace()));
+            Commands.safeSend(player, lang.getKey("staffcmds.staffmode.staff.exit", helper.getReplace()));
             logger.log(lang.getKey("staffcmds.staffmode.log.exit", helper.getReplace()));
             removePlayer(player);
         }

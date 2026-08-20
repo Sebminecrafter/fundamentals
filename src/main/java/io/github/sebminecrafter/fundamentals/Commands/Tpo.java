@@ -16,7 +16,7 @@ public class Tpo implements FundamentalCommand {
     @Override
     public boolean execute(CommandSender sender, String[] args, String label) {
         if (!(sender instanceof Player executor)) {
-            sender.sendMessage(lang.getKey("msgs.playeronly"));
+            Commands.safeSend(sender, lang.getKey("msgs.playeronly"));
             return true;
         } else if (args.length != 1) {
             return false;
@@ -36,16 +36,16 @@ public class Tpo implements FundamentalCommand {
         helper.add("VICTIM", args[0]);
         List<List<String>> replace = helper.getReplace();
         if (target == null || target.getName() == null) {
-            sender.sendMessage(lang.getKey("staffcmds.tpo.error", replace));
+            Commands.safeSend(sender, lang.getKey("staffcmds.tpo.error", replace));
             return true;
         }
         Location targetLocation = target.getLocation();
         if (targetLocation == null) {
-            sender.sendMessage(lang.getKey("staffcmds.tpo.error", replace));
+            Commands.safeSend(sender, lang.getKey("staffcmds.tpo.error", replace));
             return true;
         }
         executor.teleport(targetLocation);
-        sender.sendMessage(lang.getKey("staffcmds.tpo.staff", replace));
+        Commands.safeSend(sender, lang.getKey("staffcmds.tpo.staff", replace));
         logger.log(lang.getKey("staffcmds.tpo.log", replace));
         return true;
     }

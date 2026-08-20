@@ -41,15 +41,15 @@ public class Ignore implements FundamentalCommand {
             return false;
         }
         if (!(sender instanceof Player player)) {
-            sender.sendMessage(lang.getKey("msgs.playeronly"));
+            Commands.safeSend(sender, lang.getKey("msgs.playeronly"));
             return true;
         }
         Player other = Bukkit.getPlayerExact(args[0]);
         if (other == null) {
-            sender.sendMessage(lang.getKey("msgs.offline"));
+            Commands.safeSend(sender, lang.getKey("msgs.offline"));
             return true;
         } else if (player == other) {
-            sender.sendMessage(lang.getKey("msgs.self"));
+            Commands.safeSend(sender, lang.getKey("msgs.self"));
             return true;
         }
         UUID playerUUID = player.getUniqueId();
@@ -60,14 +60,14 @@ public class Ignore implements FundamentalCommand {
         if (isIgnoring(playerUUID, otherUUID)) {
             unignore(playerUUID, otherUUID);
             logger.log(lang.getKey("cmds.ignore.unignore.log", helper.getReplace()));
-            player.sendMessage(lang.getKey("cmds.ignore.unignore.send", helper.getReplace()));
+            Commands.safeSend(player, lang.getKey("cmds.ignore.unignore.send", helper.getReplace()));
         } else {
             ignore(playerUUID, otherUUID);
             logger.log(lang.getKey("cmds.ignore.ignore.log", helper.getReplace()));
-            player.sendMessage(lang.getKey("cmds.ignore.ignore.send", helper.getReplace()));
+            Commands.safeSend(player, lang.getKey("cmds.ignore.ignore.send", helper.getReplace()));
         }
         if (!saveFile()) {
-            sender.sendMessage(lang.getKey("msgs.fileerror"));
+            Commands.safeSend(sender, lang.getKey("msgs.fileerror"));
         }
         return true;
     }

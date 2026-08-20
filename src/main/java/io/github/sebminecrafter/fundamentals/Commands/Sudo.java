@@ -19,7 +19,7 @@ public class Sudo implements FundamentalCommand {
 
         Player target = Bukkit.getPlayerExact(args[0]);
         if (target == null) {
-            sender.sendMessage(lang.getKey("msgs.offline"));
+            Commands.safeSend(sender, lang.getKey("msgs.offline"));
             return true;
         }
 
@@ -42,7 +42,7 @@ public class Sudo implements FundamentalCommand {
         helper.add("CMD", command.toString());
 
         logger.log(lang.getKey("staffcmds.sudo.log", helper.getReplace()));
-        sender.sendMessage(lang.getKey("staffcmds.sudo.staff", helper.getReplace()));
+        Commands.safeSend(sender, lang.getKey("staffcmds.sudo.staff", helper.getReplace()));
         Bukkit.dispatchCommand(target, command.toString());
 
         return true;

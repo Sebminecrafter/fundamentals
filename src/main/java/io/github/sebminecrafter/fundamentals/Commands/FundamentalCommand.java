@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public interface FundamentalCommand {
     default boolean execute(CommandSender sender, String[] args, String label) {
-        sender.sendMessage("Not implemented yet!");
+        Commands.safeSend(sender, "Not implemented yet!");
         return true;
     }
     default List<String> tabComplete(CommandSender sender, String[] args) {

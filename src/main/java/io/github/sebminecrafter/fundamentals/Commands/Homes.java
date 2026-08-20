@@ -56,11 +56,11 @@ public class Homes implements FundamentalCommand, Listener {
     @Override
     public boolean execute(CommandSender sender, String[] args, String label) {
         if (!(sender instanceof Player player)) {
-            sender.sendMessage(lang.getKey("msgs.playeronly"));
+            Commands.safeSend(sender, lang.getKey("msgs.playeronly"));
             return true;
         }
         if (storage == null) {
-            sender.sendMessage(lang.getKey("cmds.home.error"));
+            Commands.safeSend(sender, lang.getKey("cmds.home.error"));
             return true;
         }
         Map<String, Home> homes = cache.get(player.getUniqueId()).getHomes();
@@ -79,9 +79,9 @@ public class Homes implements FundamentalCommand, Listener {
                             i = true;
                         message.append(text);
                     }
-                    player.sendMessage(message.toString());
+                    Commands.safeSend(player, message.toString());
                 } else {
-                    player.sendMessage(lang.getKey("cmds.home.nohomes"));
+                    Commands.safeSend(player, lang.getKey("cmds.home.nohomes"));
                 }
             }
             case "home" -> {
@@ -93,20 +93,20 @@ public class Homes implements FundamentalCommand, Listener {
                 if (home != null) {
                     World world = Bukkit.getWorld(home.world());
                     if (world == null) {
-                        player.sendMessage(lang.getKey("cmds.home.worldmissing", helper.getReplace()));
+                        Commands.safeSend(player, lang.getKey("cmds.home.worldmissing", helper.getReplace()));
                         return true;
                     }
                     Location destination = new Location(world, home.x(), home.y(), home.z(),
                             home.yaw(), home.pitch());
 
-                    player.sendMessage(lang.getKey("cmds.home.teleporting", helper.getReplace()));
+                    Commands.safeSend(player, lang.getKey("cmds.home.teleporting", helper.getReplace()));
                     TeleportCountdown teleportCountdown = new TeleportCountdown(player, destination, homeDelay);
                     teleportCountdown.start(
                             seconds -> sendCountdownActionBar(player, seconds),
-                            () -> player.sendMessage(lang.getKey("msgs.tpcancelled"))
+                            () -> Commands.safeSend(player, lang.getKey("msgs.tpcancelled"))
                     );
                 } else {
-                    player.sendMessage(lang.getKey("cmds.home.missing", helper.getReplace()));
+                    Commands.safeSend(player, lang.getKey("cmds.home.missing", helper.getReplace()));
                 }
             }
             case "sethome" -> {
@@ -115,7 +115,7 @@ public class Homes implements FundamentalCommand, Listener {
                 PlaceholderHelper helper = new PlaceholderHelper();
                 helper.add("HOME", args[0]);
                 if (homes.containsKey(args[0])) {
-                    player.sendMessage(lang.getKey("cmds.home.conflict", helper.getReplace()));
+                    Commands.safeSend(player, lang.getKey("cmds.home.conflict", helper.getReplace()));
                 } else {
                     Location loc = player.getLocation();
                     homes.put(args[0], new Home(
@@ -123,7 +123,7 @@ public class Homes implements FundamentalCommand, Listener {
                         loc.getX(), loc.getY(), loc.getZ(), // X, Y, Z    - Block position
                         loc.getYaw(), loc.getPitch()        // Yaw, Pitch - Camera angle
                     ));
-                    player.sendMessage(lang.getKey("cmds.home.set", helper.getReplace()));
+                    Commands.safeSend(player, lang.getKey("cmds.home.set", helper.getReplace()));
                     helper.add("PLAYER", player.getName());
                     logger.log(lang.getKey("cmds.home.setlog", helper.getReplace()));
                 }
@@ -135,11 +135,11 @@ public class Homes implements FundamentalCommand, Listener {
                 helper.add("HOME", args[0]);
                 if (homes.containsKey(args[0])) {
                     homes.remove(args[0]);
-                    player.sendMessage(lang.getKey("cmds.home.deleted", helper.getReplace()));
+                    Commands.safeSend(player, lang.getKey("cmds.home.deleted", helper.getReplace()));
                     helper.add("PLAYER", player.getName());
                     logger.log(lang.getKey("cmds.home.deletedlog", helper.getReplace()));
                 } else {
-                    player.sendMessage(lang.getKey("cmds.home.missing", helper.getReplace()));
+                    Commands.safeSend(player, lang.getKey("cmds.home.missing", helper.getReplace()));
                 }
             }
         }

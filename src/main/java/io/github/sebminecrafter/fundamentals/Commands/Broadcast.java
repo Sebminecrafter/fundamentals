@@ -21,7 +21,7 @@ public class Broadcast implements FundamentalCommand {
         helper.add("MSG", message);
         List<List<String>> replace = helper.getReplace();
         logger.logBoth(lang.getKey("staffcmds.broadcast.log", replace));
-        sender.sendMessage(lang.getKey("staffcmds.broadcast.staff", replace));
+        Commands.safeSend(sender, lang.getKey("staffcmds.broadcast.staff", replace));
         Bukkit.broadcastMessage(lang.getKey("staffcmds.broadcast.player", replace));
         for (Player player : Bukkit.getOnlinePlayers()) {
             FundamentalSounds.tPSFCSimpler(player, "sounds.broadcast");

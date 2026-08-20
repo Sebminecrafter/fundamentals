@@ -22,7 +22,7 @@ public class Msg implements FundamentalCommand {
     @Override
     public boolean execute(CommandSender sender, String[] args, String label) {
         if (!(sender instanceof Player player)) {
-            sender.sendMessage(lang.getKey("msgs.playeronly"));
+            Commands.safeSend(sender, lang.getKey("msgs.playeronly"));
             return true;
         }
         if (args.length < 2) {
@@ -39,19 +39,19 @@ public class Msg implements FundamentalCommand {
         helper.add("OTHER", args[0]);
         helper.add("MSG", message.toString());
         if (receiver == null) {
-            sender.sendMessage(lang.getKey("msgs.offline", helper.getReplace()));
+            Commands.safeSend(sender, lang.getKey("msgs.offline", helper.getReplace()));
             return true;
         }
         if (ignore.isIgnoring(receiver.getUniqueId(), player.getUniqueId())) {
-            sender.sendMessage(lang.getKey("msgs.ignored"));
+            Commands.safeSend(sender, lang.getKey("msgs.ignored"));
             return true;
         }
         if (Main.chat.notAllowed(message.toString(), player)) {
-            sender.sendMessage(lang.getKey("chat.disallowed"));
+            Commands.safeSend(sender, lang.getKey("chat.disallowed"));
             return true;
         }
-        receiver.sendMessage(lang.getKey("cmds.msg.receive", helper.getReplace()));
-        sender.sendMessage(lang.getKey("cmds.msg.send", helper.getReplace()));
+        Commands.safeSend(receiver, lang.getKey("cmds.msg.receive", helper.getReplace()));
+        Commands.safeSend(sender, lang.getKey("cmds.msg.send", helper.getReplace()));
         logger.log(lang.getKey("cmds.msg.log", helper.getReplace()));
         FundamentalSounds.tPSFCSimpler(receiver, "sounds.msg");
         socialspy.sendToSpyingPlayers(lang.getKey("staffcmds.socialspy.msg", helper.getReplace()));

@@ -28,7 +28,7 @@ public class Fundamentals implements FundamentalCommand {
                 }
                 config.loadConfig();
                 logger.log(lang.getKey("staffcmds.fundamentals.reloadconfig.log", helper.getReplace()));
-                sender.sendMessage(lang.getKey("staffcmds.fundamentals.reloadconfig.staff", helper.getReplace()));
+                Commands.safeSend(sender, lang.getKey("staffcmds.fundamentals.reloadconfig.staff", helper.getReplace()));
                 return true;
             }
             case "enablecommand" -> {
@@ -37,22 +37,22 @@ public class Fundamentals implements FundamentalCommand {
                 }
                 ConfigurationSection cmdsSection = config.getConfigurationSection("enabled.cmds");
                 if (cmdsSection == null) {
-                    sender.sendMessage(lang.getKey("msgs.readerror"));
+                    Commands.safeSend(sender, lang.getKey("msgs.readerror"));
                     return true;
                 }
                 String command = args[1].toLowerCase();
                 helper.add("COMMAND", command);
                 if (!cmdsSection.contains(command)) {
-                    sender.sendMessage(lang.getKey("msgs.notfound"));
+                    Commands.safeSend(sender, lang.getKey("msgs.notfound"));
                     return true;
                 }
                 if (config.isEnabled("cmds." + command)) {
-                    sender.sendMessage(lang.getKey("staffcmds.fundamentals.enablecommand.state", helper.getReplace()));
+                    Commands.safeSend(sender, lang.getKey("staffcmds.fundamentals.enablecommand.state", helper.getReplace()));
                     return true;
                 }
                 config.setEnabled("cmds."+command, true);
                 logger.log(lang.getKey("staffcmds.fundamentals.enablecommand.log", helper.getReplace()));
-                sender.sendMessage(lang.getKey("staffcmds.fundamentals.enablecommand.staff", helper.getReplace()));
+                Commands.safeSend(sender, lang.getKey("staffcmds.fundamentals.enablecommand.staff", helper.getReplace()));
                 return true;
             }
             case "disablecommand" -> {
@@ -61,22 +61,22 @@ public class Fundamentals implements FundamentalCommand {
                 }
                 ConfigurationSection cmdsSection = config.getConfigurationSection("enabled.cmds");
                 if (cmdsSection == null) {
-                    sender.sendMessage(lang.getKey("msgs.readerror"));
+                    Commands.safeSend(sender, lang.getKey("msgs.readerror"));
                     return true;
                 }
                 String command = args[1].toLowerCase();
                 helper.add("COMMAND", command);
                 if (!cmdsSection.contains(command)) {
-                    sender.sendMessage(lang.getKey("msgs.notfound"));
+                    Commands.safeSend(sender, lang.getKey("msgs.notfound"));
                     return true;
                 }
                 if (!config.isEnabled("cmds." + command)) {
-                    sender.sendMessage(lang.getKey("staffcmds.fundamentals.disablecommand.state", helper.getReplace()));
+                    Commands.safeSend(sender, lang.getKey("staffcmds.fundamentals.disablecommand.state", helper.getReplace()));
                     return true;
                 }
                 config.setEnabled("cmds."+command, false);
                 logger.log(lang.getKey("staffcmds.fundamentals.disablecommand.log", helper.getReplace()));
-                sender.sendMessage(lang.getKey("staffcmds.fundamentals.disablecommand.staff", helper.getReplace()));
+                Commands.safeSend(sender, lang.getKey("staffcmds.fundamentals.disablecommand.staff", helper.getReplace()));
                 return true;
             }
             case "help" -> {
@@ -85,11 +85,11 @@ public class Fundamentals implements FundamentalCommand {
                 }
                 HelpTopic helpTopic = Bukkit.getHelpMap().getHelpTopic("Fundamentals");
                 if (helpTopic == null) {
-                    sender.sendMessage(lang.getKey("msgs.readerror"));
+                    Commands.safeSend(sender, lang.getKey("msgs.readerror"));
                     return true;
                 }
                 String helpText = helpTopic.getFullText(sender);
-                sender.sendMessage(helpText);
+                Commands.safeSend(sender, helpText);
                 return true;
             }
         }

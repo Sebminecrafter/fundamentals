@@ -42,20 +42,20 @@ public class Tpa implements FundamentalCommand {
             case "tpa" -> {
                 Player player;
                 if (!(sender instanceof Player executor)) {
-                    sender.sendMessage(lang.getKey("msgs.playeronly"));
+                    Commands.safeSend(sender, lang.getKey("msgs.playeronly"));
                     return true;
                 } else if (args.length != 1) {
                     return false;
                 } else {
                     player = Bukkit.getPlayerExact(args[0]);
                     if (player == null) {
-                        sender.sendMessage(lang.getKey("msgs.offline"));
+                        Commands.safeSend(sender, lang.getKey("msgs.offline"));
                         return true;
                     } else if (player == executor) {
-                        sender.sendMessage(lang.getKey("msgs.self"));
+                        Commands.safeSend(sender, lang.getKey("msgs.self"));
                         return true;
                     } else if (ignore.isIgnoring(player.getUniqueId(), executor.getUniqueId())) {
-                        sender.sendMessage(lang.getKey("msgs.ignored"));
+                        Commands.safeSend(sender, lang.getKey("msgs.ignored"));
                         return true;
                     }
                 }
@@ -64,25 +64,25 @@ public class Tpa implements FundamentalCommand {
             }
             case "tpahere" -> {
                 if (!config.isEnabled("cmds.tpahere")) {
-                    sender.sendMessage(lang.getKey("msgs.disabled"));
+                    Commands.safeSend(sender, lang.getKey("msgs.disabled"));
                     return true;
                 }
                 Player player;
                 if (!(sender instanceof Player executor)) {
-                    sender.sendMessage(lang.getKey("msgs.playeronly"));
+                    Commands.safeSend(sender, lang.getKey("msgs.playeronly"));
                     return true;
                 } else if (args.length != 1) {
                     return false;
                 } else {
                     player = Bukkit.getPlayerExact(args[0]);
                     if (player == null) {
-                        sender.sendMessage(lang.getKey("msgs.offline"));
+                        Commands.safeSend(sender, lang.getKey("msgs.offline"));
                         return true;
                     } else if (player == executor) {
-                        sender.sendMessage(lang.getKey("msgs.self"));
+                        Commands.safeSend(sender, lang.getKey("msgs.self"));
                         return true;
                     } else if (ignore.isIgnoring(player.getUniqueId(), executor.getUniqueId())) {
-                        sender.sendMessage(lang.getKey("msgs.ignored"));
+                        Commands.safeSend(sender, lang.getKey("msgs.ignored"));
                         return true;
                     }
                 }
@@ -91,7 +91,7 @@ public class Tpa implements FundamentalCommand {
             }
             case "tpaccept" -> {
                 if (!(sender instanceof Player executor)) {
-                    sender.sendMessage(lang.getKey("msgs.playeronly"));
+                    Commands.safeSend(sender, lang.getKey("msgs.playeronly"));
                     return true;
                 } else if (args.length != 0) {
                     return false;
@@ -101,7 +101,7 @@ public class Tpa implements FundamentalCommand {
             }
             case "tpdeny" -> {
                 if (!(sender instanceof Player executor)) {
-                    sender.sendMessage(lang.getKey("msgs.playeronly"));
+                    Commands.safeSend(sender, lang.getKey("msgs.playeronly"));
                     return true;
                 } else if (args.length != 0) {
                     return false;
@@ -111,7 +111,7 @@ public class Tpa implements FundamentalCommand {
             }
             case "tpacancel" -> {
                 if (!(sender instanceof Player executor)) {
-                    sender.sendMessage(lang.getKey("msgs.playeronly"));
+                    Commands.safeSend(sender, lang.getKey("msgs.playeronly"));
                     return true;
                 } else if (args.length != 0) {
                     return false;
@@ -130,13 +130,13 @@ public class Tpa implements FundamentalCommand {
         List<List<String>> replace = helper.getReplace();
         if (tparequests.containsValue(sender.getUniqueId()) ||
                 tpahererequests.containsValue(sender.getUniqueId())) {
-            sender.sendMessage(lang.getKey("cmds.tpa.multiple", replace));
+            Commands.safeSend(sender, lang.getKey("cmds.tpa.multiple", replace));
         } else {
             tparequests.put(receiver.getUniqueId(), sender.getUniqueId());
             logger.log(lang.getKey("cmds.tpa.request.tpa.log", replace));
-            sender.sendMessage(lang.getKey("cmds.tpa.request.tpa.sent", replace));
+            Commands.safeSend(sender, lang.getKey("cmds.tpa.request.tpa.sent", replace));
             FundamentalSounds.tPSFCSimpler(receiver, "sounds.tpa-receive");
-            receiver.sendMessage(lang.getKey("cmds.tpa.request.tpa.receive", replace));
+            Commands.safeSend(receiver, lang.getKey("cmds.tpa.request.tpa.receive", replace));
 
             BukkitTask task = Bukkit.getScheduler().runTaskLater(Main.getPlugin(Main.class), () ->
                     expireTpRequest(receiver.getUniqueId(), sender.getUniqueId()), requestExpiry);
@@ -151,13 +151,13 @@ public class Tpa implements FundamentalCommand {
         List<List<String>> replace = helper.getReplace();
         if (tparequests.containsValue(sender.getUniqueId()) ||
                 tpahererequests.containsValue(sender.getUniqueId())) {
-            sender.sendMessage(lang.getKey("cmds.tpa.multiple", replace));
+            Commands.safeSend(sender, lang.getKey("cmds.tpa.multiple", replace));
         } else {
             tpahererequests.put(receiver.getUniqueId(), sender.getUniqueId());
             logger.log(lang.getKey("cmds.tpa.request.tpahere.log", replace));
-            sender.sendMessage(lang.getKey("cmds.tpa.request.tpahere.sent", replace));
+            Commands.safeSend(sender, lang.getKey("cmds.tpa.request.tpahere.sent", replace));
             FundamentalSounds.tPSFCSimpler(receiver, "sounds.tpa-receive");
-            receiver.sendMessage(lang.getKey("cmds.tpa.request.tpahere.receive", replace));
+            Commands.safeSend(receiver, lang.getKey("cmds.tpa.request.tpahere.receive", replace));
 
             BukkitTask task = Bukkit.getScheduler().runTaskLater(Main.getPlugin(Main.class), () ->
                     expireTpHereRequest(receiver.getUniqueId(), sender.getUniqueId()), requestExpiry);
@@ -177,8 +177,8 @@ public class Tpa implements FundamentalCommand {
         if (receiver != null) helper.add("OTHER", receiver.getName());
 
         logger.log(lang.getKey("cmds.tpa.expired.log", helper.getReplace()));
-        if (sender != null) sender.sendMessage(lang.getKey("cmds.tpa.expired.sent", helper.getReplace()));
-        if (receiver != null) receiver.sendMessage(lang.getKey("cmds.tpa.expired.receive", helper.getReplace()));
+        if (sender != null) Commands.safeSend(sender, lang.getKey("cmds.tpa.expired.sent", helper.getReplace()));
+        if (receiver != null) Commands.safeSend(receiver, lang.getKey("cmds.tpa.expired.receive", helper.getReplace()));
 
         tparequests.remove(receiverUuid);
         tpatasks.remove(receiverUuid);
@@ -196,8 +196,8 @@ public class Tpa implements FundamentalCommand {
         if (receiver != null) helper.add("OTHER", receiver.getName());
 
         logger.log(lang.getKey("cmds.tpa.expired.log", helper.getReplace()));
-        if (sender != null) sender.sendMessage(lang.getKey("cmds.tpa.expired.sent", helper.getReplace()));
-        if (receiver != null) receiver.sendMessage(lang.getKey("cmds.tpa.expired.receive", helper.getReplace()));
+        if (sender != null) Commands.safeSend(sender, lang.getKey("cmds.tpa.expired.sent", helper.getReplace()));
+        if (receiver != null) Commands.safeSend(receiver, lang.getKey("cmds.tpa.expired.receive", helper.getReplace()));
 
         tpahererequests.remove(receiverUuid);
         tpaheretasks.remove(receiverUuid);
@@ -212,9 +212,9 @@ public class Tpa implements FundamentalCommand {
                 helper.add("OTHER", receiver.getName());
             }
             logger.log(lang.getKey("cmds.tpa.cancelled.log", helper.getReplace()));
-            sender.sendMessage(lang.getKey("cmds.tpa.cancelled.sent", helper.getReplace()));
+            Commands.safeSend(sender, lang.getKey("cmds.tpa.cancelled.sent", helper.getReplace()));
             if (receiver != null) {
-                receiver.sendMessage(lang.getKey("cmds.tpa.cancelled.receive", helper.getReplace()));
+                Commands.safeSend(receiver, lang.getKey("cmds.tpa.cancelled.receive", helper.getReplace()));
             }
             cancelTask(tpatasks, sender.getUniqueId());
             tparequests.remove(sender.getUniqueId());
@@ -224,14 +224,14 @@ public class Tpa implements FundamentalCommand {
                 helper.add("OTHER", receiver.getName());
             }
             logger.log(lang.getKey("cmds.tpa.cancelled.log", helper.getReplace()));
-            sender.sendMessage(lang.getKey("cmds.tpa.cancelled.sent", helper.getReplace()));
+            Commands.safeSend(sender, lang.getKey("cmds.tpa.cancelled.sent", helper.getReplace()));
             if (receiver != null) {
-                receiver.sendMessage(lang.getKey("cmds.tpa.cancelled.receive", helper.getReplace()));
+                Commands.safeSend(receiver, lang.getKey("cmds.tpa.cancelled.receive", helper.getReplace()));
             }
             cancelTask(tpaheretasks, sender.getUniqueId());
             tpahererequests.remove(sender.getUniqueId());
         } else {
-            sender.sendMessage(lang.getKey("cmds.tpa.none"));
+            Commands.safeSend(sender, lang.getKey("cmds.tpa.none"));
         }
     }
 
@@ -242,41 +242,41 @@ public class Tpa implements FundamentalCommand {
         if (tparequests.containsKey(receiver.getUniqueId())) {
             Player requester = Bukkit.getPlayer(tparequests.get(receiver.getUniqueId()));
             if (requester == null) {
-                receiver.sendMessage(lang.getKey("msgs.offline"));
+                Commands.safeSend(receiver, lang.getKey("msgs.offline"));
                 cancelTask(tpatasks, receiver.getUniqueId());
                 tparequests.remove(receiver.getUniqueId());
                 return;
             }
             helper.add("OTHER", requester.getName());
             logger.log(lang.getKey("cmds.tpa.accepted.log", helper.getReplace()));
-            receiver.sendMessage(lang.getKey("cmds.tpa.accepted.sent", helper.getReplace()));
-            requester.sendMessage(lang.getKey("cmds.tpa.accepted.receive", helper.getReplace()));
+            Commands.safeSend(receiver, lang.getKey("cmds.tpa.accepted.sent", helper.getReplace()));
+            Commands.safeSend(requester, lang.getKey("cmds.tpa.accepted.receive", helper.getReplace()));
             cancelTask(tpatasks, receiver.getUniqueId());
             tparequests.remove(receiver.getUniqueId());
-            requester.sendMessage(lang.getKey("cmds.tpa.teleporting"));
+            Commands.safeSend(requester, lang.getKey("cmds.tpa.teleporting"));
             TeleportCountdown teleportCountdown = new TeleportCountdown(requester, receiver.getLocation(), countdownTime);
             teleportCountdown.start(seconds -> sendCountdownActionBar(requester, seconds),
-                    () -> requester.sendMessage(lang.getKey("msgs.tpcancelled")));
+                    () -> Commands.safeSend(requester, lang.getKey("msgs.tpcancelled")));
         } else if (tpahererequests.containsKey(receiver.getUniqueId())) {
             Player requester = Bukkit.getPlayer(tpahererequests.get(receiver.getUniqueId()));
             if (requester == null) {
-                receiver.sendMessage(lang.getKey("msgs.offline"));
+                Commands.safeSend(receiver, lang.getKey("msgs.offline"));
                 cancelTask(tpaheretasks, receiver.getUniqueId());
                 tpahererequests.remove(receiver.getUniqueId());
                 return;
             }
             helper.add("OTHER", requester.getName());
             logger.log(lang.getKey("cmds.tpa.accepted.log", helper.getReplace()));
-            receiver.sendMessage(lang.getKey("cmds.tpa.accepted.sent", helper.getReplace()));
-            requester.sendMessage(lang.getKey("cmds.tpa.accepted.receive", helper.getReplace()));
+            Commands.safeSend(receiver, lang.getKey("cmds.tpa.accepted.sent", helper.getReplace()));
+            Commands.safeSend(requester, lang.getKey("cmds.tpa.accepted.receive", helper.getReplace()));
             cancelTask(tpaheretasks, receiver.getUniqueId());
             tpahererequests.remove(receiver.getUniqueId());
-            receiver.sendMessage(lang.getKey("cmds.tpa.teleporting"));
+            Commands.safeSend(receiver, lang.getKey("cmds.tpa.teleporting"));
             TeleportCountdown teleportCountdown = new TeleportCountdown(receiver, requester.getLocation(), countdownTime);
             teleportCountdown.start(seconds -> sendCountdownActionBar(receiver, seconds),
-                    () -> receiver.sendMessage(lang.getKey("msgs.tpcancelled")));
+                    () -> Commands.safeSend(receiver, lang.getKey("msgs.tpcancelled")));
         } else {
-            receiver.sendMessage(lang.getKey("cmds.tpa.none"));
+            Commands.safeSend(receiver, lang.getKey("cmds.tpa.none"));
         }
     }
 
@@ -289,9 +289,9 @@ public class Tpa implements FundamentalCommand {
                 helper.add("OTHER", requester.getName());
             }
             logger.log(lang.getKey("cmds.tpa.denied.log", helper.getReplace()));
-            receiver.sendMessage(lang.getKey("cmds.tpa.denied.sent", helper.getReplace()));
+            Commands.safeSend(receiver, lang.getKey("cmds.tpa.denied.sent", helper.getReplace()));
             if (requester != null) {
-                requester.sendMessage(lang.getKey("cmds.tpa.denied.receive", helper.getReplace()));
+                Commands.safeSend(requester, lang.getKey("cmds.tpa.denied.receive", helper.getReplace()));
             }
             cancelTask(tpatasks, receiver.getUniqueId());
             tparequests.remove(receiver.getUniqueId());
@@ -301,14 +301,14 @@ public class Tpa implements FundamentalCommand {
                 helper.add("OTHER", requester.getName());
             }
             logger.log(lang.getKey("cmds.tpa.denied.log", helper.getReplace()));
-            receiver.sendMessage(lang.getKey("cmds.tpa.denied.sent", helper.getReplace()));
+            Commands.safeSend(receiver, lang.getKey("cmds.tpa.denied.sent", helper.getReplace()));
             if (requester != null) {
-                requester.sendMessage(lang.getKey("cmds.tpa.denied.receive", helper.getReplace()));
+                Commands.safeSend(requester, lang.getKey("cmds.tpa.denied.receive", helper.getReplace()));
             }
             cancelTask(tpaheretasks, receiver.getUniqueId());
             tpahererequests.remove(receiver.getUniqueId());
         } else {
-            receiver.sendMessage(lang.getKey("cmds.tpa.none"));
+            Commands.safeSend(receiver, lang.getKey("cmds.tpa.none"));
         }
     }
 

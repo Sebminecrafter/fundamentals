@@ -20,7 +20,7 @@ public class Socialspy implements FundamentalCommand {
     @Override
     public boolean execute(CommandSender sender, String[] args, String label) {
         if (!(sender instanceof Player player)) {
-            sender.sendMessage(lang.getKey("msgs.playeronly"));
+            Commands.safeSend(sender, lang.getKey("msgs.playeronly"));
             return true;
         }
         if (args.length != 0) {
@@ -30,11 +30,11 @@ public class Socialspy implements FundamentalCommand {
         helper.add("PLAYER", player.getName());
         if (spyingPlayers.contains(player.getUniqueId())) {
             logger.log(lang.getKey("staffcmds.socialspy.disable.log", helper.getReplace()));
-            player.sendMessage(lang.getKey("staffcmds.socialspy.disable.staff", helper.getReplace()));
+            Commands.safeSend(player, lang.getKey("staffcmds.socialspy.disable.staff", helper.getReplace()));
             spyingPlayers.remove(player.getUniqueId());
         } else {
             logger.log(lang.getKey("staffcmds.socialspy.enable.log", helper.getReplace()));
-            player.sendMessage(lang.getKey("staffcmds.socialspy.enable.staff", helper.getReplace()));
+            Commands.safeSend(player, lang.getKey("staffcmds.socialspy.enable.staff", helper.getReplace()));
             spyingPlayers.add(player.getUniqueId());
         }
         return true;
@@ -49,7 +49,7 @@ public class Socialspy implements FundamentalCommand {
         for (UUID uuid : spyingPlayers) {
             Player player = Bukkit.getPlayer(uuid);
             if (player != null) {
-                player.sendMessage(message);
+                Commands.safeSend(player, message);
             } else {
                 spyingPlayers.remove(uuid);
             }
