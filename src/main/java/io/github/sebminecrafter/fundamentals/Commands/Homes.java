@@ -1,8 +1,8 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
-import io.github.sebminecrafter.fundamentals.IO.Homes.Home;
-import io.github.sebminecrafter.fundamentals.IO.Homes.JsonHomeStorage;
-import io.github.sebminecrafter.fundamentals.IO.Homes.PlayerHomes;
+import io.github.sebminecrafter.fundamentals.IO.Locations.Location;
+import io.github.sebminecrafter.fundamentals.IO.Locations.JsonLocationStorage;
+import io.github.sebminecrafter.fundamentals.IO.Locations.PlayerLocations;
 import io.github.sebminecrafter.fundamentals.IO.Config;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
 import io.github.sebminecrafter.fundamentals.IO.TeleportCountdown;
@@ -10,7 +10,6 @@ import io.github.sebminecrafter.fundamentals.Main;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -29,9 +28,9 @@ import static io.github.sebminecrafter.fundamentals.Main.lang;
 import static io.github.sebminecrafter.fundamentals.Main.logger;
 
 public class Homes implements FundamentalCommand, Listener {
-    private JsonHomeStorage storage = null;
+    private JsonLocationStorage storage = null;
     private final int homeDelay;
-    private final Map<UUID, PlayerHomes> cache = new HashMap<>();
+    private final Map<UUID, PlayerLocations> cache = new HashMap<>();
 
     public Homes(JavaPlugin plugin) {
         Config config = Main.config;
@@ -40,7 +39,7 @@ public class Homes implements FundamentalCommand, Listener {
         Path folder = Path.of(plugin.getDataFolder().toString(), "homes");
         try {
             logger.log("Loaded home storage.");
-            this.storage = new JsonHomeStorage(folder);
+            this.storage = new JsonLocationStorage(folder);
         } catch (IOException e) {
             logger.logBoth(Level.SEVERE, "Failed to load home storage:");
             logger.logBoth(Level.SEVERE,
@@ -63,7 +62,7 @@ public class Homes implements FundamentalCommand, Listener {
             Commands.safeSend(sender, lang.getKey("cmds.home.error"));
             return true;
         }
-        Map<String, Home> homes = cache.get(player.getUniqueId()).getHomes();
+        Map<String, Location> homes = cache.get(player.getUniqueId()).getHomes();
         switch (label.toLowerCase()) {
             case "listhomes", "homes" -> {
                 if (args.length != 0)
@@ -87,7 +86,7 @@ public class Homes implements FundamentalCommand, Listener {
             case "home" -> {
                 if (args.length != 1)
                     return false;
-                Home home = homes.get(args[0]);
+                Location home = homes.get(args[0]);
                 PlaceholderHelper helper = new PlaceholderHelper();
                 helper.add("HOME", args[0]);
                 if (home != null) {
@@ -96,7 +95,7 @@ public class Homes implements FundamentalCommand, Listener {
                         Commands.safeSend(player, lang.getKey("cmds.home.worldmissing", helper.getReplace()));
                         return true;
                     }
-                    Location destination = new Location(world, home.x(), home.y(), home.z(),
+                    org.bukkit.Location destination = new org.bukkit.Location(world, home.x(), home.y(), home.z(),
                             home.yaw(), home.pitch());
 
                     Commands.safeSend(player, lang.getKey("cmds.home.teleporting", helper.getReplace()));
@@ -117,8 +116,8 @@ public class Homes implements FundamentalCommand, Listener {
                 if (homes.containsKey(args[0])) {
                     Commands.safeSend(player, lang.getKey("cmds.home.conflict", helper.getReplace()));
                 } else {
-                    Location loc = player.getLocation();
-                    homes.put(args[0], new Home(
+                    org.bukkit.Location loc = player.getLocation();
+                    homes.put(args[0], new Location(
                         player.getWorld().getUID(),         // World      - World UUID
                         loc.getX(), loc.getY(), loc.getZ(), // X, Y, Z    - Block position
                         loc.getYaw(), loc.getPitch()        // Yaw, Pitch - Camera angle
@@ -149,7 +148,7 @@ public class Homes implements FundamentalCommand, Listener {
     @Override
     public List<String> tabComplete(CommandSender sender, String[] args) {
         if (!(sender instanceof Player player)) return List.of();
-        Map<String, Home> homes = cache.get(player.getUniqueId()).getHomes();
+        Map<String, Location> homes = cache.get(player.getUniqueId()).getHomes();
         return homes.keySet().stream().toList();
     }
 

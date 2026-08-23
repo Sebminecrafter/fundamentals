@@ -62,7 +62,7 @@ cmds:
     send: "&1PLAYER &5welcomes &1&lOTHER&5!"
     # No placeholders, error message
     hasplayedbefore: "&cIt's not the player's first time!"
-  # Home command
+  # Location command
   home:
     # /homes and /listhomes - comma separated list of homes will be appended after
     list: "&5&lHomes: &e" # home1, home2, etc

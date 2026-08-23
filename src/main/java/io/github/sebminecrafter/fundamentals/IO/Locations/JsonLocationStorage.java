@@ -1,4 +1,4 @@
-package io.github.sebminecrafter.fundamentals.IO.Homes;
+package io.github.sebminecrafter.fundamentals.IO.Locations;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -10,39 +10,39 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.UUID;
 
-public class JsonHomeStorage implements HomeStorage {
+public class JsonLocationStorage implements LocationStorage {
 
     private final Path folder;
     private final Gson gson = new GsonBuilder()
             .setPrettyPrinting()
             .create();
 
-    public JsonHomeStorage(Path folder) throws IOException {
+    public JsonLocationStorage(Path folder) throws IOException {
         this.folder = folder;
         Files.createDirectories(folder);
     }
 
     @Override
-    public PlayerHomes load(UUID player) {
+    public PlayerLocations load(UUID player) {
         Path file = folder.resolve(player + ".json");
 
         if (Files.notExists(file))
-            return new PlayerHomes();
+            return new PlayerLocations();
 
         try (Reader reader = Files.newBufferedReader(file)) {
-            PlayerHomes homes = gson.fromJson(reader, PlayerHomes.class);
-            return homes != null ? homes : new PlayerHomes();
+            PlayerLocations locations = gson.fromJson(reader, PlayerLocations.class);
+            return locations != null ? locations : new PlayerLocations();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public void save(UUID player, PlayerHomes homes) {
+    public void save(UUID player, PlayerLocations locations) {
         Path file = folder.resolve(player + ".json");
 
         try (Writer writer = Files.newBufferedWriter(file)) {
-            gson.toJson(homes, writer);
+            gson.toJson(locations, writer);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

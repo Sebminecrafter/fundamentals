@@ -1,8 +1,8 @@
-package io.github.sebminecrafter.fundamentals.IO.Homes;
+package io.github.sebminecrafter.fundamentals.IO.Locations;
 
 import java.util.UUID;
 
-public record Home(
+public record Location(
         UUID world,
         double x,
         double y,
