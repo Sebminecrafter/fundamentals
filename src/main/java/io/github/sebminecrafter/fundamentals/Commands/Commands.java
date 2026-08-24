@@ -37,6 +37,7 @@ public class Commands implements CommandExecutor, TabCompleter {
         commands.put("msg", new Msg((Ignore) commands.get("ignore"), (Socialspy) commands.get("socialspy")));
         commands.put("tpa", new Tpa(config.getInt("tpa.expiresafter"), (Ignore) commands.get("ignore")));
         commands.put("home", new Homes(plugin));
+        commands.put("warp", new Warps(plugin));
         commands.put("welcome", new Welcome());
         commands.put("enderchest", new Enderchest());
         commands.put("ping", new Ping());
@@ -51,11 +52,10 @@ public class Commands implements CommandExecutor, TabCompleter {
         return null;
     }
 
-    /** Sends a message only if it is non-null and not blank after stripping colour codes. */
+    /** Sends a message only if it is non-null and not blank after stripping color codes. */
     public static void safeSend(CommandSender sender, String message) {
         if (message == null || message.isBlank()) return;
-        // Strip Bukkit/Bungee § colour codes before the blank check so a
-        // message that is *only* colour codes (e.g. "§r") is also suppressed.
+        // Strip color codes and test for empty message
         String stripped = message.replaceAll("§[0-9A-Fa-fK-Ok-oRr]", "").strip();
         if (stripped.isEmpty()) return;
         sender.sendMessage(message);
