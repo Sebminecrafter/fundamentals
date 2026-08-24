@@ -62,7 +62,7 @@ cmds:
     send: "&1PLAYER &5welcomes &1&lOTHER&5!"
     # No placeholders, error message
     hasplayedbefore: "&cIt's not the player's first time!"
-  # Location command
+  # Home command
   home:
     # /homes and /listhomes - comma separated list of homes will be appended after
     list: "&5&lHomes: &e" # home1, home2, etc
@@ -75,11 +75,30 @@ cmds:
     set: "&5Successfully set a home named '&1&lHOME&5'"
     setlog: "PLAYER created home HOME" # Can use PLAYER placeholder for log
     conflict: "&cA home named '&lHOME&c' already exists!"
+    max: "&cYou cannot create more than MAX homes!" # Can use MAX for max number of homes
     # /delhome - can use HOME name placeholder
     deleted: "&5Successfully deleted home '&1&lHOME&5'"
     deletedlog: "PLAYER deleted home HOME" # Can use PLAYER placeholder for log
     # All
     error: "&cUnable to load homes, please restart the server." # If homes storage fails to load
+    teleporting: "&eDon't move! &dTeleporting in 5 seconds!"    # Teleporting warning
+  # Warp command
+  warp:
+    # /warp and /listwarps - comma separated list of warps will be appended after
+    list: "&5&lAll warps on the server: &e" # cool_build, persons_place, etc.
+    # /warp, /delwarp - missing warp - can use WARP name placeholder
+    missing: "&cYou don't have a warp named '&lWARP&c'"
+    # Countdown for /warp tp - can use SECS placeholder
+    countdown: "&5Teleporting in &lSECS&5..."
+    # /setwarp - can use WARP name placeholder
+    set: "&5Successfully set a warp named '&1&lWARP&5'"
+    setlog: "PLAYER created warp WARP" # Can use PLAYER placeholder for log
+    conflict: "&cA home named '&lWARP&c' already exists!"
+    max: "&cYou cannot create more than MAX warps!" # Can use MAX for max number of warps
+    # /delwarp - can use WARP name placeholder
+    deleted: "&5Successfully deleted warp '&1&lWARP&5'"
+    deletedlog: "PLAYER deleted warp WARP" # Can use PLAYER placeholder for log
+    # All
     teleporting: "&eDon't move! &dTeleporting in 5 seconds!"    # Teleporting warning
   # Ping command, can use PING and PLAYER placeholder
   ping:

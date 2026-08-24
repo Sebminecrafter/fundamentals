@@ -24,8 +24,7 @@ import java.nio.file.Path;
 import java.util.*;
 import java.util.logging.Level;
 
-import static io.github.sebminecrafter.fundamentals.Main.lang;
-import static io.github.sebminecrafter.fundamentals.Main.logger;
+import static io.github.sebminecrafter.fundamentals.Main.*;
 
 public class Homes implements FundamentalCommand, Listener {
     private JsonLocationStorage storage = null;
@@ -38,8 +37,8 @@ public class Homes implements FundamentalCommand, Listener {
 
         Path folder = Path.of(plugin.getDataFolder().toString(), "homes");
         try {
-            logger.log("Loaded home storage.");
             this.storage = new JsonLocationStorage(folder);
+            logger.log("Loaded home storage.");
         } catch (IOException e) {
             logger.logBoth(Level.SEVERE, "Failed to load home storage:");
             logger.logBoth(Level.SEVERE,
@@ -115,12 +114,15 @@ public class Homes implements FundamentalCommand, Listener {
                 helper.add("HOME", args[0]);
                 if (homes.containsKey(args[0])) {
                     Commands.safeSend(player, lang.getKey("cmds.home.conflict", helper.getReplace()));
+                } else if (homes.size() > config.getInt("home.max")) {
+                    helper.add("MAX", Integer.toString(config.getInt("home.max")));
+                    Commands.safeSend(player, lang.getKey("cmds.home.max", helper.getReplace()));
                 } else {
                     org.bukkit.Location loc = player.getLocation();
                     homes.put(args[0], new Location(
-                        player.getWorld().getUID(),         // World      - World UUID
-                        loc.getX(), loc.getY(), loc.getZ(), // X, Y, Z    - Block position
-                        loc.getYaw(), loc.getPitch()        // Yaw, Pitch - Camera angle
+                            player.getWorld().getUID(),         // World      - World UUID
+                            loc.getX(), loc.getY(), loc.getZ(), // X, Y, Z    - Block position
+                            loc.getYaw(), loc.getPitch()        // Yaw, Pitch - Camera angle
                     ));
                     Commands.safeSend(player, lang.getKey("cmds.home.set", helper.getReplace()));
                     helper.add("PLAYER", player.getName());

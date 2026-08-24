@@ -1,0 +1,151 @@
+package io.github.sebminecrafter.fundamentals.Commands;
+
+import io.github.sebminecrafter.fundamentals.IO.Config;
+import io.github.sebminecrafter.fundamentals.IO.Locations.JsonLocationStorage;
+import io.github.sebminecrafter.fundamentals.IO.Locations.Location;
+import io.github.sebminecrafter.fundamentals.IO.Locations.Warp;
+import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
+import io.github.sebminecrafter.fundamentals.IO.TeleportCountdown;
+import io.github.sebminecrafter.fundamentals.Main;
+import net.md_5.bungee.api.ChatMessageType;
+import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.Bukkit;
+import org.bukkit.World;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
+
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.*;
+import java.util.logging.Level;
+
+import static io.github.sebminecrafter.fundamentals.Main.lang;
+import static io.github.sebminecrafter.fundamentals.Main.logger;
+
+public class Warps implements FundamentalCommand {
+    private JsonLocationStorage storage = null;
+    private final int warpDelay;
+    private final Map<String, Warp> warps = new HashMap<>();
+
+    public Warps(JavaPlugin plugin) {
+        Config config = Main.config;
+        this.warpDelay = config.getInt("warp.delay");
+
+        Path folder = Path.of(plugin.getDataFolder().toString(), "warps");
+        try {
+            this.storage = new JsonLocationStorage(folder);
+            logger.log("Loaded warps storage.");
+        } catch (IOException e) {
+            logger.logBoth(Level.SEVERE, "Failed to load warps storage:");
+            logger.logBoth(Level.SEVERE,
+                    e.getMessage()
+                            + " " +
+                            Arrays.toString(e.getStackTrace()));
+        }
+    }
+
+    @Override
+    public boolean execute(CommandSender sender, String[] args, String label) {
+        if (!(sender instanceof Player player)) {
+            Commands.safeSend(sender, lang.getKey("msgs.playeronly"));
+            return true;
+        }
+        if (storage == null) {
+            Commands.safeSend(sender, lang.getKey("cmds.warp.error"));
+            return true;
+        }
+        switch (label.toLowerCase()) {
+            case "listwarps", "warps" -> {
+                if (args.length != 0)
+                    return false;
+                if (!warps.isEmpty()) {
+                    StringBuilder message = new StringBuilder(lang.getKey("cmds.warp.list"));
+                    boolean i = false;
+                    for (String warp : warps.keySet()) {
+                        String text = warp;
+                        if (i)
+                            text = ", " + text;
+                        else
+                            i = true;
+                        message.append(text);
+                    }
+                    Commands.safeSend(player, message.toString());
+                } else {
+                    Commands.safeSend(player, lang.getKey("cmds.warp.nowarps"));
+                }
+            }
+            case "warp" -> {
+                if (args.length != 1)
+                    return false;
+                Warp warp = warps.get(args[0]);
+                PlaceholderHelper helper = new PlaceholderHelper();
+                helper.add("HOME", args[0]);
+                if (warp != null) {
+                    World world = Bukkit.getWorld(warp.world());
+                    if (world == null) {
+                        Commands.safeSend(player, lang.getKey("cmds.warp.worldmissing", helper.getReplace()));
+                        return true;
+                    }
+                    org.bukkit.Location destination = new org.bukkit.Location(world, warp.x(), warp.y(), warp.z(),
+                            warp.yaw(), warp.pitch());
+
+                    Commands.safeSend(player, lang.getKey("cmds.warp.teleporting", helper.getReplace()));
+                    TeleportCountdown teleportCountdown = new TeleportCountdown(player, destination, warpDelay);
+                    teleportCountdown.start(
+                            seconds -> sendCountdownActionBar(player, seconds),
+                            () -> Commands.safeSend(player, lang.getKey("msgs.tpcancelled"))
+                    );
+                } else {
+                    Commands.safeSend(player, lang.getKey("cmds.warp.missing", helper.getReplace()));
+                }
+            }
+            case "setwarp" -> {
+                if (args.length != 1)
+                    return false;
+                PlaceholderHelper helper = new PlaceholderHelper();
+                helper.add("WARP", args[0]);
+                if (warps.containsKey(args[0])) {
+                    Commands.safeSend(player, lang.getKey("cmds.warp.conflict", helper.getReplace()));
+                } else {
+                    org.bukkit.Location loc = player.getLocation();
+                    warps.put(args[0], new Warp(
+                            new Location(
+                                    player.getWorld().getUID(),         // World      - World UUID
+                                    loc.getX(), loc.getY(), loc.getZ(), // X, Y, Z    - Block position
+                                    loc.getYaw(), loc.getPitch()        // Yaw, Pitch - Camera angle
+                            ), player.getUniqueId()));
+                    Commands.safeSend(player, lang.getKey("cmds.warp.set", helper.getReplace()));
+                    helper.add("PLAYER", player.getName());
+                    logger.log(lang.getKey("cmds.warp.setlog", helper.getReplace()));
+                }
+            }
+            case "delwarp" -> {
+                if (args.length != 1)
+                    return false;
+                PlaceholderHelper helper = new PlaceholderHelper();
+                helper.add("HOME", args[0]);
+                if (warps.containsKey(args[0])) {
+                    warps.remove(args[0]);
+                    Commands.safeSend(player, lang.getKey("cmds.warp.deleted", helper.getReplace()));
+                    helper.add("PLAYER", player.getName());
+                    logger.log(lang.getKey("cmds.warp.deletedlog", helper.getReplace()));
+                } else {
+                    Commands.safeSend(player, lang.getKey("cmds.warp.missing", helper.getReplace()));
+                }
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public List<String> tabComplete(CommandSender sender, String[] args) {
+        return warps.keySet().stream().toList();
+    }
+
+    private void sendCountdownActionBar(Player p, int seconds) {
+        PlaceholderHelper countdownHelper = new PlaceholderHelper();
+        countdownHelper.add("SECS", String.valueOf(seconds));
+        p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacy(lang.getKey("cmds.warp.countdown", countdownHelper.getReplace())));
+    }
+}

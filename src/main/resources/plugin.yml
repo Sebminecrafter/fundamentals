@@ -99,6 +99,11 @@ commands:
     usage: "Usage varies: /home <name>, /sethome <name>, /delhome <name>, /listhomes, /homes"
     permission: fundamentals.player.homes
     aliases: ['sethome', 'delhome', 'listhomes', 'homes']
+  warp:
+    description: "Warps"
+    usage: "Usage varies: /warp <name>, /setwarp <name>, /delwarp <name>, /listwarps, /warps"
+    permission: fundamentals.player.warps
+    aliases: [ 'setwarp', 'delwarp', 'listwarps', 'warps' ]
   welcome:
     description: "Welcome a player"
     usage: "/<command> <player>"
@@ -159,6 +164,8 @@ permissions:
         description: "Request to teleport to players"
       fundamentals.player.homes:
         description: "Set, delete, and teleport to, homes"
+      fundamentals.player.warps:
+        description: "Set, delete, and teleport to, warps"
       fundamentals.player.welcome:
         description: "Welcome a player!"
       fundamentals.player.enderchest:

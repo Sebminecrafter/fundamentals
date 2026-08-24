@@ -10,7 +10,8 @@ enabled:
     msg: true        # Message someone privately
     tpa: true        # Request to tp to somebody
     tpahere: true    # Request to tp somebody to you
-    home: true       # All homes commands are grouped together, as they are almost fully useless if even one of them is disabled
+    home: true       # All homes commands
+    warp: true       # All warp commands
     ignore: true     # Ignore a player's private messages and tpa requests
     welcome: true    # Welcome another player
     enderchest: true # Use enderchest command
@@ -68,3 +69,11 @@ sounds:
 home:
   # Delay before home teleport (seconds, can be 0)
   delay: 5
+  # Max homes per player
+  max: 3
+
+warp:
+  # Delay before warp teleport (seconds, can be 0)
+  delay: 5
+  # Max warps per player
+  max: 1

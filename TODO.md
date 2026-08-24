@@ -19,10 +19,11 @@ They may or may not be added, and are probably not yet in the plugin.
 ### Staff features/commands
 - [ ] `/heal [player]` heal player or self
 - [ ] `/mute <player> [time]` mute a player
+- [ ] `/tempban <player> <time> [reason]` tempban player
 
 ### General features
 
-- [ ] Warps \
+- [X] Warps \
   `/warp`, `/setwarp`, `/delwarp`, `/warps` \
   similar to homes, but for server OR player warps
 
