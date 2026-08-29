@@ -24,6 +24,7 @@ enabled:
     staffmsg: true
     staffmode: true
     feed: true
+    heal: true
     gamemode: true
     tpo: true
     fly: true

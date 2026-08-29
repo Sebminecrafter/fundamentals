@@ -152,6 +152,10 @@ staffcmds:
   feed:
     log: "PLAYER fed VICTIM"
     staff: "&6Fed VICTIM"
+  # Feed
+  heal:
+    log: "PLAYER healed VICTIM"
+    staff: "&6Healed VICTIM"
   # Gamemode
   # GM placeholder
   gamemode:

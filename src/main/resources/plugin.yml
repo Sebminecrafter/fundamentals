@@ -39,8 +39,13 @@ commands:
     aliases: []
   feed:
     description: "Fill a player's hunger"
-    usage: "Usage: /<command> <player>"
+    usage: "Usage: /<command> [player]"
     permission: fundamentals.staff.feed
+    aliases: []
+  heal:
+    description: "Fill a player's health"
+    usage: "/<command> [player]"
+    permission: fundamentals.staff.heal
     aliases: []
   gamemode:
     description: "Change gamemode"
@@ -138,6 +143,8 @@ permissions:
         description: "Ability to use the staffmode command"
       fundamentals.staff.feed:
         description: "Ability to use the feed command on players"
+      fundamentals.staff.heal:
+        description: "Ability to use the heal command on players"
       fundamentals.staff.tpo:
         description: "Ability to use the tpoffline command"
       fundamentals.staff.fly:

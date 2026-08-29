@@ -17,13 +17,12 @@ They may or may not be added, and are probably not yet in the plugin.
 - [ ] `/reply` / `/r` reply to last private message
 
 ### Staff features/commands
-- [ ] `/heal [player]` heal player or self
 - [ ] `/mute <player> [time]` mute a player
 - [ ] `/tempban <player> <time> [reason]` tempban player
 
 ### General features
 
-- [X] Warps \
+- [X] Warps (WIP)\
   `/warp`, `/setwarp`, `/delwarp`, `/warps` \
   similar to homes, but for server OR player warps
 
