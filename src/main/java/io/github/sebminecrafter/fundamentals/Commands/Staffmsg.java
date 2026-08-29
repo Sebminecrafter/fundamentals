@@ -1,5 +1,6 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
+import io.github.sebminecrafter.fundamentals.IO.FundamentalSounds;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -31,6 +32,7 @@ public class Staffmsg implements FundamentalCommand {
         Commands.safeSend(receiver, lang.getKey("staffcmds.staffmsg.player", helper.getReplace()));
         Commands.safeSend(sender, lang.getKey("staffcmds.staffmsg.staff", helper.getReplace()));
         logger.log(lang.getKey("staffcmds.staffmsg.log", helper.getReplace()));
+        FundamentalSounds.tPSFCSimpler(receiver, "sounds.msg");
         return true;
     }
 }

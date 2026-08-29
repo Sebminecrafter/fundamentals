@@ -36,6 +36,7 @@ public class Commands implements CommandExecutor, TabCompleter {
         // Player commands
         commands.put("ignore", new Ignore(plugin));
         commands.put("msg", new Msg((Ignore) commands.get("ignore"), (Socialspy) commands.get("socialspy")));
+        commands.put("reply", new Reply((Msg) commands.get("msg")));
         commands.put("tpa", new Tpa(config.getInt("tpa.expiresafter"), (Ignore) commands.get("ignore")));
         commands.put("home", new Homes(plugin));
         commands.put("warp", new Warps(plugin));

@@ -13,6 +13,9 @@ cmds:
     log: "PLAYER said to OTHER: MSG"
     send: "&5&lYou &9-> &1&lOTHER&9: &rMSG"
     receive: "&1&lPLAYER &9-> &5&lYou&9: &rMSG"
+  # Reply (only has error messages, rest is same as msg)
+  reply:
+    none: "&cNo one to reply to!"
   # Tpa/Tpahere/Tpaccept/Tpdeny/Tpacancel
   # Extra placeholders: OTHER
   tpa:

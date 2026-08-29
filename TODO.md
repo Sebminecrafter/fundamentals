@@ -14,7 +14,7 @@ They may or may not be added, and are probably not yet in the plugin.
 ### Player features/commands
 
 - [ ] `/back` on death and teleports
-- [ ] `/reply` / `/r` reply to last private message
+- [ ] `/rtp` Random teleport (and aliases)
 
 ### Staff features/commands
 - [ ] `/mute <player> [time]` mute a player

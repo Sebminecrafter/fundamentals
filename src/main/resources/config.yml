@@ -8,6 +8,7 @@ enabled:
   cmds:
     # Player commands
     msg: true        # Message someone privately
+    reply: true      # Reply to last message (requires msg)
     tpa: true        # Request to tp to somebody
     tpahere: true    # Request to tp somebody to you
     home: true       # All homes commands

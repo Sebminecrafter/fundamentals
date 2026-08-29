@@ -89,6 +89,11 @@ commands:
     usage: "Usage: /<command> <player> <message>"
     permission: fundamentals.player.msg
     aliases: ['w', 'whisper']
+  reply:
+    description: "Reply to last message"
+    usage: "/<command> <message>"
+    permission: fundamentals.player.reply
+    aliases: ['r']
   ignore:
     description: "Ignore a player's messages and tp requests"
     usage: "Usage: /<command> <player>"
@@ -165,6 +170,8 @@ permissions:
     children:
       fundamentals.player.msg:
         description: "Message other players privately"
+      fundamentals.player.reply:
+        description: "Reply to the last private message"
       fundamentals.player.ignore:
         description: "Ignore messages and tp requests from a player"
       fundamentals.player.tpa:
