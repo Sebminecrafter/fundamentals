@@ -30,7 +30,7 @@ public class Commands implements CommandExecutor, TabCompleter {
         commands.put("freeze", new Freeze(plugin));
         commands.put("tpo", new Tpo());
         commands.put("fly", new Fly());
-        commands.put("fundamentals", new Fundamentals(plugin));
+        commands.put("fundamentals", new Fundamentals());
         commands.put("socialspy", new Socialspy());
 
         // Player commands
