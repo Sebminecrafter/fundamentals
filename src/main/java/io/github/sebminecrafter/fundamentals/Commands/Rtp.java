@@ -87,9 +87,12 @@ public class Rtp implements FundamentalCommand {
                 Commands.safeSend(sender, lang.getKey("cmds.rtp.no-safe-location", helper.getReplace()));
                 return;
             }
+            Commands.safeSend(sender, lang.getKey("cmds.rtp.teleporting", helper.getReplace()));
             TeleportCountdown teleportCountdown = new TeleportCountdown(player, randomLocation, countdownTime);
-            teleportCountdown.start(seconds -> sendCountdownActionBar(player, seconds),
-                    () -> Commands.safeSend(player, lang.getKey("msgs.tpcancelled")));
+            teleportCountdown.start(
+                    seconds -> sendCountdownActionBar(player, seconds),
+                    () -> Commands.safeSend(player, lang.getKey("msgs.tpcancelled"))
+            );
         }));
         return true;
     }
