@@ -52,12 +52,16 @@ enabled:
 tpa:
   # Tpa delay before teleport (seconds, can be 0)
   delay: 5
+  # Cooldown on command (seconds, can be 0)
+  cooldown: 30
   # Time it takes for a tp request to expire (default: 600 ticks/30 seconds)
   expiresafter: 600
 
 rtp:
   # Delay before random teleport (seconds, can be 0)
   delay: 5
+  # Cooldown on command (seconds, can be 0)
+  cooldown: 30
   # No-go zone, minimum distance out from spawn
   no-go: 100
   # Max distance for teleport (-1 for world border)
@@ -67,7 +71,7 @@ rtp:
   # Allow rtp-ing to other worlds ('/rtp end' when in overworld, etc.)
   allow-others: true
   # Max location search attempts
-  max-attempts: 40
+  max-attempts: 20
 
 # Uses Minecraft sound IDs. This site can help: https://minecraft-sounds.vercel.app/
 sounds:
@@ -86,11 +90,15 @@ sounds:
 home:
   # Delay before home teleport (seconds, can be 0)
   delay: 5
+  # Cooldown on command (seconds, can be 0)
+  cooldown: 30
   # Max homes per player
   max: 3
 
 warp:
   # Delay before warp teleport (seconds, can be 0)
   delay: 5
+  # Cooldown on command (seconds, can be 0)
+  cooldown: 30
   # Max warps per player
   max: 1
