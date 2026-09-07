@@ -89,6 +89,7 @@ cmds:
   warp:
     # /warp and /listwarps - comma separated list of warps will be appended after
     list: "&5&lAll warps on the server: &e" # cool_build, persons_place, etc.
+    nowarps: "&cThere are no warps."
     # /warp, /delwarp - missing warp - can use WARP name placeholder
     missing: "&cYou don't have a warp named '&lWARP&c'"
     # Countdown for /warp tp - can use SECS placeholder
