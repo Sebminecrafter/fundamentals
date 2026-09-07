@@ -19,8 +19,8 @@ public final class Main extends JavaPlugin {
     public static Lang lang;
     public static Config config;
     public static GlobalChat chat;
+    public Commands commands;
     private OpChecker opchecker;
-    private Commands commands;
 
     @Override
     public void onEnable() {

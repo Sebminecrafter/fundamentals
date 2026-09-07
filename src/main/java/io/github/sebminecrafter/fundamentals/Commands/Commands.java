@@ -1,10 +1,10 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
+import io.github.sebminecrafter.fundamentals.Main;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
-import org.bukkit.plugin.java.JavaPlugin;
 import org.jspecify.annotations.NonNull;
 
 import java.util.HashMap;
@@ -18,7 +18,7 @@ import static io.github.sebminecrafter.fundamentals.Main.lang;
 public class Commands implements CommandExecutor, TabCompleter {
     public final Map<String, FundamentalCommand> commands = new HashMap<>();
 
-    public Commands(JavaPlugin plugin) {
+    public Commands(Main plugin) {
         // Staff commands
         commands.put("broadcast", new Broadcast());
         commands.put("staffmode", new Staffmode(plugin));
@@ -30,7 +30,7 @@ public class Commands implements CommandExecutor, TabCompleter {
         commands.put("freeze", new Freeze(plugin));
         commands.put("tpo", new Tpo());
         commands.put("fly", new Fly());
-        commands.put("fundamentals", new Fundamentals());
+        commands.put("fundamentals", new Fundamentals(plugin));
         commands.put("socialspy", new Socialspy());
 
         // Player commands
@@ -38,6 +38,7 @@ public class Commands implements CommandExecutor, TabCompleter {
         commands.put("msg", new Msg((Ignore) commands.get("ignore"), (Socialspy) commands.get("socialspy")));
         commands.put("reply", new Reply((Msg) commands.get("msg")));
         commands.put("tpa", new Tpa(config.getInt("tpa.expiresafter"), (Ignore) commands.get("ignore")));
+        commands.put("rtp", new Rtp());
         commands.put("home", new Homes(plugin));
         commands.put("warp", new Warps(plugin));
         commands.put("welcome", new Welcome());

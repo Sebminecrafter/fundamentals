@@ -7,6 +7,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
 
@@ -57,5 +58,8 @@ public class Config {
     }
     public ConfigurationSection getConfigurationSection(String s) {
         return config.getConfigurationSection(s);
+    }
+    public List<String> getStringList(String path) {
+        return config.getStringList(path);
     }
 }

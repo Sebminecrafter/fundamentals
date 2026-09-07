@@ -17,6 +17,7 @@ enabled:
     welcome: true    # Welcome another player
     enderchest: true # Use enderchest command
     ping: true       # Use ping command to see your or another player's ping
+    rtp: true        # Random teleport
 
     # Staff commands
     broadcast: true
@@ -53,6 +54,20 @@ tpa:
   delay: 5
   # Time it takes for a tp request to expire (default: 600 ticks/30 seconds)
   expiresafter: 600
+
+rtp:
+  # Delay before random teleport (seconds, can be 0)
+  delay: 5
+  # No-go zone, minimum distance out from spawn
+  no-go: 100
+  # Max distance for teleport (-1 for world border)
+  max: -1
+  # Allowed worlds
+  worlds: ["minecraft:overworld", "minecraft:the_nether", "minecraft:the_end"]
+  # Allow rtp-ing to other worlds ('/rtp end' when in overworld, etc.)
+  allow-others: true
+  # Max location search attempts
+  max-attempts: 40
 
 # Uses Minecraft sound IDs. This site can help: https://minecraft-sounds.vercel.app/
 sounds:

@@ -88,6 +88,8 @@ public class Homes implements FundamentalCommand, Listener {
                 Location home = homes.get(args[0]);
                 PlaceholderHelper helper = new PlaceholderHelper();
                 helper.add("HOME", args[0]);
+                helper.add("SECS", Integer.toString(homeDelay));
+
                 if (home != null) {
                     World world = Bukkit.getWorld(home.world());
                     if (world == null) {

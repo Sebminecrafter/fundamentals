@@ -238,6 +238,7 @@ public class Tpa implements FundamentalCommand {
     private void acceptTpRequest(Player receiver) {
         PlaceholderHelper helper = new PlaceholderHelper();
         helper.add("PLAYER", receiver.getName());
+        helper.add("SECS", Integer.toString(countdownTime));
 
         if (tparequests.containsKey(receiver.getUniqueId())) {
             Player requester = Bukkit.getPlayer(tparequests.get(receiver.getUniqueId()));
@@ -253,7 +254,7 @@ public class Tpa implements FundamentalCommand {
             Commands.safeSend(requester, lang.getKey("cmds.tpa.accepted.receive", helper.getReplace()));
             cancelTask(tpatasks, receiver.getUniqueId());
             tparequests.remove(receiver.getUniqueId());
-            Commands.safeSend(requester, lang.getKey("cmds.tpa.teleporting"));
+            Commands.safeSend(requester, lang.getKey("cmds.tpa.teleporting", helper.getReplace()));
             TeleportCountdown teleportCountdown = new TeleportCountdown(requester, receiver.getLocation(), countdownTime);
             teleportCountdown.start(seconds -> sendCountdownActionBar(requester, seconds),
                     () -> Commands.safeSend(requester, lang.getKey("msgs.tpcancelled")));
@@ -271,7 +272,7 @@ public class Tpa implements FundamentalCommand {
             Commands.safeSend(requester, lang.getKey("cmds.tpa.accepted.receive", helper.getReplace()));
             cancelTask(tpaheretasks, receiver.getUniqueId());
             tpahererequests.remove(receiver.getUniqueId());
-            Commands.safeSend(receiver, lang.getKey("cmds.tpa.teleporting"));
+            Commands.safeSend(receiver, lang.getKey("cmds.tpa.teleporting", helper.getReplace()));
             TeleportCountdown teleportCountdown = new TeleportCountdown(receiver, requester.getLocation(), countdownTime);
             teleportCountdown.start(seconds -> sendCountdownActionBar(receiver, seconds),
                     () -> Commands.safeSend(receiver, lang.getKey("msgs.tpcancelled")));

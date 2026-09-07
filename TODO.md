@@ -14,7 +14,6 @@ They may or may not be added, and are probably not yet in the plugin.
 ### Player features/commands
 
 - [ ] `/back` on death and teleports
-- [ ] `/rtp` Random teleport (and aliases)
 
 ### Staff features/commands
 - [ ] `/mute <player> [time]` mute a player
@@ -22,9 +21,6 @@ They may or may not be added, and are probably not yet in the plugin.
 
 ### General features
 
-- [X] Warps (WIP)\
-  `/warp`, `/setwarp`, `/delwarp`, `/warps` \
-  similar to homes, but for server OR player warps
 
 - [ ] AFK \
   `/afk` + AFK detection \
@@ -39,3 +35,8 @@ Please submit bugs via the
 on GitHub
 
 (no current ***known*** bugs in latest build)
+
+## Notices
+
+- Warps still WIP, not fully done yet.
+- Reloading is WIP

@@ -46,7 +46,7 @@ cmds:
       log: "OTHER accepted PLAYER's teleport request"
       sent: "&1&lOTHER&5 accepted your teleport request!"
       receive: "&5Accepted &1&lPLAYER&5's teleport request!"
-    teleporting: "&eDon't move! &dTeleporting in 5 seconds!"
+    teleporting: "&eDon't move! &dTeleporting in SECS seconds!"
     # Countdown: will show in actionbar and can use SECS placeholder
     countdown: "&5Teleporting in &lSECS&5..."
   # Ignore
@@ -84,7 +84,7 @@ cmds:
     deletedlog: "PLAYER deleted home HOME" # Can use PLAYER placeholder for log
     # All
     error: "&cUnable to load homes, please restart the server." # If homes storage fails to load
-    teleporting: "&eDon't move! &dTeleporting in 5 seconds!"    # Teleporting warning
+    teleporting: "&eDon't move! &dTeleporting in SECS seconds!" # Teleporting warning
   # Warp command
   warp:
     # /warp and /listwarps - comma separated list of warps will be appended after
@@ -102,7 +102,25 @@ cmds:
     deleted: "&5Successfully deleted warp '&1&lWARP&5'"
     deletedlog: "PLAYER deleted warp WARP" # Can use PLAYER placeholder for log
     # All
-    teleporting: "&eDon't move! &dTeleporting in 5 seconds!"    # Teleporting warning
+    teleporting: "&eDon't move! &dTeleporting in SECS seconds!" # Teleporting warning
+  # Random teleport command
+  rtp:
+    # Countdown for rtp - can use SECS placeholder
+    countdown: "&5Teleporting in &lSECS&5..."
+    # Teleporting warning
+    teleporting: "&eDon't move! &dTeleporting in SECS seconds!"
+    # Not allowed in this world!
+    in-world-not-allowed: "&cYou can't RTP in this world!"
+    other-world-not-allowed: "&cYou can't RTP to that world!"
+    # No safe teleport location
+    no-safe-location: "&cCouldn't find a safe destination"
+    # Logs
+    log:
+      # Found a safe location, can use ATTEMPTS placeholder
+      found: "Found safe location for RTP in ATTEMPTS attempts."
+      # Couldn't find a safe location, can use ATTEMPTS placeholder
+      failed: "Couldn't find safe location for RTP in ATTEMPTS attempts."
+
   # Ping command, can use PING and PLAYER placeholder
   ping:
     self: "&5Your ping is &d&lPINGms"

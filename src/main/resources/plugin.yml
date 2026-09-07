@@ -104,6 +104,11 @@ commands:
     usage: "Usage varies: /tpa <player>, /tpahere <player>, /tpacancel, /tpaccept [player], /tpdeny [player]"
     permission: fundamentals.player.tpa
     aliases: ['tpaccept', 'tpdeny', 'tpacancel', 'tpahere']
+  rtp:
+    description: "Teleport to a random location"
+    usage: "/<command> [dimension]"
+    permission: fundamentals.player.rtp
+    aliases: ['tpr', 'tprandom', 'randomtp', 'randomteleport', 'teleportrandom']
   home:
     description: "Homes"
     usage: "Usage varies: /home <name>, /sethome <name>, /delhome <name>, /listhomes, /homes"
@@ -186,3 +191,5 @@ permissions:
         description: "Open own enderchest with command"
       fundamentals.player.ping:
         description: "Use ping command to check player ping"
+      fundamentals.player.rtp:
+        description: "Random teleport"

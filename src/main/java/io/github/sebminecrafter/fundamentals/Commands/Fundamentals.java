@@ -1,6 +1,7 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
+import io.github.sebminecrafter.fundamentals.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.ConfigurationSection;
@@ -14,6 +15,12 @@ import java.util.stream.Stream;
 import static io.github.sebminecrafter.fundamentals.Main.*;
 
 public class Fundamentals implements FundamentalCommand {
+    private final Main main;
+
+    public Fundamentals(Main main) {
+        this.main = main;
+    }
+
     @Override
     public boolean execute(CommandSender sender, String[] args, String label) {
         if (args.length == 0) {
@@ -29,6 +36,8 @@ public class Fundamentals implements FundamentalCommand {
                 config.loadConfig();
                 logger.log(lang.getKey("staffcmds.fundamentals.reloadconfig.log", helper.getReplace()));
                 Commands.safeSend(sender, lang.getKey("staffcmds.fundamentals.reloadconfig.staff", helper.getReplace()));
+                // Re-load commands COMPLETELY
+                main.commands = new Commands(main);
                 return true;
             }
             case "enablecommand" -> {
