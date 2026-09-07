@@ -248,6 +248,7 @@ msgs:
   ignored: "&cThis player is ignoring you!"
   self: "&cYou can't use this command on yourself!"
   tpcancelled: "&cYou moved!"
+  cooldown: "&cYou must wait SECS seconds before using this command again."
   noperms: "&cYou don't have permission to do that."
 
 # Most non-command chat messages

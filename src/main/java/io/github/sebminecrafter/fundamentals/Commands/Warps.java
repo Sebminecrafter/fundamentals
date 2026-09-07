@@ -1,5 +1,6 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
+import io.github.sebminecrafter.fundamentals.IO.Cooldowns;
 import io.github.sebminecrafter.fundamentals.IO.Locations.Location;
 import io.github.sebminecrafter.fundamentals.IO.Locations.Warp;
 import io.github.sebminecrafter.fundamentals.IO.Locations.WarpStorage;
@@ -74,6 +75,14 @@ public class Warps implements FundamentalCommand {
             case "warp" -> {
                 if (args.length != 1)
                     return false;
+                int cooldown = config.getInt("warp.cooldown");
+                long remaining = Cooldowns.remainingSeconds("warp", player.getUniqueId(), cooldown);
+                if (remaining > 0) {
+                    PlaceholderHelper cooldownHelper = new PlaceholderHelper();
+                    cooldownHelper.add("SECS", Long.toString(remaining));
+                    Commands.safeSend(player, lang.getKey("msgs.cooldown", cooldownHelper.getReplace()));
+                    return true;
+                }
                 Warp warp = warps.get(args[0]);
                 PlaceholderHelper helper = new PlaceholderHelper();
                 int warpDelay = config.getInt("warp.delay");
@@ -89,6 +98,7 @@ public class Warps implements FundamentalCommand {
                     org.bukkit.Location destination = new org.bukkit.Location(world, warp.x(), warp.y(), warp.z(),
                             warp.yaw(), warp.pitch());
 
+                    Cooldowns.start("warp", player.getUniqueId(), cooldown);
                     Commands.safeSend(player, lang.getKey("cmds.warp.teleporting", helper.getReplace()));
                     TeleportCountdown teleportCountdown = new TeleportCountdown(player, destination, warpDelay);
                     teleportCountdown.start(

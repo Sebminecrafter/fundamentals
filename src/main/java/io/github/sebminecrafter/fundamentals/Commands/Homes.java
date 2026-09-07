@@ -1,5 +1,6 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
+import io.github.sebminecrafter.fundamentals.IO.Cooldowns;
 import io.github.sebminecrafter.fundamentals.IO.Locations.Location;
 import io.github.sebminecrafter.fundamentals.IO.Locations.JsonLocationStorage;
 import io.github.sebminecrafter.fundamentals.IO.Locations.PlayerLocations;
@@ -86,6 +87,14 @@ public class Homes implements FundamentalCommand, Listener {
             case "home" -> {
                 if (args.length != 1)
                     return false;
+                int cooldown = config.getInt("home.cooldown");
+                long remaining = Cooldowns.remainingSeconds("home", player.getUniqueId(), cooldown);
+                if (remaining > 0) {
+                    PlaceholderHelper cooldownHelper = new PlaceholderHelper();
+                    cooldownHelper.add("SECS", Long.toString(remaining));
+                    Commands.safeSend(player, lang.getKey("msgs.cooldown", cooldownHelper.getReplace()));
+                    return true;
+                }
                 Location home = homes.get(args[0]);
                 PlaceholderHelper helper = new PlaceholderHelper();
                 int homeDelay = config.getInt("home.delay");
@@ -101,6 +110,7 @@ public class Homes implements FundamentalCommand, Listener {
                     org.bukkit.Location destination = new org.bukkit.Location(world, home.x(), home.y(), home.z(),
                             home.yaw(), home.pitch());
 
+                    Cooldowns.start("home", player.getUniqueId(), cooldown);
                     Commands.safeSend(player, lang.getKey("cmds.home.teleporting", helper.getReplace()));
                     TeleportCountdown teleportCountdown = new TeleportCountdown(player, destination, homeDelay);
                     teleportCountdown.start(

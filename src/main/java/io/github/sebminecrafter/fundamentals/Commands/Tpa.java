@@ -58,6 +58,7 @@ public class Tpa implements FundamentalCommand {
                         return true;
                     }
                 }
+                if (onCooldown(executor)) return true;
                 sendTpRequest(executor, player);
                 return true;
             }
@@ -85,6 +86,7 @@ public class Tpa implements FundamentalCommand {
                         return true;
                     }
                 }
+                if (onCooldown(executor)) return true;
                 sendTpHereRequest(executor, player);
                 return true;
             }
@@ -122,6 +124,17 @@ public class Tpa implements FundamentalCommand {
         return false;
     }
 
+    private boolean onCooldown(Player player) {
+        int cooldown = config.getInt("tpa.cooldown");
+        long remaining = Cooldowns.remainingSeconds("tpa", player.getUniqueId(), cooldown);
+        if (remaining <= 0) return false;
+
+        PlaceholderHelper helper = new PlaceholderHelper();
+        helper.add("SECS", Long.toString(remaining));
+        Commands.safeSend(player, lang.getKey("msgs.cooldown", helper.getReplace()));
+        return true;
+    }
+
     private void sendTpRequest(Player sender, Player receiver) {
         PlaceholderHelper helper = new PlaceholderHelper();
         helper.add("PLAYER", sender.getName());
@@ -131,6 +144,7 @@ public class Tpa implements FundamentalCommand {
                 tpahererequests.containsValue(sender.getUniqueId())) {
             Commands.safeSend(sender, lang.getKey("cmds.tpa.multiple", replace));
         } else {
+            Cooldowns.start("tpa", sender.getUniqueId(), config.getInt("tpa.cooldown"));
             tparequests.put(receiver.getUniqueId(), sender.getUniqueId());
             logger.log(lang.getKey("cmds.tpa.request.tpa.log", replace));
             Commands.safeSend(sender, lang.getKey("cmds.tpa.request.tpa.sent", replace));
@@ -152,6 +166,7 @@ public class Tpa implements FundamentalCommand {
                 tpahererequests.containsValue(sender.getUniqueId())) {
             Commands.safeSend(sender, lang.getKey("cmds.tpa.multiple", replace));
         } else {
+            Cooldowns.start("tpa", sender.getUniqueId(), config.getInt("tpa.cooldown"));
             tpahererequests.put(receiver.getUniqueId(), sender.getUniqueId());
             logger.log(lang.getKey("cmds.tpa.request.tpahere.log", replace));
             Commands.safeSend(sender, lang.getKey("cmds.tpa.request.tpahere.sent", replace));

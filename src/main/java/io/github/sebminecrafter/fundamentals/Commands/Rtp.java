@@ -1,5 +1,6 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
+import io.github.sebminecrafter.fundamentals.IO.Cooldowns;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
 import io.github.sebminecrafter.fundamentals.IO.TeleportCountdown;
 import net.md_5.bungee.api.ChatMessageType;
@@ -21,13 +22,15 @@ import static io.github.sebminecrafter.fundamentals.Main.*;
 public class Rtp implements FundamentalCommand {
     private final JavaPlugin plugin;
     private static final Map<String, String> DIMENSION_ALIASES = new LinkedHashMap<>();
+
     static {
-        DIMENSION_ALIASES.put("overworld",  "world");
-        DIMENSION_ALIASES.put("nether",     "world_nether");
-        DIMENSION_ALIASES.put("end",        "world_the_end");
+        DIMENSION_ALIASES.put("overworld", "world");
+        DIMENSION_ALIASES.put("nether", "world_nether");
+        DIMENSION_ALIASES.put("end", "world_the_end");
     }
 
     private static final List<String> TAB_SUGGESTIONS;
+
     static {
         List<String> suggestions = new ArrayList<>(DIMENSION_ALIASES.keySet());
         suggestions.addAll(Arrays.asList("world", "world_nether", "world_the_end"));
@@ -44,6 +47,15 @@ public class Rtp implements FundamentalCommand {
             Commands.safeSend(sender, lang.getKey("msgs.playeronly"));
             return true;
         }
+        int cooldown = config.getInt("rtp.cooldown");
+        long remaining = Cooldowns.remainingSeconds("rtp", player.getUniqueId(), cooldown);
+        if (remaining > 0) {
+            PlaceholderHelper cooldownHelper = new PlaceholderHelper();
+            cooldownHelper.add("SECS", Long.toString(remaining));
+            Commands.safeSend(player, lang.getKey("msgs.cooldown", cooldownHelper.getReplace()));
+            return true;
+        }
+
         int countdownTime = config.getInt("rtp.delay");
 
         PlaceholderHelper helper = new PlaceholderHelper();
@@ -82,6 +94,7 @@ public class Rtp implements FundamentalCommand {
                 ? (int) targetWorld.getWorldBorder().getSize() / 2
                 : max;
 
+        Cooldowns.start("rtp", player.getUniqueId(), cooldown);
         findSafeLocationAsync(targetWorld, range).thenAccept(randomLocation -> Bukkit.getScheduler().runTask(plugin, () -> {
             if (randomLocation == null) {
                 Commands.safeSend(sender, lang.getKey("cmds.rtp.no-safe-location", helper.getReplace()));
@@ -199,7 +212,7 @@ public class Rtp implements FundamentalCommand {
 
     private boolean isWorldDisallowed(World world) {
         String namespacedKey = world.getKey().toString(); // "minecraft:overworld"
-        String plainName     = world.getName(); // "world"
+        String plainName = world.getName(); // "world"
         List<String> worlds = config.getStringList("rtp.worlds");
         return !worlds.contains(namespacedKey)
                 && !worlds.contains(plainName);
