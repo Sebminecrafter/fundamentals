@@ -17,18 +17,10 @@ import java.util.concurrent.ThreadLocalRandom;
 import static io.github.sebminecrafter.fundamentals.Main.*;
 
 public class Rtp implements FundamentalCommand {
-    private final int countdownTime;
-    private final int nogo;
-    private final int max;
-    private final List<String> worlds;
-    private final boolean allowOtherWorlds;
-    private final int max_attempts;
     private static final Map<String, String> DIMENSION_ALIASES = new LinkedHashMap<>();
     static {
         DIMENSION_ALIASES.put("overworld",  "world");
-        DIMENSION_ALIASES.put("the_nether", "world_nether");
         DIMENSION_ALIASES.put("nether",     "world_nether");
-        DIMENSION_ALIASES.put("the_end",    "world_the_end");
         DIMENSION_ALIASES.put("end",        "world_the_end");
     }
 
@@ -39,21 +31,13 @@ public class Rtp implements FundamentalCommand {
         TAB_SUGGESTIONS = Collections.unmodifiableList(suggestions);
     }
 
-    public Rtp() {
-        this.countdownTime = config.getInt("rtp.delay");
-        this.nogo = config.getInt("rtp.no-go");
-        this.max = config.getInt("rtp.max");
-        this.worlds = config.getStringList("rtp.worlds");
-        this.allowOtherWorlds = config.getBoolean("rtp.allow-others");
-        this.max_attempts = config.getInt("rtp.max-attempts");
-    }
-
     @Override
     public boolean execute(CommandSender sender, String[] args, String label) {
         if (!(sender instanceof Player player)) {
             Commands.safeSend(sender, lang.getKey("msgs.playeronly"));
             return true;
         }
+        int countdownTime = config.getInt("rtp.delay");
 
         PlaceholderHelper helper = new PlaceholderHelper();
         helper.add("PLAYER", player.getName());
@@ -63,7 +47,7 @@ public class Rtp implements FundamentalCommand {
         if (args.length > 1) {
             return false;
         } else if (args.length == 1) {
-            if (!allowOtherWorlds) {
+            if (!config.getBoolean("rtp.allow-others")) {
                 Commands.safeSend(sender, lang.getKey("cmds.rtp.in-world-not-allowed", helper.getReplace()));
                 return true;
             }
@@ -85,9 +69,11 @@ public class Rtp implements FundamentalCommand {
             }
         }
 
-        int range = (this.max == -1)
+        int max = config.getInt("rtp.max");
+
+        int range = (max == -1)
                 ? (int) targetWorld.getWorldBorder().getSize() / 2
-                : this.max;
+                : max;
 
         Location randomLocation = findSafeLocation(targetWorld, range);
         if (randomLocation == null) {
@@ -116,17 +102,17 @@ public class Rtp implements FundamentalCommand {
     private Location findSafeLocation(World world, int range) {
         boolean isNether = world.getEnvironment() == World.Environment.NETHER;
         PlaceholderHelper helper = new PlaceholderHelper();
+        int max_attempts = config.getInt("rtp.max-attempts");
 
         for (int attempt = 1; attempt <= max_attempts; attempt++) {
             int x = randomCoord(range);
             int z = randomCoord(range);
 
-            // getHighestBlockYAt respects non-air blocks and avoids the void
             int y = isNether
                     ? findNetherY(world, x, z)
                     : world.getHighestBlockYAt(x, z);
 
-            if (y == -1) continue; // void or no valid column
+            if (y == -1) continue;
 
             Location candidate = new Location(world, x + 0.5, y + 1, z + 0.5);
 
@@ -150,6 +136,8 @@ public class Rtp implements FundamentalCommand {
     }
 
     private int randomCoord(int range) {
+        int nogo = config.getInt("rtp.no-go");
+
         // Total span on one side = range - nogo
         int span = range - nogo;
         int offset = ThreadLocalRandom.current().nextInt(span) + nogo; // nogo..range
@@ -173,6 +161,7 @@ public class Rtp implements FundamentalCommand {
     private boolean isWorldDisallowed(World world) {
         String namespacedKey = world.getKey().toString(); // "minecraft:overworld"
         String plainName     = world.getName(); // "world"
+        List<String> worlds = config.getStringList("rtp.worlds");
         return !worlds.contains(namespacedKey)
                 && !worlds.contains(plainName);
     }

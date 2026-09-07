@@ -208,6 +208,7 @@ staffcmds:
     reloadconfig:
       log: "PLAYER reloaded fundamentals config!"
       staff: "&5Reloading fundamentals config..."
+      notice: "&eSome changes may not take effect until a server restart."
     enablecommand:
       log: "PLAYER enabled command COMMAND"
       staff: "&5Enabled command COMMAND!&e Reload the config to apply changes."
