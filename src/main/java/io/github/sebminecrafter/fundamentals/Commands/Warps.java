@@ -87,7 +87,7 @@ public class Warps implements FundamentalCommand {
                 PlaceholderHelper helper = new PlaceholderHelper();
                 int warpDelay = config.getInt("warp.delay");
 
-                helper.add("HOME", args[0]);
+                helper.add("WARP", args[0]);
                 helper.add("SECS", Integer.toString(warpDelay));
                 if (warp != null) {
                     World world = Bukkit.getWorld(warp.world());
@@ -134,7 +134,7 @@ public class Warps implements FundamentalCommand {
                 if (args.length != 1)
                     return false;
                 PlaceholderHelper helper = new PlaceholderHelper();
-                helper.add("HOME", args[0]);
+                helper.add("WARP", args[0]);
                 if (warps.containsKey(args[0])) {
                     warps.remove(args[0]);
                     saveWarps();

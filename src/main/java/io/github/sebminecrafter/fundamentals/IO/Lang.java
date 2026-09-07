@@ -14,19 +14,24 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Lang {
-    private final YamlConfiguration config;
+    private final JavaPlugin plugin;
     private final MiniMessage miniMessage;
     private final LegacyComponentSerializer legacy;
     private final Pattern GRADIENT;
-
+    private YamlConfiguration config;
 
     public Lang(JavaPlugin plugin) {
-        this.config = YamlLoader.load(plugin, Main.logger, "lang.yml");
+        this.plugin = plugin;
+        loadConfig();
         this.miniMessage = MiniMessage.miniMessage(MiniMessage.Preset.NON_INTERACTABLE);
         this.legacy = LegacyComponentSerializer.builder()
                 .character('§').hexColors().useUnusualXRepeatedCharacterHexFormat().build();
         this.GRADIENT = Pattern.compile(
                 "<gradient((?::#[0-9A-Fa-f]{6})+)>(.*?)</gradient>", Pattern.DOTALL);
+    }
+
+    public void loadConfig() {
+        this.config = YamlLoader.load(plugin, Main.logger, "lang.yml");
     }
 
     public String formatColors(String input) {
