@@ -117,7 +117,7 @@ public class Rtp implements FundamentalCommand {
         boolean isNether = world.getEnvironment() == World.Environment.NETHER;
         PlaceholderHelper helper = new PlaceholderHelper();
 
-        for (int attempt = 1; attempt < max_attempts; attempt++) {
+        for (int attempt = 1; attempt <= max_attempts; attempt++) {
             int x = randomCoord(range);
             int z = randomCoord(range);
 

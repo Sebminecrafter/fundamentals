@@ -11,6 +11,7 @@ import org.bukkit.scheduler.BukkitTask;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import static io.github.sebminecrafter.fundamentals.Main.config;
@@ -206,8 +207,12 @@ public class Tpa implements FundamentalCommand {
     private void removeTpRequest(Player sender) {
         PlaceholderHelper helper = new PlaceholderHelper();
         helper.add("PLAYER", sender.getName());
-        if (tparequests.containsKey(sender.getUniqueId())) {
-            Player receiver = Bukkit.getPlayer(tparequests.get(sender.getUniqueId()));
+
+        UUID receiverUuid = findKeyByValue(tparequests, sender.getUniqueId());
+        UUID hereReceiverUuid = findKeyByValue(tpahererequests, sender.getUniqueId());
+
+        if (receiverUuid != null) {
+            Player receiver = Bukkit.getPlayer(receiverUuid);
             if (receiver != null) {
                 helper.add("OTHER", receiver.getName());
             }
@@ -216,10 +221,10 @@ public class Tpa implements FundamentalCommand {
             if (receiver != null) {
                 Commands.safeSend(receiver, lang.getKey("cmds.tpa.cancelled.receive", helper.getReplace()));
             }
-            cancelTask(tpatasks, sender.getUniqueId());
-            tparequests.remove(sender.getUniqueId());
-        } else if (tpahererequests.containsKey(sender.getUniqueId())) {
-            Player receiver = Bukkit.getPlayer(tpahererequests.get(sender.getUniqueId()));
+            cancelTask(tpatasks, receiverUuid);
+            tparequests.remove(receiverUuid);
+        } else if (hereReceiverUuid != null) {
+            Player receiver = Bukkit.getPlayer(hereReceiverUuid);
             if (receiver != null) {
                 helper.add("OTHER", receiver.getName());
             }
@@ -228,11 +233,18 @@ public class Tpa implements FundamentalCommand {
             if (receiver != null) {
                 Commands.safeSend(receiver, lang.getKey("cmds.tpa.cancelled.receive", helper.getReplace()));
             }
-            cancelTask(tpaheretasks, sender.getUniqueId());
-            tpahererequests.remove(sender.getUniqueId());
+            cancelTask(tpaheretasks, hereReceiverUuid);
+            tpahererequests.remove(hereReceiverUuid);
         } else {
             Commands.safeSend(sender, lang.getKey("cmds.tpa.none"));
         }
+    }
+
+    private UUID findKeyByValue(HashMap<UUID, UUID> map, UUID value) {
+        for (Map.Entry<UUID, UUID> entry : map.entrySet()) {
+            if (entry.getValue().equals(value)) return entry.getKey();
+        }
+        return null;
     }
 
     private void acceptTpRequest(Player receiver) {

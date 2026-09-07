@@ -2,7 +2,6 @@ package io.github.sebminecrafter.fundamentals.Checks;
 
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
 import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -25,7 +24,7 @@ public class OpChecker implements Listener {
 
     public OpChecker(JavaPlugin plugin) {
         this.opStatus = new HashMap<>();
-        for (OfflinePlayer player : Bukkit.getOfflinePlayers()) {
+        for (Player player : Bukkit.getOnlinePlayers()) {
             opStatus.put(player.getUniqueId(), player.isOp());
         }
 

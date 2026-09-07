@@ -1,10 +1,13 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
+import io.github.sebminecrafter.fundamentals.Chat.GlobalChat;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
 import io.github.sebminecrafter.fundamentals.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.PluginCommand;
 import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.event.HandlerList;
 import org.bukkit.help.HelpTopic;
 
 import java.util.ArrayList;
@@ -36,8 +39,25 @@ public class Fundamentals implements FundamentalCommand {
                 config.loadConfig();
                 logger.log(lang.getKey("staffcmds.fundamentals.reloadconfig.log", helper.getReplace()));
                 Commands.safeSend(sender, lang.getKey("staffcmds.fundamentals.reloadconfig.staff", helper.getReplace()));
-                // Re-load commands COMPLETELY
+
+                // Unregister all old listeners
+                HandlerList.unregisterAll(main);
+
+                // Re-build the full command set with fresh config values.
                 main.commands = new Commands(main);
+
+                // Set all command handlers to new instance
+                for (String cmdName : main.getDescription().getCommands().keySet()) {
+                    PluginCommand cmd = main.getCommand(cmdName);
+                    if (cmd != null) {
+                        cmd.setExecutor(main.commands);
+                        cmd.setTabCompleter(main.commands);
+                    }
+                }
+
+                // Reload GlobalChat
+                Main.chat = new GlobalChat(main, (Ignore) main.commands.getCommand("ignore"));
+
                 return true;
             }
             case "enablecommand" -> {

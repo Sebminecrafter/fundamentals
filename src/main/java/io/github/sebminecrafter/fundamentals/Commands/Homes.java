@@ -61,7 +61,13 @@ public class Homes implements FundamentalCommand, Listener {
             Commands.safeSend(sender, lang.getKey("cmds.home.error"));
             return true;
         }
-        Map<String, Location> homes = cache.get(player.getUniqueId()).getHomes();
+        PlayerLocations playerLocations = cache.get(player.getUniqueId());
+        if (playerLocations == null) {
+            // Prevent NPEs from joining before plugin load
+            playerLocations = storage.load(player.getUniqueId());
+            cache.put(player.getUniqueId(), playerLocations);
+        }
+        Map<String, Location> homes = playerLocations.getHomes();
         switch (label.toLowerCase()) {
             case "listhomes", "homes" -> {
                 if (args.length != 0)
@@ -152,8 +158,9 @@ public class Homes implements FundamentalCommand, Listener {
     @Override
     public List<String> tabComplete(CommandSender sender, String[] args) {
         if (!(sender instanceof Player player)) return List.of();
-        Map<String, Location> homes = cache.get(player.getUniqueId()).getHomes();
-        return homes.keySet().stream().toList();
+        PlayerLocations playerLocations = cache.get(player.getUniqueId());
+        if (playerLocations == null) return List.of();
+        return playerLocations.getHomes().keySet().stream().toList();
     }
 
     @EventHandler

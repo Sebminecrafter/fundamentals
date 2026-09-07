@@ -1,9 +1,9 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
 import io.github.sebminecrafter.fundamentals.IO.Config;
-import io.github.sebminecrafter.fundamentals.IO.Locations.JsonLocationStorage;
 import io.github.sebminecrafter.fundamentals.IO.Locations.Location;
 import io.github.sebminecrafter.fundamentals.IO.Locations.Warp;
+import io.github.sebminecrafter.fundamentals.IO.Locations.WarpStorage;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
 import io.github.sebminecrafter.fundamentals.IO.TeleportCountdown;
 import io.github.sebminecrafter.fundamentals.Main;
@@ -24,7 +24,7 @@ import static io.github.sebminecrafter.fundamentals.Main.lang;
 import static io.github.sebminecrafter.fundamentals.Main.logger;
 
 public class Warps implements FundamentalCommand {
-    private JsonLocationStorage storage = null;
+    private WarpStorage storage = null;
     private final int warpDelay;
     private final Map<String, Warp> warps = new HashMap<>();
 
@@ -32,10 +32,12 @@ public class Warps implements FundamentalCommand {
         Config config = Main.config;
         this.warpDelay = config.getInt("warp.delay");
 
-        Path folder = Path.of(plugin.getDataFolder().toString(), "warps");
+        Path dataFolder = Path.of(plugin.getDataFolder().toString());
         try {
-            this.storage = new JsonLocationStorage(folder);
-            logger.log("Loaded warps storage.");
+            this.storage = new WarpStorage(dataFolder);
+            // Load all persisted warps into memory on startup.
+            warps.putAll(storage.load());
+            logger.log("Loaded warps storage (" + warps.size() + " warps).");
         } catch (IOException e) {
             logger.logBoth(Level.SEVERE, "Failed to load warps storage:");
             logger.logBoth(Level.SEVERE,
@@ -116,6 +118,7 @@ public class Warps implements FundamentalCommand {
                                     loc.getX(), loc.getY(), loc.getZ(), // X, Y, Z    - Block position
                                     loc.getYaw(), loc.getPitch()        // Yaw, Pitch - Camera angle
                             ), player.getUniqueId()));
+                    saveWarps();
                     Commands.safeSend(player, lang.getKey("cmds.warp.set", helper.getReplace()));
                     helper.add("PLAYER", player.getName());
                     logger.log(lang.getKey("cmds.warp.setlog", helper.getReplace()));
@@ -128,6 +131,7 @@ public class Warps implements FundamentalCommand {
                 helper.add("HOME", args[0]);
                 if (warps.containsKey(args[0])) {
                     warps.remove(args[0]);
+                    saveWarps();
                     Commands.safeSend(player, lang.getKey("cmds.warp.deleted", helper.getReplace()));
                     helper.add("PLAYER", player.getName());
                     logger.log(lang.getKey("cmds.warp.deletedlog", helper.getReplace()));
@@ -142,6 +146,15 @@ public class Warps implements FundamentalCommand {
     @Override
     public List<String> tabComplete(CommandSender sender, String[] args) {
         return warps.keySet().stream().toList();
+    }
+
+    private void saveWarps() {
+        if (storage == null) return;
+        try {
+            storage.save(warps);
+        } catch (RuntimeException e) {
+            logger.logBoth(Level.SEVERE, "Failed to save warps: " + e.getMessage());
+        }
     }
 
     private void sendCountdownActionBar(Player p, int seconds) {

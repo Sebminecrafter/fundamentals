@@ -46,13 +46,16 @@ public class Socialspy implements FundamentalCommand {
     }
 
     public void sendToSpyingPlayers(String message) {
+        // Avoid conc. mod. exc. by tracking offline and removing after.
+        List<UUID> offline = new ArrayList<>();
         for (UUID uuid : spyingPlayers) {
             Player player = Bukkit.getPlayer(uuid);
             if (player != null) {
                 Commands.safeSend(player, message);
             } else {
-                spyingPlayers.remove(uuid);
+                offline.add(uuid);
             }
         }
+        spyingPlayers.removeAll(offline);
     }
 }
