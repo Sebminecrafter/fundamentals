@@ -24,7 +24,6 @@ public class Tpa implements FundamentalCommand {
     private final HashMap<UUID, UUID> tpahererequests;
     private final HashMap<UUID, BukkitTask> tpatasks;
     private final HashMap<UUID, BukkitTask> tpaheretasks;
-    private final int countdownTime;
     private final Ignore ignore;
 
     public Tpa(long requestExpiry, Ignore ignore) {
@@ -33,7 +32,6 @@ public class Tpa implements FundamentalCommand {
         this.tpahererequests = new HashMap<>();
         this.tpatasks = new HashMap<>();
         this.tpaheretasks = new HashMap<>();
-        this.countdownTime = config.getInt("tpa.delay");
         this.ignore = ignore;
     }
 
@@ -249,6 +247,7 @@ public class Tpa implements FundamentalCommand {
 
     private void acceptTpRequest(Player receiver) {
         PlaceholderHelper helper = new PlaceholderHelper();
+        int countdownTime = config.getInt("tpa.delay");
         helper.add("PLAYER", receiver.getName());
         helper.add("SECS", Integer.toString(countdownTime));
 

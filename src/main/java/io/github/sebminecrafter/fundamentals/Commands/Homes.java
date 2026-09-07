@@ -3,10 +3,8 @@ package io.github.sebminecrafter.fundamentals.Commands;
 import io.github.sebminecrafter.fundamentals.IO.Locations.Location;
 import io.github.sebminecrafter.fundamentals.IO.Locations.JsonLocationStorage;
 import io.github.sebminecrafter.fundamentals.IO.Locations.PlayerLocations;
-import io.github.sebminecrafter.fundamentals.IO.Config;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
 import io.github.sebminecrafter.fundamentals.IO.TeleportCountdown;
-import io.github.sebminecrafter.fundamentals.Main;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
@@ -28,14 +26,11 @@ import static io.github.sebminecrafter.fundamentals.Main.*;
 
 public class Homes implements FundamentalCommand, Listener {
     private JsonLocationStorage storage = null;
-    private final int homeDelay;
     private final Map<UUID, PlayerLocations> cache = new HashMap<>();
 
     public Homes(JavaPlugin plugin) {
-        Config config = Main.config;
-        this.homeDelay = config.getInt("home.delay");
-
         Path folder = Path.of(plugin.getDataFolder().toString(), "homes");
+
         try {
             this.storage = new JsonLocationStorage(folder);
             logger.log("Loaded home storage.");
@@ -93,6 +88,7 @@ public class Homes implements FundamentalCommand, Listener {
                     return false;
                 Location home = homes.get(args[0]);
                 PlaceholderHelper helper = new PlaceholderHelper();
+                int homeDelay = config.getInt("home.delay");
                 helper.add("HOME", args[0]);
                 helper.add("SECS", Integer.toString(homeDelay));
 

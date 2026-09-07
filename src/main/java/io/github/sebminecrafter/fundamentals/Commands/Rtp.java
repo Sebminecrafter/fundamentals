@@ -10,13 +10,16 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.*;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static io.github.sebminecrafter.fundamentals.Main.*;
 
 public class Rtp implements FundamentalCommand {
+    private final JavaPlugin plugin;
     private static final Map<String, String> DIMENSION_ALIASES = new LinkedHashMap<>();
     static {
         DIMENSION_ALIASES.put("overworld",  "world");
@@ -29,6 +32,10 @@ public class Rtp implements FundamentalCommand {
         List<String> suggestions = new ArrayList<>(DIMENSION_ALIASES.keySet());
         suggestions.addAll(Arrays.asList("world", "world_nether", "world_the_end"));
         TAB_SUGGESTIONS = Collections.unmodifiableList(suggestions);
+    }
+
+    public Rtp(JavaPlugin plugin) {
+        this.plugin = plugin;
     }
 
     @Override
@@ -75,16 +82,15 @@ public class Rtp implements FundamentalCommand {
                 ? (int) targetWorld.getWorldBorder().getSize() / 2
                 : max;
 
-        Location randomLocation = findSafeLocation(targetWorld, range);
-        if (randomLocation == null) {
-            Commands.safeSend(sender, lang.getKey("cmds.rtp.no-safe-location", helper.getReplace()));
-            return true;
-        }
-
-        Commands.safeSend(sender, lang.getKey("cmds.rtp.teleporting", helper.getReplace()));
-        TeleportCountdown teleportCountdown = new TeleportCountdown(player, randomLocation, countdownTime);
-        teleportCountdown.start(seconds -> sendCountdownActionBar(player, seconds),
-                () -> Commands.safeSend(player, lang.getKey("msgs.tpcancelled")));
+        findSafeLocationAsync(targetWorld, range).thenAccept(randomLocation -> Bukkit.getScheduler().runTask(plugin, () -> {
+            if (randomLocation == null) {
+                Commands.safeSend(sender, lang.getKey("cmds.rtp.no-safe-location", helper.getReplace()));
+                return;
+            }
+            TeleportCountdown teleportCountdown = new TeleportCountdown(player, randomLocation, countdownTime);
+            teleportCountdown.start(seconds -> sendCountdownActionBar(player, seconds),
+                    () -> Commands.safeSend(player, lang.getKey("msgs.tpcancelled")));
+        }));
         return true;
     }
 
@@ -99,40 +105,70 @@ public class Rtp implements FundamentalCommand {
         return matches;
     }
 
-    private Location findSafeLocation(World world, int range) {
-        boolean isNether = world.getEnvironment() == World.Environment.NETHER;
-        PlaceholderHelper helper = new PlaceholderHelper();
-        int max_attempts = config.getInt("rtp.max-attempts");
+    private CompletableFuture<Location> findSafeLocationAsync(World world, int range) {
+        CompletableFuture<Location> result = new CompletableFuture<>();
 
-        for (int attempt = 1; attempt <= max_attempts; attempt++) {
-            int x = randomCoord(range);
-            int z = randomCoord(range);
+        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+            boolean isNether = world.getEnvironment() == World.Environment.NETHER;
+            int maxAttempts = config.getInt("rtp.max-attempts");
 
-            int y = isNether
-                    ? findNetherY(world, x, z)
-                    : world.getHighestBlockYAt(x, z);
+            for (int attempt = 1; attempt <= maxAttempts; attempt++) {
+                final int x = randomCoord(range);
+                final int z = randomCoord(range);
+                final int attemptNum = attempt;
 
-            if (y == -1) continue;
+                // Block reads MUST happen on the main thread — use a future to hop there and back
+                CompletableFuture<Location> candidateFuture = new CompletableFuture<>();
+                Bukkit.getScheduler().runTask(plugin, () -> {
+                    int y = isNether
+                            ? findNetherY(world, x, z)
+                            : world.getHighestBlockYAt(x, z);
 
-            Location candidate = new Location(world, x + 0.5, y + 1, z + 0.5);
+                    if (y == -1) {
+                        candidateFuture.complete(null);
+                        return;
+                    }
 
-            // Block the player would stand on
-            Material floor = world.getBlockAt(x, y, z).getType();
+                    Material floor = world.getBlockAt(x, y, z).getType();
+                    if (floor == Material.LAVA || floor == Material.WATER || floor == Material.AIR) {
+                        candidateFuture.complete(null);
+                        return;
+                    }
+                    if (!world.getBlockAt(x, y + 1, z).getType().isAir() ||
+                            !world.getBlockAt(x, y + 2, z).getType().isAir()) {
+                        candidateFuture.complete(null);
+                        return;
+                    }
 
-            // Reject lava, water, and void surfaces
-            if (floor == Material.LAVA || floor == Material.WATER || floor == Material.AIR) continue;
+                    PlaceholderHelper helper = new PlaceholderHelper();
+                    helper.add("ATTEMPTS", Integer.toString(attemptNum));
+                    logger.log(lang.getKey("cmds.rtp.log.found", helper.getReplace()));
+                    candidateFuture.complete(new Location(world, x + 0.5, y + 1, z + 0.5));
+                });
 
-            // Confirm two air blocks for the player to occupy
-            if (!world.getBlockAt(x, y + 1, z).getType().isAir()) continue;
-            if (!world.getBlockAt(x, y + 2, z).getType().isAir()) continue;
+                // Block the async thread (not the main thread) until this candidate is evaluated
+                Location candidate;
+                try {
+                    candidate = candidateFuture.get();
+                } catch (Exception e) {
+                    Thread.currentThread().interrupt();
+                    result.complete(null);
+                    return;
+                }
 
-            helper.add("ATTEMPTS", Integer.toString(attempt));
-            logger.log(lang.getKey("cmds.rtp.log.found", helper.getReplace()));
-            return candidate;
-        }
-        helper.add("ATTEMPTS", Integer.toString(max_attempts));
-        logger.log(lang.getKey("cmds.rtp.log.failed", helper.getReplace()));
-        return null;
+                if (candidate != null) {
+                    result.complete(candidate);
+                    return;
+                }
+            }
+
+            PlaceholderHelper helper = new PlaceholderHelper();
+            helper.add("ATTEMPTS", Integer.toString(maxAttempts));
+            logger.log(lang.getKey("cmds.rtp.log.failed", helper.getReplace()));
+            result.complete(null);
+        });
+
+        return result;
     }
 
     private int randomCoord(int range) {

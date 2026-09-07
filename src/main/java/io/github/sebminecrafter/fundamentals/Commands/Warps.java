@@ -1,12 +1,10 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
-import io.github.sebminecrafter.fundamentals.IO.Config;
 import io.github.sebminecrafter.fundamentals.IO.Locations.Location;
 import io.github.sebminecrafter.fundamentals.IO.Locations.Warp;
 import io.github.sebminecrafter.fundamentals.IO.Locations.WarpStorage;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
 import io.github.sebminecrafter.fundamentals.IO.TeleportCountdown;
-import io.github.sebminecrafter.fundamentals.Main;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
@@ -20,19 +18,15 @@ import java.nio.file.Path;
 import java.util.*;
 import java.util.logging.Level;
 
-import static io.github.sebminecrafter.fundamentals.Main.lang;
-import static io.github.sebminecrafter.fundamentals.Main.logger;
+import static io.github.sebminecrafter.fundamentals.Main.*;
 
 public class Warps implements FundamentalCommand {
     private WarpStorage storage = null;
-    private final int warpDelay;
     private final Map<String, Warp> warps = new HashMap<>();
 
     public Warps(JavaPlugin plugin) {
-        Config config = Main.config;
-        this.warpDelay = config.getInt("warp.delay");
-
         Path dataFolder = Path.of(plugin.getDataFolder().toString());
+
         try {
             this.storage = new WarpStorage(dataFolder);
             // Load all persisted warps into memory on startup.
@@ -82,6 +76,8 @@ public class Warps implements FundamentalCommand {
                     return false;
                 Warp warp = warps.get(args[0]);
                 PlaceholderHelper helper = new PlaceholderHelper();
+                int warpDelay = config.getInt("warp.delay");
+
                 helper.add("HOME", args[0]);
                 helper.add("SECS", Integer.toString(warpDelay));
                 if (warp != null) {
