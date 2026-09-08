@@ -246,6 +246,7 @@ msgs:
   invalid: "&cInvalid argument!"
   fileerror: "&cAn error occurred and the server couldn't save that change."
   readerror: "&cThe server failed to read required data from disk."
+  generalerror: "&cAn error occurred, please try again."
   ignored: "&cThis player is ignoring you!"
   self: "&cYou can't use this command on yourself!"
   tpcancelled: "&cYou moved!"

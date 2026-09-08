@@ -19,7 +19,8 @@ Head over to the [Modrinth](https://modrinth.com/plugin/fundamentalswastaken) pa
 
 ## Features
 
-All of these are currently added, for features that are not added yet refer to [TODO.md](https://github.com/Sebminecrafter/fundamentals/blob/main/TODO.md)
+All of these and more are currently added,
+for planning and goals refer to [TODO.md](https://github.com/Sebminecrafter/fundamentals/blob/main/TODO.md)
 
 ### Player Commands
 

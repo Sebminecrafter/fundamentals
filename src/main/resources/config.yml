@@ -18,6 +18,7 @@ enabled:
     enderchest: true # Use enderchest command
     ping: true       # Use ping command to see your or another player's ping
     rtp: true        # Random teleport
+    rules: true      # Rules command
 
     # Staff commands
     broadcast: true

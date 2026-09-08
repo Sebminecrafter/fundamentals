@@ -134,6 +134,11 @@ commands:
     usage: "/<command> [player]"
     permission: fundamentals.player.ping
     aliases: []
+  rules:
+    description: "Shows rules in a book"
+    usage: "/<command>"
+    permission: fundamentals.player.rules
+    aliases: ['rulebook']
 
 default-permission: op
 permissions:
@@ -193,3 +198,5 @@ permissions:
         description: "Use ping command to check player ping"
       fundamentals.player.rtp:
         description: "Random teleport"
+      fundamentals.player.rules:
+        description: "Rules command"

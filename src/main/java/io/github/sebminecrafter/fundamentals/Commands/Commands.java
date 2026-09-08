@@ -46,6 +46,7 @@ public class Commands implements CommandExecutor, TabCompleter {
         commands.put("ping", new Ping());
         commands.put("sudo", new Sudo());
         commands.put("clearchat", new Clearchat());
+        commands.put("rules", new Rules(plugin));
     }
 
     public FundamentalCommand getCommand(String commandName) {

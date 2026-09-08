@@ -28,6 +28,7 @@ public class Fundamentals implements FundamentalCommand {
                 }
                 config.loadConfig();
                 lang.loadConfig();
+                ((Rules) commands.getCommand("rules")).loadRules();
                 logger.log(lang.getKey("staffcmds.fundamentals.reloadconfig.log", helper.getReplace()));
                 Commands.safeSend(sender, lang.getKey("staffcmds.fundamentals.reloadconfig.staff", helper.getReplace()));
                 Commands.safeSend(sender, lang.getKey("staffcmds.fundamentals.reloadconfig.notice", helper.getReplace()));
