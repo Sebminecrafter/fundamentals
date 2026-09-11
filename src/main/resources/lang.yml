@@ -127,6 +127,11 @@ cmds:
     self: "&5Your ping is &d&lPINGms"
     other: "&dPLAYER&5's ping is &d&lPINGms"
 
+  # Rules command, opens book
+  rules:
+    title: "Server Rules"
+    author: "Fundamentals/Server"
+
 # Staff commands
 # Placeholders: PLAYER, and sometimes VICTIM (Player might show up as "CONSOLE" in some cases)
 staffcmds:
@@ -212,11 +217,11 @@ staffcmds:
       notice: "&eSome changes may not take effect until a server restart."
     enablecommand:
       log: "PLAYER enabled command COMMAND"
-      staff: "&5Enabled command COMMAND!&e Reload the config to apply changes."
+      staff: "&5Enabled command COMMAND!"
       state: "&cCOMMAND is already enabled."
     disablecommand:
       log: "PLAYER disabled command COMMAND"
-      staff: "&5Disabled command COMMAND!&e Reload the config to apply changes."
+      staff: "&5Disabled command COMMAND!"
       state: "&cCOMMAND is already disabled."
   # Socialspy
   socialspy:

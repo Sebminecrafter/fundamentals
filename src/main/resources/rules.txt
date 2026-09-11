@@ -1,10 +1,22 @@
-Server Rules
+<dark_purple><bold>Server Rules
+<reset>
 NEW_LINE
-
-No griefing,
-harassment,
-or foul language,
-and have fun!
+<black> - <red>No griefing
+NEW_LINE
+<black> - <red>No harassment
+NEW_LINE
+<black> - <red>No foul language
+NEW_LINE
+<black> - <green>Have fun!
 
 NEXT_PAGE
-Fundamentals
+<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█ NEW_LINE
+<#FF4714><bold>█<#FFFFFF><bold>█<#FFFFFF><bold>█<#FFFFFF><bold>█<#FFFFFF><bold>█<#FFFFFF><bold>█<#FFFFFF><bold>█<#FF4714><bold>█ NEW_LINE
+<#FF4714><bold>█<#FF4714><bold>█<#FFFFFF><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█ NEW_LINE
+<#FF4714><bold>█<#FF4714><bold>█<#FFFFFF><bold>█<#FFFFFF><bold>█<#FFFFFF><bold>█<#FFFFFF><bold>█<#FFFFFF><bold>█<#FF4714><bold>█ NEW_LINE
+<#FF4714><bold>█<#FF4714><bold>█<#FFFFFF><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█ NEW_LINE
+<#FF4714><bold>█<#FF4714><bold>█<#FFFFFF><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█ NEW_LINE
+<#FF4714><bold>█<#FFFFFF><bold>█<#FFFFFF><bold>█<#FFFFFF><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█ NEW_LINE
+<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█ NEW_LINE
+<#FF4714><bold>Fundamentals NEW_LINE
+<#32AAFF>by Sebminecrafter
