@@ -59,7 +59,7 @@ public class Rules implements FundamentalCommand {
             }
 
             if (word.isBlank()) continue;
-            else if (length != 0) word = " " + word;
+            else if (!currentPage.isEmpty() && !currentPage.substring(currentPage.length() - 1).equals("\n")) word = " " + word;
 
             if (word.length() >= (MAX_LENGTH - length)) {
                 word = word.substring(0, MAX_LENGTH - length - 3) + "...";
