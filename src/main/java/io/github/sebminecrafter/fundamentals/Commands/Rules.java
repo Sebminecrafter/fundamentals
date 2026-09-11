@@ -52,9 +52,13 @@ public class Rules implements FundamentalCommand {
                 currentPage = new StringBuilder();
                 length = 0;
                 continue;
+            } else if (word.equals("NEW_LINE")) {
+                currentPage.append("\n");
+                length += 73;
+                continue;
             }
 
-            if (word.equals(" ")) continue;
+            if (word.isBlank()) continue;
             else if (length != 0) word = " " + word;
 
             if (word.length() >= (MAX_LENGTH - length)) {
