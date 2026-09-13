@@ -144,6 +144,11 @@ commands:
     usage: "/<command>"
     permission: fundamentals.player.trash
     aliases: ['disposal', 'wastebin']
+  sendloc:
+    description: "Send your location to another player quickly"
+    usage: "/<command> <player>"
+    permission: fundamentals.player.sendloc
+    aliases: ['sendlocation', 'shareloc', 'sharelocation']
 
 default-permission: op
 permissions:
@@ -207,3 +212,5 @@ permissions:
         description: "Rules command"
       fundamentals.player.trash:
         description: "Use a trash gui to dispose of items"
+      fundamentals.player.sendloc:
+        description: "Send your location to another player quickly"

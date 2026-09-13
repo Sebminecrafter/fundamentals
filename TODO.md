@@ -18,7 +18,6 @@ They may or may not be added, and are probably not yet in the plugin.
 - [ ] `/playtime [player]` see playtime of self or other
 - [ ] `/nick` nicknames
 - [ ] `/tptoggle` to enable/disable tp requests (toggle)
-- [ ] `/sendloc` to send location to another player
 
 #### Unfair/unvanilla?
 - [ ] `/workbench` / `/craftingtable`

@@ -132,12 +132,17 @@ cmds:
     title: "Server Rules"
     author: "Fundamentals/Server"
 
-    # Trash command and gui
+  # Trash command and gui
   trash:
     # Title for inventory
     title: "&5Throw away items"
     # Log, can use PLAYER
     log: "PLAYER opened trash gui"
+
+  # Send location to another player quickly
+  sendloc:
+    # Message to be sent as player, can use PLAYER, PX, PY, and PZ placeholders
+    message: "&aMy location is: &cPX &ePY &bPZ"
 
 # Staff commands
 # Placeholders: PLAYER, and sometimes VICTIM (Player might show up as "CONSOLE" in some cases)

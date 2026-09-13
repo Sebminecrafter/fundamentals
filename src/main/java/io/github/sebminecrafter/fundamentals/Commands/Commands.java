@@ -48,6 +48,7 @@ public class Commands implements CommandExecutor, TabCompleter {
         commands.put("clearchat", new Clearchat());
         commands.put("rules", new Rules(plugin));
         commands.put("trash", new Trash());
+        commands.put("sendloc", new SendLocation((Msg) commands.get("msg")));
     }
 
     public FundamentalCommand getCommand(String commandName) {
