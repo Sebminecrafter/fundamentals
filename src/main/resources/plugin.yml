@@ -139,6 +139,11 @@ commands:
     usage: "/<command>"
     permission: fundamentals.player.rules
     aliases: ['rulebook']
+  trash:
+    description: "Opens a gui for disposing items"
+    usage: "/<command>"
+    permission: fundamentals.player.trash
+    aliases: ['disposal', 'wastebin']
 
 default-permission: op
 permissions:
@@ -200,3 +205,5 @@ permissions:
         description: "Random teleport"
       fundamentals.player.rules:
         description: "Rules command"
+      fundamentals.player.trash:
+        description: "Use a trash gui to dispose of items"

@@ -132,6 +132,13 @@ cmds:
     title: "Server Rules"
     author: "Fundamentals/Server"
 
+    # Trash command and gui
+  trash:
+    # Title for inventory
+    title: "&5Throw away items"
+    # Log, can use PLAYER
+    log: "PLAYER opened trash gui"
+
 # Staff commands
 # Placeholders: PLAYER, and sometimes VICTIM (Player might show up as "CONSOLE" in some cases)
 staffcmds:

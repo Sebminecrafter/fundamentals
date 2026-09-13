@@ -17,7 +17,6 @@ They may or may not be added, and are probably not yet in the plugin.
 - [ ] `/seen` see last online time of player
 - [ ] `/playtime [player]` see playtime of self or other
 - [ ] `/nick` nicknames
-- [ ] `/trash` / `/wastebin` to get rid of items
 - [ ] `/tptoggle` to enable/disable tp requests (toggle)
 - [ ] `/sendloc` to send location to another player
 
