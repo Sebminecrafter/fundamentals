@@ -58,3 +58,4 @@ on GitHub
 ## Notices
 
 - Warps and reloading are experimental.
+- Ignoring does not yet ignore in chat

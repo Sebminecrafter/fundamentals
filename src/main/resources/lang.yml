@@ -253,6 +253,19 @@ staffcmds:
   clearchat:
     log: "PLAYER cleared chat (LINES lines)"
     staff: "&5Cleared chat!"
+  # Summons a tnt, can use PLAYER and TARGETS
+  nuke:
+    # Log message
+    log: "PLAYER bombed TARGETS"
+    # Staff response
+    staff: "&dBombed TARGETS"
+    # Message sent to targeted players
+    message: "&5May death rain upon them."
+  bignuke:
+    # Log message
+    log: "PLAYER bombed TARGET"
+    # Staff response
+    staff: "&dSummoned nuke at TARGET"
 
 # No placeholders, extra messages
 msgs:

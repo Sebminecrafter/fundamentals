@@ -82,7 +82,16 @@ commands:
     usage: "Usage: /<command> [lines]"
     permission: fundamentals.staff.clearchat
     aliases: ['cc']
-
+  nuke:
+    description: "Summon TNT on player(s)"
+    usage: "Usage: /<command> [player]..."
+    permission: fundamentals.staff.nuke
+    aliases: ['bomb', 'tnt']
+  bignuke:
+    description: "Huge nuke"
+    usage: "Usage: /<command> [player]"
+    permission: fundamentals.staff.bignuke
+    aliases: ['destroy']
   # Player commands
   msg:
     description: "Message a player"
@@ -184,6 +193,8 @@ permissions:
         description: "WARNING: ALLOWS HIGHER PRIVILEGE EXECUTION OF COMMANDS. Run a command as another player"
       fundamentals.staff.clearchat:
         description: "Clear chat"
+      fundamentals.staff.nuke:
+        description: "Summon a tnt on one or multiple people."
   fundamentals.player:
     description: "Player commands parent permission"
     default: true

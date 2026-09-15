@@ -36,6 +36,8 @@ enabled:
     socialspy: true
     sudo: true
     clearchat: true
+    nuke: true
+    bignuke: true
 
   chat:
     # Enable global chat, custom joins/leaves, and custom death messages
@@ -105,3 +107,7 @@ warp:
   cooldown: 30
   # Max warps per player
   max: 1
+
+bignuke:
+  # Distance/size of the nuke
+  distance: 20
