@@ -261,11 +261,22 @@ staffcmds:
     staff: "&dBombed TARGETS"
     # Message sent to targeted players
     message: "&5May death rain upon them."
+  # Summons a huge circle of tnt, can use PLAYER and TARGET
   bignuke:
     # Log message
     log: "PLAYER bombed TARGET"
     # Staff response
     staff: "&dSummoned nuke at TARGET"
+  # Renames an item, can use PLAYER, ITEM (material name), and NAME (new name set)
+  rename:
+    # Log message
+    log: "PLAYER renamed ITEM to NAME"
+    # Response
+    staff: "&5Renamed ITEM to NAME!"
+    # No item
+    no-item: "&cHold an item to rename it."
+    # Null meta
+    meta: "&cThis item has invalid metadata, sorry!"
 
 # No placeholders, extra messages
 msgs:

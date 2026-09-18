@@ -2,14 +2,17 @@
 
 ## Explanation
 
-These are not final, but ideas that are likely to be implemented.
+These are not final, but **ideas** that are likely to be implemented.
 They may or may not be added, and are probably not yet in the plugin.
+Most of these are copied from Essentials, as to create a more seamless transition,
+  but some have been removed as they replaced completely fine vanilla commands or were
+  no longer relevant in current versions of Minecraft.
 
 ### Key
 
 |   Meaning   | Symbol |
 |:-----------:|:------:|
-| In progress |   ☑    |
+|     WIP     |   ☑    |
 | Not started |   ☐    |
 
 ### Player features/commands
@@ -18,6 +21,11 @@ They may or may not be added, and are probably not yet in the plugin.
 - [ ] `/playtime [player]` see playtime of self or other
 - [ ] `/nick` nicknames
 - [ ] `/tptoggle` to enable/disable tp requests (toggle)
+- [ ] `/helpop` to message admins
+- [ ] `/msgtoggle` to toggle receiving messages
+- [ ] `/suicide` to perish thyself
+- [ ] `/tpauto` to auto-accept tpa requests
+- [ ] `/depth` to show current depth relative to the sea
 
 #### Unfair/unvanilla?
 - [ ] `/workbench` / `/craftingtable`
@@ -27,6 +35,8 @@ They may or may not be added, and are probably not yet in the plugin.
 - [ ] `/stonecutter`
 - [ ] `/loom`
 - [ ] `/smithingtable`
+- [ ] `/rest` to sleep
+- [ ] `/hat` to put item on head
 
 ### Staff features/commands
 - [ ] `/mute <player> [time]` mute a player
@@ -36,6 +46,22 @@ They may or may not be added, and are probably not yet in the plugin.
 - [ ] `/hat [item/hand] [player]` put held or other item on a player's head
 - [ ] `/vanish` to become invisible to other players
 - [ ] `/staffchat` and `/alert` for staff messaging
+- [ ] `/broadcastworld <world> <message>` broadcast to specific world
+- [ ] `/burn <player> <secs>` set player on fire
+- [ ] `/extinguish` to set player not on fire
+- [ ] `/smite` to strike a player
+- [ ] `/more` to fill a stack
+- [ ] `/repair` repair an item
+- [ ] `/bottom` and `/top`
+- [ ] `/lore` to change item lore
+- [ ] `/remove` remove entities
+- [ ] `/world <world>` to switch worlds
+- [ ] `/skull <player>` to get a player's head as an item
+- [ ] `/whois` to get player info
+- [ ] `/kickall [reason]` to kick all players but the executor
+- [ ] `/serverstat` to check uptime, performance, etc.
+- [ ] `/getpos <player>` gets a players position
+- [ ] `/god [player]` toggles "god mode"
 
 ### General features
 
@@ -45,7 +71,19 @@ They may or may not be added, and are probably not yet in the plugin.
 
 - [ ] Proper offline players (hard to implement because of nbt data storage)
 
+- [ ] Kits? Or separate plugin? lmk your ideas
+
 - [ ] Commands on first join
+
+- [ ] Mail commands + system
+
+- [ ] Join MOTD / `/motd`
+
+- [ ] Custom MOTD with legacy colors + MiniMessage
+
+- [ ] Simple custom commands system
+
+- [ ] `/info` for server info, configurable
 
 ## Bugs
 

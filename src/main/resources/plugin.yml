@@ -16,7 +16,7 @@ commands:
     description: "Broadcast a message to everyone online"
     usage: "Usage: /<command> <message>"
     permission: fundamentals.staff.broadcast
-    aliases: ['announce']
+    aliases: ['bc', 'announce', 'bcast', 'shout']
   staffmode:
     description: "Enter staff mode"
     usage: "Usage: /<command> [player]"
@@ -92,6 +92,11 @@ commands:
     usage: "Usage: /<command> [player]"
     permission: fundamentals.staff.bignuke
     aliases: ['destroy']
+  rename:
+    description: "Rename an item"
+    usage: "Usage: /<command> <new name>"
+    permission: fundamentals.staff.rename
+    aliases: ['renameitem', 'changename']
   # Player commands
   msg:
     description: "Message a player"
@@ -195,6 +200,8 @@ permissions:
         description: "Clear chat"
       fundamentals.staff.nuke:
         description: "Summon a tnt on one or multiple people."
+      fundamentals.staff.rename:
+        description: "Rename an item"
   fundamentals.player:
     description: "Player commands parent permission"
     default: true
