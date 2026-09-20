@@ -35,7 +35,7 @@ public class Rename implements FundamentalCommand {
         String newName = lang.formatColors(newNameBuilder.toString());
         ItemStack item = player.getInventory().getItemInMainHand();
         helper.add("NAME", newName);
-        helper.add("ITEM", item.getType().getTranslationKey());
+        helper.add("ITEM", item.getType().name());
         if (item.getType() == Material.AIR) {
             Commands.safeSend(sender, lang.getKey("staffcmds.rename.no-item", helper.getReplace()));
             return true;

@@ -39,6 +39,7 @@ enabled:
     nuke: true
     bignuke: true
     rename: true
+    more: true
 
   chat:
     # Enable global chat, custom joins/leaves, and custom death messages

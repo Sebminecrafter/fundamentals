@@ -277,6 +277,12 @@ staffcmds:
     no-item: "&cHold an item to rename it."
     # Null meta
     meta: "&cThis item has invalid metadata, sorry!"
+  # Brings item to max stack size (or 64 if non-stackable hehe :> ), can use PLAYER, ITEM, AMOUNT, and NEWAMOUNT
+  more:
+    # Staff message on use
+    staff: "&5Gave you more!"
+    # Console message
+    log: "Stacked item ITEM from AMOUNT to NEWAMOUNT for PLAYER"
 
 # No placeholders, extra messages
 msgs:

@@ -97,6 +97,11 @@ commands:
     usage: "Usage: /<command> <new name>"
     permission: fundamentals.staff.rename
     aliases: ['renameitem', 'changename']
+  more:
+    description: "Get the max amount of the item in your hand"
+    usage: "Usage: /<command>"
+    permission: fundamentals.staff.more
+    aliases: ['fullstack', 'fillitems']
   # Player commands
   msg:
     description: "Message a player"
@@ -199,9 +204,11 @@ permissions:
       fundamentals.staff.clearchat:
         description: "Clear chat"
       fundamentals.staff.nuke:
-        description: "Summon a tnt on one or multiple people."
+        description: "Summon a tnt on one or multiple people"
       fundamentals.staff.rename:
         description: "Rename an item"
+      fundamentals.staff.more:
+        description: "Get a full stack of an item"
   fundamentals.player:
     description: "Player commands parent permission"
     default: true

@@ -37,7 +37,6 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 - [ ] `/burn <player> <secs>` set player on fire
 - [ ] `/extinguish` to set player not on fire
 - [ ] `/smite` to strike a player
-- [ ] `/more` to fill a stack
 - [ ] `/repair` repair an item
 - [ ] `/bottom` and `/top`
 - [ ] `/lore` to change item lore
