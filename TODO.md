@@ -19,7 +19,6 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 - [ ] `/back` on death and teleports
 - [ ] `/seen` see last online time of player
 - [ ] `/playtime [player]` see playtime of self or other
-- [ ] `/nick` nicknames
 - [ ] `/tptoggle` to enable/disable tp requests (toggle)
 - [ ] `/helpop` to message admins
 - [ ] `/msgtoggle` to toggle receiving messages
@@ -27,22 +26,10 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 - [ ] `/tpauto` to auto-accept tpa requests
 - [ ] `/depth` to show current depth relative to the sea
 
-#### Unfair/unvanilla?
-- [ ] `/workbench` / `/craftingtable`
-- [ ] `/anvil`
-- [ ] `/grindstone`
-- [ ] `/cartographytable`
-- [ ] `/stonecutter`
-- [ ] `/loom`
-- [ ] `/smithingtable`
-- [ ] `/rest` to sleep
-- [ ] `/hat` to put item on head
-
 ### Staff features/commands
 - [ ] `/mute <player> [time]` mute a player
 - [ ] `/tempban <player> <time> [reason]` tempban player
 - [ ] `/near` to see nearby players within configured range
-- [ ] `/realname [player]` with nicknames
 - [ ] `/hat [item/hand] [player]` put held or other item on a player's head
 - [ ] `/vanish` to become invisible to other players
 - [ ] `/staffchat` and `/alert` for staff messaging
@@ -62,6 +49,15 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 - [ ] `/serverstat` to check uptime, performance, etc.
 - [ ] `/getpos <player>` gets a players position
 - [ ] `/god [player]` toggles "god mode"
+- [ ] `/workbench` / `/craftingtable`
+- [ ] `/anvil`
+- [ ] `/grindstone`
+- [ ] `/cartographytable`
+- [ ] `/stonecutter`
+- [ ] `/loom`
+- [ ] `/smithingtable`
+- [ ] `/rest` to sleep
+- [ ] `/hat` to put item on head
 
 ### General features
 
@@ -84,6 +80,8 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 - [ ] Simple custom commands system
 
 - [ ] `/info` for server info, configurable
+
+- [ ] Nicknames (`/nick`, `/realname`, etc.)
 
 ## Bugs
 
