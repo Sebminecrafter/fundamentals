@@ -2,6 +2,8 @@
 
 ## Explanation
 
+This is not a list of features in the plugin!
+
 These are not final, but **ideas** that are likely to be implemented.
 They may or may not be added, and are probably not yet in the plugin.
 Most of these are copied from Essentials, as to create a more seamless transition,
@@ -10,10 +12,11 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 
 ### Key
 
-|   Meaning   | Symbol |
-|:-----------:|:------:|
-|     WIP     |   ☑    |
-| Not started |   ☐    |
+|       Meaning       |    Symbol    |
+|:-------------------:|:------------:|
+| Already implemented | **not here** |
+|         WIP         |      ☑       |
+|     Not started     |      ☐       |
 
 ### Player features/commands
 - [ ] `/back` on death and teleports
@@ -34,7 +37,7 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 - [ ] `/vanish` to become invisible to other players
 - [ ] `/staffchat` and `/alert` for staff messaging
 - [ ] `/broadcastworld <world> <message>` broadcast to specific world
-- [ ] `/burn <player> <secs>` set player on fire
+- [ ] `/burn <player> [secs]` set player on fire
 - [ ] `/extinguish` to set player not on fire
 - [ ] `/smite` to strike a player
 - [ ] `/repair` repair an item

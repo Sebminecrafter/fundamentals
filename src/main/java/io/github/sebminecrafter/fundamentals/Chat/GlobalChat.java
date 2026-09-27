@@ -1,6 +1,6 @@
 package io.github.sebminecrafter.fundamentals.Chat;
 
-import io.github.sebminecrafter.fundamentals.Commands.Ignore;
+import io.github.sebminecrafter.fundamentals.Commands.Player.Ignore;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;

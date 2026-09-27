@@ -1,5 +1,7 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
+import io.github.sebminecrafter.fundamentals.Commands.Player.*;
+import io.github.sebminecrafter.fundamentals.Commands.Staff.*;
 import io.github.sebminecrafter.fundamentals.Main;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
