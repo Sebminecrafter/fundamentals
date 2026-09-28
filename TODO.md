@@ -80,11 +80,14 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 
 ## Bugs
 
+- Interacting with workstations accessed via commands is slightly buggy,
+  items may disappear when shift-clicked or gui is closed
+
 Please submit bugs via the
 [Issues tab](https://github.com/Sebminecrafter/Fundamentals/issues)
 on GitHub
 
-(no current ***known*** bugs in latest build)
+(no other current ***known*** bugs in latest build)
 
 ## Notices
 
