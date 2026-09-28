@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "Modrinth Page"
+    url: "https://modrinth.com/plugins/fundamentalswastaken"
+    about: "Please notify me if this is outdated or you find issues with it."
