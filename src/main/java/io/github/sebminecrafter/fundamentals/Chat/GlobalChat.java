@@ -44,9 +44,8 @@ public class GlobalChat implements Listener {
         event.setCancelled(true);
         Player player = event.getPlayer();
         String message = event.getMessage();
-        if (message.startsWith("/")) return;
-        if (!config.isEnabled("chat.globalchat")) return;
-        if (notAllowed(message, player)) return;
+        if (message.startsWith("/") || !config.isEnabled("chat.globalchat") || notAllowed(message, player))
+            return;
 
         if (config.isEnabled("chat.colors")) {
             message = lang.formatColors(message);

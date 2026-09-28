@@ -1,6 +1,7 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
 import io.github.sebminecrafter.fundamentals.Commands.Player.*;
+import io.github.sebminecrafter.fundamentals.Commands.Privileged.Workstations.*;
 import io.github.sebminecrafter.fundamentals.Commands.Staff.*;
 import io.github.sebminecrafter.fundamentals.Main;
 import org.bukkit.command.Command;
@@ -55,6 +56,15 @@ public class Commands implements CommandExecutor, TabCompleter {
         commands.put("rules", new Rules(plugin));
         commands.put("trash", new Trash());
         commands.put("sendloc", new SendLocation((Msg) commands.get("msg")));
+
+        // Privileged commands
+        commands.put("workbench", new Workbench());
+        commands.put("stonecutter", new Stonecutter());
+        commands.put("smithingtable", new SmithingTable());
+        commands.put("loom", new Loom());
+        commands.put("grindstone", new Grindstone());
+        commands.put("anvil", new Anvil());
+        commands.put("cartographytable", new CartographyTable());
     }
 
     public FundamentalCommand getCommand(String commandName) {

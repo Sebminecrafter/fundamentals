@@ -51,13 +51,6 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 - [ ] `/serverstat` to check uptime, performance, etc.
 - [ ] `/getpos <player>` gets a players position
 - [ ] `/god [player]` toggles "god mode"
-- [ ] `/workbench` / `/craftingtable`
-- [ ] `/anvil`
-- [ ] `/grindstone`
-- [ ] `/cartographytable`
-- [ ] `/stonecutter`
-- [ ] `/loom`
-- [ ] `/smithingtable`
 - [ ] `/rest` to sleep
 - [ ] `/hat` to put item on head
 
@@ -95,5 +88,4 @@ on GitHub
 
 ## Notices
 
-- Warps and reloading are experimental.
-- Ignoring does not yet ignore in chat
+- Warps and reloading have not been fully tested.

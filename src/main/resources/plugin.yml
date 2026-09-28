@@ -168,6 +168,42 @@ commands:
     usage: "/<command> <player>"
     permission: fundamentals.player.sendloc
     aliases: ['sendlocation', 'shareloc', 'sharelocation']
+  # Privileged commands
+  workbench:
+    description: "Open a crafting table"
+    usage: "/<command>"
+    permission: fundamentals.privileged.workbench
+    aliases: ['craftingtable']
+  stonecutter:
+    description: "Open a stonecutter"
+    usage: "/<command>"
+    permission: fundamentals.privileged.stonecutter
+    aliases: []
+  smithingtable:
+    description: "Open a smithing table"
+    usage: "/<command>"
+    permission: fundamentals.privileged.smithingtable
+    aliases: ['smithtable']
+  loom:
+    description: "Open a loom"
+    usage: "/<command>"
+    permission: fundamentals.privileged.loom
+    aliases: []
+  grindstone:
+    description: "Open a grindstone"
+    usage: "/<command>"
+    permission: fundamentals.privileged.grindstone
+    aliases: []
+  anvil:
+    description: "Open an anvil"
+    usage: "/<command>"
+    permission: fundamentals.privileged.anvil
+    aliases: []
+  cartographytable:
+    description: "Open a cartography table"
+    usage: "/<command>"
+    permission: fundamentals.privileged.cartographytable
+    aliases: ['cartography', 'maptable']
 
 default-permission: op
 permissions:
@@ -239,3 +275,21 @@ permissions:
         description: "Use a trash gui to dispose of items"
       fundamentals.player.sendloc:
         description: "Send your location to another player quickly"
+  fundamentals.privileged:
+    description: "Privileged commands parent permission"
+    default: op
+    children:
+      fundamentals.privileged.workbench:
+        description: "Use a crafting table from anywhere"
+      fundamentals.privileged.stonecutter:
+        description: "Use a stonecutter from anywhere"
+      fundamentals.privileged.smithingtable:
+        description: "Use a smithing table from anywhere"
+      fundamentals.privileged.loom:
+        description: "Use a loom from anywhere"
+      fundamentals.privileged.grindstone:
+        description: "Use a grindstone from anywhere"
+      fundamentals.privileged.anvil:
+        description: "Use an anvil from anywhere"
+      fundamentals.privileged.cartographytable:
+        description: "Use a cartography table from anywhere"

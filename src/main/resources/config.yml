@@ -41,6 +41,15 @@ enabled:
     rename: true
     more: true
 
+    # Privileged commands
+    workbench: true
+    stonecutter: true
+    smithingtable: true
+    loom: true
+    grindstone: true
+    anvil: true
+    cartographytable: true
+
   chat:
     # Enable global chat, custom joins/leaves, and custom death messages
     globalchat: true
