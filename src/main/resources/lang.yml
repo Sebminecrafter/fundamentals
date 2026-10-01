@@ -291,6 +291,8 @@ staffcmds:
     log: "PLAYER got TARGET's skull."
     # Failed lookup
     fail: "&cPlayer lookup failed"
+  # Get position command, can use PLAYER (executor), VICTIM (player being targeted), PX (x), PY (y), PZ (z), PWORLD (current world name)
+  getpos: "&d&lVICTIM&5 is at &e&lPX&e, &lPY&e, &lPZ&5 in world '&ePWORLD&5'"
 
 # No placeholders, extra messages
 msgs:

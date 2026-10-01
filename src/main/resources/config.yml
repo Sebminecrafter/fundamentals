@@ -41,6 +41,7 @@ enabled:
     rename: true
     more: true
     skull: true
+    getpos: true
 
     # Privileged commands
     workbench: true

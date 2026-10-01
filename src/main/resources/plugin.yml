@@ -102,6 +102,11 @@ commands:
     usage: "Usage: /<command>"
     permission: fundamentals.staff.more
     aliases: ['fullstack', 'fillitems']
+  getpos:
+    description: "Get the position of a player"
+    usage: "Usage: /<command> <player>"
+    permission: fundamentals.staff.getpos
+    aliases: ['getposition', 'wheres', 'whereis', 'positionof', 'locateplayer']
   # Player commands
   msg:
     description: "Message a player"
@@ -252,6 +257,8 @@ permissions:
         description: "Get a full stack of an item"
       fundamentals.staff.skull:
         description: "Get a player's skull"
+      fundamentals.staff.getpos:
+        description: "Get the position of a player"
   fundamentals.player:
     description: "Player commands parent permission"
     default: true

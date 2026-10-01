@@ -51,7 +51,6 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 - [ ] `/whois` to get player info
 - [ ] `/kickall [reason]` to kick all players but the executor
 - [ ] `/serverstat` to check uptime, performance, etc.
-- [ ] `/getpos <player>` gets a players position
 - [ ] `/god [player]` toggles "god mode"
 
 ### General features
