@@ -283,6 +283,14 @@ staffcmds:
     staff: "&5Gave you more!"
     # Console message
     log: "Stacked item ITEM from AMOUNT to NEWAMOUNT for PLAYER"
+  # Skull command, can use PLAYER, TARGET (whose skull to give)
+  skull:
+    # Message on success
+    staff: "&5Gave you TARGET's skull!"
+    # Console message on success
+    log: "PLAYER got TARGET's skull."
+    # Failed lookup
+    fail: "&cPlayer lookup failed"
 
 # No placeholders, extra messages
 msgs:

@@ -29,11 +29,14 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 - [ ] `/tpauto` to auto-accept tpa requests
 - [ ] `/depth` to show current depth relative to the sea
 
+### Privileged Commands
+- [ ] `/rest` to sleep
+- [ ] `/hat [item/hand] [player]` put held or other item on a player's head
+
 ### Staff features/commands
 - [ ] `/mute <player> [time]` mute a player
 - [ ] `/tempban <player> <time> [reason]` tempban player
 - [ ] `/near` to see nearby players within configured range
-- [ ] `/hat [item/hand] [player]` put held or other item on a player's head
 - [ ] `/vanish` to become invisible to other players
 - [ ] `/staffchat` and `/alert` for staff messaging
 - [ ] `/broadcastworld <world> <message>` broadcast to specific world
@@ -45,14 +48,11 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 - [ ] `/lore` to change item lore
 - [ ] `/remove` remove entities
 - [ ] `/world <world>` to switch worlds
-- [ ] `/skull <player>` to get a player's head as an item
 - [ ] `/whois` to get player info
 - [ ] `/kickall [reason]` to kick all players but the executor
 - [ ] `/serverstat` to check uptime, performance, etc.
 - [ ] `/getpos <player>` gets a players position
 - [ ] `/god [player]` toggles "god mode"
-- [ ] `/rest` to sleep
-- [ ] `/hat` to put item on head
 
 ### General features
 

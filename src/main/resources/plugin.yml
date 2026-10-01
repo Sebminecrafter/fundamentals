@@ -168,6 +168,11 @@ commands:
     usage: "/<command> <player>"
     permission: fundamentals.player.sendloc
     aliases: ['sendlocation', 'shareloc', 'sharelocation']
+  skull:
+    description: "Get a player's skull"
+    usage: "/<command> <player>"
+    permission: fundamentals.staff.skull
+    aliases: ['head']
   # Privileged commands
   workbench:
     description: "Open a crafting table"
@@ -245,6 +250,8 @@ permissions:
         description: "Rename an item"
       fundamentals.staff.more:
         description: "Get a full stack of an item"
+      fundamentals.staff.skull:
+        description: "Get a player's skull"
   fundamentals.player:
     description: "Player commands parent permission"
     default: true

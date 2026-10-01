@@ -39,6 +39,7 @@ public class Commands implements CommandExecutor, TabCompleter {
         commands.put("bignuke", new BigNuke());
         commands.put("rename", new Rename());
         commands.put("more", new More());
+        commands.put("skull", new Skull());
 
         // Player commands
         commands.put("ignore", new Ignore(plugin));

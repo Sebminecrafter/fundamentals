@@ -40,6 +40,7 @@ enabled:
     bignuke: true
     rename: true
     more: true
+    skull: true
 
     # Privileged commands
     workbench: true
