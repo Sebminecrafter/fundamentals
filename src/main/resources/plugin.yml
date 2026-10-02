@@ -16,128 +16,133 @@ commands:
     description: "Broadcast a message to everyone online"
     usage: "Usage: /<command> <message>"
     permission: fundamentals.staff.broadcast
-    aliases: ['bc', 'announce', 'bcast', 'shout']
+    aliases: [ 'bc', 'announce', 'bcast', 'shout' ]
+  broadcastworld:
+    description: "Broadcast a message to everyone online in the specified world"
+    usage: "Usage: /<command> <world> <message>"
+    permission: fundamentals.staff.broadcastworld
+    aliases: [ 'bcworld', 'announceworld', 'bcastworld', 'shoutworld' ]
   staffmode:
     description: "Enter staff mode"
     usage: "Usage: /<command> [player]"
     permission: fundamentals.staff.staffmode
-    aliases: ['sm', 'spectate']
+    aliases: [ 'sm', 'spectate' ]
   invsee:
     description: "View a player's inventory"
     usage: "Usage: /<command> <player>"
     permission: fundamentals.staff.invsee
-    aliases: ['inventorysee']
+    aliases: [ 'inventorysee' ]
   freeze:
     description: "Freeze a player"
     usage: "Usage: /<command> <player>"
     permission: fundamentals.staff.freeze
-    aliases: []
+    aliases: [ ]
   staffmsg:
     description: "Message a player as \"staff\""
     usage: "Usage: /<command> <player> <message>"
     permission: fundamentals.staff.staffmsg
-    aliases: []
+    aliases: [ ]
   feed:
     description: "Fill a player's hunger"
     usage: "Usage: /<command> [player]"
     permission: fundamentals.staff.feed
-    aliases: []
+    aliases: [ ]
   heal:
     description: "Fill a player's health"
     usage: "/<command> [player]"
     permission: fundamentals.staff.heal
-    aliases: []
+    aliases: [ ]
   gamemode:
     description: "Change gamemode"
     usage: "Usage: /<command> [player] <gamemode>"
     permission: fundamentals.staff.gamemode
-    aliases: ['gm', 'gms', 'gmc', 'gma', 'gmsp']
+    aliases: [ 'gm', 'gms', 'gmc', 'gma', 'gmsp' ]
   tpo:
     description: "Teleport to an offline player"
     usage: "Usage: /<command> <target>"
     permission: fundamentals.staff.tpo
-    aliases: ['tpoffline']
+    aliases: [ 'tpoffline' ]
   fly:
     description: "Enable fly mode"
     usage: "Usage: /<command> [player]"
     permission: fundamentals.staff.fly
-    aliases: []
+    aliases: [ ]
   fundamentals:
     description: "Plugin configuration"
     usage: "Usage: /<command> <help/reloadconfig/enablecommand/disablecommand> [command]"
     permission: fundamentals.staff.fundamentals
-    aliases: []
+    aliases: [ ]
   socialspy:
     description: "Start listening to other's private messages"
     usage: "Usage: /<command>"
     permission: fundamentals.staff.socialspy
-    aliases: ['ss', 'listen']
+    aliases: [ 'ss', 'listen' ]
   sudo:
     description: "Run a command as another player"
     usage: "Usage: /<command> <player> <cmd>"
     permission: fundamentals.staff.sudo
-    aliases: []
+    aliases: [ ]
   clearchat:
     description: "Clear chat"
     usage: "Usage: /<command> [lines]"
     permission: fundamentals.staff.clearchat
-    aliases: ['cc']
+    aliases: [ 'cc' ]
   nuke:
     description: "Summon TNT on player(s)"
     usage: "Usage: /<command> [player]..."
     permission: fundamentals.staff.nuke
-    aliases: ['bomb', 'tnt']
+    aliases: [ 'bomb', 'tnt' ]
   bignuke:
     description: "Huge nuke"
     usage: "Usage: /<command> [player]"
     permission: fundamentals.staff.bignuke
-    aliases: ['destroy']
+    aliases: [ 'destroy' ]
   rename:
     description: "Rename an item"
     usage: "Usage: /<command> <new name>"
     permission: fundamentals.staff.rename
-    aliases: ['renameitem', 'changename']
+    aliases: [ 'renameitem', 'changename' ]
   more:
     description: "Get the max amount of the item in your hand"
     usage: "Usage: /<command>"
     permission: fundamentals.staff.more
-    aliases: ['fullstack', 'fillitems']
+    aliases: [ 'fullstack', 'fillitems' ]
   getpos:
     description: "Get the position of a player"
     usage: "Usage: /<command> <player>"
     permission: fundamentals.staff.getpos
-    aliases: ['getposition', 'wheres', 'whereis', 'positionof', 'locateplayer']
+    aliases: [ 'getposition', 'wheres', 'whereis', 'positionof', 'locateplayer' ]
   # Player commands
   msg:
     description: "Message a player"
     usage: "Usage: /<command> <player> <message>"
     permission: fundamentals.player.msg
-    aliases: ['w', 'whisper']
+    aliases: [ 'w', 'whisper' ]
   reply:
     description: "Reply to last message"
     usage: "/<command> <message>"
     permission: fundamentals.player.reply
-    aliases: ['r']
+    aliases: [ 'r' ]
   ignore:
     description: "Ignore a player's messages and tp requests"
     usage: "Usage: /<command> <player>"
     permission: fundamentals.player.ignore
-    aliases: ['block']
+    aliases: [ 'block' ]
   tpa:
     description: "Teleport requests"
     usage: "Usage varies: /tpa <player>, /tpahere <player>, /tpacancel, /tpaccept [player], /tpdeny [player]"
     permission: fundamentals.player.tpa
-    aliases: ['tpaccept', 'tpdeny', 'tpacancel', 'tpahere']
+    aliases: [ 'tpaccept', 'tpdeny', 'tpacancel', 'tpahere' ]
   rtp:
     description: "Teleport to a random location"
     usage: "/<command> [dimension]"
     permission: fundamentals.player.rtp
-    aliases: ['tpr', 'tprandom', 'randomtp', 'randomteleport', 'teleportrandom']
+    aliases: [ 'tpr', 'tprandom', 'randomtp', 'randomteleport', 'teleportrandom' ]
   home:
     description: "Homes"
     usage: "Usage varies: /home <name>, /sethome <name>, /delhome <name>, /listhomes, /homes"
     permission: fundamentals.player.homes
-    aliases: ['sethome', 'delhome', 'listhomes', 'homes']
+    aliases: [ 'sethome', 'delhome', 'listhomes', 'homes' ]
   warp:
     description: "Warps"
     usage: "Usage varies: /warp <name>, /setwarp <name>, /delwarp <name>, /listwarps, /warps"
@@ -147,73 +152,73 @@ commands:
     description: "Welcome a player"
     usage: "/<command> <player>"
     permission: fundamentals.player.welcome
-    aliases: ['greet']
+    aliases: [ 'greet' ]
   enderchest:
     description: "Open your or another player's enderchest"
     usage: "/<command> [player]"
     permission: fundamentals.player.enderchest
-    aliases: ['ec']
+    aliases: [ 'ec' ]
   ping:
     description: "Check your or another player's ping"
     usage: "/<command> [player]"
     permission: fundamentals.player.ping
-    aliases: []
+    aliases: [ ]
   rules:
     description: "Shows rules in a book"
     usage: "/<command>"
     permission: fundamentals.player.rules
-    aliases: ['rulebook']
+    aliases: [ 'rulebook' ]
   trash:
     description: "Opens a gui for disposing items"
     usage: "/<command>"
     permission: fundamentals.player.trash
-    aliases: ['disposal', 'wastebin']
+    aliases: [ 'disposal', 'wastebin' ]
   sendloc:
     description: "Send your location to another player quickly"
     usage: "/<command> <player>"
     permission: fundamentals.player.sendloc
-    aliases: ['sendlocation', 'shareloc', 'sharelocation']
+    aliases: [ 'sendlocation', 'shareloc', 'sharelocation' ]
   skull:
     description: "Get a player's skull"
     usage: "/<command> <player>"
     permission: fundamentals.staff.skull
-    aliases: ['head']
+    aliases: [ 'head' ]
   # Privileged commands
   workbench:
     description: "Open a crafting table"
     usage: "/<command>"
     permission: fundamentals.privileged.workbench
-    aliases: ['craftingtable']
+    aliases: [ 'craftingtable' ]
   stonecutter:
     description: "Open a stonecutter"
     usage: "/<command>"
     permission: fundamentals.privileged.stonecutter
-    aliases: []
+    aliases: [ ]
   smithingtable:
     description: "Open a smithing table"
     usage: "/<command>"
     permission: fundamentals.privileged.smithingtable
-    aliases: ['smithtable']
+    aliases: [ 'smithtable' ]
   loom:
     description: "Open a loom"
     usage: "/<command>"
     permission: fundamentals.privileged.loom
-    aliases: []
+    aliases: [ ]
   grindstone:
     description: "Open a grindstone"
     usage: "/<command>"
     permission: fundamentals.privileged.grindstone
-    aliases: []
+    aliases: [ ]
   anvil:
     description: "Open an anvil"
     usage: "/<command>"
     permission: fundamentals.privileged.anvil
-    aliases: []
+    aliases: [ ]
   cartographytable:
     description: "Open a cartography table"
     usage: "/<command>"
     permission: fundamentals.privileged.cartographytable
-    aliases: ['cartography', 'maptable']
+    aliases: [ 'cartography', 'maptable' ]
 
 default-permission: op
 permissions:
@@ -223,6 +228,8 @@ permissions:
     children:
       fundamentals.staff.broadcast:
         description: "Ability to use the broadcast command"
+      fundamentals.staff.broadcastworld:
+        description: "Ability to use the broadcastworld command"
       fundamentals.staff.freeze:
         description: "Ability to use the freeze command to freeze players"
       fundamentals.staff.invsee:

@@ -24,6 +24,7 @@ public class Commands implements CommandExecutor, TabCompleter {
     public Commands(Main plugin) {
         // Staff commands
         commands.put("broadcast", new Broadcast());
+        commands.put("broadcastworld", new BroadcastWorld());
         commands.put("staffmode", new Staffmode(plugin));
         commands.put("feed", new Feed());
         commands.put("heal", new Heal());

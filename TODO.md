@@ -15,8 +15,8 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 |       Meaning       |    Symbol    |
 |:-------------------:|:------------:|
 | Already implemented | **not here** |
-|         WIP         |      ☑       |
-|     Not started     |      ☐       |
+|         WIP         |      ☑      |
+|     Not started     |      ☐      |
 
 ### Player features/commands
 - [ ] `/back` on death and teleports
@@ -39,7 +39,6 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 - [ ] `/near` to see nearby players within configured range
 - [ ] `/vanish` to become invisible to other players
 - [ ] `/staffchat` and `/alert` for staff messaging
-- [ ] `/broadcastworld <world> <message>` broadcast to specific world
 - [ ] `/burn <player> [secs]` set player on fire
 - [ ] `/extinguish` to set player not on fire
 - [ ] `/smite` to strike a player

@@ -152,7 +152,13 @@ staffcmds:
   broadcast:
     log: "PLAYER broadcasted: \"MSG\""
     staff: "&2&lBroadcasted message:&r MSG"
-    player: "&lMSG"
+    player: "MSG"
+  # BroadcastWorld
+  # log, staff, and player messages, can use MSG and WORLD placeholders
+  broadcastworld:
+    log: "PLAYER broadcasted to world WORLD: \"MSG\""
+    staff: "&2&lBroadcasted message to world WORLD:&r MSG"
+    player: "MSG"
   # Freeze
   # log, staff, and player messages
   freeze:
