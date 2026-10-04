@@ -25,7 +25,6 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 - [ ] `/tptoggle` to enable/disable tp requests (toggle)
 - [ ] `/helpop` to message admins
 - [ ] `/msgtoggle` to toggle receiving messages
-- [ ] `/suicide` to perish thyself
 - [ ] `/tpauto` to auto-accept tpa requests
 - [ ] `/depth` to show current depth relative to the sea
 

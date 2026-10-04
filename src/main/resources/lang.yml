@@ -144,6 +144,13 @@ cmds:
     # Message to be sent as player, can use PLAYER, PX, PY, and PZ placeholders
     message: "&aMy location is: &cPX &ePY &bPZ"
 
+  # Kills the player, can use PLAYER placeholder
+  suicide:
+    # Message to player
+    msg: "&c ... Ouch."
+    # Log message
+    log: "PLAYER took the hard way out"
+
 # Staff commands
 # Placeholders: PLAYER, and sometimes VICTIM (Player might show up as "CONSOLE" in some cases)
 staffcmds:

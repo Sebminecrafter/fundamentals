@@ -21,6 +21,7 @@ enabled:
     rules: true      # Rules command
     trash: true      # Trash GUI
     sendloc: true    # Msg location to another player quickly
+    suicide: true    # Pretty self-explanatory
 
     # Staff commands
     broadcast: true

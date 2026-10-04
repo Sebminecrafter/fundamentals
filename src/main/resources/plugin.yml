@@ -112,6 +112,11 @@ commands:
     usage: "Usage: /<command> <player>"
     permission: fundamentals.staff.getpos
     aliases: [ 'getposition', 'wheres', 'whereis', 'positionof', 'locateplayer' ]
+  skull:
+    description: "Get a player's skull"
+    usage: "/<command> <player>"
+    permission: fundamentals.staff.skull
+    aliases: [ 'head' ]
   # Player commands
   msg:
     description: "Message a player"
@@ -178,11 +183,11 @@ commands:
     usage: "/<command> <player>"
     permission: fundamentals.player.sendloc
     aliases: [ 'sendlocation', 'shareloc', 'sharelocation' ]
-  skull:
-    description: "Get a player's skull"
-    usage: "/<command> <player>"
-    permission: fundamentals.staff.skull
-    aliases: [ 'head' ]
+  suicide:
+    description: "Kills you"
+    usage: "/<command>"
+    permission: fundamentals.player.suicide
+    aliases: [ 'die' ]
   # Privileged commands
   workbench:
     description: "Open a crafting table"
@@ -296,6 +301,8 @@ permissions:
         description: "Use a trash gui to dispose of items"
       fundamentals.player.sendloc:
         description: "Send your location to another player quickly"
+      fundamentals.player.suicide:
+        description: "Kills you"
   fundamentals.privileged:
     description: "Privileged commands parent permission"
     default: op
