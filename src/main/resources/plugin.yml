@@ -117,6 +117,11 @@ commands:
     usage: "/<command> <player>"
     permission: fundamentals.staff.skull
     aliases: [ 'head' ]
+  smite:
+    description: "Strike lightning"
+    usage: "/<command> [player]"
+    permission: fundamentals.staff.smite
+    aliases: [ 'lightning', 'thor', 'shock' ]
   # Player commands
   msg:
     description: "Message a player"
@@ -271,6 +276,8 @@ permissions:
         description: "Get a player's skull"
       fundamentals.staff.getpos:
         description: "Get the position of a player"
+      fundamentals.staff.smite:
+        description: "Strike a player with lightning"
   fundamentals.player:
     description: "Player commands parent permission"
     default: true

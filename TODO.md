@@ -33,23 +33,22 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 - [ ] `/hat [item/hand] [player]` put held or other item on a player's head
 
 ### Staff features/commands
-- [ ] `/mute <player> [time]` mute a player
-- [ ] `/tempban <player> <time> [reason]` tempban player
-- [ ] `/near` to see nearby players within configured range
-- [ ] `/vanish` to become invisible to other players
-- [ ] `/staffchat` and `/alert` for staff messaging
-- [ ] `/burn <player> [secs]` set player on fire
+- [X] `/burn <player> [secs]` set player on fire
 - [ ] `/extinguish` to set player not on fire
-- [ ] `/smite` to strike a player
 - [ ] `/repair` repair an item
+- [ ] `/kickall [reason]` to kick all players but the executor
 - [ ] `/bottom` and `/top`
+- [ ] `/whois` to get player info
 - [ ] `/lore` to change item lore
 - [ ] `/remove` remove entities
 - [ ] `/world <world>` to switch worlds
-- [ ] `/whois` to get player info
-- [ ] `/kickall [reason]` to kick all players but the executor
-- [ ] `/serverstat` to check uptime, performance, etc.
+- [ ] `/near` to see nearby players within configured range
+- [ ] `/vanish` to become invisible to other players
+- [ ] `/staffchat` and `/alert` for staff messaging
 - [ ] `/god [player]` toggles "god mode"
+- [ ] `/serverstat` to check uptime, performance, etc.
+- [ ] `/mute <player> [time]` mute a player
+- [ ] `/tempban <player> <time> [reason]` tempban player
 
 ### General features
 
