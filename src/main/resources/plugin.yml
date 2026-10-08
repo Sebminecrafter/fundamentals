@@ -122,6 +122,16 @@ commands:
     usage: "/<command> [player]"
     permission: fundamentals.staff.smite
     aliases: [ 'lightning', 'thor', 'shock' ]
+  burn:
+    description: "Set a player on fire"
+    usage: "/<command> <player> [secs]"
+    permission: fundamentals.staff.burn
+    aliases: [ 'fire' ]
+  extinguish:
+    description: "Extinguish a player on fire"
+    usage: "/<command> [player]"
+    permission: fundamentals.staff.extinguish
+    aliases: [ 'ext' ]
   # Player commands
   msg:
     description: "Message a player"
@@ -278,6 +288,10 @@ permissions:
         description: "Get the position of a player"
       fundamentals.staff.smite:
         description: "Strike a player with lightning"
+      fundamentals.staff.burn:
+        description: "Set a player on fire"
+      fundamentals.staff.extinguish:
+        description: "Extinguish a player on fire"
   fundamentals.player:
     description: "Player commands parent permission"
     default: true

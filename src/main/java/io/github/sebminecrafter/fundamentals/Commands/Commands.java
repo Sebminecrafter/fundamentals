@@ -42,6 +42,7 @@ public class Commands implements CommandExecutor, TabCompleter {
         commands.put("more", new More());
         commands.put("skull", new Skull());
         commands.put("smite", new Smite());
+        commands.put("burn", new Burn());
 
         // Player commands
         commands.put("ignore", new Ignore(plugin));

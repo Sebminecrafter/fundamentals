@@ -33,8 +33,7 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 - [ ] `/hat [item/hand] [player]` put held or other item on a player's head
 
 ### Staff features/commands
-- [X] `/burn <player> [secs]` set player on fire
-- [ ] `/extinguish` to set player not on fire
+- [X] `/extinguish` to set player not on fire
 - [ ] `/repair` repair an item
 - [ ] `/kickall [reason]` to kick all players but the executor
 - [ ] `/bottom` and `/top`

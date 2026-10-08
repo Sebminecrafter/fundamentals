@@ -45,6 +45,7 @@ enabled:
     skull: true
     getpos: true
     smite: true
+    burn: true
 
     # Privileged commands
     workbench: true
