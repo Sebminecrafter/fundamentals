@@ -315,7 +315,7 @@ staffcmds:
 msgs:
   playeronly: "&cThis command can only be run by a player."
   disabled: "&cThis command is disabled."
-  notfound: "&cCommand not found."
+  notfound: "&cCommand not implemented."
   offline: "&cPlayer is not online."
   invalid: "&cInvalid argument!"
   fileerror: "&cAn error occurred and the server couldn't save that change."

@@ -3,7 +3,7 @@
 # Enable or disable modules
 enabled:
   checks:
-    opchecker: true
+    opchecker: true #
 
   cmds:
     # Player commands
@@ -22,39 +22,71 @@ enabled:
     trash: true      # Trash GUI
     sendloc: true    # Msg location to another player quickly
     suicide: true    # Pretty self-explanatory
+    back: true       # Return to the previous location
+    seen: true       # View last online time for a player
+    playtime: true   # View player playtime
+    tptoggle: true   # Toggle teleport requests
+    helpop: true     # Send a message to staff
+    msgtoggle: true  # Toggle private message receiving
+    tpauto: true     # Auto-accept teleport requests
+    depth: true      # Show depth relative to sea level
+    afk: true        # Mark yourself as AFK
+    motd: true       # Show the server MOTD
+    info: true       # Show server information
+    nick: true       # Set or clear a nickname
+    realname: true   # Find a player's real name
 
     # Staff commands
-    broadcast: true
-    broadcastworld: true
-    freeze: true
-    invsee: true
-    staffmsg: true
-    staffmode: true
-    feed: true
-    heal: true
-    gamemode: true
-    tpo: true
-    fly: true
-    socialspy: true
-    sudo: true
-    clearchat: true
-    nuke: true
-    bignuke: true
-    rename: true
-    more: true
-    skull: true
-    getpos: true
-    smite: true
-    burn: true
+    broadcast: true      # Broadcast a message to everyone
+    broadcastworld: true # Broadcast a message to everyone in a specific world
+    freeze: true         # Freeze a player
+    invsee: true         # See another player's inventory
+    staffmsg: true       # Message a player as 'Staff'
+    staffmode: true      # Enter 'staff mode'
+    feed: true           # Refill your hunger
+    heal: true           # Fill your health
+    gamemode: true       # Gamemode aliases
+    tpo: true            # Teleport to a player's last location before logging off
+    fly: true            # Enable/disable fly mode
+    socialspy: true      # Listen in on private messages
+    sudo: true           # Run a command as another player (WARNING: Allows privilege escalation, should only be given to highly trusted staff)
+    clearchat: true      # Clear the chat (can be bypassed via client-side mods)
+    nuke: true           # Summon a tnt above player(s)
+    bignuke: true        # Summon a circle of tnt on a player
+    rename: true         # Rename an item (non italic + with colors)
+    more: true           # Fill a stack
+    skull: true          # Get a player's head
+    getpos: true         # Get a player's location
+    smite: true          # Summon lightning on a player
+    burn: true           # Set a player on fire
+    extinguish: true     # Extinguish a player on fire
+    repair: true         # Repair an item or player inventory item
+    kickall: true        # Kick everyone except the executor
+    bottom: true         # Teleport to the world's bottom
+    top: true            # Teleport to the world's top
+    whois: true          # View player information
+    lore: true           # Change item lore
+    remove: true         # Remove nearby entities
+    world: true          # Switch worlds
+    near: true           # View nearby players
+    vanish: true         # Toggle vanish mode
+    staffchat: true      # Message other staff with the permission
+    alert: true          # Send a "staff alert"
+    god: true            # Toggle god mode
+    serverstat: true     # Check uptime and performance stats
+    mute: true           # Mute players
+    tempban: true        # Temporarily ban players
 
     # Privileged commands
-    workbench: true
-    stonecutter: true
-    smithingtable: true
-    loom: true
-    grindstone: true
-    anvil: true
-    cartographytable: true
+    workbench: true        # Open a crafting table from anywhere
+    stonecutter: true      # Open a stonecutter from anywhere
+    smithingtable: true    # Open a smithing table from anywhere
+    loom: true             # Open a loom from anywhere
+    grindstone: true       # Open a grindstone from anywhere
+    anvil: true            # Open an anvil from anywhere
+    cartographytable: true # Open a cartography table from anywhere
+    rest: true             # Sleep without a bed
+    hat: true              # Place an item on your head
 
   chat:
     # Enable global chat, custom joins/leaves, and custom death messages
@@ -66,7 +98,7 @@ enabled:
 
     # Allow anything pattern matching a URL
     allowlinks: false
-    # Enable auto-formatting of legacy colors, like "&cRed!"
+    # Enable auto-formatting of colors, like "&cRed!" or "<gradient:#000000:#ffffff>Monochrome</gradient>"
     colors: true
     # Custom regex for disallowed language (like profanity) MAKE SURE THIS IS ESCAPED!
     disallowedregex: "(?<![a-z])(?:(?:(?:[s$5][\\W_]*[h#][\\W_]*[i1!|][\\W_]*[t7+])|(?:sheit)|(?:sh\\*t)|(?:sh\\*\\*)|(?:s\\*\\*t))|(?:(?:f[\\W_]*u[\\W_]*c[\\W_]*k)|(?:fuk)|(?:phuck)|(?:fvck)|(?:f\\*\\*k)|(?:f\\*ck)|(?:f\\*\\*\\*))|(?:(?:c[\\W_]*u[\\W_]*n[\\W_]*[t7+])|(?:c\\*nt)|(?:kunt))|(?:(?:[a@4][\\W_]*[s$5][\\W_]*[s$5])|(?:azz)|(?:@ss))|(?:(?:b[\\W_]*[i1!|][\\W_]*[t7+][\\W_]*c[\\W_]*[h#])|(?:b\\*tch)|(?:biatch))|(?:b[\\W_]*[a@4][\\W_]*[s$5][\\W_]*[t7+][\\W_]*[a@4][\\W_]*r[\\W_]*d)|(?:(?:d[\\W_]*[a@4][\\W_]*m[\\W_]*n)|(?:d@mn))|(?:[h#][\\W_]*[e3][\\W_]*l[\\W_]*l)|(?:p[\\W_]*[i1!|][\\W_]*[s$5][\\W_]*[s$5])|(?:(?:c[\\W_]*[o0][\\W_]*c[\\W_]*k)|(?:c0ck))|(?:(?:d[\\W_]*[i1!|][\\W_]*c[\\W_]*k)|(?:d\\*ck)|(?:dik))|(?:p[\\W_]*u[\\W_]*[s$5][\\W_]*[s$5][\\W_]*y)|(?:(?:n[\\W_]*[i1!|][\\W_]*[g9][\\W_]*[g9][\\W_]*[e3][\\W_]*r)|(?:n\\*gg\\*r)|(?:n\\*gger)|(?:nigga))|(?:f[\\W_]*[a@4][\\W_]*[g9][\\W_]*[g9][\\W_]*[o0][\\W_]*[t7+])|(?:r[\\W_]*[e3][\\W_]*[t7+][\\W_]*[a@4][\\W_]*r[\\W_]*d)|(?:w[\\W_]*[h#][\\W_]*[o0][\\W_]*r[\\W_]*[e3])|(?:[s$5][\\W_]*l[\\W_]*u[\\W_]*[t7+])|(?:c[\\W_]*r[\\W_]*[a@4][\\W_]*p)|(?:w[\\W_]*[a@4][\\W_]*n[\\W_]*k)|(?:[t7+][\\W_]*w[\\W_]*[a@4][\\W_]*[t7+])|(?:b[\\W_]*[o0][\\W_]*l[\\W_]*l[\\W_]*[o0][\\W_]*c[\\W_]*k[\\W_]*[s$5])|(?:[a@4][\\W_]*r[\\W_]*[s$5][\\W_]*[e3])|(?:m[\\W_]*[o0][\\W_]*[t7+][\\W_]*[h#][\\W_]*[e3][\\W_]*r[\\W_]*f[\\W_]*u[\\W_]*c[\\W_]*k[\\W_]*[e3][\\W_]*r)|(?:[a@4][\\W_]*[s$5][\\W_]*[s$5][\\W_]*[h#][\\W_]*[o0][\\W_]*l[\\W_]*[e3])|(?:d[\\W_]*u[\\W_]*m[\\W_]*b[\\W_]*[a@4][\\W_]*[s$5][\\W_]*[s$5])|(?:j[\\W_]*[a@4][\\W_]*c[\\W_]*k[\\W_]*[a@4][\\W_]*[s$5][\\W_]*[s$5])|(?:[s$5][\\W_]*[h#][\\W_]*[i1!|][\\W_]*[t7+][\\W_]*[h#][\\W_]*[e3][\\W_]*[a@4][\\W_]*d)|(?:b[\\W_]*u[\\W_]*l[\\W_]*l[\\W_]*[s$5][\\W_]*[h#][\\W_]*[i1!|][\\W_]*[t7+])|(?:[h#][\\W_]*[o0][\\W_]*r[\\W_]*[s$5][\\W_]*[e3][\\W_]*[s$5][\\W_]*[h#][\\W_]*[i1!|][\\W_]*[t7+])|(?:d[\\W_]*[i1!|][\\W_]*p[\\W_]*[s$5][\\W_]*[h#][\\W_]*[i1!|][\\W_]*[t7+])|(?:f[\\W_]*u[\\W_]*c[\\W_]*k[\\W_]*[h#][\\W_]*[e3][\\W_]*[a@4][\\W_]*d)|(?:c[\\W_]*l[\\W_]*u[\\W_]*[s$5][\\W_]*[t7+][\\W_]*[e3][\\W_]*r[\\W_]*f[\\W_]*u[\\W_]*c[\\W_]*k)|(?:n[\\W_]*[i1!|][\\W_]*[g9][\\W_]*[g9][\\W_]*[a@4])|(?:k[\\W_]*[i1!|][\\W_]*k[\\W_]*[e3])|(?:[s$5][\\W_]*p[\\W_]*[i1!|][\\W_]*c)|(?:c[\\W_]*[h#][\\W_]*[i1!|][\\W_]*n[\\W_]*k)|(?:[g9][\\W_]*[o0][\\W_]*[o0][\\W_]*k)|(?:c[\\W_]*r[\\W_]*[a@4][\\W_]*c[\\W_]*k[\\W_]*[e3][\\W_]*r)|(?:w[\\W_]*[e3][\\W_]*[t7+][\\W_]*b[\\W_]*[a@4][\\W_]*c[\\W_]*k)|(?:[t7+][\\W_]*r[\\W_]*[a@4][\\W_]*n[\\W_]*n[\\W_]*y)|(?:d[\\W_]*y[\\W_]*k[\\W_]*[e3])|(?:f[\\W_]*[a@4][\\W_]*[g9])|(?:b[\\W_]*[e3][\\W_]*[a@4][\\W_]*n[\\W_]*[e3][\\W_]*r)|(?:w[\\W_]*[o0][\\W_]*p)|(?:d[\\W_]*[a@4][\\W_]*[g9][\\W_]*[o0])|(?:[h#][\\W_]*[o0][\\W_]*n[\\W_]*k[\\W_]*y))(?![a-z])"

@@ -132,6 +132,86 @@ commands:
     usage: "/<command> [player]"
     permission: fundamentals.staff.extinguish
     aliases: [ 'ext' ]
+  repair:
+    description: "Repair an item"
+    usage: "Usage: /<command> [player]"
+    permission: fundamentals.staff.repair
+    aliases: [ ]
+  kickall:
+    description: "Kick every player except the executor"
+    usage: "Usage: /<command> [reason]"
+    permission: fundamentals.staff.kickall
+    aliases: [ ]
+  bottom:
+    description: "Teleport to the bottom of the world"
+    usage: "/<command>"
+    permission: fundamentals.staff.bottom
+    aliases: [ ]
+  top:
+    description: "Teleport to the top of the world"
+    usage: "/<command>"
+    permission: fundamentals.staff.top
+    aliases: [ ]
+  whois:
+    description: "Get information about a player"
+    usage: "Usage: /<command> <player>"
+    permission: fundamentals.staff.whois
+    aliases: [ ]
+  lore:
+    description: "Change item lore"
+    usage: "Usage: /<command> <lore...>"
+    permission: fundamentals.staff.lore
+    aliases: [ ]
+  remove:
+    description: "Remove entities nearby"
+    usage: "Usage: /<command> [radius]"
+    permission: fundamentals.staff.remove
+    aliases: [ ]
+  world:
+    description: "Switch to a different world"
+    usage: "Usage: /<command> <world>"
+    permission: fundamentals.staff.world
+    aliases: [ ]
+  near:
+    description: "Show nearby players within a configured range"
+    usage: "/<command>"
+    permission: fundamentals.staff.near
+    aliases: [ ]
+  vanish:
+    description: "Toggle vanish mode"
+    usage: "/<command> [player]"
+    permission: fundamentals.staff.vanish
+    aliases: [ ]
+  staffchat:
+    description: "Send a message to staff chat"
+    usage: "Usage: /<command> <message>"
+    permission: fundamentals.staff.staffchat
+    aliases: [ ]
+  alert:
+    description: "Send an alert to staff"
+    usage: "Usage: /<command> <message>"
+    permission: fundamentals.staff.alert
+    aliases: [ ]
+  god:
+    description: "Toggle god mode"
+    usage: "Usage: /<command> [player]"
+    permission: fundamentals.staff.god
+    aliases: [ ]
+  serverstat:
+    description: "Check server statistics"
+    usage: "/<command>"
+    permission: fundamentals.staff.serverstat
+    aliases: [ ]
+  mute:
+    description: "Mute a player"
+    usage: "Usage: /<command> <player> [time]"
+    permission: fundamentals.staff.mute
+    aliases: [ ]
+  tempban:
+    description: "Temporarily ban a player"
+    usage: "Usage: /<command> <player> <time> [reason]"
+    permission: fundamentals.staff.tempban
+    aliases: [ ]
   # Player commands
   msg:
     description: "Message a player"
@@ -203,6 +283,71 @@ commands:
     usage: "/<command>"
     permission: fundamentals.player.suicide
     aliases: [ 'die' ]
+  back:
+    description: "Teleport back to your previous location"
+    usage: "/<command>"
+    permission: fundamentals.player.back
+    aliases: [ ]
+  seen:
+    description: "See when a player was last online"
+    usage: "Usage: /<command> <player>"
+    permission: fundamentals.player.seen
+    aliases: [ ]
+  playtime:
+    description: "See your or another player's playtime"
+    usage: "Usage: /<command> [player]"
+    permission: fundamentals.player.playtime
+    aliases: [ ]
+  tptoggle:
+    description: "Toggle teleport requests"
+    usage: "/<command>"
+    permission: fundamentals.player.tptoggle
+    aliases: [ ]
+  helpop:
+    description: "Send a message to online staff"
+    usage: "Usage: /<command> <message>"
+    permission: fundamentals.player.helpop
+    aliases: [ ]
+  msgtoggle:
+    description: "Toggle receiving private messages"
+    usage: "/<command>"
+    permission: fundamentals.player.msgtoggle
+    aliases: [ ]
+  tpauto:
+    description: "Automatically accept teleport requests"
+    usage: "/<command>"
+    permission: fundamentals.player.tpauto
+    aliases: [ ]
+  depth:
+    description: "Show current depth relative to sea level"
+    usage: "/<command>"
+    permission: fundamentals.player.depth
+    aliases: [ ]
+  afk:
+    description: "Marks you as away from keyboard"
+    usage: "/<command> [reason]"
+    permission: fundamentals.player.afk
+    aliases: [ ]
+  motd:
+    description: "Show the server message of the day"
+    usage: "/<command>"
+    permission: fundamentals.player.motd
+    aliases: [ ]
+  info:
+    description: "Show server information"
+    usage: "/<command>"
+    permission: fundamentals.player.info
+    aliases: [ ]
+  nick:
+    description: "Set or remove a nickname"
+    usage: "Usage: /<command> [player] [nickname]"
+    permission: fundamentals.player.nick
+    aliases: [ ]
+  realname:
+    description: "Get a player's real name from a nickname"
+    usage: "Usage: /<command> <nickname>"
+    permission: fundamentals.player.realname
+    aliases: [ ]
   # Privileged commands
   workbench:
     description: "Open a crafting table"
@@ -239,6 +384,16 @@ commands:
     usage: "/<command>"
     permission: fundamentals.privileged.cartographytable
     aliases: [ 'cartography', 'maptable' ]
+  rest:
+    description: "Sleep without a bed"
+    usage: "/<command>"
+    permission: fundamentals.privileged.rest
+    aliases: [ ]
+  hat:
+    description: "Place an item on your head"
+    usage: "Usage: /<command> [item/hand] [player]"
+    permission: fundamentals.privileged.hat
+    aliases: [ ]
 
 default-permission: op
 permissions:
@@ -292,6 +447,38 @@ permissions:
         description: "Set a player on fire"
       fundamentals.staff.extinguish:
         description: "Extinguish a player on fire"
+      fundamentals.staff.repair:
+        description: "Repair an item"
+      fundamentals.staff.kickall:
+        description: "Kick all players except the executor"
+      fundamentals.staff.bottom:
+        description: "Teleport to the bottom of the world"
+      fundamentals.staff.top:
+        description: "Teleport to the top of the world"
+      fundamentals.staff.whois:
+        description: "View player information"
+      fundamentals.staff.lore:
+        description: "Modify item lore"
+      fundamentals.staff.remove:
+        description: "Remove entities"
+      fundamentals.staff.world:
+        description: "Switch to another world"
+      fundamentals.staff.near:
+        description: "View nearby players"
+      fundamentals.staff.vanish:
+        description: "Toggle vanish mode"
+      fundamentals.staff.staffchat:
+        description: "Send messages to staff chat"
+      fundamentals.staff.alert:
+        description: "Send alerts to staff"
+      fundamentals.staff.god:
+        description: "Toggle god mode"
+      fundamentals.staff.serverstat:
+        description: "Check the server status"
+      fundamentals.staff.mute:
+        description: "Mute players"
+      fundamentals.staff.tempban:
+        description: "Temporarily ban players"
   fundamentals.player:
     description: "Player commands parent permission"
     default: true
@@ -324,6 +511,32 @@ permissions:
         description: "Send your location to another player quickly"
       fundamentals.player.suicide:
         description: "Kills you"
+      fundamentals.player.back:
+        description: "Teleport back to your previous location"
+      fundamentals.player.seen:
+        description: "See a player's last online time"
+      fundamentals.player.playtime:
+        description: "Check a player's playtime"
+      fundamentals.player.tptoggle:
+        description: "Toggle teleport requests"
+      fundamentals.player.helpop:
+        description: "Message staff for help"
+      fundamentals.player.msgtoggle:
+        description: "Toggle receiving private messages"
+      fundamentals.player.tpauto:
+        description: "Automatically accept teleportation requests"
+      fundamentals.player.depth:
+        description: "Check current depth relative to sea level"
+      fundamentals.player.afk:
+        description: "Mark yourself as AFK"
+      fundamentals.player.motd:
+        description: "View the server MOTD"
+      fundamentals.player.info:
+        description: "View server information"
+      fundamentals.player.nick:
+        description: "Set or clear a nickname"
+      fundamentals.player.realname:
+        description: "Find a player's real name"
   fundamentals.privileged:
     description: "Privileged commands parent permission"
     default: op
@@ -342,3 +555,7 @@ permissions:
         description: "Use an anvil from anywhere"
       fundamentals.privileged.cartographytable:
         description: "Use a cartography table from anywhere"
+      fundamentals.privileged.rest:
+        description: "Sleep without a bed"
+      fundamentals.privileged.hat:
+        description: "Place an item on your head"
