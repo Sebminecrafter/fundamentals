@@ -310,6 +310,10 @@ staffcmds:
   smite:
     staff: "&dThou (&e&lTARGET&d) hast been smitten"
     log: "PLAYER smite-d TARGET"
+  # Extinguish command, can use PLAYER and TARGET
+  extinguish:
+    staff: "&dExtinguished TARGET"
+    log: "PLAYER extinguished TARGET"
 
 # No placeholders, extra messages
 msgs:
