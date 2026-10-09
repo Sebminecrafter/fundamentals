@@ -45,7 +45,7 @@ public class Rename implements FundamentalCommand {
 
         ItemMeta meta = item.getItemMeta();
         if (meta == null) {
-            logger.log(lang.getKey("staffcmds.rename.meta", helper.getReplace()));
+            logger.log(lang.getKey("msgs.nullmeta"));
             return true;
         }
 

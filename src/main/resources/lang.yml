@@ -288,8 +288,6 @@ staffcmds:
     staff: "&5Renamed ITEM to NAME!"
     # No item
     no-item: "&cHold an item to rename it."
-    # Null meta
-    meta: "&cThis item has invalid metadata, sorry!"
   # Brings item to max stack size (or 64 if non-stackable hehe :> ), can use PLAYER, ITEM, AMOUNT, and NEWAMOUNT
   more:
     # Staff message on use
@@ -334,6 +332,7 @@ msgs:
   tpcancelled: "&cYou moved!"
   cooldown: "&cYou must wait SECS seconds before using this command again."
   noperms: "&cYou don't have permission to do that."
+  nullmeta: "&cThis item has invalid metadata, sorry!"
 
 # Most non-command chat messages
 # Can use PLAYER placeholder for most
