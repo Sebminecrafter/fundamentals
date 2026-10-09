@@ -1,5 +1,5 @@
 # Lang file for Fundamentals
-# You can use legacy colors like: &4
+# You can use colors like '&4' or '<red>'
 
 started: "Started Fundamentals"
 stopped: "Stopped Fundamentals"
@@ -310,10 +310,14 @@ staffcmds:
   smite:
     staff: "&dThou (&e&lTARGET&d) hast been smitten"
     log: "PLAYER smite-d TARGET"
-  # Extinguish command, can use PLAYER and TARGET
+  # Extinguish command
   extinguish:
     staff: "&dExtinguished TARGET"
     log: "PLAYER extinguished TARGET"
+  # Rest command
+  rest:
+    staff: "&dRested TARGET"
+    log: "PLAYER rested TARGET"
 
 # No placeholders, extra messages
 msgs:

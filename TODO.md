@@ -29,7 +29,6 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 - [ ] `/depth` to show current depth relative to the sea
 
 ### Privileged Commands
-- [ ] `/rest` to sleep
 - [ ] `/hat [item/hand] [player]` put held or other item on a player's head
 
 ### Staff features/commands

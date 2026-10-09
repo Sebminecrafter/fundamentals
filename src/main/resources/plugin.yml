@@ -348,6 +348,11 @@ commands:
     usage: "Usage: /<command> <nickname>"
     permission: fundamentals.player.realname
     aliases: [ ]
+  rest:
+    description: "Reset a player's time since sleeping"
+    usage: "/<command> [player]"
+    permission: fundamentals.staff.rest
+    aliases: [ ]
   # Privileged commands
   workbench:
     description: "Open a crafting table"
@@ -384,11 +389,6 @@ commands:
     usage: "/<command>"
     permission: fundamentals.privileged.cartographytable
     aliases: [ 'cartography', 'maptable' ]
-  rest:
-    description: "Sleep without a bed"
-    usage: "/<command>"
-    permission: fundamentals.privileged.rest
-    aliases: [ ]
   hat:
     description: "Place an item on your head"
     usage: "Usage: /<command> [item/hand] [player]"
@@ -479,6 +479,8 @@ permissions:
         description: "Mute players"
       fundamentals.staff.tempban:
         description: "Temporarily ban players"
+      fundamentals.staff.rest:
+        description: "Reset a player's time since sleeping"
   fundamentals.player:
     description: "Player commands parent permission"
     default: true
@@ -555,7 +557,5 @@ permissions:
         description: "Use an anvil from anywhere"
       fundamentals.privileged.cartographytable:
         description: "Use a cartography table from anywhere"
-      fundamentals.privileged.rest:
-        description: "Sleep without a bed"
       fundamentals.privileged.hat:
         description: "Place an item on your head"

@@ -1,6 +1,7 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
 import io.github.sebminecrafter.fundamentals.Commands.Player.*;
+import io.github.sebminecrafter.fundamentals.Commands.Privileged.Rest;
 import io.github.sebminecrafter.fundamentals.Commands.Privileged.Workstations.*;
 import io.github.sebminecrafter.fundamentals.Commands.Staff.*;
 import io.github.sebminecrafter.fundamentals.Main;
@@ -44,6 +45,7 @@ public class Commands implements CommandExecutor, TabCompleter {
         commands.put("smite", new Smite());
         commands.put("burn", new Burn());
         commands.put("extinguish", new Extinguish());
+        commands.put("rest", new Rest());
 
         // Player commands
         commands.put("ignore", new Ignore(plugin));
