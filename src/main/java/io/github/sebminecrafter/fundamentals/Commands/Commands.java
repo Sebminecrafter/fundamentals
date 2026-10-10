@@ -48,6 +48,7 @@ public class Commands implements CommandExecutor, TabCompleter {
         commands.put("rest", new Rest());
         commands.put("repair", new Repair());
         commands.put("kickall", new Kickall());
+        commands.put("lore", new Lore());
 
         // Player commands
         commands.put("ignore", new Ignore(plugin));

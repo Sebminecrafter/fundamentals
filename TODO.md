@@ -33,7 +33,6 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 ### Staff features/commands
 - [ ] `/bottom` and `/top`
 - [ ] `/whois` to get player info
-- [ ] `/lore` to change item lore
 - [ ] `/remove` remove entities
 - [ ] `/world <world>` to switch worlds
 - [ ] `/near` to see nearby players within configured range

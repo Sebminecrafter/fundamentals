@@ -288,8 +288,12 @@ staffcmds:
     log: "PLAYER renamed ITEM to NAME"
     # Response
     staff: "&5Renamed ITEM to NAME!"
-    # No item
-    no-item: "&cHold an item to rename it."
+    # Changes an items lore, can use PLAYER, ITEM (material name), and LORE (new lore set)
+  lore:
+    # Log message
+    log: "PLAYER changed ITEM lore to LORE"
+    # Response
+    staff: "&5Changed lore!"
   # Brings item to max stack size (or 64 if non-stackable hehe :> ), can use PLAYER, ITEM, AMOUNT, and NEWAMOUNT
   more:
     # Staff message on use
@@ -336,6 +340,7 @@ msgs:
   cooldown: "&cYou must wait SECS seconds before using this command again."
   noperms: "&cYou don't have permission to do that."
   nullmeta: "&cThis item has invalid metadata, sorry!"
+  no-item: "&cYou need to hold an item!"
 
 # Most non-command chat messages
 # Can use PLAYER placeholder for most

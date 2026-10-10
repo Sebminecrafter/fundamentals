@@ -14,7 +14,7 @@ import java.util.List;
 import static io.github.sebminecrafter.fundamentals.Main.lang;
 import static io.github.sebminecrafter.fundamentals.Main.logger;
 
-public class Rename implements FundamentalCommand {
+public class Lore implements FundamentalCommand {
     @Override
     public boolean execute(CommandSender sender, String[] args, String label) {
         if (args.length == 0) return false;
@@ -23,20 +23,20 @@ public class Rename implements FundamentalCommand {
             return true;
         }
 
-        StringBuilder newNameBuilder = new StringBuilder();
+        StringBuilder loreBuilder = new StringBuilder();
         PlaceholderHelper helper = new PlaceholderHelper();
         helper.add("PLAYER", player.getName());
 
         for (String part : args) {
-            if (!newNameBuilder.isEmpty()) {
-                newNameBuilder.append(" ");
+            if (!loreBuilder.isEmpty()) {
+                loreBuilder.append(" ");
             }
-            newNameBuilder.append(part);
+            loreBuilder.append(part);
         }
 
-        String newName = lang.formatColors(newNameBuilder.toString());
+        String newLore = lang.formatColors(loreBuilder.toString());
         ItemStack item = player.getInventory().getItemInMainHand();
-        helper.add("NAME", newName);
+        helper.add("LORE", newLore);
         helper.add("ITEM", item.getType().name());
         if (item.getType() == Material.AIR) {
             Commands.safeSend(sender, lang.getKey("msgs.no-item", helper.getReplace()));
@@ -49,17 +49,17 @@ public class Rename implements FundamentalCommand {
             return true;
         }
 
-        meta.setItemName(newName);
+        meta.setLore(List.of(newLore));
         item.setItemMeta(meta);
-        logger.log(lang.getKey("staffcmds.rename.log", helper.getReplace()));
-        Commands.safeSend(sender, lang.getKey("staffcmds.rename.staff", helper.getReplace()));
+        logger.log(lang.getKey("staffcmds.lore.log", helper.getReplace()));
+        Commands.safeSend(sender, lang.getKey("staffcmds.lore.staff", helper.getReplace()));
 
         return true;
     }
 
     @Override
     public List<String> tabComplete(CommandSender sender, String[] args) {
-        if (args.length < 1) return List.of("<item name>");
+        if (args.length < 1) return List.of("<item lore>");
         return List.of();
     }
 }
