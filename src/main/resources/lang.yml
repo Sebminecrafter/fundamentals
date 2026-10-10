@@ -151,6 +151,9 @@ cmds:
     # Log message
     log: "PLAYER took the hard way out"
 
+  # Seen command, can use placeholders: PLAYER, YEAR, MONTHNUM, MONTHNAME, DATE, WEEKDAY, 24HOUR, 12HOUR, AMPM, MINUTE, SECOND
+  seen: "&5&lPlayer&5 was last seen on&e MONTHNUM/DATE/YEAR, at 12HOUR:MINUTE:SECOND AMPM"
+
 # Staff commands
 # Placeholders: PLAYER, and sometimes VICTIM (Player might show up as "CONSOLE" in some cases)
 staffcmds:
@@ -217,7 +220,6 @@ staffcmds:
   tpo:
     log: "PLAYER teleported to offline player VICTIM"
     staff: "&5Teleported to &dVICTIM&5!"
-    error: "&c&lVICTIM&c couldn't be found!"
   # Fly
   fly:
     enter:
@@ -323,6 +325,7 @@ msgs:
   disabled: "&cThis command is disabled."
   notfound: "&cCommand not implemented."
   offline: "&cPlayer is not online."
+  playernotfound: "&cThat player couldn't be found!"
   invalid: "&cInvalid argument!"
   fileerror: "&cAn error occurred and the server couldn't save that change."
   readerror: "&cThe server failed to read required data from disk."

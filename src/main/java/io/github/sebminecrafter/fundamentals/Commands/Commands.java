@@ -67,6 +67,7 @@ public class Commands implements CommandExecutor, TabCompleter {
         commands.put("sendloc", new SendLocation((Msg) commands.get("msg")));
         commands.put("getpos", new Getpos());
         commands.put("suicide", new Suicide());
+        commands.put("seen", new Seen());
 
         // Privileged commands
         commands.put("workbench", new Workbench());

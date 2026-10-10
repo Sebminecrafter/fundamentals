@@ -38,12 +38,12 @@ public class Tpo implements FundamentalCommand {
         helper.add("VICTIM", args[0]);
         List<List<String>> replace = helper.getReplace();
         if (target == null || target.getName() == null) {
-            Commands.safeSend(sender, lang.getKey("staffcmds.tpo.error", replace));
+            Commands.safeSend(sender, lang.getKey("msgs.playernotfound", replace));
             return true;
         }
         Location targetLocation = target.getLocation();
         if (targetLocation == null) {
-            Commands.safeSend(sender, lang.getKey("staffcmds.tpo.error", replace));
+            Commands.safeSend(sender, lang.getKey("msgs.playernotfound", replace));
             return true;
         }
         executor.teleport(targetLocation);

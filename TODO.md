@@ -20,7 +20,6 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 
 ### Player features/commands
 - [ ] `/back` on death and teleports
-- [ ] `/seen` see last online time of player
 - [ ] `/playtime [player]` see playtime of self or other
 - [ ] `/tptoggle` to enable/disable tp requests (toggle)
 - [ ] `/helpop` to message admins
