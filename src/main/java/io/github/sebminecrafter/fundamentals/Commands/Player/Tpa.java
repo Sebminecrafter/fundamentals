@@ -12,7 +12,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitTask;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -141,17 +140,16 @@ public class Tpa implements FundamentalCommand {
         PlaceholderHelper helper = new PlaceholderHelper();
         helper.add("PLAYER", sender.getName());
         helper.add("OTHER", receiver.getName());
-        List<List<String>> replace = helper.getReplace();
         if (tparequests.containsValue(sender.getUniqueId()) ||
                 tpahererequests.containsValue(sender.getUniqueId())) {
-            Commands.safeSend(sender, lang.getKey("cmds.tpa.multiple", replace));
+            Commands.safeSend(sender, lang.getKey("cmds.tpa.multiple", helper.getReplace()));
         } else {
             Cooldowns.start("tpa", sender.getUniqueId(), config.getInt("tpa.cooldown"));
             tparequests.put(receiver.getUniqueId(), sender.getUniqueId());
-            logger.log(lang.getKey("cmds.tpa.request.tpa.log", replace));
-            Commands.safeSend(sender, lang.getKey("cmds.tpa.request.tpa.sent", replace));
+            logger.log(lang.getKey("cmds.tpa.request.tpa.log", helper.getReplace()));
+            Commands.safeSend(sender, lang.getKey("cmds.tpa.request.tpa.sent", helper.getReplace()));
             FundamentalSounds.tPSFCSimpler(receiver, "sounds.tpa-receive");
-            Commands.safeSend(receiver, lang.getKey("cmds.tpa.request.tpa.receive", replace));
+            Commands.safeSend(receiver, lang.getKey("cmds.tpa.request.tpa.receive", helper.getReplace()));
 
             BukkitTask task = Bukkit.getScheduler().runTaskLater(Main.getPlugin(Main.class), () ->
                     expireTpRequest(receiver.getUniqueId(), sender.getUniqueId()), requestExpiry);
@@ -163,17 +161,16 @@ public class Tpa implements FundamentalCommand {
         PlaceholderHelper helper = new PlaceholderHelper();
         helper.add("PLAYER", sender.getName());
         helper.add("OTHER", receiver.getName());
-        List<List<String>> replace = helper.getReplace();
         if (tparequests.containsValue(sender.getUniqueId()) ||
                 tpahererequests.containsValue(sender.getUniqueId())) {
-            Commands.safeSend(sender, lang.getKey("cmds.tpa.multiple", replace));
+            Commands.safeSend(sender, lang.getKey("cmds.tpa.multiple", helper.getReplace()));
         } else {
             Cooldowns.start("tpa", sender.getUniqueId(), config.getInt("tpa.cooldown"));
             tpahererequests.put(receiver.getUniqueId(), sender.getUniqueId());
-            logger.log(lang.getKey("cmds.tpa.request.tpahere.log", replace));
-            Commands.safeSend(sender, lang.getKey("cmds.tpa.request.tpahere.sent", replace));
+            logger.log(lang.getKey("cmds.tpa.request.tpahere.log", helper.getReplace()));
+            Commands.safeSend(sender, lang.getKey("cmds.tpa.request.tpahere.sent", helper.getReplace()));
             FundamentalSounds.tPSFCSimpler(receiver, "sounds.tpa-receive");
-            Commands.safeSend(receiver, lang.getKey("cmds.tpa.request.tpahere.receive", replace));
+            Commands.safeSend(receiver, lang.getKey("cmds.tpa.request.tpahere.receive", helper.getReplace()));
 
             BukkitTask task = Bukkit.getScheduler().runTaskLater(Main.getPlugin(Main.class), () ->
                     expireTpHereRequest(receiver.getUniqueId(), sender.getUniqueId()), requestExpiry);

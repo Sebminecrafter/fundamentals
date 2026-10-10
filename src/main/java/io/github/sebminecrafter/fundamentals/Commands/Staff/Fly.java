@@ -7,8 +7,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.List;
-
 import static io.github.sebminecrafter.fundamentals.Main.lang;
 import static io.github.sebminecrafter.fundamentals.Main.logger;
 
@@ -33,15 +31,14 @@ public class Fly implements FundamentalCommand {
         }
         PlaceholderHelper helper = new PlaceholderHelper();
         helper.add("PLAYER", player.getName());
-        List<List<String>> replace = helper.getReplace();
         if (player.getAllowFlight()) {
-            Commands.safeSend(player, lang.getKey("staffcmds.fly.exit.staff", replace));
-            logger.log(lang.getKey("staffcmds.fly.exit.log", replace));
+            Commands.safeSend(player, lang.getKey("staffcmds.fly.exit.staff", helper.getReplace()));
+            logger.log(lang.getKey("staffcmds.fly.exit.log", helper.getReplace()));
             player.setFlying(false);
             player.setAllowFlight(false);
         } else {
-            Commands.safeSend(player, lang.getKey("staffcmds.fly.enter.staff", replace));
-            logger.log(lang.getKey("staffcmds.fly.enter.log", replace));
+            Commands.safeSend(player, lang.getKey("staffcmds.fly.enter.staff", helper.getReplace()));
+            logger.log(lang.getKey("staffcmds.fly.enter.log", helper.getReplace()));
             player.setAllowFlight(true);
             player.setFlying(true);
         }

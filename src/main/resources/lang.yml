@@ -154,6 +154,9 @@ cmds:
   # Seen command, can use placeholders: PLAYER, YEAR, MONTHNUM, MONTHNAME, DATE, WEEKDAY, 24HOUR, 12HOUR, AMPM, MINUTE, SECOND
   seen: "&5&lPlayer&5 was last seen on&e MONTHNUM/DATE/YEAR, at 12HOUR:MINUTE:SECOND AMPM"
 
+  # Hat command, puts item in hand on head
+  hat: "&5Plop!"
+
 # Staff commands
 # Placeholders: PLAYER, and sometimes VICTIM (Player might show up as "CONSOLE" in some cases)
 staffcmds:

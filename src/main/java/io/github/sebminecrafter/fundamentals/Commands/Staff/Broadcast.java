@@ -21,13 +21,12 @@ public class Broadcast implements FundamentalCommand {
         PlaceholderHelper helper = new PlaceholderHelper();
         helper.add("PLAYER", sender.getName());
         helper.add("MSG", message);
-        List<List<String>> replace = helper.getReplace();
-        logger.logBoth(lang.getKey("staffcmds.broadcast.log", replace));
-        Commands.safeSend(sender, lang.getKey("staffcmds.broadcast.staff", replace));
-        Bukkit.broadcastMessage(lang.getKey("staffcmds.broadcast.player", replace));
+        logger.logBoth(lang.getKey("staffcmds.broadcast.log", helper.getReplace()));
+        Commands.safeSend(sender, lang.getKey("staffcmds.broadcast.staff", helper.getReplace()));
+        Bukkit.broadcastMessage(lang.getKey("staffcmds.broadcast.player", helper.getReplace()));
         for (Player player : Bukkit.getOnlinePlayers()) {
             FundamentalSounds.tPSFCSimpler(player, "sounds.broadcast");
-            player.sendTitle(lang.getKey("staffcmds.broadcast.player", replace), null, 20, 60, 20);
+            player.sendTitle(lang.getKey("staffcmds.broadcast.player", helper.getReplace()), null, 20, 60, 20);
         }
         return true;
     }

@@ -48,24 +48,22 @@ public class Freeze implements FundamentalCommand, Listener {
         helper.add("PLAYER", sender.getName());
         helper.add("VICTIM", target.getName());
 
-        List<List<String>> replace = helper.getReplace();
-
         if (frozenPlayers.containsKey(uuid)) {
             // Remove task and unfreeze
             frozenPlayers.get(uuid).cancel();
             frozenPlayers.remove(uuid);
 
-            logger.log(lang.getKey("staffcmds.freeze.log.stop", replace));
-            Commands.safeSend(sender, lang.getKey("staffcmds.freeze.staff.stop", replace));
-            Commands.safeSend(target, lang.getKey("staffcmds.freeze.player.stop", replace));
+            logger.log(lang.getKey("staffcmds.freeze.log.stop", helper.getReplace()));
+            Commands.safeSend(sender, lang.getKey("staffcmds.freeze.staff.stop", helper.getReplace()));
+            Commands.safeSend(target, lang.getKey("staffcmds.freeze.player.stop", helper.getReplace()));
         } else {
             // Schedule message task and freeze
             BukkitTask task = Bukkit.getScheduler().runTaskTimer(plugin, () -> sendMsg(target), 0L, 60L);
             frozenPlayers.put(uuid, task);
 
-            logger.log(lang.getKey("staffcmds.freeze.log.start", replace));
-            Commands.safeSend(sender, lang.getKey("staffcmds.freeze.staff.start", replace));
-            Commands.safeSend(target, lang.getKey("staffcmds.freeze.player.start", replace));
+            logger.log(lang.getKey("staffcmds.freeze.log.start", helper.getReplace()));
+            Commands.safeSend(sender, lang.getKey("staffcmds.freeze.staff.start", helper.getReplace()));
+            Commands.safeSend(target, lang.getKey("staffcmds.freeze.player.start", helper.getReplace()));
         }
         return true;
     }

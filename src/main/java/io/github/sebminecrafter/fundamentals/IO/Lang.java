@@ -10,6 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -96,15 +97,12 @@ public class Lang {
 
     /** Get the translation for `key`, with placeholders
      * @param key The translation key path (like `command.example.response`)
-     * @param list List of Lists, each should be a pair of String (value) and String (replacement)
+     * @param replacements Map of String placeholder to String replacement
      *  */
-    public String getKey(String key, List< List<String> > list) {
+    public String getKey(String key, Map<String, String> replacements) {
         String string = _getKey(key);
-        for (List<String> stringList : list) {
-            if (stringList.size() < 2) {
-                continue;
-            }
-            string = string.replace(stringList.getFirst(), stringList.getLast());
+        for (String placeholder : replacements.keySet()) {
+            string = string.replace(placeholder, replacements.get(placeholder));
         }
         string = formatColors(string);
         return string;

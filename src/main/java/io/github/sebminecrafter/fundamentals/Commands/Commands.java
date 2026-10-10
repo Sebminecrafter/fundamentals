@@ -1,6 +1,7 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
 import io.github.sebminecrafter.fundamentals.Commands.Player.*;
+import io.github.sebminecrafter.fundamentals.Commands.Privileged.Hat;
 import io.github.sebminecrafter.fundamentals.Commands.Privileged.Rest;
 import io.github.sebminecrafter.fundamentals.Commands.Privileged.Workstations.*;
 import io.github.sebminecrafter.fundamentals.Commands.Staff.*;
@@ -78,6 +79,7 @@ public class Commands implements CommandExecutor, TabCompleter {
         commands.put("grindstone", new Grindstone());
         commands.put("anvil", new Anvil());
         commands.put("cartographytable", new CartographyTable());
+        commands.put("hat", new Hat());
     }
 
     public FundamentalCommand getCommand(String commandName) {

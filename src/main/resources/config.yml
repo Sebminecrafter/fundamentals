@@ -141,6 +141,7 @@ sounds:
   broadcast: "entity.ender_dragon.growl"
   broadcastworld: "entity.ender_dragon.growl"
   ec: "block.ender_chest.open"
+  hat: "entity.chicken.egg"
 
 home:
   # Delay before home teleport (seconds, can be 0)

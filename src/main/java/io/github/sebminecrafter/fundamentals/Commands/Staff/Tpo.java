@@ -9,8 +9,6 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.List;
-
 import static io.github.sebminecrafter.fundamentals.Main.lang;
 import static io.github.sebminecrafter.fundamentals.Main.logger;
 
@@ -36,19 +34,18 @@ public class Tpo implements FundamentalCommand {
         PlaceholderHelper helper = new PlaceholderHelper();
         helper.add("PLAYER", executor.getName());
         helper.add("VICTIM", args[0]);
-        List<List<String>> replace = helper.getReplace();
         if (target == null || target.getName() == null) {
-            Commands.safeSend(sender, lang.getKey("msgs.playernotfound", replace));
+            Commands.safeSend(sender, lang.getKey("msgs.playernotfound", helper.getReplace()));
             return true;
         }
         Location targetLocation = target.getLocation();
         if (targetLocation == null) {
-            Commands.safeSend(sender, lang.getKey("msgs.playernotfound", replace));
+            Commands.safeSend(sender, lang.getKey("msgs.playernotfound", helper.getReplace()));
             return true;
         }
         executor.teleport(targetLocation);
-        Commands.safeSend(sender, lang.getKey("staffcmds.tpo.staff", replace));
-        logger.log(lang.getKey("staffcmds.tpo.log", replace));
+        Commands.safeSend(sender, lang.getKey("staffcmds.tpo.staff", helper.getReplace()));
+        logger.log(lang.getKey("staffcmds.tpo.log", helper.getReplace()));
         return true;
     }
 }

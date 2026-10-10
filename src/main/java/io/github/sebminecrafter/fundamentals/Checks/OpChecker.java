@@ -49,12 +49,11 @@ public class OpChecker implements Listener {
         PlaceholderHelper helper = new PlaceholderHelper();
         helper.add("CMD", cmd);
         helper.add("EXECUTOR", player);
-        List<List<String>> replace = helper.getReplace();
 
         if (cmd.startsWith("op ")) {
-            logger.logBoth(Level.WARNING, lang.getKey("ops.player.op", replace));
+            logger.logBoth(Level.WARNING, lang.getKey("ops.player.op", helper.getReplace()));
         } else if (cmd.startsWith("deop ")) {
-            logger.logBoth(Level.WARNING, lang.getKey("ops.player.deop", replace));
+            logger.logBoth(Level.WARNING, lang.getKey("ops.player.deop", helper.getReplace()));
         }
     }
 
@@ -65,12 +64,11 @@ public class OpChecker implements Listener {
 
         PlaceholderHelper helper = new PlaceholderHelper();
         helper.add("CMD", cmd);
-        List<List<String>> replace = helper.getReplace();
 
         if (cmd.startsWith("op ")) {
-            logger.logBoth(lang.getKey("ops.console.op", replace));
+            logger.logBoth(lang.getKey("ops.console.op", helper.getReplace()));
         } else if (cmd.startsWith("deop ")) {
-            logger.logBoth(lang.getKey("ops.console.deop", replace));
+            logger.logBoth(lang.getKey("ops.console.deop", helper.getReplace()));
         }
     }
 
@@ -81,11 +79,10 @@ public class OpChecker implements Listener {
             if (current != previous) {
                 PlaceholderHelper helper = new PlaceholderHelper();
                 helper.add("PLAYER", player.getName());
-                List<List<String>> replace = helper.getReplace();
                 if (current) {
-                    logger.logBoth(Level.WARNING, lang.getKey("ops.detect.op", replace));
+                    logger.logBoth(Level.WARNING, lang.getKey("ops.detect.op", helper.getReplace()));
                 } else {
-                    logger.logBoth(Level.WARNING, lang.getKey("ops.detect.deop", replace));
+                    logger.logBoth(Level.WARNING, lang.getKey("ops.detect.deop", helper.getReplace()));
                 }
             }
             opStatus.put(player.getUniqueId(), current);

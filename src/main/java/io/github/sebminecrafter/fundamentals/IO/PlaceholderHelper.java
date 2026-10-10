@@ -1,23 +1,20 @@
 package io.github.sebminecrafter.fundamentals.IO;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PlaceholderHelper {
-    private final List<List<String>> replace;
+    private final Map<String, String> replace;
 
     public PlaceholderHelper() {
-        replace = new ArrayList<>();
+        replace = new HashMap<>();
     }
 
     public void add(String placeholder, String value) {
-        List<String> replaceList = new ArrayList<>();
-        replaceList.add(placeholder);
-        replaceList.add(value);
-        replace.add(replaceList);
+        replace.put(placeholder, value);
     }
 
-    public List<List<String>> getReplace() {
+    public Map<String, String> getReplace() {
         return replace;
     }
 }

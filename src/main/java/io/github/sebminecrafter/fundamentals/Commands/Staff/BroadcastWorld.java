@@ -29,13 +29,12 @@ public class BroadcastWorld implements FundamentalCommand {
         helper.add("PLAYER", sender.getName());
         helper.add("MSG", message);
         helper.add("WORLD", world.getName());
-        List<List<String>> replace = helper.getReplace();
-        logger.logBoth(lang.getKey("staffcmds.broadcastworld.log", replace));
-        Commands.safeSend(sender, lang.getKey("staffcmds.broadcastworld.staff", replace));
-        Bukkit.broadcastMessage(lang.getKey("staffcmds.broadcastworld.player", replace));
+        logger.logBoth(lang.getKey("staffcmds.broadcastworld.log", helper.getReplace()));
+        Commands.safeSend(sender, lang.getKey("staffcmds.broadcastworld.staff", helper.getReplace()));
+        Bukkit.broadcastMessage(lang.getKey("staffcmds.broadcastworld.player", helper.getReplace()));
         for (Player player : world.getPlayers()) {
             FundamentalSounds.tPSFCSimpler(player, "sounds.broadcastworld");
-            player.sendTitle(lang.getKey("staffcmds.broadcastworld.player", replace), null, 20, 60, 20);
+            player.sendTitle(lang.getKey("staffcmds.broadcastworld.player", helper.getReplace()), null, 20, 60, 20);
         }
         return true;
     }

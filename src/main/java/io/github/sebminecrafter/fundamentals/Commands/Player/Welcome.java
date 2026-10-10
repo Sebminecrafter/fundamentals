@@ -7,7 +7,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.List;
 import java.util.Objects;
 
 import static io.github.sebminecrafter.fundamentals.Main.lang;
@@ -35,9 +34,8 @@ public class Welcome implements FundamentalCommand {
         PlaceholderHelper helper = new PlaceholderHelper();
         helper.add("PLAYER", sender.getName());
         helper.add("OTHER", player.getName());
-        List<List<String>> replace = helper.getReplace();
-        logger.log(lang.getKey("cmds.welcome.log", replace));
-        Bukkit.broadcastMessage(lang.getKey("cmds.welcome.send", replace));
+        logger.log(lang.getKey("cmds.welcome.log", helper.getReplace()));
+        Bukkit.broadcastMessage(lang.getKey("cmds.welcome.send", helper.getReplace()));
         return true;
     }
 }
