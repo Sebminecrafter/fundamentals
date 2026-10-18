@@ -65,3 +65,5 @@ Fundamentals features *Server Checks* which are run on timers to make sure no on
 or trying to mess with the server.
 
 - `OpChecker` - checks if anyone has been op'd every 5 seconds.
+
+![bStats statistics](https://bstats.org/signatures/bukkit/fundamentalswastaken.svg)

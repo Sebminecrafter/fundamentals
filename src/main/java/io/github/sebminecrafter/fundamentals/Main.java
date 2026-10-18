@@ -9,6 +9,7 @@ import io.github.sebminecrafter.fundamentals.Commands.Staff.Staffmode;
 import io.github.sebminecrafter.fundamentals.IO.Config;
 import io.github.sebminecrafter.fundamentals.IO.Lang;
 import io.github.sebminecrafter.fundamentals.IO.Logging;
+import org.bstats.bukkit.Metrics;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -20,7 +21,9 @@ public final class Main extends JavaPlugin {
     public static Config config;
     public static GlobalChat chat;
     public static Commands commands;
+    public static int pluginId = 34782;
     private OpChecker opchecker;
+    private Metrics metrics;
 
     @Override
     public void onEnable() {
@@ -46,6 +49,9 @@ public final class Main extends JavaPlugin {
             }
         }
 
+        // Register bStats metrics
+        metrics = new Metrics(this, pluginId);
+
         logger.log(lang.getKey("started"));
     }
 
@@ -62,6 +68,8 @@ public final class Main extends JavaPlugin {
         if (staffmode instanceof Staffmode s) {
             s.restoreAll();
         }
+
+        metrics.shutdown();
 
         logger.log(lang.getKey("stopped"));
         logger.closeFileHandler();
