@@ -87,7 +87,7 @@ public class Fundamentals implements FundamentalCommand {
                 return true;
             }
             case "update" -> {
-                Commands.safeSend(sender, "Not yet implemented!");
+
                 return true;
             }
             case "help" -> {

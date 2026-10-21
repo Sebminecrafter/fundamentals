@@ -1,8 +1,9 @@
-package io.github.sebminecrafter.fundamentals.IO;
+package io.github.sebminecrafter.fundamentals.Checks;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 

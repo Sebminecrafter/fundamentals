@@ -9,7 +9,7 @@ import io.github.sebminecrafter.fundamentals.Commands.Staff.Staffmode;
 import io.github.sebminecrafter.fundamentals.IO.Config;
 import io.github.sebminecrafter.fundamentals.IO.Lang;
 import io.github.sebminecrafter.fundamentals.IO.Logging;
-import io.github.sebminecrafter.fundamentals.IO.UpdateChecker;
+import io.github.sebminecrafter.fundamentals.Checks.UpdateChecker;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -22,6 +22,7 @@ public final class Main extends JavaPlugin {
     public static Config config;
     public static GlobalChat chat;
     public static Commands commands;
+    public static UpdateChecker updateChecker;
     public static int pluginId = 34782;
     private OpChecker opchecker;
     private Metrics metrics;
@@ -37,23 +38,25 @@ public final class Main extends JavaPlugin {
         config = new Config(this);
         commands = new Commands(this);
         chat = new GlobalChat(this, (Ignore) commands.getCommand("ignore"));
+        updateChecker = new UpdateChecker(this, "fundamentalswastaken");
 
         if (config.isEnabled("checks.opchecker")) {
             opchecker = new OpChecker(this);
         }
+        if (config.isEnabled("checks.updatechecker")) {
+            updateChecker.check();
+        }
 
-        for (String commandName : getDescription().getCommands().keySet()) {
+        getDescription().getCommands().keySet().forEach(commandName -> {
             PluginCommand command = getCommand(commandName);
             if (command != null) {
                 command.setExecutor(commands);
                 command.setTabCompleter(commands);
             }
-        }
+        });
 
         // Register bStats metrics
         metrics = new Metrics(this, pluginId);
-
-        new UpdateChecker(this, "fundamentalswastaken").check();
 
         logger.log(lang.getKey("started"));
     }

@@ -3,7 +3,8 @@
 # Enable or disable modules
 enabled:
   checks:
-    opchecker: true #
+    opchecker: true # Checks and alerts when players are op'd
+    updatechecker: true # Checks for updates on plugin start
 
   cmds:
     # Player commands
