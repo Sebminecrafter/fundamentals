@@ -17,4 +17,12 @@ public class PlaceholderHelper {
     public Map<String, String> getReplace() {
         return replace;
     }
+
+    public String parse(String text) {
+        String string = text;
+        for (String placeholder : replace.keySet()) {
+            string = string.replace(placeholder, replace.get(placeholder));
+        }
+        return string;
+    }
 }

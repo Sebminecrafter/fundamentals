@@ -9,6 +9,7 @@ import io.github.sebminecrafter.fundamentals.Commands.Staff.Staffmode;
 import io.github.sebminecrafter.fundamentals.IO.Config;
 import io.github.sebminecrafter.fundamentals.IO.Lang;
 import io.github.sebminecrafter.fundamentals.IO.Logging;
+import io.github.sebminecrafter.fundamentals.IO.UpdateChecker;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -52,12 +53,13 @@ public final class Main extends JavaPlugin {
         // Register bStats metrics
         metrics = new Metrics(this, pluginId);
 
+        new UpdateChecker(this, "fundamentalswastaken").check();
+
         logger.log(lang.getKey("started"));
     }
 
     @Override
     public void onDisable() {
-
         ((Freeze) commands.getCommand("freeze")).cleanup();
 
         if (opchecker != null) {

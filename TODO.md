@@ -32,7 +32,7 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 (suggest some!)
 
 ### Staff features/commands
-- [ ] `/bottom` and `/top`
+- [X] `/bottom` and `/top`
 - [ ] `/whois` to get player info
 - [ ] `/remove` remove entities
 - [ ] `/world <world>` to switch worlds
@@ -43,6 +43,7 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 - [ ] `/serverstat` to check uptime, performance, etc.
 - [ ] `/mute <player> [time]` mute a player
 - [ ] `/tempban <player> <time> [reason]` tempban player
+- [ ] `/fundamentals update` / `auto_update` flag in config to live download plugin updates
 
 ### General features
 
@@ -82,3 +83,4 @@ on GitHub
 ## Notices
 
 - Warps and reloading have not been fully tested.
+- Update Checker WIP

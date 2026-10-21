@@ -69,7 +69,7 @@ commands:
     aliases: [ ]
   fundamentals:
     description: "Plugin configuration"
-    usage: "Usage: /<command> <help/reloadconfig/enablecommand/disablecommand> [command]"
+    usage: "Usage: /<command> <help/reloadconfig/enablecommand/disablecommand/update> [command]"
     permission: fundamentals.staff.fundamentals
     aliases: [ ]
   socialspy:
@@ -144,12 +144,12 @@ commands:
     aliases: [ ]
   bottom:
     description: "Teleport to the bottom of the world"
-    usage: "/<command>"
+    usage: "/<command> [player]"
     permission: fundamentals.staff.bottom
     aliases: [ ]
   top:
     description: "Teleport to the top of the world"
-    usage: "/<command>"
+    usage: "/<command> [player]"
     permission: fundamentals.staff.top
     aliases: [ ]
   whois:

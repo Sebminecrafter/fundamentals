@@ -297,7 +297,7 @@ staffcmds:
     log: "PLAYER changed ITEM lore to LORE"
     # Response
     staff: "&5Changed lore!"
-  # Brings item to max stack size (or 64 if non-stackable hehe :> ), can use PLAYER, ITEM, AMOUNT, and NEWAMOUNT
+  # Brings item to max stack size (or 64 if non-stackable), can use PLAYER, ITEM, AMOUNT, and NEWAMOUNT
   more:
     # Staff message on use
     staff: "&5Gave you more!"
@@ -325,6 +325,12 @@ staffcmds:
   rest:
     staff: "&dRested TARGET"
     log: "PLAYER rested TARGET"
+  # Top command, can use TARGET, PLAYER, BX, BY, BZ (block x, y, and z)
+  top:
+    staff: "&5Brought TARGET up!"
+    log: "PLAYER put TARGET on top block (at x BX y BY z BZ)"
+    fail: "&cThe top is not passable."
+
 
 # No placeholders, extra messages
 msgs:
