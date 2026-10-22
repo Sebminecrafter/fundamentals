@@ -329,7 +329,12 @@ staffcmds:
   top:
     staff: "&5Brought TARGET up!"
     log: "PLAYER put TARGET on top block (at x BX y BY z BZ)"
-    fail: "&cThe top is not passable."
+    fail: "&cCouldn't find a passable top block."
+  # Bottom command, can use TARGET, PLAYER, BX, BY, BZ (block x, y, and z)
+  bottom:
+    staff: "&5Brought TARGET down!"
+    log: "PLAYER put TARGET on bottom block (at x BX y BY z BZ)"
+    fail: "&cCouldn't find a passable bottom block."
 
 
 # No placeholders, extra messages

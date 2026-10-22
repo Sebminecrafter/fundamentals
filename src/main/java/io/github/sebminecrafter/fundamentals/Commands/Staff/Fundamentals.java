@@ -87,7 +87,7 @@ public class Fundamentals implements FundamentalCommand {
                 return true;
             }
             case "update" -> {
-
+                updateChecker.check();
                 return true;
             }
             case "help" -> {

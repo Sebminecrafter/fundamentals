@@ -1,8 +1,7 @@
 package io.github.sebminecrafter.fundamentals.Commands;
 
 import io.github.sebminecrafter.fundamentals.Commands.Player.*;
-import io.github.sebminecrafter.fundamentals.Commands.Privileged.Hat;
-import io.github.sebminecrafter.fundamentals.Commands.Privileged.Rest;
+import io.github.sebminecrafter.fundamentals.Commands.Privileged.*;
 import io.github.sebminecrafter.fundamentals.Commands.Privileged.Workstations.*;
 import io.github.sebminecrafter.fundamentals.Commands.Staff.*;
 import io.github.sebminecrafter.fundamentals.Main;
@@ -51,6 +50,7 @@ public class Commands implements CommandExecutor, TabCompleter {
         commands.put("kickall", new Kickall());
         commands.put("lore", new Lore());
         commands.put("top", new Top());
+        commands.put("bottom", new Bottom());
 
         // Player commands
         commands.put("ignore", new Ignore(plugin));

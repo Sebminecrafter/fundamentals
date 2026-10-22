@@ -32,7 +32,6 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 (suggest some!)
 
 ### Staff features/commands
-- [X] `/bottom` and `/top`
 - [ ] `/whois` to get player info
 - [ ] `/remove` remove entities
 - [ ] `/world <world>` to switch worlds
