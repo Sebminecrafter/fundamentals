@@ -3,8 +3,10 @@ package io.github.sebminecrafter.fundamentals.Checks;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import io.github.sebminecrafter.fundamentals.Commands.Commands;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.net.URI;
@@ -34,34 +36,47 @@ public class UpdateChecker {
     private final JavaPlugin plugin;
     private final String projectId;
 
-    private String serverVersion;
-    private String currentVersion;
-
     public UpdateChecker(JavaPlugin plugin, String projectId) {
         this.plugin = plugin;
         this.projectId = projectId;
     }
 
     public void check() {
-        serverVersion = Bukkit.getBukkitVersion()
+        check(null);
+    }
+
+    public void check(CommandSender sender) {
+        String serverVersion = Bukkit.getBukkitVersion()
                 .split("-")[0]
                 .replaceFirst("\\.build\\.\\d+$", "");
 
-        currentVersion = plugin.getDescription().getVersion();
+        String currentVersion = plugin.getDescription().getVersion();
 
         if (!MC_VERSION.matcher(serverVersion).matches()
                 || !VERSION.matcher(currentVersion).matches()) {
-            logger.log(Level.WARNING,
+            send(sender, Level.WARNING,
                     "Unknown plugin/server version! MC: " + serverVersion
                             + " Fundamentals: " + currentVersion);
             return;
         }
 
         plugin.getServer().getScheduler()
-                .runTaskAsynchronously(plugin, this::checkForUpdates);
+                .runTaskAsynchronously(plugin,
+                        () -> checkForUpdates(sender, serverVersion, currentVersion));
     }
 
-    private void checkForUpdates() {
+    private void send(CommandSender sender, Level level, String message) {
+        if (sender == null) {
+            logger.log(level, message);
+        } else {
+            Bukkit.getScheduler().runTask(plugin, () ->
+                    Commands.safeSend(sender, message)
+            );
+        }
+    }
+
+    private void checkForUpdates(CommandSender sender, String serverVersion,
+                                 String currentVersion) {
         try {
             String loaders = URLEncoder.encode(
                     "[\"paper\",\"spigot\",\"bukkit\"]",
@@ -100,7 +115,7 @@ public class UpdateChecker {
             }
 
             if (response.statusCode() != 200) {
-                logger.log(Level.WARNING,
+                send(sender, Level.WARNING,
                         "Checking for update failed! Received HTTP status code "
                                 + response.statusCode());
                 return;
@@ -132,7 +147,8 @@ public class UpdateChecker {
             }
 
             if (latestVersion == null) {
-                logger.log("No compatible version(s) found on Modrinth.");
+                send(sender, Level.INFO,
+                        "No compatible version(s) found on Modrinth.");
                 return;
             }
 
@@ -146,17 +162,16 @@ public class UpdateChecker {
                         Update found!
                         Current version: CUR
                         Latest: NEW
-                        Use /fundamentals update
-                        or download it from URL
+                        Download it at URL
                         """;
 
-                logger.log(Level.WARNING, helper.parse(message));
+                send(sender, Level.WARNING, helper.parse(message));
             } else {
-                logger.log("No updates available :)");
+                send(sender, Level.INFO, "No updates available :)");
             }
 
         } catch (Exception e) {
-            logger.log(Level.WARNING,
+            send(sender, Level.WARNING,
                     "Checking for update failed: " + e.getMessage());
         }
     }

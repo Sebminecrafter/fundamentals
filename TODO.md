@@ -42,7 +42,7 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 - [ ] `/serverstat` to check uptime, performance, etc.
 - [ ] `/mute <player> [time]` mute a player
 - [ ] `/tempban <player> <time> [reason]` tempban player
-- [ ] `/fundamentals update` / `auto_update` flag in config to live download plugin updates
+- [ ] `/fundamentals downloadupdate` / `auto_update` flag in config to live download plugin updates
 
 ### General features
 
