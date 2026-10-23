@@ -157,6 +157,9 @@ cmds:
   # Hat command, puts item in hand on head
   hat: "&5Plop!"
 
+  # Depth command, can use DEPTH placeholder
+  depth: "&5Your current distance from sea level is: &e&lDEPTH"
+
 # Staff commands
 # Placeholders: PLAYER, and sometimes VICTIM (Player might show up as "CONSOLE" in some cases)
 staffcmds:

@@ -25,7 +25,6 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 - [ ] `/helpop` to message admins
 - [ ] `/msgtoggle` to toggle receiving messages
 - [ ] `/tpauto` to auto-accept tpa requests
-- [ ] `/depth` to show current depth relative to the sea
 
 ### Privileged Commands
 
@@ -40,6 +39,7 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 - [ ] `/staffchat` and `/alert` for staff messaging
 - [ ] `/god [player]` toggles "god mode"
 - [ ] `/serverstat` to check uptime, performance, etc.
+- [ ] `/pausechat` to pause the chat
 - [ ] `/mute <player> [time]` mute a player
 - [ ] `/tempban <player> <time> [reason]` tempban player
 - [ ] `/fundamentals downloadupdate` / `auto_update` flag in config to live download plugin updates

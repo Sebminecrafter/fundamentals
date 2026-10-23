@@ -320,7 +320,7 @@ commands:
     aliases: [ ]
   depth:
     description: "Show current depth relative to sea level"
-    usage: "/<command>"
+    usage: "/<command> [player]"
     permission: fundamentals.player.depth
     aliases: [ ]
   afk:
