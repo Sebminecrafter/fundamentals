@@ -49,7 +49,6 @@ public class Logging {
             secondaryLogger.log(level, message);
         }
     }
-
     public void logBoth(String message) {
         logBoth(Level.INFO, message);
     }

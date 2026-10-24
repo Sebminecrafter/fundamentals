@@ -14,8 +14,6 @@ import org.bstats.bukkit.Metrics;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.Objects;
-
 public final class Main extends JavaPlugin {
     public static Logging logger;
     public static Lang lang;
@@ -29,10 +27,12 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        // Create folder if it doesn't exist
         if (getDataFolder().mkdirs()) {
             getLogger().info("Plugin folder created.");
         }
 
+        // Create objects
         logger = new Logging(this);
         lang = new Lang(this);
         config = new Config(this);
@@ -40,6 +40,7 @@ public final class Main extends JavaPlugin {
         chat = new GlobalChat(this, (Ignore) commands.getCommand("ignore"));
         updateChecker = new UpdateChecker(this, "fundamentalswastaken");
 
+        // Start checks
         if (config.isEnabled("checks.opchecker")) {
             opchecker = new OpChecker(this);
         }
@@ -47,6 +48,7 @@ public final class Main extends JavaPlugin {
             updateChecker.check();
         }
 
+        // Register all commands
         getDescription().getCommands().keySet().forEach(commandName -> {
             PluginCommand command = getCommand(commandName);
             if (command != null) {
@@ -63,20 +65,17 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        ((Freeze) commands.getCommand("freeze")).cleanup();
+        // Stop tasks
+        if (opchecker != null) opchecker.stopTask();
+        if (metrics != null) metrics.shutdown();
 
-        if (opchecker != null) {
-            opchecker.stopTask();
-        }
+        // Cleanup commands
+        if (commands.getCommand("staffmode") instanceof Staffmode s) s.restoreAll();
+        if (commands.getCommand("freeze")    instanceof Freeze f)    f.cleanup();
 
-        Object staffmode = Objects.requireNonNull(commands.getCommand("staffmode"));
-        if (staffmode instanceof Staffmode s) {
-            s.restoreAll();
-        }
-
-        metrics.shutdown();
+        // Close logger
+        logger.closeFileHandler();
 
         logger.log(lang.getKey("stopped"));
-        logger.closeFileHandler();
     }
 }
