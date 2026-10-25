@@ -20,6 +20,7 @@ cmds:
   # Extra placeholders: OTHER
   tpa:
     multiple: "&cYou already have an outgoing tp request! &eCancel it with &l/tpacancel"
+    replaced: "&cTp request to &e&llOTHER&c was replaced."
     none: "&cYou have no incoming tp requests!"
     expired:
       log: "PLAYER's request to OTHER expired"
@@ -234,6 +235,8 @@ staffcmds:
     exit:
       log: "PLAYER exited fly!"
       staff: "&5Exited fly mode!"
+    # Already in a flying gamemode
+    gamemode: "&cPLAYER can already fly (gamemode)!"
   # Enderchest command (staff/player)
   enderchest:
     log:
@@ -270,6 +273,8 @@ staffcmds:
   sudo:
     log: "PLAYER ran command as VICTIM: CMD"
     staff: "&5Ran command as &d&lVICTIM&5: &rCMD"
+    # Non-operators can't sudo operators or players with fundamentals.staff.sudo.exempt. Can use VICTIM
+    exempt: "&cCan't sudo &e&lVICTIM"
   # clearchat command, can use PLAYER, LINES
   clearchat:
     log: "PLAYER cleared chat (LINES lines)"

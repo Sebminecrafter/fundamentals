@@ -24,7 +24,7 @@ import java.util.logging.Level;
 import static io.github.sebminecrafter.fundamentals.Main.*;
 
 public class Warps implements FundamentalCommand {
-    private WarpStorage storage = null;
+    private WarpStorage storage;
     private final Map<String, Warp> warps = new HashMap<>();
 
     public Warps(JavaPlugin plugin) {
@@ -35,7 +35,8 @@ public class Warps implements FundamentalCommand {
             // Load all persisted warps into memory on startup.
             warps.putAll(storage.load());
             logger.log("Loaded warps storage (" + warps.size() + " warps).");
-        } catch (IOException e) {
+        } catch (IOException | RuntimeException e) {
+            this.storage = null;
             logger.logBoth(Level.SEVERE, "Failed to load warps storage:");
             logger.logBoth(Level.SEVERE,
                     e.getMessage()
@@ -116,8 +117,20 @@ public class Warps implements FundamentalCommand {
                     return false;
                 PlaceholderHelper helper = new PlaceholderHelper();
                 helper.add("WARP", args[0]);
+                if (!player.hasPermission("fundamentals.staff.setwarp")) {
+                    Commands.safeSend(player, lang.getKey("msgs.noperms"));
+                    return true;
+                }
+                int maxWarps = config.getInt("warp.max");
+                long owned = warps.values().stream()
+                        .filter(w -> player.getUniqueId().equals(w.owner()))
+                        .count();
                 if (warps.containsKey(args[0])) {
                     Commands.safeSend(player, lang.getKey("cmds.warp.conflict", helper.getReplace()));
+                } else if (maxWarps >= 0 && owned >= maxWarps
+                        && !player.hasPermission("fundamentals.staff.warps.unlimited")) {
+                    helper.add("MAX", Integer.toString(maxWarps));
+                    Commands.safeSend(player, lang.getKey("cmds.warp.max", helper.getReplace()));
                 } else {
                     org.bukkit.Location loc = player.getLocation();
                     warps.put(args[0], new Warp(
@@ -137,7 +150,14 @@ public class Warps implements FundamentalCommand {
                     return false;
                 PlaceholderHelper helper = new PlaceholderHelper();
                 helper.add("WARP", args[0]);
-                if (warps.containsKey(args[0])) {
+                Warp existing = warps.get(args[0]);
+                if (existing != null
+                        && !player.getUniqueId().equals(existing.owner())
+                        && !player.hasPermission("fundamentals.staff.delwarp")) {
+                    Commands.safeSend(player, lang.getKey("msgs.noperms"));
+                    return true;
+                }
+                if (existing != null) {
                     warps.remove(args[0]);
                     saveWarps();
                     Commands.safeSend(player, lang.getKey("cmds.warp.deleted", helper.getReplace()));

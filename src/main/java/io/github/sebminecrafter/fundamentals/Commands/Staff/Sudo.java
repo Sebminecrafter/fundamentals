@@ -5,6 +5,7 @@ import io.github.sebminecrafter.fundamentals.Commands.FundamentalCommand;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -25,6 +26,15 @@ public class Sudo implements FundamentalCommand {
             return true;
         }
 
+        // Prevent some privilege escalation
+        boolean senderIsPrivileged = sender instanceof ConsoleCommandSender || sender.isOp();
+        if (!senderIsPrivileged && target != sender
+                && (target.isOp() || target.hasPermission("fundamentals.staff.sudo.exempt"))) {
+            PlaceholderHelper exemptHelper = new PlaceholderHelper();
+            exemptHelper.add("VICTIM", target.getName());
+            Commands.safeSend(sender, lang.getKey("staffcmds.sudo.exempt", exemptHelper.getReplace()));
+            return true;
+        }
         boolean first = true;
         StringBuilder command = new StringBuilder();
         for (String arg : args) {
@@ -45,7 +55,9 @@ public class Sudo implements FundamentalCommand {
 
         logger.log(lang.getKey("staffcmds.sudo.log", helper.getReplace()));
         Commands.safeSend(sender, lang.getKey("staffcmds.sudo.staff", helper.getReplace()));
-        Bukkit.dispatchCommand(target, command.toString());
+        String toRun = command.toString();
+        if (toRun.startsWith("/")) toRun = toRun.substring(1);
+        Bukkit.dispatchCommand(target, toRun);
 
         return true;
     }

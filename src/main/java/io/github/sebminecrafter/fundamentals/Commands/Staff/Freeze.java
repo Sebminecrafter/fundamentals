@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -58,7 +59,7 @@ public class Freeze implements FundamentalCommand, Listener {
             Commands.safeSend(target, lang.getKey("staffcmds.freeze.player.stop", helper.getReplace()));
         } else {
             // Schedule message task and freeze
-            BukkitTask task = Bukkit.getScheduler().runTaskTimer(plugin, () -> sendMsg(target), 0L, 60L);
+            BukkitTask task = Bukkit.getScheduler().runTaskTimer(plugin, () -> sendMsg(Bukkit.getPlayer(uuid)), 0L, 60L);
             frozenPlayers.put(uuid, task);
 
             logger.log(lang.getKey("staffcmds.freeze.log.start", helper.getReplace()));
@@ -69,7 +70,7 @@ public class Freeze implements FundamentalCommand, Listener {
     }
 
     private void sendMsg(Player player) {
-        if (player == null) return;
+        if (player == null || !player.isOnline()) return;
         player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacy(lang.getKey("staffcmds.freeze.player.actionbar")));
     }
 
@@ -79,9 +80,20 @@ public class Freeze implements FundamentalCommand, Listener {
         if (!frozenPlayers.containsKey(player.getUniqueId())) return;
         Location from = event.getFrom();
         Location to = event.getTo();
-        // Only block actual position changes, not head rotation
+        // Only block pos changes, not cam
         if (to != null && (from.getX() != to.getX() || from.getY() != to.getY() || from.getZ() != to.getZ())) {
-            event.setTo(from); // Cancel the movement instead of teleporting
+            Location corrected = from.clone();
+            corrected.setYaw(to.getYaw());
+            corrected.setPitch(to.getPitch());
+            event.setTo(corrected);
+        }
+    }
+
+    @EventHandler
+    public void onPlayerTeleportEvent(PlayerTeleportEvent event) {
+        Player player = event.getPlayer();
+        if (frozenPlayers.containsKey(player.getUniqueId())) {
+            event.setCancelled(true);
         }
     }
 

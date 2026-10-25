@@ -14,6 +14,7 @@ import static io.github.sebminecrafter.fundamentals.Main.logger;
 public class Clearchat implements FundamentalCommand {
     @Override
     public boolean execute(CommandSender sender, String[] args, String label) {
+        final int maxLines = 35565;
         int lines = 100;
         if (args.length == 1) {
             boolean invalid = false;
@@ -32,6 +33,7 @@ public class Clearchat implements FundamentalCommand {
         } else if (args.length > 1) {
             return false;
         }
+        lines = Math.min(lines, maxLines);
         PlaceholderHelper helper = new PlaceholderHelper();
         helper.add("PLAYER", sender.getName());
         helper.add("LINES", Integer.toString(lines));

@@ -43,6 +43,11 @@ public class Tpo implements FundamentalCommand {
             Commands.safeSend(sender, lang.getKey("msgs.playernotfound", helper.getReplace()));
             return true;
         }
+        // prevent unloaded world
+        if (targetLocation.getWorld() == null) {
+            Commands.safeSend(sender, lang.getKey("msgs.generalerror"));
+            return true;
+        }
         executor.teleport(targetLocation);
         Commands.safeSend(sender, lang.getKey("staffcmds.tpo.staff", helper.getReplace()));
         logger.log(lang.getKey("staffcmds.tpo.log", helper.getReplace()));

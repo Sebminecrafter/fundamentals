@@ -16,6 +16,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,6 +33,9 @@ public class UpdateChecker {
             "^(?:\\d+\\.\\d+(?:\\.\\d+)?(?:-(?:pre|rc)\\d+)?|\\d{2}w\\d{2}[a-z])$",
             Pattern.CASE_INSENSITIVE
     );
+
+    private static final Pattern SNAPSHOT = Pattern.compile("^(\\d{2})w(\\d{2})([a-z])$");
+    private static final Pattern PRE_RELEASE = Pattern.compile("^(pre|rc)(\\d+)$");
 
     private final JavaPlugin plugin;
     private final String projectId;
@@ -203,55 +207,36 @@ public class UpdateChecker {
         );
     }
 
+    /** Get time-like number from mc version string */
     private long minecraftVersionNumber(String version) {
-        if (version.matches("(?i)\\d{2}w\\d{2}[a-z]")) {
-            int year = Integer.parseInt(version.substring(0, 2));
-            int week = Integer.parseInt(version.substring(3, 5));
-            int revision = Character.toLowerCase(version.charAt(5)) - 'a';
+        String lower = version.toLowerCase(Locale.ROOT);
 
-            return (2000L + year) * 1_000_000
-                    + week * 1_000L
-                    + revision;
+        Matcher snapshot = SNAPSHOT.matcher(lower);
+        if (snapshot.matches()) {
+            long year = Long.parseLong(snapshot.group(1));
+            long week = Long.parseLong(snapshot.group(2));
+            long revision = snapshot.group(3).charAt(0) - 'a';
+            return year * 1_000_000_000L + week * 1_000L + revision;
         }
 
-        String[] parts = version.split("[.-]");
+        String[] halves = lower.split("-", 2);
+        String[] parts = halves[0].split("\\.");
 
-        int major = Integer.parseInt(parts[0]);
-        int minor = Integer.parseInt(parts[1]);
-        int patch = 0;
+        long major = Long.parseLong(parts[0]);
+        long minor = Long.parseLong(parts[1]);
+        long patch = parts.length > 2 ? Long.parseLong(parts[2]) : 0;
 
-        if (parts.length > 2 && parts[2].matches("\\d+")) {
-            patch = Integer.parseInt(parts[2]);
+        long stage = 999; // a full release sorts after its pre-releases and RCs
+        if (halves.length > 1) {
+            Matcher pre = PRE_RELEASE.matcher(halves[1]);
+            if (pre.matches()) {
+                stage = ("pre".equals(pre.group(1)) ? 100 : 200) + Long.parseLong(pre.group(2));
+            }
         }
 
-        long releaseYear;
-        int releaseNumber;
-        int patchNumber;
-
-        if (major == 1) {
-            releaseYear = 2025L + minor - 20;
-            releaseNumber = patch;
-            patchNumber = 0;
-        } else {
-            releaseYear = 2000L + major;
-            releaseNumber = minor;
-            patchNumber = patch;
-        }
-
-        int stage = 999;
-
-        if (version.matches("(?i).*-(pre|rc)\\d+")) {
-            boolean prerelease = version.toLowerCase().contains("-pre");
-            int number = Integer.parseInt(
-                    parts[parts.length - 1].replaceAll("\\D", "")
-            );
-
-            stage = (prerelease ? 100 : 200) + number;
-        }
-
-        return releaseYear * 1_000_000
-                + releaseNumber * 10_000L
-                + patchNumber * 1_000L
+        return major * 1_000_000_000L
+                + minor * 1_000_000L
+                + patch * 1_000L
                 + stage;
     }
 

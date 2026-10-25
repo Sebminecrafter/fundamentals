@@ -3,6 +3,7 @@ package io.github.sebminecrafter.fundamentals;
 import io.github.sebminecrafter.fundamentals.Chat.GlobalChat;
 import io.github.sebminecrafter.fundamentals.Checks.OpChecker;
 import io.github.sebminecrafter.fundamentals.Commands.Commands;
+import io.github.sebminecrafter.fundamentals.Commands.Player.Homes;
 import io.github.sebminecrafter.fundamentals.Commands.Staff.Freeze;
 import io.github.sebminecrafter.fundamentals.Commands.Player.Ignore;
 import io.github.sebminecrafter.fundamentals.Commands.Staff.Staffmode;
@@ -69,13 +70,19 @@ public final class Main extends JavaPlugin {
         if (opchecker != null) opchecker.stopTask();
         if (metrics != null) metrics.shutdown();
 
-        // Cleanup commands
-        if (commands.getCommand("staffmode") instanceof Staffmode s) s.restoreAll();
-        if (commands.getCommand("freeze")    instanceof Freeze f)    f.cleanup();
+        if (commands != null) {
+            // Persist data that is only written on change/quit
+            if (commands.getCommand("home") instanceof Homes h) h.saveAll();
 
-        // Close logger
-        logger.closeFileHandler();
+            // Cleanup commands
+            if (commands.getCommand("staffmode") instanceof Staffmode s) s.restoreAll();
+            if (commands.getCommand("freeze")    instanceof Freeze f)    f.cleanup();
+        }
 
-        logger.log(lang.getKey("stopped"));
+        if (logger != null) {
+            if (lang != null) logger.log(lang.getKey("stopped"));
+            // Close logger
+            logger.closeFileHandler();
+        }
     }
 }

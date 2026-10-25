@@ -4,6 +4,7 @@ import io.github.sebminecrafter.fundamentals.Commands.Commands;
 import io.github.sebminecrafter.fundamentals.Commands.FundamentalCommand;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -31,6 +32,10 @@ public class Fly implements FundamentalCommand {
         }
         PlaceholderHelper helper = new PlaceholderHelper();
         helper.add("PLAYER", player.getName());
+        if (player.getGameMode() == GameMode.CREATIVE || player.getGameMode() == GameMode.SPECTATOR) {
+            Commands.safeSend(sender, lang.getKey("staffcmds.fly.gamemode", helper.getReplace()));
+            return true;
+        }
         if (player.getAllowFlight()) {
             Commands.safeSend(player, lang.getKey("staffcmds.fly.exit.staff", helper.getReplace()));
             logger.log(lang.getKey("staffcmds.fly.exit.log", helper.getReplace()));

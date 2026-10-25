@@ -17,7 +17,7 @@ public class Rules implements FundamentalCommand {
 
     public Rules(JavaPlugin plugin) {
         File rulesFile = new File(plugin.getDataFolder(), "rules.txt");
-        plugin.saveResource("rules.txt", false);
+        if (!rulesFile.exists()) plugin.saveResource("rules.txt", false);
 
         bookLoader = new BookLoader(rulesFile, lang.getKey("cmds.rules.title"), lang.getKey("cmds.rules.author"));
         bookLoader.load();

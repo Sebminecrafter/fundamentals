@@ -26,7 +26,6 @@ public class Nuke implements FundamentalCommand {
             for (String arg : args) {
                 Player p = Bukkit.getPlayerExact(arg);
                 if (p == null) {
-                    Commands.safeSend(sender, arg);
                     Commands.safeSend(sender, lang.getKey("msgs.offline"));
                     return true;
                 }

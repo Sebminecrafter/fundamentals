@@ -108,6 +108,33 @@ public class Lang {
         return string;
     }
 
+    /**
+     * Get the translation for `key`, with different placeholders.
+     *
+     * @param replacements trusted placeholders; substituted before color formatting
+     * @param literals     untrusted text (must already be color-formatted)
+     */
+    public String getKey(String key, Map<String, String> replacements, Map<String, String> literals) {
+        String string = _getKey(key);
+
+        List<String> tokens = new ArrayList<>();
+        List<String> values = new ArrayList<>();
+        for (Map.Entry<String, String> entry : literals.entrySet()) {
+            String token = "\uE001" + tokens.size() + "\uE002";
+            tokens.add(token);
+            values.add(entry.getValue());
+            string = string.replace(entry.getKey(), token);
+        }
+        for (Map.Entry<String, String> entry : replacements.entrySet()) {
+            string = string.replace(entry.getKey(), entry.getValue());
+        }
+        string = formatColors(string);
+        for (int i = 0; i < tokens.size(); i++) {
+            string = string.replace(tokens.get(i), values.get(i));
+        }
+        return string;
+    }
+
     // Internal method to simplify code
     private String _getKey(String key) {
         String crKey = config.getString(key);

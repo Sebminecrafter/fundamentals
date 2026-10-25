@@ -16,6 +16,9 @@ import java.util.Set;
 import static io.github.sebminecrafter.fundamentals.Main.*;
 
 public class BigNuke implements FundamentalCommand {
+    /** Hard limit */
+    private static final int MAX_DISTANCE = 50;
+
     @Override
     public boolean execute(CommandSender sender, String[] args, String label) {
         Player target;
@@ -45,7 +48,7 @@ public class BigNuke implements FundamentalCommand {
         World world = target.getWorld();
         Location loc = target.getLocation();
 
-        int distance = config.getInt("bignuke.distance");
+        int distance = Math.min(config.getInt("bignuke.distance"), MAX_DISTANCE);
 
         // Spawn center TNT
         world.spawn(loc, TNTPrimed.class);

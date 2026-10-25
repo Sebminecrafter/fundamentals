@@ -68,6 +68,10 @@ public class TeleportCountdown {
         startHealth = player.getHealth();
 
         countdown.start(seconds -> {
+            if (!player.isOnline()) {
+                countdown.cancel();
+                return null;
+            }
             if (hasMovedOrTookDamage()) {
                 countdown.cancel();
                 FundamentalSounds.tPSFCSimpler(player, "sounds.canceled");
@@ -78,6 +82,7 @@ public class TeleportCountdown {
             if (eachTick != null) eachTick.accept(seconds);
             return null;
         }, () -> {
+            if (!player.isOnline()) return;
             FundamentalSounds.tPSFCSimpler(player, "sounds.teleport");
             player.teleport(destination);
         }
@@ -85,7 +90,9 @@ public class TeleportCountdown {
     }
 
     private boolean hasMovedOrTookDamage() {
-        boolean moved = cancelOnMove && player.getLocation().distanceSquared(startLocation) > moveThresholdSquared;
+        Location now = player.getLocation();
+        boolean moved = cancelOnMove && (now.getWorld() != startLocation.getWorld()
+                || now.distanceSquared(startLocation) > moveThresholdSquared);
         boolean damaged = cancelOnDamage && player.getHealth() < startHealth;
         return moved || damaged;
     }

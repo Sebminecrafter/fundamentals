@@ -21,7 +21,10 @@ public class BroadcastWorld implements FundamentalCommand {
     public boolean execute(CommandSender sender, String[] args, String label) {
         if (args.length < 2) return false;
         World world = Bukkit.getWorld(args[0]);
-        if (world == null) return false;
+        if (world == null) {
+            Commands.safeSend(sender, lang.getKey("msgs.invalid"));
+            return true;
+        }
         List<String> words = new ArrayList<>(Arrays.stream(args.clone()).toList());
         words.removeFirst();
         String message = String.join(" ", words);
@@ -31,10 +34,11 @@ public class BroadcastWorld implements FundamentalCommand {
         helper.add("WORLD", world.getName());
         logger.logBoth(lang.getKey("staffcmds.broadcastworld.log", helper.getReplace()));
         Commands.safeSend(sender, lang.getKey("staffcmds.broadcastworld.staff", helper.getReplace()));
-        Bukkit.broadcastMessage(lang.getKey("staffcmds.broadcastworld.player", helper.getReplace()));
+        String text = lang.getKey("staffcmds.broadcastworld.player", helper.getReplace());
         for (Player player : world.getPlayers()) {
             FundamentalSounds.tPSFCSimpler(player, "sounds.broadcastworld");
-            player.sendTitle(lang.getKey("staffcmds.broadcastworld.player", helper.getReplace()), null, 20, 60, 20);
+            player.sendMessage(text);
+            player.sendTitle(text, null, 20, 60, 20);
         }
         return true;
     }

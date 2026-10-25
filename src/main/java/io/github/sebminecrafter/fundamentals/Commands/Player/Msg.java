@@ -46,7 +46,6 @@ public class Msg implements FundamentalCommand {
         PlaceholderHelper helper = new PlaceholderHelper();
         helper.add("PLAYER", sender.getName());
         helper.add("OTHER", args[0]);
-        helper.add("MSG", message.toString());
         if (receiver == null) {
             Commands.safeSend(sender, lang.getKey("msgs.offline", helper.getReplace()));
             return true;
@@ -55,21 +54,20 @@ public class Msg implements FundamentalCommand {
             Commands.safeSend(sender, lang.getKey("msgs.ignored"));
             return true;
         }
-        if (Main.chat.notAllowed(message.toString(), player)) {
-            Commands.safeSend(sender, lang.getKey("chat.disallowed"));
-            return true;
-        }
+        if (Main.chat.notAllowed(message.toString(), player)) return true;
+
         // Add to last messaged (and remove previous value)
         lastMessaged.remove(receiver.getUniqueId());
         lastMessaged.remove(player.getUniqueId());
         lastMessaged.put(receiver.getUniqueId(), player.getUniqueId());
         lastMessaged.put(player.getUniqueId(), receiver.getUniqueId());
 
-        Commands.safeSend(receiver, lang.getKey("cmds.msg.receive", helper.getReplace()));
-        Commands.safeSend(sender, lang.getKey("cmds.msg.send", helper.getReplace()));
-        logger.log(lang.getKey("cmds.msg.log", helper.getReplace()));
+        Map<String, String> literals = Map.of("MSG", Main.chat.formatPlayerText(player, message.toString().strip()));
+        Commands.safeSend(receiver, lang.getKey("cmds.msg.receive", helper.getReplace(), literals));
+        Commands.safeSend(sender, lang.getKey("cmds.msg.send", helper.getReplace(), literals));
+        logger.log(lang.getKey("cmds.msg.log", helper.getReplace(), literals));
         FundamentalSounds.tPSFCSimpler(receiver, "sounds.msg");
-        socialspy.sendToSpyingPlayers(lang.getKey("staffcmds.socialspy.msg", helper.getReplace()));
+        socialspy.sendToSpyingPlayers(lang.getKey("staffcmds.socialspy.msg", helper.getReplace(), literals));
         return true;
     }
 

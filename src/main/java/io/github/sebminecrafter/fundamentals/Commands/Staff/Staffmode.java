@@ -44,6 +44,13 @@ public class Staffmode implements Listener, FundamentalCommand {
             return false;
         } else if (args.length == 1) {
             wantsToTpTo = Bukkit.getPlayerExact(args[0]);
+            if (wantsToTpTo == null) {
+                Commands.safeSend(player, lang.getKey("msgs.offline"));
+                return true;
+            } else if (wantsToTpTo == player) {
+                Commands.safeSend(player, lang.getKey("msgs.self"));
+                return true;
+            }
         }
 
         UUID uuid = player.getUniqueId();
@@ -65,8 +72,9 @@ public class Staffmode implements Listener, FundamentalCommand {
                 logger.log(lang.getKey("staffcmds.staffmode.log.enter", helper.getReplace()));
             }
         } else {
-            savedGameModes.put(uuid, player.getGameMode());
-            savedLocations.put(uuid, player.getLocation().clone());
+            // Prevent double-staffmode
+            savedGameModes.putIfAbsent(uuid, player.getGameMode());
+            savedLocations.putIfAbsent(uuid, player.getLocation().clone());
             player.setGameMode(GameMode.SPECTATOR);
             player.teleport(wantsToTpTo);
             PlaceholderHelper helper = new PlaceholderHelper();

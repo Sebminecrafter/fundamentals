@@ -427,8 +427,6 @@ permissions:
         description: "Open OTHER players enderchest"
       fundamentals.staff.socialspy:
         description: "Use socialspy command to see all private messages"
-      fundamentals.staff.sudo:
-        description: "WARNING: ALLOWS HIGHER PRIVILEGE EXECUTION OF COMMANDS. Run a command as another player"
       fundamentals.staff.clearchat:
         description: "Clear chat"
       fundamentals.staff.nuke:
@@ -481,6 +479,23 @@ permissions:
         description: "Temporarily ban players"
       fundamentals.staff.rest:
         description: "Reset a player's time since sleeping"
+      fundamentals.staff.gamemode:
+        description: "Change gamemode"
+      fundamentals.staff.bignuke:
+        description: "Spawn a ring of TNT around a player"
+      fundamentals.staff.setwarp:
+        description: "Create warps"
+      fundamentals.staff.delwarp:
+        description: "Delete warps created by other players"
+      fundamentals.staff.warps.unlimited:
+        description: "Bypass the per-player warp limit"
+  # Not child permission on purpose
+  fundamentals.staff.sudo:
+    description: "WARNING: ALLOWS HIGHER PRIVILEGE EXECUTION OF COMMANDS. Run a command as another player"
+    default: op
+  fundamentals.staff.sudo.exempt:
+    description: "Cannot be targeted by /sudo from non-operators (give this to admin groups)"
+    default: false
   fundamentals.player:
     description: "Player commands parent permission"
     default: true
@@ -539,6 +554,8 @@ permissions:
         description: "Set or clear a nickname"
       fundamentals.player.realname:
         description: "Find a player's real name"
+      fundamentals.player.chat.colors:
+        description: "Use color codes and formatting in chat"
   fundamentals.privileged:
     description: "Privileged commands parent permission"
     default: op

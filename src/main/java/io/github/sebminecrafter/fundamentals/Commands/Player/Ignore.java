@@ -74,14 +74,14 @@ public class Ignore implements FundamentalCommand {
         return true;
     }
 
-    public boolean isIgnoring(UUID player, UUID other) {
+    public synchronized boolean isIgnoring(UUID player, UUID other) {
         return (ignorelist.contains(player.toString()) &&
                 Objects.requireNonNull(
                     ignorelist.getList(player.toString()))
                         .contains(other.toString()));
     }
 
-    private void ignore(UUID player, UUID other) {
+    private synchronized void ignore(UUID player, UUID other) {
         if (ignorelist.contains(player.toString())) {
             List<String> list = ignorelist.getStringList(player.toString());
             list.add(other.toString());
@@ -91,7 +91,7 @@ public class Ignore implements FundamentalCommand {
         }
     }
 
-    private void unignore(UUID player, UUID other) {
+    private synchronized void unignore(UUID player, UUID other) {
         if (ignorelist.contains(player.toString())) {
             List<String> list = ignorelist.getStringList(player.toString());
             list.remove(other.toString());
@@ -99,7 +99,7 @@ public class Ignore implements FundamentalCommand {
         }
     }
 
-    private boolean saveFile() {
+    private synchronized boolean saveFile() {
         try {
             ignorelist.save(ignorelistFile);
         } catch (IOException e) {

@@ -61,9 +61,11 @@ public class Homes implements FundamentalCommand, Listener {
         }
         PlayerLocations playerLocations = cache.get(player.getUniqueId());
         if (playerLocations == null) {
-            // Prevent NPEs from joining before plugin load
-            playerLocations = storage.load(player.getUniqueId());
-            cache.put(player.getUniqueId(), playerLocations);
+            playerLocations = loadHomes(player.getUniqueId());
+            if (playerLocations == null) {
+                Commands.safeSend(player, lang.getKey("cmds.home.error"));
+                return true;
+            }
         }
         Map<String, Location> homes = playerLocations.getHomes();
         switch (label.toLowerCase()) {
@@ -130,7 +132,7 @@ public class Homes implements FundamentalCommand, Listener {
                 helper.add("HOME", args[0]);
                 if (homes.containsKey(args[0])) {
                     Commands.safeSend(player, lang.getKey("cmds.home.conflict", helper.getReplace()));
-                } else if (homes.size() > config.getInt("home.max")) {
+                } else if (homes.size() >= config.getInt("home.max")) {
                     helper.add("MAX", Integer.toString(config.getInt("home.max")));
                     Commands.safeSend(player, lang.getKey("cmds.home.max", helper.getReplace()));
                 } else {
@@ -140,6 +142,7 @@ public class Homes implements FundamentalCommand, Listener {
                             loc.getX(), loc.getY(), loc.getZ(), // X, Y, Z    - Block position
                             loc.getYaw(), loc.getPitch()        // Yaw, Pitch - Camera angle
                     ));
+                    saveHomes(player.getUniqueId());
                     Commands.safeSend(player, lang.getKey("cmds.home.set", helper.getReplace()));
                     helper.add("PLAYER", player.getName());
                     logger.log(lang.getKey("cmds.home.setlog", helper.getReplace()));
@@ -152,6 +155,7 @@ public class Homes implements FundamentalCommand, Listener {
                 helper.add("HOME", args[0]);
                 if (homes.containsKey(args[0])) {
                     homes.remove(args[0]);
+                    saveHomes(player.getUniqueId());
                     Commands.safeSend(player, lang.getKey("cmds.home.deleted", helper.getReplace()));
                     helper.add("PLAYER", player.getName());
                     logger.log(lang.getKey("cmds.home.deletedlog", helper.getReplace()));
@@ -174,17 +178,46 @@ public class Homes implements FundamentalCommand, Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        cache.put(player.getUniqueId(), storage.load(player.getUniqueId()));
-        logger.log("Loaded homes for player " + player.getName());
+        if (loadHomes(player.getUniqueId()) != null) {
+            logger.log("Loaded homes for player " + player.getName());
+        }
     }
 
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
         Player player = event.getPlayer();
         UUID uuid = player.getUniqueId();
-        storage.save(uuid, cache.get(uuid));
+        saveHomes(uuid);
         cache.remove(uuid);
         logger.log("Saved homes for player " + player.getName());
+    }
+
+    private PlayerLocations loadHomes(UUID uuid) {
+        try {
+            PlayerLocations locations = storage.load(uuid);
+            cache.put(uuid, locations);
+            return locations;
+        } catch (RuntimeException e) {
+            logger.logBoth(Level.SEVERE, "Failed to load homes for " + uuid + ": " + e.getMessage());
+            return null;
+        }
+    }
+
+    private void saveHomes(UUID uuid) {
+        PlayerLocations locations = cache.get(uuid);
+        if (locations == null) return;
+        try {
+            storage.save(uuid, locations);
+        } catch (RuntimeException e) {
+            logger.logBoth(Level.SEVERE, "Failed to save homes for " + uuid + ": " + e.getMessage());
+        }
+    }
+
+    public void saveAll() {
+        if (storage == null) return;
+        for (UUID uuid : new ArrayList<>(cache.keySet())) {
+            saveHomes(uuid);
+        }
     }
 
     private void sendCountdownActionBar(Player p, int seconds) {

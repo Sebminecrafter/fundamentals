@@ -20,7 +20,7 @@ public class Seen implements FundamentalCommand {
         long millis;
         String name;
         if (Bukkit.getPlayerExact(args[0]) != null) {
-            millis = Instant.now().getEpochSecond();
+            millis = Instant.now().toEpochMilli();
             name = args[0];
         } else {
             OfflinePlayer target = Bukkit.getOfflinePlayer(args[0]);
@@ -42,10 +42,10 @@ public class Seen implements FundamentalCommand {
         String date       = Integer.toString(time.getDayOfMonth());
         String dayOfWeek  = time.getDayOfWeek().toString();
         String hour       = Integer.toString(time.getHour());
-        String twelveHour = Integer.toString(time.getHour() % 12);
-        String AMPM       = time.getHour() > 12 ? "PM" : "AM";
-        String minute     = Integer.toString(time.getMinute());
-        String second     = Integer.toString(time.getSecond());
+        String twelveHour = Integer.toString(time.getHour() % 12 == 0 ? 12 : time.getHour() % 12);
+        String AMPM       = time.getHour() >= 12 ? "PM" : "AM";
+        String minute     = String.format("%02d", time.getMinute());
+        String second     = String.format("%02d", time.getSecond());
 
         PlaceholderHelper helper = new PlaceholderHelper();
         helper.add("PLAYER", name);

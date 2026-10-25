@@ -15,7 +15,7 @@ public class Rest implements FundamentalCommand {
     @Override
     public boolean execute(CommandSender sender, String[] args, String label) {
         Player target;
-        if (args.length > 2) return false;
+        if (args.length > 1) return false;
         if (args.length == 1) {
             target = Bukkit.getPlayerExact(args[0]);
         } else {
@@ -34,8 +34,8 @@ public class Rest implements FundamentalCommand {
         helper.add("PLAYER", sender.getName());
         helper.add("TARGET", target.getName());
 
-        Commands.safeSend(sender, lang.getKey("staffcmds.rest.staff"));
-        logger.log(lang.getKey("staffcmds.rest.log"));
+        Commands.safeSend(sender, lang.getKey("staffcmds.rest.staff", helper.getReplace()));
+        logger.log(lang.getKey("staffcmds.rest.log", helper.getReplace()));
 
         target.setStatistic(Statistic.TIME_SINCE_REST, 0);
         return true;

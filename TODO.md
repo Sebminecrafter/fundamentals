@@ -81,5 +81,4 @@ on GitHub
 
 ## Notices
 
-- Warps and reloading have not been fully tested.
 - Update Checker WIP

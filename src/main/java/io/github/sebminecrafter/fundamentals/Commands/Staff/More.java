@@ -15,19 +15,30 @@ import static io.github.sebminecrafter.fundamentals.Main.logger;
 public class More implements FundamentalCommand {
     @Override
     public boolean execute(CommandSender sender, String[] args, String label) {
-        if (args.length != 0) return false;
         if (!(sender instanceof Player player)) {
             Commands.safeSend(sender, lang.getKey("msgs.playeronly"));
             return true;
         }
 
-        int amount = 64;
-
         ItemStack item = player.getInventory().getItemInMainHand();
 
-        int maxStackSize = item.getType().getMaxStackSize();
-        if (maxStackSize > 1) {
-            amount = maxStackSize;
+        int amount;
+        if (args.length == 0) {
+            amount = item.getMaxStackSize();
+        } else if (args.length == 1) {
+            try {
+                amount = item.getAmount() + Integer.parseInt(args[0]);
+            } catch (NumberFormatException e) {
+                Commands.safeSend(sender, lang.getKey("msgs.invalid"));
+                return true;
+            }
+        } else {
+            return false;
+        }
+
+        if (item.getType().isAir()) {
+            Commands.safeSend(player, lang.getKey("msgs.no-item"));
+            return true;
         }
 
         PlaceholderHelper helper = new PlaceholderHelper();

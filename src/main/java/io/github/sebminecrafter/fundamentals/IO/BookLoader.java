@@ -62,19 +62,23 @@ public class BookLoader {
             }
 
             if (word.isBlank()) continue;
-            else if (!currentPage.isEmpty() && !currentPage.substring(currentPage.length() - 1).equals("\n")) word = " " + word;
 
-            if (word.length() >= (MAX_LENGTH - length)) {
-                word = word.substring(0, MAX_LENGTH - length - 3) + "...";
+            boolean needsSpace = !currentPage.isEmpty() && currentPage.charAt(currentPage.length() - 1) != '\n';
+            String piece = needsSpace ? " " + word : word;
+
+            if (length + piece.length() >= MAX_LENGTH) {
+                if (!currentPage.isEmpty()) {
+                    meta.addPage(currentPage.toString());
+                    currentPage = new StringBuilder();
+                    length = 0;
+                }
+                piece = word;
+                if (piece.length() >= MAX_LENGTH) {
+                    piece = piece.substring(0, MAX_LENGTH - 4) + "...";
+                }
             }
-            length += word.length();
-            if (length >= MAX_LENGTH) {
-                meta.addPage(currentPage.toString());
-                currentPage = new StringBuilder(word);
-                length = word.length();
-            } else {
-                currentPage.append(word);
-            }
+            currentPage.append(piece);
+            length += piece.length();
         }
         if (!currentPage.isEmpty()) {
             meta.addPage(currentPage.toString());

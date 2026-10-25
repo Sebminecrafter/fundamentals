@@ -41,35 +41,39 @@ public class OpChecker implements Listener {
 
     @EventHandler
     public void onPlayerCommand(PlayerCommandPreprocessEvent event) {
-        String cmd = event.getMessage().toLowerCase();
+        String cmd = event.getMessage();
         String player = event.getPlayer().getName();
 
-        if (!cmd.startsWith("op ") && !cmd.startsWith("deop ")) {return;}
+        String type = opCommandType(cmd);
+        if (type == null) {return;}
 
         PlaceholderHelper helper = new PlaceholderHelper();
         helper.add("CMD", cmd);
         helper.add("EXECUTOR", player);
 
-        if (cmd.startsWith("op ")) {
-            logger.logBoth(Level.WARNING, lang.getKey("ops.player.op", helper.getReplace()));
-        } else if (cmd.startsWith("deop ")) {
-            logger.logBoth(Level.WARNING, lang.getKey("ops.player.deop", helper.getReplace()));
-        }
+        logger.logBoth(Level.WARNING, lang.getKey("ops.player." + type, helper.getReplace()));
     }
 
     @EventHandler
     public void onServerCommand(ServerCommandEvent event) {
-        String cmd = event.getCommand().toLowerCase();
-        if (!cmd.startsWith("op ") && !cmd.startsWith("deop ")) {return;}
+        String cmd = event.getCommand();
+        String type = opCommandType(cmd);
+        if (type == null) {return;}
 
         PlaceholderHelper helper = new PlaceholderHelper();
         helper.add("CMD", cmd);
 
-        if (cmd.startsWith("op ")) {
-            logger.logBoth(lang.getKey("ops.console.op", helper.getReplace()));
-        } else if (cmd.startsWith("deop ")) {
-            logger.logBoth(lang.getKey("ops.console.deop", helper.getReplace()));
-        }
+        logger.logBoth(lang.getKey("ops.console." + type, helper.getReplace()));
+    }
+
+    /** returns "op" or "deop" from a command string */
+    static String opCommandType(String commandLine) {
+        String cmd = commandLine.strip().toLowerCase(Locale.ROOT);
+        if (cmd.startsWith("/")) cmd = cmd.substring(1).stripLeading();
+        if (cmd.startsWith("minecraft:")) cmd = cmd.substring("minecraft:".length());
+        if (cmd.startsWith("op ")) return "op";
+        if (cmd.startsWith("deop ")) return "deop";
+        return null;
     }
 
     public void checkForOps() {

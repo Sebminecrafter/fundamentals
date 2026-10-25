@@ -145,6 +145,7 @@ public class Tpa implements FundamentalCommand {
             Commands.safeSend(sender, lang.getKey("cmds.tpa.multiple", helper.getReplace()));
         } else {
             Cooldowns.start("tpa", sender.getUniqueId(), config.getInt("tpa.cooldown"));
+            supersedeIncomingRequests(receiver);
             tparequests.put(receiver.getUniqueId(), sender.getUniqueId());
             logger.log(lang.getKey("cmds.tpa.request.tpa.log", helper.getReplace()));
             Commands.safeSend(sender, lang.getKey("cmds.tpa.request.tpa.sent", helper.getReplace()));
@@ -166,6 +167,7 @@ public class Tpa implements FundamentalCommand {
             Commands.safeSend(sender, lang.getKey("cmds.tpa.multiple", helper.getReplace()));
         } else {
             Cooldowns.start("tpa", sender.getUniqueId(), config.getInt("tpa.cooldown"));
+            supersedeIncomingRequests(receiver);
             tpahererequests.put(receiver.getUniqueId(), sender.getUniqueId());
             logger.log(lang.getKey("cmds.tpa.request.tpahere.log", helper.getReplace()));
             Commands.safeSend(sender, lang.getKey("cmds.tpa.request.tpahere.sent", helper.getReplace()));
@@ -180,7 +182,7 @@ public class Tpa implements FundamentalCommand {
 
     // Called by the scheduler when a /tpa request expires
     private void expireTpRequest(UUID receiverUuid, UUID senderUuid) {
-        if (!tparequests.containsKey(receiverUuid)) return; // Already handled
+        if (!senderUuid.equals(tparequests.get(receiverUuid))) return;
 
         PlaceholderHelper helper = new PlaceholderHelper();
         Player sender = Bukkit.getPlayer(senderUuid);
@@ -199,7 +201,7 @@ public class Tpa implements FundamentalCommand {
 
     // Called by the scheduler when a /tpahere request expires
     private void expireTpHereRequest(UUID receiverUuid, UUID senderUuid) {
-        if (!tpahererequests.containsKey(receiverUuid)) return; // Already handled
+        if (!senderUuid.equals(tpahererequests.get(receiverUuid))) return;
 
         PlaceholderHelper helper = new PlaceholderHelper();
         Player sender = Bukkit.getPlayer(senderUuid);
@@ -335,6 +337,23 @@ public class Tpa implements FundamentalCommand {
             tpahererequests.remove(receiver.getUniqueId());
         } else {
             Commands.safeSend(receiver, lang.getKey("cmds.tpa.none"));
+        }
+    }
+
+    /** Replace previous request with a new one */
+    private void supersedeIncomingRequests(Player receiver) {
+        UUID id = receiver.getUniqueId();
+        UUID oldTpa = tparequests.remove(id);
+        cancelTask(tpatasks, id);
+        UUID oldTpaHere = tpahererequests.remove(id);
+        cancelTask(tpaheretasks, id);
+        for (UUID oldSender : new UUID[]{oldTpa, oldTpaHere}) {
+            if (oldSender == null) continue;
+            Player old = Bukkit.getPlayer(oldSender);
+            if (old == null) continue;
+            PlaceholderHelper helper = new PlaceholderHelper();
+            helper.add("OTHER", receiver.getName());
+            Commands.safeSend(old, lang.getKey("cmds.tpa.replaced", helper.getReplace()));
         }
     }
 
