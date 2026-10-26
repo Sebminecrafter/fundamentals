@@ -343,7 +343,8 @@ staffcmds:
     staff: "&5Brought TARGET down!"
     log: "PLAYER put TARGET on bottom block (at x BX y BY z BZ)"
     fail: "&cCouldn't find a passable bottom block."
-
+  # Serverstat command, can use ONLINE / MAX
+  serverstat: "&5&lServer stats\n&6&lONLINE&e players online out of &6&lMAX&e max.\n" # TODO WIP
 
 # No placeholders, extra messages
 msgs:
