@@ -25,7 +25,7 @@ public class ServerStat implements FundamentalCommand {
         helper.add("WORLDS",   Integer.toString(Bukkit.getWorlds().size()));
         helper.add("UPTIME",   Integer.toString((int)((System.currentTimeMillis() - ManagementFactory.getRuntimeMXBean().getStartTime()) / 1000)));
 
-        Commands.safeSend(sender, lang.getKey("cmds.serverstat", helper.getReplace()));
+        Commands.safeSend(sender, lang.getKey("staffcmds.serverstat", helper.getReplace()));
 
         return true;
     }
