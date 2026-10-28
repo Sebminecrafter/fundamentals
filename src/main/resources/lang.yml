@@ -343,7 +343,7 @@ staffcmds:
     staff: "&5Brought TARGET down!"
     log: "PLAYER put TARGET on bottom block (at x BX y BY z BZ)"
     fail: "&cCouldn't find a passable bottom block."
-  # Serverstat command, can use ONLINE / MAX / VERSION / MEMUSED / MEMFREE / MEMTOTAL / WORLDS / UPTIME
+  # Serverstat command, can use ONLINE / MAX / VERSION / MEMUSED / MEMFREE / MEMTOTAL / WORLDS / UPTIME / TPS1M / TPS5M / TPS15M
   serverstat: |
     &5&lServer stats
     &6Players:&e ONLINE&6/&eMAX&6
@@ -351,6 +351,7 @@ staffcmds:
     &6Heap usage:&e MEMUSEDmb / MEMTOTALmb (MEMFREEmb free)
     &6Worlds:&e WORLDS
     &6Uptime:&e UPTIME seconds
+    &6TPS (1m, 5m, 15m):&e TPS1M, TPS5M, TPS15M
 
 # No placeholders, extra messages
 msgs:

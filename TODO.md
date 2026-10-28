@@ -38,7 +38,6 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 - [ ] `/vanish` to become invisible to other players
 - [ ] `/staffchat` and `/alert` for staff messaging
 - [ ] `/god [player]` toggles "god mode"
-- [X] `/serverstat` to check uptime, performance, etc.
 - [ ] `/pausechat` to pause the chat
 - [ ] `/mute <player> [time]` mute a player
 - [ ] `/tempban <player> <time> [reason]` tempban player
