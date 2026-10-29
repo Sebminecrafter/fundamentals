@@ -45,7 +45,7 @@ public class ServerStat implements FundamentalCommand {
         double[] tps = getTPS();
 
         if (tps != null && tps.length > i) {
-            DecimalFormat format = new DecimalFormat("#.#");
+            DecimalFormat format = new DecimalFormat("#.0");
             return format.format(tps[i]);
         } else {
             return "?";
