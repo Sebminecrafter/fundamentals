@@ -25,6 +25,7 @@ public class ServerStat implements FundamentalCommand {
         helper.add("MEMTOTAL", bytesToMbString(Runtime.getRuntime().totalMemory()));
         helper.add("MEMFREE",  bytesToMbString(Runtime.getRuntime().freeMemory()));
         helper.add("MEMUSED",  bytesToMbString(Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()));
+        helper.add("MEMMAX",   bytesToMbString(Runtime.getRuntime().maxMemory()));
         helper.add("WORLDS",   Integer.toString(Bukkit.getWorlds().size()));
         helper.add("UPTIME",   Integer.toString((int)((System.currentTimeMillis() - ManagementFactory.getRuntimeMXBean().getStartTime()) / 1000)));
         helper.add("TPS1M",    tpsString(0));
