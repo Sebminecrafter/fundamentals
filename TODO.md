@@ -31,7 +31,7 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 (suggest some!)
 
 ### Staff features/commands
-- [ ] `/whois` to get player info
+- [X] `/whois` to get player info
 - [ ] `/remove` remove entities
 - [ ] `/world <world>` to switch worlds
 - [ ] `/near` to see nearby players within configured range

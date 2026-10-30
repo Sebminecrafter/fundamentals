@@ -352,6 +352,11 @@ staffcmds:
     &6Worlds:&e WORLDS
     &6Uptime:&e UPTIME seconds
     &6TPS (1m, 5m, 15m):&e TPS1M, TPS5M, TPS15M
+  # Whois command, can use TARGET / PIP / PPORT
+  whois: |
+    &5&lInformation on TARGET:
+    &6IP address: PIP:PPORT
+    
 
 # No placeholders, extra messages
 msgs:
