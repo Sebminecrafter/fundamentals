@@ -355,7 +355,7 @@ staffcmds:
   # Whois command, can use TARGET / PIP / PPORT
   whois: |
     &5&lInformation on TARGET:
-    &6IP address: PIP:PPORT
+    &6IP address: PIP (port PPORT)
     
 
 # No placeholders, extra messages
