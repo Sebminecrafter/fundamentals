@@ -75,8 +75,8 @@ enabled:
     alert: true          # Send a "staff alert"
     god: true            # Toggle god mode
     serverstat: true     # Check uptime and performance stats
-    mute: true           # Mute players
-    tempban: true        # Temporarily ban players
+    mute: false          # Mute players
+    tempban: false       # Temporarily ban players
 
     # Privileged commands
     workbench: true        # Open a crafting table from anywhere
