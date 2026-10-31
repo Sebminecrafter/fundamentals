@@ -51,7 +51,6 @@ public final class Main extends JavaPlugin {
 
         // Register all commands
         getDescription().getCommands().keySet().forEach(commandName -> {
-            if (!config.isEnabled("cmds."+commandName)) return;
             PluginCommand command = getCommand(commandName);
             if (command != null) {
                 command.setExecutor(commands);
