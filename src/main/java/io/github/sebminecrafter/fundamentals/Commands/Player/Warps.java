@@ -82,7 +82,7 @@ public class Warps implements FundamentalCommand {
                 long remaining = Cooldowns.remainingSeconds("warp", player.getUniqueId(), cooldown);
                 if (remaining > 0) {
                     PlaceholderHelper cooldownHelper = new PlaceholderHelper();
-                    cooldownHelper.add("SECS", Long.toString(remaining));
+                    cooldownHelper.add("secs", Long.toString(remaining));
                     Commands.safeSend(player, lang.getKey("msgs.cooldown", cooldownHelper.getReplace()));
                     return true;
                 }

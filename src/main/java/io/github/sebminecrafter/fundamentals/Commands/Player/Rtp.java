@@ -53,7 +53,7 @@ public class Rtp implements FundamentalCommand {
         long remaining = Cooldowns.remainingSeconds("rtp", player.getUniqueId(), cooldown);
         if (remaining > 0) {
             PlaceholderHelper cooldownHelper = new PlaceholderHelper();
-            cooldownHelper.add("SECS", Long.toString(remaining));
+            cooldownHelper.add("secs", Long.toString(remaining));
             Commands.safeSend(player, lang.getKey("msgs.cooldown", cooldownHelper.getReplace()));
             return true;
         }

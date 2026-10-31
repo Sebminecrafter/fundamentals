@@ -25,9 +25,9 @@ public class Whois implements FundamentalCommand {
         PlayerInfo playerInfo = new PlayerInfo(target);
         PlaceholderHelper helper = new PlaceholderHelper();
 
-        helper.add("TARGET", playerInfo.getName());
-        helper.add("PIP", playerInfo.getIP());
-        helper.add("PPORT", Integer.toString(playerInfo.getPort()));
+        helper.add("target", playerInfo.getName());
+        helper.add("ip", playerInfo.getIP());
+        helper.add("port", Integer.toString(playerInfo.getPort()));
 
         Commands.safeSend(sender, lang.getKey("staffcmds.whois", helper.getReplace()));
 

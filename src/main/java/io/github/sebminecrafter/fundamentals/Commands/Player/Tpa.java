@@ -131,7 +131,7 @@ public class Tpa implements FundamentalCommand {
         if (remaining <= 0) return false;
 
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("SECS", Long.toString(remaining));
+        helper.add("secs", Long.toString(remaining));
         Commands.safeSend(player, lang.getKey("msgs.cooldown", helper.getReplace()));
         return true;
     }

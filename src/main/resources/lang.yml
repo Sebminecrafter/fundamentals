@@ -352,13 +352,13 @@ staffcmds:
     &6Worlds:&e %WORLDS%
     &6Uptime:&e %UPTIME% seconds
     &6TPS (1m, 5m, 15m):&e %TPS1M%, %TPS5M%, %TPS15M%
-  # Whois command, can use %TARGET% / %PIP% / %PPORT%
+  # Whois command, can use %target% / %ip% / %port%
   whois: |
-    &5&lInformation on %TARGET%:
-    &6IP address: %PIP% (port %PPORT%)
+    &5&lInformation on %target%:
+    &6IP address: %ip% (port %port%)
     
 
-# No placeholders, extra messages
+# Extra messages
 msgs:
   playeronly: "&cThis command can only be run by a player."
   disabled: "&cThis command is disabled."
@@ -372,7 +372,7 @@ msgs:
   ignored: "&cThis player is ignoring you!"
   self: "&cYou can't use this command on yourself!"
   tpcancelled: "&cYou moved!"
-  cooldown: "&cYou must wait %SECS% seconds before using this command again."
+  cooldown: "&cYou must wait %secs% seconds before using this command again." # Can use %secs% placeholder in cooldown
   noperms: "&cYou don't have permission to do that."
   nullmeta: "&cThis item has invalid metadata, sorry!"
   no-item: "&cYou need to hold an item!"
@@ -390,8 +390,7 @@ chat:
   # Death message
   # Can use %DEATH% placeholder
   death: "&c☠ %PLAYER% %DEATH%"
-  # Messages
-  # No placeholders
+  # Messages (no placeholders)
   nolinks: "&cYou can't use links in chat!"
   disallowed: "&cThat's not appropriate!"
 
