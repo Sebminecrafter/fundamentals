@@ -71,6 +71,7 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 
 - Interacting with workstations accessed via commands is slightly buggy,
   items may disappear when shift-clicked or gui is closed
+- `/serverstat`'s TPS doesn't work on Spigot
 
 Please submit bugs via the
 [Issues tab](https://github.com/Sebminecrafter/Fundamentals/issues)
