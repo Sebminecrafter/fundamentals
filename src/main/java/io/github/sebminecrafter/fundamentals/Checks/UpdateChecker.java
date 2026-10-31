@@ -164,9 +164,9 @@ public class UpdateChecker {
 
                 String message = """
                         Update found!
-                        Current version: CUR
-                        Latest: NEW
-                        Download it at URL
+                        Current version: %CUR%
+                        Latest: %NEW%
+                        Download it at %URL%
                         """;
 
                 send(sender, Level.WARNING, helper.parse(message));

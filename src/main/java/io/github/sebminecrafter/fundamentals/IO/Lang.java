@@ -9,6 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -97,13 +98,11 @@ public class Lang {
 
     /** Get the translation for `key`, with placeholders
      * @param key The translation key path (like `command.example.response`)
-     * @param replacements Map of String placeholder to String replacement
+     * @param replacements Map of placeholder name (like `PLAYER`) to replacement; matches `%PLAYER%` in the lang file
      *  */
     public String getKey(String key, Map<String, String> replacements) {
         String string = _getKey(key);
-        for (String placeholder : replacements.keySet()) {
-            string = string.replace(placeholder, replacements.get(placeholder));
-        }
+        string = PlaceholderHelper.apply(string, replacements);
         string = formatColors(string);
         return string;
     }
@@ -111,23 +110,22 @@ public class Lang {
     /**
      * Get the translation for `key`, with different placeholders.
      *
-     * @param replacements trusted placeholders; substituted before color formatting
-     * @param literals     untrusted text (must already be color-formatted)
+     * @param replacements trusted placeholders, done before color formatting
+     * @param literals     untrusted text, done after color formatting
      */
     public String getKey(String key, Map<String, String> replacements, Map<String, String> literals) {
         String string = _getKey(key);
 
+        Map<String, String> combined = new HashMap<>(replacements);
         List<String> tokens = new ArrayList<>();
         List<String> values = new ArrayList<>();
         for (Map.Entry<String, String> entry : literals.entrySet()) {
             String token = "\uE001" + tokens.size() + "\uE002";
             tokens.add(token);
             values.add(entry.getValue());
-            string = string.replace(entry.getKey(), token);
+            combined.put(entry.getKey(), token);
         }
-        for (Map.Entry<String, String> entry : replacements.entrySet()) {
-            string = string.replace(entry.getKey(), entry.getValue());
-        }
+        string = PlaceholderHelper.apply(string, combined);
         string = formatColors(string);
         for (int i = 0; i < tokens.size(); i++) {
             string = string.replace(tokens.get(i), values.get(i));
@@ -138,9 +136,7 @@ public class Lang {
     // Internal method to simplify code
     private String _getKey(String key) {
         String crKey = config.getString(key);
-        if (crKey == null) {
-            crKey = key;
-        }
+        if (crKey == null) crKey = key;
         return crKey;
     }
 }
