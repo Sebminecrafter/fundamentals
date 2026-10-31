@@ -88,9 +88,9 @@ public class GamemodeSimplifier implements FundamentalCommand {
             return true;
         }
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", sender.getName());
-        helper.add("VICTIM", player.getName());
-        helper.add("GM", gamemode.name());
+        helper.add("player", sender.getName());
+        helper.add("victim", player.getName());
+        helper.add("gm", gamemode.name());
         player.setGameMode(gamemode);
         Commands.safeSend(player, lang.getKey("staffcmds.gamemode.staff", helper.getReplace()));
         logger.log(lang.getKey("staffcmds.gamemode.log", helper.getReplace()));

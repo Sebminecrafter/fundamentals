@@ -23,7 +23,7 @@ public class Ping implements FundamentalCommand {
                 return false;
             }
             target = player;
-            helper.add("PING", String.valueOf(target.getPing()));
+            helper.add("ping", String.valueOf(target.getPing()));
             Commands.safeSend(sender, lang.getKey("cmds.ping.self", helper.getReplace()));
         } else { // Other ping
             target = Bukkit.getPlayerExact(args[0]);
@@ -31,8 +31,8 @@ public class Ping implements FundamentalCommand {
                 Commands.safeSend(sender, lang.getKey("msgs.offline"));
                 return true;
             }
-            helper.add("PING", String.valueOf(target.getPing()));
-            helper.add("PLAYER", target.getName());
+            helper.add("ping", String.valueOf(target.getPing()));
+            helper.add("player", target.getName());
             Commands.safeSend(sender, lang.getKey("cmds.ping.other", helper.getReplace()));
         }
         return true;

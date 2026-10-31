@@ -57,8 +57,8 @@ public class Ignore implements FundamentalCommand {
         UUID playerUUID = player.getUniqueId();
         UUID otherUUID = other.getUniqueId();
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", sender.getName());
-        helper.add("OTHER", other.getName());
+        helper.add("player", sender.getName());
+        helper.add("other", other.getName());
         if (isIgnoring(playerUUID, otherUUID)) {
             unignore(playerUUID, otherUUID);
             logger.log(lang.getKey("cmds.ignore.unignore.log", helper.getReplace()));

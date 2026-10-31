@@ -34,7 +34,7 @@ public class Depth implements FundamentalCommand {
         int depth = target.getLocation().getBlockY() - target.getWorld().getSeaLevel();
 
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("DEPTH", Integer.toString(depth));
+        helper.add("depth", Integer.toString(depth));
 
         Commands.safeSend(sender, lang.getKey("cmds.depth", helper.getReplace()));
         return true;

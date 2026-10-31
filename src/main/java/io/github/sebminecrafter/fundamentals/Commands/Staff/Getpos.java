@@ -25,12 +25,12 @@ public class Getpos implements FundamentalCommand {
         String y = Double.toString(location.getY());
         String z = Double.toString(location.getZ());
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", sender.getName());
-        helper.add("VICTIM", player.getName());
-        helper.add("PX", x);
-        helper.add("PY", y);
-        helper.add("PZ", z);
-        helper.add("PWORLD", world);
+        helper.add("player", sender.getName());
+        helper.add("victim", player.getName());
+        helper.add("x", x);
+        helper.add("y", y);
+        helper.add("z", z);
+        helper.add("world", world);
 
         Commands.safeSend(sender, lang.getKey("staffcmds.getpos", helper.getReplace()));
         return true;

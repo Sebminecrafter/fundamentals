@@ -24,9 +24,9 @@ public class Staffmsg implements FundamentalCommand {
         }
         Player receiver = Bukkit.getPlayerExact(args[0]);
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", sender.getName());
-        helper.add("VICTIM", args[0]);
-        helper.add("MSG", message.toString());
+        helper.add("player", sender.getName());
+        helper.add("victim", args[0]);
+        helper.add("msg", message.toString());
         if (receiver == null) {
             Commands.safeSend(sender, lang.getKey("msgs.offline", helper.getReplace()));
             return true;

@@ -35,8 +35,8 @@ public class Clearchat implements FundamentalCommand {
         }
         lines = Math.min(lines, maxLines);
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", sender.getName());
-        helper.add("LINES", Integer.toString(lines));
+        helper.add("player", sender.getName());
+        helper.add("lines", Integer.toString(lines));
         for (int i = 0; i < lines; i++) {
             Bukkit.getOnlinePlayers().forEach(player -> player.sendMessage(""));
         }

@@ -33,10 +33,10 @@ public class SendLocation implements FundamentalCommand {
         }
         Location loc = player.getLocation();
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", player.getName());
-        helper.add("PX", Integer.toString(loc.getBlockX()));
-        helper.add("PY", Integer.toString(loc.getBlockY()));
-        helper.add("PZ", Integer.toString(loc.getBlockZ()));
+        helper.add("player", player.getName());
+        helper.add("x", Integer.toString(loc.getBlockX()));
+        helper.add("y", Integer.toString(loc.getBlockY()));
+        helper.add("z", Integer.toString(loc.getBlockZ()));
         String str = lang.getKey("cmds.sendloc.message", helper.getReplace());
         msg.execute(sender, new String[]{target.getName(), str}, "msg");
         return true;

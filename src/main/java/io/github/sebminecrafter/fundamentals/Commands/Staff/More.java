@@ -42,10 +42,10 @@ public class More implements FundamentalCommand {
         }
 
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", player.getName());
-        helper.add("ITEM", item.getType().name());
-        helper.add("AMOUNT", Integer.toString(item.getAmount()));
-        helper.add("NEWAMOUNT", Integer.toString(amount));
+        helper.add("player", player.getName());
+        helper.add("item", item.getType().name());
+        helper.add("amount", Integer.toString(item.getAmount()));
+        helper.add("newamount", Integer.toString(amount));
 
         item.setAmount(amount);
 

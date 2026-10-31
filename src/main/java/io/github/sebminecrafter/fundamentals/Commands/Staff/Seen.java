@@ -48,17 +48,17 @@ public class Seen implements FundamentalCommand {
         String second     = String.format("%02d", time.getSecond());
 
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", name);
-        helper.add("YEAR", year);
-        helper.add("MONTHNUM", month);
-        helper.add("MONTHNAME", monthStr);
-        helper.add("DATE", date);
-        helper.add("WEEKDAY", dayOfWeek);
-        helper.add("24HOUR", hour);
-        helper.add("12HOUR", twelveHour);
-        helper.add("AMPM", AMPM);
-        helper.add("MINUTE", minute);
-        helper.add("SECOND", second);
+        helper.add("player", name);
+        helper.add("year", year);
+        helper.add("monthnum", month);
+        helper.add("monthname", monthStr);
+        helper.add("date", date);
+        helper.add("weekday", dayOfWeek);
+        helper.add("24hour", hour);
+        helper.add("12hour", twelveHour);
+        helper.add("ampm", AMPM);
+        helper.add("minute", minute);
+        helper.add("second", second);
 
         Commands.safeSend(sender, lang.getKey("cmds.seen", helper.getReplace()));
 

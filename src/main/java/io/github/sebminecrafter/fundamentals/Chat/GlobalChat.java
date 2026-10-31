@@ -54,10 +54,10 @@ public class GlobalChat implements Listener {
         if (notAllowed(message, player)) return;
 
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", player.getDisplayName());
+        helper.add("player", player.getDisplayName());
 
         String formattedMessage = lang.getKey("chat.format", helper.getReplace(),
-                Map.of("MSG", formatPlayerText(player, message)));
+                Map.of("msg", formatPlayerText(player, message)));
         logger.log(formattedMessage);
         for (Player p : new ArrayList<>(event.getRecipients())) {
             if (ignore.isIgnoring(p.getUniqueId(), player.getUniqueId())) continue;

@@ -60,8 +60,8 @@ public class Skull implements FundamentalCommand {
         Main plugin = Main.getPlugin(Main.class);
 
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", player.getName());
-        helper.add("TARGET", args[0]);
+        helper.add("player", player.getName());
+        helper.add("target", args[0]);
 
         fetchProfile(args[0]).thenAccept(updated ->
                 Bukkit.getScheduler().runTask(plugin, () -> {

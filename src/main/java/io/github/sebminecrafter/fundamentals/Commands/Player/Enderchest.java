@@ -24,7 +24,7 @@ public class Enderchest implements FundamentalCommand {
         Player target;
         if (args.length == 0) {
             PlaceholderHelper helper = new PlaceholderHelper();
-            helper.add("PLAYER", p.getName());
+            helper.add("player", p.getName());
             logger.log(lang.getKey("staffcmds.enderchest.log.player", helper.getReplace()));
             Commands.safeSend(p, lang.getKey("staffcmds.enderchest.message.player", helper.getReplace()));
             target = p;
@@ -36,8 +36,8 @@ public class Enderchest implements FundamentalCommand {
                     return true;
                 }
                 PlaceholderHelper helper = new PlaceholderHelper();
-                helper.add("PLAYER", p.getName());
-                helper.add("OTHER", target.getName());
+                helper.add("player", p.getName());
+                helper.add("other", target.getName());
                 logger.log(lang.getKey("staffcmds.enderchest.log.staff", helper.getReplace()));
                 Commands.safeSend(p, lang.getKey("staffcmds.enderchest.message.staff", helper.getReplace()));
             } else {

@@ -29,9 +29,9 @@ public class BroadcastWorld implements FundamentalCommand {
         words.removeFirst();
         String message = String.join(" ", words);
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", sender.getName());
-        helper.add("MSG", message);
-        helper.add("WORLD", world.getName());
+        helper.add("player", sender.getName());
+        helper.add("msg", message);
+        helper.add("world", world.getName());
         logger.logBoth(lang.getKey("staffcmds.broadcastworld.log", helper.getReplace()));
         Commands.safeSend(sender, lang.getKey("staffcmds.broadcastworld.staff", helper.getReplace()));
         String text = lang.getKey("staffcmds.broadcastworld.player", helper.getReplace());

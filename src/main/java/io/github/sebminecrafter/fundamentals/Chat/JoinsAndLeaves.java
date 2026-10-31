@@ -22,7 +22,7 @@ public class JoinsAndLeaves implements Listener {
         Player player = event.getPlayer();
 
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", player.getName());
+        helper.add("player", player.getName());
 
         if (player.hasPlayedBefore()) {
             event.setJoinMessage(lang.getKey("chat.join", helper.getReplace()));
@@ -36,7 +36,7 @@ public class JoinsAndLeaves implements Listener {
         Player player = event.getPlayer();
 
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", player.getName());
+        helper.add("player", player.getName());
 
         event.setQuitMessage(lang.getKey("chat.leave", helper.getReplace()));
     }

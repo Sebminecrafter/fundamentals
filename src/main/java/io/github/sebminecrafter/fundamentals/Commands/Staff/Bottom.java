@@ -34,8 +34,8 @@ public class Bottom implements FundamentalCommand {
         Location startLocation = target.getLocation().clone();
 
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", sender.getName());
-        helper.add("TARGET", target.getName());
+        helper.add("player", sender.getName());
+        helper.add("target", target.getName());
 
         Block block = null;
 
@@ -55,9 +55,9 @@ public class Bottom implements FundamentalCommand {
             return true;
         }
 
-        helper.add("BX", Integer.toString(block.getX()));
-        helper.add("BY", Integer.toString(block.getY()));
-        helper.add("BZ", Integer.toString(block.getZ()));
+        helper.add("x", Integer.toString(block.getX()));
+        helper.add("y", Integer.toString(block.getY()));
+        helper.add("z", Integer.toString(block.getZ()));
 
         target.teleport(block.getLocation());
         logger.log(lang.getKey("staffcmds.bottom.log", helper.getReplace()));

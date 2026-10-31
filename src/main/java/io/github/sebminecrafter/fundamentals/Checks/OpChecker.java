@@ -48,8 +48,8 @@ public class OpChecker implements Listener {
         if (type == null) {return;}
 
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("CMD", cmd);
-        helper.add("EXECUTOR", player);
+        helper.add("cmd", cmd);
+        helper.add("executor", player);
 
         logger.logBoth(Level.WARNING, lang.getKey("ops.player." + type, helper.getReplace()));
     }
@@ -61,7 +61,7 @@ public class OpChecker implements Listener {
         if (type == null) {return;}
 
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("CMD", cmd);
+        helper.add("cmd", cmd);
 
         logger.logBoth(lang.getKey("ops.console." + type, helper.getReplace()));
     }
@@ -82,7 +82,7 @@ public class OpChecker implements Listener {
             boolean previous = opStatus.getOrDefault(player.getUniqueId(), current);
             if (current != previous) {
                 PlaceholderHelper helper = new PlaceholderHelper();
-                helper.add("PLAYER", player.getName());
+                helper.add("player", player.getName());
                 if (current) {
                     logger.logBoth(Level.WARNING, lang.getKey("ops.detect.op", helper.getReplace()));
                 } else {

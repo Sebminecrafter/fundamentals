@@ -98,7 +98,7 @@ public class Lang {
 
     /** Get the translation for `key`, with placeholders
      * @param key The translation key path (like `command.example.response`)
-     * @param replacements Map of placeholder name (like `PLAYER`) to replacement; matches `%PLAYER%` in the lang file
+     * @param replacements Map of placeholder name (like `player`) to replacement; matches `%player%` in the lang file
      *  */
     public String getKey(String key, Map<String, String> replacements) {
         String string = _getKey(key);

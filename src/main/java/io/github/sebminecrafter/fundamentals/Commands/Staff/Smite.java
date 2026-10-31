@@ -34,8 +34,8 @@ public class Smite implements FundamentalCommand {
         }
         target.getWorld().strikeLightning(loc);
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", sender.getName());
-        helper.add("TARGET", target.getName());
+        helper.add("player", sender.getName());
+        helper.add("target", target.getName());
         Commands.safeSend(sender, lang.getKey("staffcmds.smite.staff", helper.getReplace()));
         logger.log(lang.getKey("staffcmds.smite.log", helper.getReplace()));
         return true;

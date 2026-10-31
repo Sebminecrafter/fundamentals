@@ -19,8 +19,8 @@ public class Broadcast implements FundamentalCommand {
         if (args.length < 1) return false;
         String message = String.join(" ", args);
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", sender.getName());
-        helper.add("MSG", message);
+        helper.add("player", sender.getName());
+        helper.add("msg", message);
         logger.logBoth(lang.getKey("staffcmds.broadcast.log", helper.getReplace()));
         Commands.safeSend(sender, lang.getKey("staffcmds.broadcast.staff", helper.getReplace()));
         Bukkit.broadcastMessage(lang.getKey("staffcmds.broadcast.player", helper.getReplace()));

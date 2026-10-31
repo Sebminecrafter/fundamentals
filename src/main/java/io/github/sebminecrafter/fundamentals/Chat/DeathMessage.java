@@ -27,8 +27,8 @@ public class DeathMessage implements Listener {
         deathMsg = deathMsg.trim();
 
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", playerName);
-        helper.add("DEATH", deathMsg);
+        helper.add("player", playerName);
+        helper.add("death", deathMsg);
 
         event.setDeathMessage(lang.getKey("chat.death", helper.getReplace()));
     }

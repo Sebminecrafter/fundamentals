@@ -33,8 +33,8 @@ public class Invsee implements FundamentalCommand {
         }
 
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", executor.getName());
-        helper.add("VICTIM", player.getName());
+        helper.add("player", executor.getName());
+        helper.add("victim", player.getName());
 
         executor.openInventory(player.getInventory());
         logger.log(lang.getKey("staffcmds.invsee.log", helper.getReplace()));

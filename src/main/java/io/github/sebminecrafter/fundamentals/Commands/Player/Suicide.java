@@ -20,7 +20,7 @@ public class Suicide implements FundamentalCommand {
             return true;
         }
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", player.getName());
+        helper.add("player", player.getName());
         Commands.safeSend(player, lang.getKey("cmds.suicide.msg"));
         logger.log(lang.getKey("cmds.suicide.log"));
         player.setHealth(0);

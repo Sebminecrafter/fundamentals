@@ -19,18 +19,18 @@ public class ServerStat implements FundamentalCommand {
     public boolean execute(CommandSender sender, String[] args, String label) {
         PlaceholderHelper helper = new PlaceholderHelper();
 
-        helper.add("ONLINE",   Integer.toString(Bukkit.getOnlinePlayers().size()));
-        helper.add("MAX",      Integer.toString(Bukkit.getMaxPlayers()));
-        helper.add("VERSION",  Bukkit.getVersion());
-        helper.add("MEMTOTAL", bytesToMbString(Runtime.getRuntime().totalMemory()));
-        helper.add("MEMFREE",  bytesToMbString(Runtime.getRuntime().freeMemory()));
-        helper.add("MEMUSED",  bytesToMbString(Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()));
-        helper.add("MEMMAX",   bytesToMbString(Runtime.getRuntime().maxMemory()));
-        helper.add("WORLDS",   Integer.toString(Bukkit.getWorlds().size()));
-        helper.add("UPTIME",   Integer.toString((int)((System.currentTimeMillis() - ManagementFactory.getRuntimeMXBean().getStartTime()) / 1000)));
-        helper.add("TPS1M",    tpsString(0));
-        helper.add("TPS5M",    tpsString(1));
-        helper.add("TPS15M",   tpsString(2));
+        helper.add("online",   Integer.toString(Bukkit.getOnlinePlayers().size()));
+        helper.add("max",      Integer.toString(Bukkit.getMaxPlayers()));
+        helper.add("version",  Bukkit.getVersion());
+        helper.add("memtotal", bytesToMbString(Runtime.getRuntime().totalMemory()));
+        helper.add("memfree",  bytesToMbString(Runtime.getRuntime().freeMemory()));
+        helper.add("memused",  bytesToMbString(Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()));
+        helper.add("memmax",   bytesToMbString(Runtime.getRuntime().maxMemory()));
+        helper.add("worlds",   Integer.toString(Bukkit.getWorlds().size()));
+        helper.add("uptime",   Integer.toString((int)((System.currentTimeMillis() - ManagementFactory.getRuntimeMXBean().getStartTime()) / 1000)));
+        helper.add("tps1m",    tpsString(0));
+        helper.add("tps5m",    tpsString(1));
+        helper.add("tps15m",   tpsString(2));
 
         Commands.safeSend(sender, lang.getKey("staffcmds.serverstat", helper.getReplace()));
 

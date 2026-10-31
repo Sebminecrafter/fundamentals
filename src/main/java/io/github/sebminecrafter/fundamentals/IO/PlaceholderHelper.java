@@ -5,15 +5,10 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Collects placeholder values and substitutes them into text.
- * <p>
- * Placeholders are registered by bare name (like {@code PLAYER}) but only match in text
- * when written wrapped in percent signs (like {@code %PLAYER%}).
- */
+/** Placeholder register and parser */
 public class PlaceholderHelper {
-    /** Matches a {@code %NAME%} placeholder, capturing NAME. */
-    private static final Pattern PLACEHOLDER = Pattern.compile("%([A-Za-z0-9_]+)%");
+    /** Matches a {@code %name%} placeholder, capturing {@code name} */
+    private static final Pattern PLACEHOLDER = Pattern.compile("%([A-Za-z0-9_-]+)%");
 
     private final Map<String, String> replace;
 
@@ -35,12 +30,10 @@ public class PlaceholderHelper {
     }
 
     /**
-     * Replace every {@code %NAME%} in `text` whose NAME is a key of `values`.
-     * Unknown placeholders and stray % signs are left untouched, and replacement values
-     * are never re-scanned (so a value containing {@code %OTHER%} is not expanded).
+     * Replace every {@code %name%} in {@code text} with the corresponding value in {@code values}
      *
-     * @param text   text containing %NAME% placeholders
-     * @param values map of bare NAME to replacement value
+     * @param text   text containing %name% placeholders
+     * @param values map of bare name to replacement value
      */
     public static String apply(String text, Map<String, String> values) {
         if (text == null || text.indexOf('%') < 0 || values.isEmpty()) return text;

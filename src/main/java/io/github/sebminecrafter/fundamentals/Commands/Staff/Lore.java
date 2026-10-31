@@ -25,7 +25,7 @@ public class Lore implements FundamentalCommand {
 
         StringBuilder loreBuilder = new StringBuilder();
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", player.getName());
+        helper.add("player", player.getName());
 
         for (String part : args) {
             if (!loreBuilder.isEmpty()) {
@@ -36,8 +36,8 @@ public class Lore implements FundamentalCommand {
 
         String newLore = lang.formatColors(loreBuilder.toString());
         ItemStack item = player.getInventory().getItemInMainHand();
-        helper.add("LORE", newLore);
-        helper.add("ITEM", item.getType().name());
+        helper.add("lore", newLore);
+        helper.add("item", item.getType().name());
         if (item.getType() == Material.AIR) {
             Commands.safeSend(sender, lang.getKey("msgs.no-item", helper.getReplace()));
             return true;

@@ -32,8 +32,8 @@ public class Tpo implements FundamentalCommand {
             }
         }
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", executor.getName());
-        helper.add("VICTIM", args[0]);
+        helper.add("player", executor.getName());
+        helper.add("victim", args[0]);
         if (target == null || target.getName() == null) {
             Commands.safeSend(sender, lang.getKey("msgs.playernotfound", helper.getReplace()));
             return true;

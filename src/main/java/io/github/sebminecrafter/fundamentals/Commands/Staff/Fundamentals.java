@@ -23,7 +23,7 @@ public class Fundamentals implements FundamentalCommand {
             return false;
         }
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", sender.getName());
+        helper.add("player", sender.getName());
         switch (args[0].toLowerCase()) {
             case "reloadconfig" -> {
                 if (args.length != 1) {
@@ -48,7 +48,7 @@ public class Fundamentals implements FundamentalCommand {
                     return true;
                 }
                 String command = args[1].toLowerCase();
-                helper.add("COMMAND", command);
+                helper.add("command", command);
                 if (!cmdsSection.contains(command)) {
                     Commands.safeSend(sender, lang.getKey("msgs.notfound"));
                     return true;
@@ -72,7 +72,7 @@ public class Fundamentals implements FundamentalCommand {
                     return true;
                 }
                 String command = args[1].toLowerCase();
-                helper.add("COMMAND", command);
+                helper.add("command", command);
                 if (!cmdsSection.contains(command)) {
                     Commands.safeSend(sender, lang.getKey("msgs.notfound"));
                     return true;

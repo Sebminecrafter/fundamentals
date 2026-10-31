@@ -102,8 +102,8 @@ public class Homes implements FundamentalCommand, Listener {
                 Location home = homes.get(args[0]);
                 PlaceholderHelper helper = new PlaceholderHelper();
                 int homeDelay = config.getInt("home.delay");
-                helper.add("HOME", args[0]);
-                helper.add("SECS", Integer.toString(homeDelay));
+                helper.add("home", args[0]);
+                helper.add("secs", Integer.toString(homeDelay));
 
                 if (home != null) {
                     World world = Bukkit.getWorld(home.world());
@@ -129,11 +129,11 @@ public class Homes implements FundamentalCommand, Listener {
                 if (args.length != 1)
                     return false;
                 PlaceholderHelper helper = new PlaceholderHelper();
-                helper.add("HOME", args[0]);
+                helper.add("home", args[0]);
                 if (homes.containsKey(args[0])) {
                     Commands.safeSend(player, lang.getKey("cmds.home.conflict", helper.getReplace()));
                 } else if (homes.size() >= config.getInt("home.max")) {
-                    helper.add("MAX", Integer.toString(config.getInt("home.max")));
+                    helper.add("max", Integer.toString(config.getInt("home.max")));
                     Commands.safeSend(player, lang.getKey("cmds.home.max", helper.getReplace()));
                 } else {
                     org.bukkit.Location loc = player.getLocation();
@@ -144,7 +144,7 @@ public class Homes implements FundamentalCommand, Listener {
                     ));
                     saveHomes(player.getUniqueId());
                     Commands.safeSend(player, lang.getKey("cmds.home.set", helper.getReplace()));
-                    helper.add("PLAYER", player.getName());
+                    helper.add("player", player.getName());
                     logger.log(lang.getKey("cmds.home.setlog", helper.getReplace()));
                 }
             }
@@ -152,12 +152,12 @@ public class Homes implements FundamentalCommand, Listener {
                 if (args.length != 1)
                     return false;
                 PlaceholderHelper helper = new PlaceholderHelper();
-                helper.add("HOME", args[0]);
+                helper.add("home", args[0]);
                 if (homes.containsKey(args[0])) {
                     homes.remove(args[0]);
                     saveHomes(player.getUniqueId());
                     Commands.safeSend(player, lang.getKey("cmds.home.deleted", helper.getReplace()));
-                    helper.add("PLAYER", player.getName());
+                    helper.add("player", player.getName());
                     logger.log(lang.getKey("cmds.home.deletedlog", helper.getReplace()));
                 } else {
                     Commands.safeSend(player, lang.getKey("cmds.home.missing", helper.getReplace()));
@@ -222,7 +222,7 @@ public class Homes implements FundamentalCommand, Listener {
 
     private void sendCountdownActionBar(Player p, int seconds) {
         PlaceholderHelper countdownHelper = new PlaceholderHelper();
-        countdownHelper.add("SECS", String.valueOf(seconds));
+        countdownHelper.add("secs", String.valueOf(seconds));
         p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacy(lang.getKey("cmds.home.countdown", countdownHelper.getReplace())));
     }
 }

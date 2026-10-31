@@ -35,8 +35,8 @@ public class Heal implements FundamentalCommand {
         }
         player.setHealth(health);
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", sender.getName());
-        helper.add("VICTIM", player.getName());
+        helper.add("player", sender.getName());
+        helper.add("victim", player.getName());
         Commands.safeSend(sender, lang.getKey("staffcmds.heal.staff", helper.getReplace()));
         logger.log(lang.getKey("staffcmds.heal.log", helper.getReplace()));
         return true;

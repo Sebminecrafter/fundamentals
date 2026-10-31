@@ -41,8 +41,8 @@ public class Nuke implements FundamentalCommand {
         }
 
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", sender.getName());
-        helper.add("TARGETS", targetsStr.toString());
+        helper.add("player", sender.getName());
+        helper.add("targets", targetsStr.toString());
         Commands.safeSend(sender, lang.getKey("staffcmds.nuke.staff", helper.getReplace()));
         logger.log(lang.getKey("staffcmds.nuke.log", helper.getReplace()));
         for (Player p : targets) {

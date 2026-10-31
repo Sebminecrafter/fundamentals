@@ -44,8 +44,8 @@ public class Msg implements FundamentalCommand {
         }
         Player receiver = Bukkit.getPlayerExact(args[0]);
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", sender.getName());
-        helper.add("OTHER", args[0]);
+        helper.add("player", sender.getName());
+        helper.add("other", args[0]);
         if (receiver == null) {
             Commands.safeSend(sender, lang.getKey("msgs.offline", helper.getReplace()));
             return true;
@@ -62,7 +62,7 @@ public class Msg implements FundamentalCommand {
         lastMessaged.put(receiver.getUniqueId(), player.getUniqueId());
         lastMessaged.put(player.getUniqueId(), receiver.getUniqueId());
 
-        Map<String, String> literals = Map.of("MSG", Main.chat.formatPlayerText(player, message.toString().strip()));
+        Map<String, String> literals = Map.of("msg", Main.chat.formatPlayerText(player, message.toString().strip()));
         Commands.safeSend(receiver, lang.getKey("cmds.msg.receive", helper.getReplace(), literals));
         Commands.safeSend(sender, lang.getKey("cmds.msg.send", helper.getReplace(), literals));
         logger.log(lang.getKey("cmds.msg.log", helper.getReplace(), literals));

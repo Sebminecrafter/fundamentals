@@ -61,8 +61,8 @@ public class Rtp implements FundamentalCommand {
         int countdownTime = config.getInt("rtp.delay");
 
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", player.getName());
-        helper.add("SECS", Integer.toString(countdownTime));
+        helper.add("player", player.getName());
+        helper.add("secs", Integer.toString(countdownTime));
 
         World targetWorld;
         if (args.length > 1) {
@@ -159,7 +159,7 @@ public class Rtp implements FundamentalCommand {
                     }
 
                     PlaceholderHelper helper = new PlaceholderHelper();
-                    helper.add("ATTEMPTS", Integer.toString(attemptNum));
+                    helper.add("attempts", Integer.toString(attemptNum));
                     logger.log(lang.getKey("cmds.rtp.log.found", helper.getReplace()));
                     candidateFuture.complete(new Location(world, x + 0.5, y + 1, z + 0.5));
                 });
@@ -181,7 +181,7 @@ public class Rtp implements FundamentalCommand {
             }
 
             PlaceholderHelper helper = new PlaceholderHelper();
-            helper.add("ATTEMPTS", Integer.toString(maxAttempts));
+            helper.add("attempts", Integer.toString(maxAttempts));
             logger.log(lang.getKey("cmds.rtp.log.failed", helper.getReplace()));
             result.complete(null);
         });
@@ -222,7 +222,7 @@ public class Rtp implements FundamentalCommand {
 
     private void sendCountdownActionBar(Player p, int seconds) {
         PlaceholderHelper countdownHelper = new PlaceholderHelper();
-        countdownHelper.add("SECS", String.valueOf(seconds));
+        countdownHelper.add("secs", String.valueOf(seconds));
         p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacy(lang.getKey("cmds.rtp.countdown", countdownHelper.getReplace())));
     }
 }

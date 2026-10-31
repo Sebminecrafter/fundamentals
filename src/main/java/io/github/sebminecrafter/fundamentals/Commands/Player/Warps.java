@@ -90,8 +90,8 @@ public class Warps implements FundamentalCommand {
                 PlaceholderHelper helper = new PlaceholderHelper();
                 int warpDelay = config.getInt("warp.delay");
 
-                helper.add("WARP", args[0]);
-                helper.add("SECS", Integer.toString(warpDelay));
+                helper.add("warp", args[0]);
+                helper.add("secs", Integer.toString(warpDelay));
                 if (warp != null) {
                     World world = Bukkit.getWorld(warp.world());
                     if (world == null) {
@@ -116,7 +116,7 @@ public class Warps implements FundamentalCommand {
                 if (args.length != 1)
                     return false;
                 PlaceholderHelper helper = new PlaceholderHelper();
-                helper.add("WARP", args[0]);
+                helper.add("warp", args[0]);
                 if (!player.hasPermission("fundamentals.staff.setwarp")) {
                     Commands.safeSend(player, lang.getKey("msgs.noperms"));
                     return true;
@@ -129,7 +129,7 @@ public class Warps implements FundamentalCommand {
                     Commands.safeSend(player, lang.getKey("cmds.warp.conflict", helper.getReplace()));
                 } else if (maxWarps >= 0 && owned >= maxWarps
                         && !player.hasPermission("fundamentals.staff.warps.unlimited")) {
-                    helper.add("MAX", Integer.toString(maxWarps));
+                    helper.add("max", Integer.toString(maxWarps));
                     Commands.safeSend(player, lang.getKey("cmds.warp.max", helper.getReplace()));
                 } else {
                     org.bukkit.Location loc = player.getLocation();
@@ -141,7 +141,7 @@ public class Warps implements FundamentalCommand {
                             ), player.getUniqueId()));
                     saveWarps();
                     Commands.safeSend(player, lang.getKey("cmds.warp.set", helper.getReplace()));
-                    helper.add("PLAYER", player.getName());
+                    helper.add("player", player.getName());
                     logger.log(lang.getKey("cmds.warp.setlog", helper.getReplace()));
                 }
             }
@@ -149,7 +149,7 @@ public class Warps implements FundamentalCommand {
                 if (args.length != 1)
                     return false;
                 PlaceholderHelper helper = new PlaceholderHelper();
-                helper.add("WARP", args[0]);
+                helper.add("warp", args[0]);
                 Warp existing = warps.get(args[0]);
                 if (existing != null
                         && !player.getUniqueId().equals(existing.owner())
@@ -161,7 +161,7 @@ public class Warps implements FundamentalCommand {
                     warps.remove(args[0]);
                     saveWarps();
                     Commands.safeSend(player, lang.getKey("cmds.warp.deleted", helper.getReplace()));
-                    helper.add("PLAYER", player.getName());
+                    helper.add("player", player.getName());
                     logger.log(lang.getKey("cmds.warp.deletedlog", helper.getReplace()));
                 } else {
                     Commands.safeSend(player, lang.getKey("cmds.warp.missing", helper.getReplace()));
@@ -187,7 +187,7 @@ public class Warps implements FundamentalCommand {
 
     private void sendCountdownActionBar(Player p, int seconds) {
         PlaceholderHelper countdownHelper = new PlaceholderHelper();
-        countdownHelper.add("SECS", String.valueOf(seconds));
+        countdownHelper.add("secs", String.valueOf(seconds));
         p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacy(lang.getKey("cmds.warp.countdown", countdownHelper.getReplace())));
     }
 }

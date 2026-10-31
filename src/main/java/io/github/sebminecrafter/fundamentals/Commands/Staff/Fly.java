@@ -31,7 +31,7 @@ public class Fly implements FundamentalCommand {
             return false;
         }
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", player.getName());
+        helper.add("player", player.getName());
         if (player.getGameMode() == GameMode.CREATIVE || player.getGameMode() == GameMode.SPECTATOR) {
             Commands.safeSend(sender, lang.getKey("staffcmds.fly.gamemode", helper.getReplace()));
             return true;

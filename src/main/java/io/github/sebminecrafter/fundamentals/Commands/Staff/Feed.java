@@ -28,8 +28,8 @@ public class Feed implements FundamentalCommand {
         }
         player.setFoodLevel(20);
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", sender.getName());
-        helper.add("VICTIM", player.getName());
+        helper.add("player", sender.getName());
+        helper.add("victim", player.getName());
         Commands.safeSend(sender, lang.getKey("staffcmds.feed.staff", helper.getReplace()));
         logger.log(lang.getKey("staffcmds.feed.log", helper.getReplace()));
         return true;

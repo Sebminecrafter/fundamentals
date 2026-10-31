@@ -138,8 +138,8 @@ public class Tpa implements FundamentalCommand {
 
     private void sendTpRequest(Player sender, Player receiver) {
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", sender.getName());
-        helper.add("OTHER", receiver.getName());
+        helper.add("player", sender.getName());
+        helper.add("other", receiver.getName());
         if (tparequests.containsValue(sender.getUniqueId()) ||
                 tpahererequests.containsValue(sender.getUniqueId())) {
             Commands.safeSend(sender, lang.getKey("cmds.tpa.multiple", helper.getReplace()));
@@ -160,8 +160,8 @@ public class Tpa implements FundamentalCommand {
 
     private void sendTpHereRequest(Player sender, Player receiver) {
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", sender.getName());
-        helper.add("OTHER", receiver.getName());
+        helper.add("player", sender.getName());
+        helper.add("other", receiver.getName());
         if (tparequests.containsValue(sender.getUniqueId()) ||
                 tpahererequests.containsValue(sender.getUniqueId())) {
             Commands.safeSend(sender, lang.getKey("cmds.tpa.multiple", helper.getReplace()));
@@ -188,8 +188,8 @@ public class Tpa implements FundamentalCommand {
         Player sender = Bukkit.getPlayer(senderUuid);
         Player receiver = Bukkit.getPlayer(receiverUuid);
 
-        if (sender != null) helper.add("PLAYER", sender.getName());
-        if (receiver != null) helper.add("OTHER", receiver.getName());
+        if (sender != null) helper.add("player", sender.getName());
+        if (receiver != null) helper.add("other", receiver.getName());
 
         logger.log(lang.getKey("cmds.tpa.expired.log", helper.getReplace()));
         if (sender != null) Commands.safeSend(sender, lang.getKey("cmds.tpa.expired.sent", helper.getReplace()));
@@ -207,8 +207,8 @@ public class Tpa implements FundamentalCommand {
         Player sender = Bukkit.getPlayer(senderUuid);
         Player receiver = Bukkit.getPlayer(receiverUuid);
 
-        if (sender != null) helper.add("PLAYER", sender.getName());
-        if (receiver != null) helper.add("OTHER", receiver.getName());
+        if (sender != null) helper.add("player", sender.getName());
+        if (receiver != null) helper.add("other", receiver.getName());
 
         logger.log(lang.getKey("cmds.tpa.expired.log", helper.getReplace()));
         if (sender != null) Commands.safeSend(sender, lang.getKey("cmds.tpa.expired.sent", helper.getReplace()));
@@ -220,7 +220,7 @@ public class Tpa implements FundamentalCommand {
 
     private void removeTpRequest(Player sender) {
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", sender.getName());
+        helper.add("player", sender.getName());
 
         UUID receiverUuid = findKeyByValue(tparequests, sender.getUniqueId());
         UUID hereReceiverUuid = findKeyByValue(tpahererequests, sender.getUniqueId());
@@ -228,7 +228,7 @@ public class Tpa implements FundamentalCommand {
         if (receiverUuid != null) {
             Player receiver = Bukkit.getPlayer(receiverUuid);
             if (receiver != null) {
-                helper.add("OTHER", receiver.getName());
+                helper.add("other", receiver.getName());
             }
             logger.log(lang.getKey("cmds.tpa.cancelled.log", helper.getReplace()));
             Commands.safeSend(sender, lang.getKey("cmds.tpa.cancelled.sent", helper.getReplace()));
@@ -240,7 +240,7 @@ public class Tpa implements FundamentalCommand {
         } else if (hereReceiverUuid != null) {
             Player receiver = Bukkit.getPlayer(hereReceiverUuid);
             if (receiver != null) {
-                helper.add("OTHER", receiver.getName());
+                helper.add("other", receiver.getName());
             }
             logger.log(lang.getKey("cmds.tpa.cancelled.log", helper.getReplace()));
             Commands.safeSend(sender, lang.getKey("cmds.tpa.cancelled.sent", helper.getReplace()));
@@ -264,8 +264,8 @@ public class Tpa implements FundamentalCommand {
     private void acceptTpRequest(Player receiver) {
         PlaceholderHelper helper = new PlaceholderHelper();
         int countdownTime = config.getInt("tpa.delay");
-        helper.add("PLAYER", receiver.getName());
-        helper.add("SECS", Integer.toString(countdownTime));
+        helper.add("player", receiver.getName());
+        helper.add("secs", Integer.toString(countdownTime));
 
         if (tparequests.containsKey(receiver.getUniqueId())) {
             Player requester = Bukkit.getPlayer(tparequests.get(receiver.getUniqueId()));
@@ -275,7 +275,7 @@ public class Tpa implements FundamentalCommand {
                 tparequests.remove(receiver.getUniqueId());
                 return;
             }
-            helper.add("OTHER", requester.getName());
+            helper.add("other", requester.getName());
             logger.log(lang.getKey("cmds.tpa.accepted.log", helper.getReplace()));
             Commands.safeSend(receiver, lang.getKey("cmds.tpa.accepted.sent", helper.getReplace()));
             Commands.safeSend(requester, lang.getKey("cmds.tpa.accepted.receive", helper.getReplace()));
@@ -293,7 +293,7 @@ public class Tpa implements FundamentalCommand {
                 tpahererequests.remove(receiver.getUniqueId());
                 return;
             }
-            helper.add("OTHER", requester.getName());
+            helper.add("other", requester.getName());
             logger.log(lang.getKey("cmds.tpa.accepted.log", helper.getReplace()));
             Commands.safeSend(receiver, lang.getKey("cmds.tpa.accepted.sent", helper.getReplace()));
             Commands.safeSend(requester, lang.getKey("cmds.tpa.accepted.receive", helper.getReplace()));
@@ -310,11 +310,11 @@ public class Tpa implements FundamentalCommand {
 
     private void denyTpRequest(Player receiver) {
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", receiver.getName());
+        helper.add("player", receiver.getName());
         if (tparequests.containsKey(receiver.getUniqueId())) {
             Player requester = Bukkit.getPlayer(tparequests.get(receiver.getUniqueId()));
             if (requester != null) {
-                helper.add("OTHER", requester.getName());
+                helper.add("other", requester.getName());
             }
             logger.log(lang.getKey("cmds.tpa.denied.log", helper.getReplace()));
             Commands.safeSend(receiver, lang.getKey("cmds.tpa.denied.sent", helper.getReplace()));
@@ -326,7 +326,7 @@ public class Tpa implements FundamentalCommand {
         } else if (tpahererequests.containsKey(receiver.getUniqueId())) {
             Player requester = Bukkit.getPlayer(tpahererequests.get(receiver.getUniqueId()));
             if (requester != null) {
-                helper.add("OTHER", requester.getName());
+                helper.add("other", requester.getName());
             }
             logger.log(lang.getKey("cmds.tpa.denied.log", helper.getReplace()));
             Commands.safeSend(receiver, lang.getKey("cmds.tpa.denied.sent", helper.getReplace()));
@@ -352,7 +352,7 @@ public class Tpa implements FundamentalCommand {
             Player old = Bukkit.getPlayer(oldSender);
             if (old == null) continue;
             PlaceholderHelper helper = new PlaceholderHelper();
-            helper.add("OTHER", receiver.getName());
+            helper.add("other", receiver.getName());
             Commands.safeSend(old, lang.getKey("cmds.tpa.replaced", helper.getReplace()));
         }
     }
@@ -364,7 +364,7 @@ public class Tpa implements FundamentalCommand {
 
     private void sendCountdownActionBar(Player p, int seconds) {
         PlaceholderHelper countdownHelper = new PlaceholderHelper();
-        countdownHelper.add("SECS", String.valueOf(seconds));
+        countdownHelper.add("secs", String.valueOf(seconds));
         p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacy(lang.getKey("cmds.tpa.countdown", countdownHelper.getReplace())));
     }
 }

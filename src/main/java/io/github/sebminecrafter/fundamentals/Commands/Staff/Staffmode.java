@@ -59,7 +59,7 @@ public class Staffmode implements Listener, FundamentalCommand {
             if (savedGameModes.containsKey(uuid)) {
                 restore(player);
                 PlaceholderHelper helper = new PlaceholderHelper();
-                helper.add("PLAYER", player.getName());
+                helper.add("player", player.getName());
                 Commands.safeSend(player, lang.getKey("staffcmds.staffmode.staff.exit", helper.getReplace()));
                 logger.log(lang.getKey("staffcmds.staffmode.log.exit", helper.getReplace()));
             } else {
@@ -67,7 +67,7 @@ public class Staffmode implements Listener, FundamentalCommand {
                 savedLocations.put(uuid, player.getLocation().clone());
                 player.setGameMode(GameMode.SPECTATOR);
                 PlaceholderHelper helper = new PlaceholderHelper();
-                helper.add("PLAYER", player.getName());
+                helper.add("player", player.getName());
                 Commands.safeSend(player, lang.getKey("staffcmds.staffmode.staff.enter", helper.getReplace()));
                 logger.log(lang.getKey("staffcmds.staffmode.log.enter", helper.getReplace()));
             }
@@ -78,8 +78,8 @@ public class Staffmode implements Listener, FundamentalCommand {
             player.setGameMode(GameMode.SPECTATOR);
             player.teleport(wantsToTpTo);
             PlaceholderHelper helper = new PlaceholderHelper();
-            helper.add("PLAYER", player.getName());
-            helper.add("VICTIM", wantsToTpTo.getName());
+            helper.add("player", player.getName());
+            helper.add("victim", wantsToTpTo.getName());
             Commands.safeSend(player, lang.getKey("staffcmds.staffmode.staff.enter", helper.getReplace())+lang.getKey("staffcmds.staffmode.addon", helper.getReplace()));
             logger.log(lang.getKey("staffcmds.staffmode.log.enter", helper.getReplace())+lang.getKey("staffcmds.staffmode.addon", helper.getReplace()));
         }
@@ -127,7 +127,7 @@ public class Staffmode implements Listener, FundamentalCommand {
         if (event.getNewGameMode() == GameMode.SPECTATOR) return;
         if (savedGameModes.containsKey(player.getUniqueId())) {
             PlaceholderHelper helper = new PlaceholderHelper();
-            helper.add("PLAYER", player.getName());
+            helper.add("player", player.getName());
             Commands.safeSend(player, lang.getKey("staffcmds.staffmode.staff.exit", helper.getReplace()));
             logger.log(lang.getKey("staffcmds.staffmode.log.exit", helper.getReplace()));
             removePlayer(player);

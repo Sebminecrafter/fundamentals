@@ -31,7 +31,7 @@ public class Sudo implements FundamentalCommand {
         if (!senderIsPrivileged && target != sender
                 && (target.isOp() || target.hasPermission("fundamentals.staff.sudo.exempt"))) {
             PlaceholderHelper exemptHelper = new PlaceholderHelper();
-            exemptHelper.add("VICTIM", target.getName());
+            exemptHelper.add("victim", target.getName());
             Commands.safeSend(sender, lang.getKey("staffcmds.sudo.exempt", exemptHelper.getReplace()));
             return true;
         }
@@ -49,9 +49,9 @@ public class Sudo implements FundamentalCommand {
         }
 
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", sender.getName());
-        helper.add("VICTIM", target.getName());
-        helper.add("CMD", command.toString());
+        helper.add("player", sender.getName());
+        helper.add("victim", target.getName());
+        helper.add("cmd", command.toString());
 
         logger.log(lang.getKey("staffcmds.sudo.log", helper.getReplace()));
         Commands.safeSend(sender, lang.getKey("staffcmds.sudo.staff", helper.getReplace()));

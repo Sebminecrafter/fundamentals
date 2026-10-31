@@ -46,8 +46,8 @@ public class Freeze implements FundamentalCommand, Listener {
         UUID uuid = target.getUniqueId();
 
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", sender.getName());
-        helper.add("VICTIM", target.getName());
+        helper.add("player", sender.getName());
+        helper.add("victim", target.getName());
 
         if (frozenPlayers.containsKey(uuid)) {
             // Remove task and unfreeze

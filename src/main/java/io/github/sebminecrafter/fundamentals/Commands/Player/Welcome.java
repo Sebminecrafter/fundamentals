@@ -32,8 +32,8 @@ public class Welcome implements FundamentalCommand {
             return true;
         }
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", sender.getName());
-        helper.add("OTHER", player.getName());
+        helper.add("player", sender.getName());
+        helper.add("other", player.getName());
         logger.log(lang.getKey("cmds.welcome.log", helper.getReplace()));
         Bukkit.broadcastMessage(lang.getKey("cmds.welcome.send", helper.getReplace()));
         return true;

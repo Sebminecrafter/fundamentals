@@ -29,7 +29,7 @@ public class Socialspy implements FundamentalCommand {
             return false;
         }
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", player.getName());
+        helper.add("player", player.getName());
         if (spyingPlayers.contains(player.getUniqueId())) {
             logger.log(lang.getKey("staffcmds.socialspy.disable.log", helper.getReplace()));
             Commands.safeSend(player, lang.getKey("staffcmds.socialspy.disable.staff", helper.getReplace()));

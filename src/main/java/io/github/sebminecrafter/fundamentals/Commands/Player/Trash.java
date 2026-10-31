@@ -24,7 +24,7 @@ public class Trash implements FundamentalCommand {
             return false;
         }
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", player.getName());
+        helper.add("player", player.getName());
         logger.log(lang.getKey("cmds.trash.log", helper.getReplace()));
         Inventory inventory = Bukkit.createInventory(player, 27, lang.getKey("cmds.trash.title"));
         player.openInventory(inventory);

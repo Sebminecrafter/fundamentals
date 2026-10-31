@@ -5,65 +5,65 @@ started: "Started Fundamentals"
 stopped: "Stopped Fundamentals"
 
 # Player commands
-# Placeholders: %PLAYER%
+# Placeholders: %player%
 cmds:
   # Msg
-  # Extra placeholders: %OTHER%, %MSG%
+  # Extra placeholders: %other%, %msg%
   msg:
-    log: "%PLAYER% said to %OTHER%: %MSG%"
-    send: "&5&lYou &9-> &1&l%OTHER%&9: &r%MSG%"
-    receive: "&1&l%PLAYER% &9-> &5&lYou&9: &r%MSG%"
+    log: "%player% said to %other%: %msg%"
+    send: "&5&lYou &9-> &1&l%other%&9: &r%msg%"
+    receive: "&1&l%player% &9-> &5&lYou&9: &r%msg%"
   # Reply (only has error messages, rest is same as msg)
   reply:
     none: "&cNo one to reply to!"
   # Tpa/Tpahere/Tpaccept/Tpdeny/Tpacancel
-  # Extra placeholders: %OTHER%
+  # Extra placeholders: %other%
   tpa:
     multiple: "&cYou already have an outgoing tp request! &eCancel it with &l/tpacancel"
-    replaced: "&cTp request to &e&llOTHER&c was replaced."
+    replaced: "&cTp request to &e&l%other%&c was replaced."
     none: "&cYou have no incoming tp requests!"
     expired:
-      log: "%PLAYER%'s request to %OTHER% expired"
-      sent: "&cYour teleport request to &1&l%OTHER%&c expired!"
-      receive: "&cTeleport request from &1&l%PLAYER%&c expired!"
+      log: "%player%'s request to %other% expired"
+      sent: "&cYour teleport request to &1&l%other%&c expired!"
+      receive: "&cTeleport request from &1&l%player%&c expired!"
     cancelled:
-      log: "%PLAYER% cancelled request to %OTHER%"
-      sent: "&5Cancelled outgoing request to &1&l%OTHER%"
-      receive: "&cTpa request from &1&l%PLAYER%&c was cancelled!"
+      log: "%player% cancelled request to %other%"
+      sent: "&5Cancelled outgoing request to &1&l%other%"
+      receive: "&cTpa request from &1&l%player%&c was cancelled!"
     denied:
-      log: "%OTHER% denied request from %PLAYER%"
-      sent: "&1&l%OTHER%&c denied your tp request!"
-      receive: "&cTpa request from &1&l%PLAYER%&c was denied!"
+      log: "%other% denied request from %player%"
+      sent: "&1&l%other%&c denied your tp request!"
+      receive: "&cTpa request from &1&l%player%&c was denied!"
     request:
       tpa:
-        log: "%PLAYER% sent tpa request to %OTHER%"
-        sent: "&5Requested to teleport to &1&l%OTHER%"
-        receive: "&1&l%PLAYER%&5 has requested to teleport to you. &eUse &l/tpaccept&e to accept this request."
+        log: "%player% sent tpa request to %other%"
+        sent: "&5Requested to teleport to &1&l%other%"
+        receive: "&1&l%player%&5 has requested to teleport to you. &eUse &l/tpaccept&e to accept this request."
       tpahere:
-        log: "%PLAYER% sent tpahere request to %OTHER%"
-        sent: "&5Requested &1&l%OTHER%&5 to teleport here."
-        receive: "&1&l%PLAYER%&5 has requested you teleport to them. &eUse &l/tpaccept&e to accept this request."
+        log: "%player% sent tpahere request to %other%"
+        sent: "&5Requested &1&l%other%&5 to teleport here."
+        receive: "&1&l%player%&5 has requested you teleport to them. &eUse &l/tpaccept&e to accept this request."
     accepted:
-      log: "%OTHER% accepted %PLAYER%'s teleport request"
-      sent: "&1&l%OTHER%&5 accepted your teleport request!"
-      receive: "&5Accepted &1&l%PLAYER%&5's teleport request!"
-    teleporting: "&eDon't move! &dTeleporting in %SECS% seconds!"
-    # Countdown: will show in actionbar and can use %SECS% placeholder
-    countdown: "&5Teleporting in &l%SECS%&5..."
+      log: "%other% accepted %player%'s teleport request"
+      sent: "&1&l%other%&5 accepted your teleport request!"
+      receive: "&5Accepted &1&l%player%&5's teleport request!"
+    teleporting: "&eDon't move! &dTeleporting in %secs% seconds!"
+    # Countdown: will show in actionbar and can use %secs% placeholder
+    countdown: "&5Teleporting in &l%secs%&5..."
   # Ignore
-  # Extra placeholders: %OTHER%
+  # Extra placeholders: %other%
   ignore:
     ignore:
-      log: "%PLAYER% ignored %OTHER%"
-      send: "&5Ignored &1&l%OTHER%!"
+      log: "%player% ignored %other%"
+      send: "&5Ignored &1&l%other%!"
     unignore:
-      log: "%PLAYER% unignored %OTHER%"
-      send: "&5Stopped ignoring &1&l%OTHER%"
+      log: "%player% unignored %other%"
+      send: "&5Stopped ignoring &1&l%other%"
   # Welcome
-  # Extra placeholders: %OTHER%
+  # Extra placeholders: %other%
   welcome:
-    log: "%PLAYER% welcomed %OTHER%"
-    send: "&1%PLAYER% &5welcomes &1&l%OTHER%&5!"
+    log: "%player% welcomed %other%"
+    send: "&1%player% &5welcomes &1&l%other%&5!"
     # No placeholders, error message
     hasplayedbefore: "&cIt's not the player's first time!"
   # Home command
@@ -71,46 +71,46 @@ cmds:
     # /homes and /listhomes - comma separated list of homes will be appended after
     list: "&5&lHomes: &e" # home1, home2, etc
     nohomes: "&cYou don't have any homes."
-    # /home, /delhome - missing home - can use %HOME% name placeholder
-    missing: "&cYou don't have a home named '&l%HOME%&c'"
-    # Countdown for /home tp - can use %SECS% placeholder
-    countdown: "&5Teleporting in &l%SECS%&5..."
-    # /sethome - can use %HOME% name placeholder
-    set: "&5Successfully set a home named '&1&l%HOME%&5'"
-    setlog: "%PLAYER% created home %HOME%" # Can use %PLAYER% placeholder for log
-    conflict: "&cA home named '&l%HOME%&c' already exists!"
-    max: "&cYou cannot create more than %MAX% homes!" # Can use %MAX% for max number of homes
-    # /delhome - can use %HOME% name placeholder
-    deleted: "&5Successfully deleted home '&1&l%HOME%&5'"
-    deletedlog: "%PLAYER% deleted home %HOME%" # Can use %PLAYER% placeholder for log
+    # /home, /delhome - missing home - can use %home% name placeholder
+    missing: "&cYou don't have a home named '&l%home%&c'"
+    # Countdown for /home tp - can use %secs% placeholder
+    countdown: "&5Teleporting in &l%secs%&5..."
+    # /sethome - can use %home% name placeholder
+    set: "&5Successfully set a home named '&1&l%home%&5'"
+    setlog: "%player% created home %home%" # Can use %player% placeholder for log
+    conflict: "&cA home named '&l%home%&c' already exists!"
+    max: "&cYou cannot create more than %max% homes!" # Can use %max% for max number of homes
+    # /delhome - can use %home% name placeholder
+    deleted: "&5Successfully deleted home '&1&l%home%&5'"
+    deletedlog: "%player% deleted home %home%" # Can use %player% placeholder for log
     # All
     error: "&cUnable to load homes, please restart the server." # If homes storage fails to load
-    teleporting: "&eDon't move! &dTeleporting in %SECS% seconds!" # Teleporting warning
+    teleporting: "&eDon't move! &dTeleporting in %secs% seconds!" # Teleporting warning
   # Warp command
   warp:
     # /warp and /listwarps - comma separated list of warps will be appended after
     list: "&5&lAll warps on the server: &e" # cool_build, persons_place, etc.
     nowarps: "&cThere are no warps."
-    # /warp, /delwarp - missing warp - can use %WARP% name placeholder
-    missing: "&cYou don't have a warp named '&l%WARP%&c'"
-    # Countdown for /warp tp - can use %SECS% placeholder
-    countdown: "&5Teleporting in &l%SECS%&5..."
-    # /setwarp - can use %WARP% name placeholder
-    set: "&5Successfully set a warp named '&1&l%WARP%&5'"
-    setlog: "%PLAYER% created warp %WARP%" # Can use %PLAYER% placeholder for log
-    conflict: "&cA home named '&l%WARP%&c' already exists!"
-    max: "&cYou cannot create more than %MAX% warps!" # Can use %MAX% for max number of warps
-    # /delwarp - can use %WARP% name placeholder
-    deleted: "&5Successfully deleted warp '&1&l%WARP%&5'"
-    deletedlog: "%PLAYER% deleted warp %WARP%" # Can use %PLAYER% placeholder for log
+    # /warp, /delwarp - missing warp - can use %warp% name placeholder
+    missing: "&cYou don't have a warp named '&l%warp%&c'"
+    # Countdown for /warp tp - can use %secs% placeholder
+    countdown: "&5Teleporting in &l%secs%&5..."
+    # /setwarp - can use %warp% name placeholder
+    set: "&5Successfully set a warp named '&1&l%warp%&5'"
+    setlog: "%player% created warp %warp%" # Can use %player% placeholder for log
+    conflict: "&cA home named '&l%warp%&c' already exists!"
+    max: "&cYou cannot create more than %max% warps!" # Can use %max% for max number of warps
+    # /delwarp - can use %warp% name placeholder
+    deleted: "&5Successfully deleted warp '&1&l%warp%&5'"
+    deletedlog: "%player% deleted warp %warp%" # Can use %player% placeholder for log
     # All
-    teleporting: "&eDon't move! &dTeleporting in %SECS% seconds!" # Teleporting warning
+    teleporting: "&eDon't move! &dTeleporting in %secs% seconds!" # Teleporting warning
   # Random teleport command
   rtp:
-    # Countdown for rtp - can use %SECS% placeholder
-    countdown: "&5Teleporting in &l%SECS%&5..."
+    # Countdown for rtp - can use %secs% placeholder
+    countdown: "&5Teleporting in &l%secs%&5..."
     # Teleporting warning
-    teleporting: "&eDon't move! &dTeleporting in %SECS% seconds!"
+    teleporting: "&eDon't move! &dTeleporting in %secs% seconds!"
     # Not allowed in this world!
     in-world-not-allowed: "&cYou can't RTP in this world!"
     other-world-not-allowed: "&cYou can't RTP to that world!"
@@ -118,15 +118,15 @@ cmds:
     no-safe-location: "&cCouldn't find a safe destination"
     # Logs
     log:
-      # Found a safe location, can use %ATTEMPTS% placeholder
-      found: "Found safe location for RTP in %ATTEMPTS% attempts."
-      # Couldn't find a safe location, can use %ATTEMPTS% placeholder
-      failed: "Couldn't find safe location for RTP in %ATTEMPTS% attempts."
+      # Found a safe location, can use %attempts% placeholder
+      found: "Found safe location for RTP in %attempts% attempts."
+      # Couldn't find a safe location, can use %attempts% placeholder
+      failed: "Couldn't find safe location for RTP in %attempts% attempts."
 
-  # Ping command, can use %PING% and %PLAYER% placeholder
+  # Ping command, can use %ping% and %player% placeholder
   ping:
-    self: "&5Your ping is &d&l%PING%ms"
-    other: "&d%PLAYER%&5's ping is &d&l%PING%ms"
+    self: "&5Your ping is &d&l%ping%ms"
+    other: "&d%player%&5's ping is &d&l%ping%ms"
 
   # Rules command, opens book
   rules:
@@ -137,54 +137,54 @@ cmds:
   trash:
     # Title for inventory
     title: "&5Throw away items"
-    # Log, can use %PLAYER%
-    log: "%PLAYER% opened trash gui"
+    # Log, can use %player%
+    log: "%player% opened trash gui"
 
   # Send location to another player quickly
   sendloc:
-    # Message to be sent as player, can use %PLAYER%, %PX%, %PY%, and %PZ% placeholders
-    message: "&aMy location is: &c%PX% &e%PY% &b%PZ%"
+    # Message to be sent as player, can use %player%, %x%, %y%, and %z% placeholders
+    message: "&aMy location is: &c%x% &e%y% &b%z%"
 
-  # Kills the player, can use %PLAYER% placeholder
+  # Kills the player, can use %player% placeholder
   suicide:
     # Message to player
     msg: "&c ... Ouch."
     # Log message
-    log: "%PLAYER% took the hard way out"
+    log: "%player% took the hard way out"
 
-  # Seen command, can use placeholders: %PLAYER%, %YEAR%, %MONTHNUM%, %MONTHNAME%, %DATE%, %WEEKDAY%, %24HOUR%, %12HOUR%, %AMPM%, %MINUTE%, %SECOND%
-  seen: "&5&lPlayer&5 was last seen on&e %MONTHNUM%/%DATE%/%YEAR%, at %12HOUR%:%MINUTE%:%SECOND% %AMPM%"
+  # Seen command, can use placeholders: %player%, %year%, %monthnum%, %monthname%, %date%, %weekday%, %24hour%, %12hour%, %ampm%, %minute%, %second%
+  seen: "&5&lPlayer&5 was last seen on&e %monthnum%/%date%/%year%, at %12hour%:%minute%:%second% %ampm%"
 
   # Hat command, puts item in hand on head
   hat: "&5Plop!"
 
-  # Depth command, can use %DEPTH% placeholder
-  depth: "&5Your current distance from sea level is: &e&l%DEPTH%"
+  # Depth command, can use %depth% placeholder
+  depth: "&5Your current distance from sea level is: &e&l%depth%"
 
 # Staff commands
-# Placeholders: %PLAYER%, and sometimes %VICTIM% (Player might show up as "CONSOLE" in some cases)
+# Placeholders: %player%, and sometimes %victim% (Player might show up as "CONSOLE" in some cases)
 staffcmds:
   # Broadcast
-  # log, staff, and player messages, can use %MSG% placeholder
+  # log, staff, and player messages, can use %msg% placeholder
   broadcast:
-    log: "%PLAYER% broadcasted: \"%MSG%\""
-    staff: "&2&lBroadcasted message:&r %MSG%"
-    player: "%MSG%"
+    log: "%player% broadcasted: \"%msg%\""
+    staff: "&2&lBroadcasted message:&r %msg%"
+    player: "%msg%"
   # BroadcastWorld
-  # log, staff, and player messages, can use %MSG% and %WORLD% placeholders
+  # log, staff, and player messages, can use %msg% and %world% placeholders
   broadcastworld:
-    log: "%PLAYER% broadcasted to world %WORLD%: \"%MSG%\""
-    staff: "&2&lBroadcasted message to world %WORLD%:&r %MSG%"
-    player: "%MSG%"
+    log: "%player% broadcasted to world %world%: \"%msg%\""
+    staff: "&2&lBroadcasted message to world %world%:&r %msg%"
+    player: "%msg%"
   # Freeze
   # log, staff, and player messages
   freeze:
     log:
-      start: "%PLAYER% froze %VICTIM%!"
-      stop: "%PLAYER% unfroze %VICTIM%!"
+      start: "%player% froze %victim%!"
+      stop: "%player% unfroze %victim%!"
     staff:
-      start: "&cFroze %VICTIM%"
-      stop: "&cUnfroze %VICTIM%"
+      start: "&cFroze %victim%"
+      stop: "&cUnfroze %victim%"
     player:
       start: "&cYou have been frozen!"
       actionbar: "&cYou are frozen"
@@ -192,166 +192,166 @@ staffcmds:
   # Invsee
   # log and staff messages
   invsee:
-    log: "%PLAYER% opened %VICTIM%'s inventory!"
-    staff: "&2Opened %VICTIM%'s inventory"
+    log: "%player% opened %victim%'s inventory!"
+    staff: "&2Opened %victim%'s inventory"
   # Staffmsg
-  # log, staff, and player messages, can use %MSG% placeholder
+  # log, staff, and player messages, can use %msg% placeholder
   staffmsg:
-    log: "%PLAYER% staff-messaged %VICTIM%: %MSG%"
-    staff: "&4&lStaff &c-> &a&l%VICTIM%&4: &r%MSG%"
-    player: "&4&lStaff &c-> &a&lYou&4: &r%MSG%"
+    log: "%player% staff-messaged %victim%: %msg%"
+    staff: "&4&lStaff &c-> &a&l%victim%&4: &r%msg%"
+    player: "&4&lStaff &c-> &a&lYou&4: &r%msg%"
   # Staffmode
-  # log and staff message, %VICTIM% placeholder only if a name was entered (/staffmode [player to spectate - not required])
+  # log and staff message, %victim% placeholder only if a name was entered (/staffmode [player to spectate - not required])
   staffmode:
     log:
-      enter: "%PLAYER% entered staffmode"
-      exit: "%PLAYER% exited staffmode"
+      enter: "%player% entered staffmode"
+      exit: "%player% exited staffmode"
     staff:
       enter: "&bEntered staffmode"
       exit: "&bExited staffmode"
-    addon: ", spectating %VICTIM%"
+    addon: ", spectating %victim%"
   # Feed
   feed:
-    log: "%PLAYER% fed %VICTIM%"
-    staff: "&6Fed %VICTIM%"
+    log: "%player% fed %victim%"
+    staff: "&6Fed %victim%"
   # Feed
   heal:
-    log: "%PLAYER% healed %VICTIM%"
-    staff: "&6Healed %VICTIM%"
+    log: "%player% healed %victim%"
+    staff: "&6Healed %victim%"
   # Gamemode
-  # %GM% placeholder
+  # %gm% placeholder
   gamemode:
-    log: "%PLAYER% changed %VICTIM%'s gamemode to %GM%"
-    staff: "&5Changed &d%VICTIM%&5's gamemode to &b&l%GM%"
+    log: "%player% changed %victim%'s gamemode to %gm%"
+    staff: "&5Changed &d%victim%&5's gamemode to &b&l%gm%"
   # Tpoffline
   tpo:
-    log: "%PLAYER% teleported to offline player %VICTIM%"
-    staff: "&5Teleported to &d%VICTIM%&5!"
+    log: "%player% teleported to offline player %victim%"
+    staff: "&5Teleported to &d%victim%&5!"
   # Fly
   fly:
     enter:
-      log: "%PLAYER% entered fly!"
+      log: "%player% entered fly!"
       staff: "&5Entered fly mode!"
     exit:
-      log: "%PLAYER% exited fly!"
+      log: "%player% exited fly!"
       staff: "&5Exited fly mode!"
     # Already in a flying gamemode
-    gamemode: "&c%PLAYER% can already fly (gamemode)!"
+    gamemode: "&c%player% can already fly (gamemode)!"
   # Enderchest command (staff/player)
   enderchest:
     log:
-      player: "%PLAYER% opened their enderchest."
-      staff: "%PLAYER% opened %OTHER%'s enderchest."
+      player: "%player% opened their enderchest."
+      staff: "%player% opened %other%'s enderchest."
     message:
       player: "&5Opened your enderchest!"
-      staff: "&5Opened &d%OTHER%&5's enderchest!"
+      staff: "&5Opened &d%other%&5's enderchest!"
   # Fundamentals command
   fundamentals:
     reloadconfig:
-      log: "%PLAYER% reloaded fundamentals config!"
+      log: "%player% reloaded fundamentals config!"
       staff: "&5Reloading fundamentals config..."
       notice: "&eSome changes may not take effect until a server restart."
     enablecommand:
-      log: "%PLAYER% enabled command %COMMAND%"
-      staff: "&5Enabled command %COMMAND%!"
-      state: "&c%COMMAND% is already enabled."
+      log: "%player% enabled command %command%"
+      staff: "&5Enabled command %command%!"
+      state: "&c%command% is already enabled."
     disablecommand:
-      log: "%PLAYER% disabled command %COMMAND%"
-      staff: "&5Disabled command %COMMAND%!"
-      state: "&c%COMMAND% is already disabled."
+      log: "%player% disabled command %command%"
+      staff: "&5Disabled command %command%!"
+      state: "&c%command% is already disabled."
   # Socialspy
   socialspy:
     enable:
-      log: "%PLAYER% enabled socialspy"
+      log: "%player% enabled socialspy"
       staff: "&5You can now see all private messages."
     disable:
-      log: "%PLAYER% disabled socialspy"
+      log: "%player% disabled socialspy"
       staff: "&5You can no longer see all private messages"
-    # Can use %PLAYER%, %OTHER%, and %MSG%. Just like normal /msg command
-    msg: "&5&l%PLAYER% &9-> &5&l%OTHER%&9: &r%MSG%"
-  # Sudo command, can use %PLAYER%, %VICTIM%, %CMD%
+    # Can use %player%, %other%, and %msg%. Just like normal /msg command
+    msg: "&5&l%player% &9-> &5&l%other%&9: &r%msg%"
+  # Sudo command, can use %player%, %victim%, %cmd%
   sudo:
-    log: "%PLAYER% ran command as %VICTIM%: %CMD%"
-    staff: "&5Ran command as &d&l%VICTIM%&5: &r%CMD%"
-    # Non-operators can't sudo operators or players with fundamentals.staff.sudo.exempt. Can use %VICTIM%
-    exempt: "&cCan't sudo &e&l%VICTIM%"
-  # clearchat command, can use %PLAYER%, %LINES%
+    log: "%player% ran command as %victim%: %cmd%"
+    staff: "&5Ran command as &d&l%victim%&5: &r%cmd%"
+    # Non-operators can't sudo operators or players with fundamentals.staff.sudo.exempt. Can use %victim%
+    exempt: "&cCan't sudo &e&l%victim%"
+  # clearchat command, can use %player%, %lines%
   clearchat:
-    log: "%PLAYER% cleared chat (%LINES% lines)"
+    log: "%player% cleared chat (%lines% lines)"
     staff: "&5Cleared chat!"
-  # Summons a tnt, can use %PLAYER% and %TARGETS%
+  # Summons a tnt, can use %player% and %targets%
   nuke:
     # Log message
-    log: "%PLAYER% bombed %TARGETS%"
+    log: "%player% bombed %targets%"
     # Staff response
-    staff: "&dBombed %TARGETS%"
+    staff: "&dBombed %targets%"
     # Message sent to targeted players
     message: "&5May death rain upon them."
-  # Summons a huge circle of tnt, can use %PLAYER% and %TARGET%
+  # Summons a huge circle of tnt, can use %player% and %target%
   bignuke:
     # Log message
-    log: "%PLAYER% bombed %TARGET%"
+    log: "%player% bombed %target%"
     # Staff response
-    staff: "&dSummoned nuke at %TARGET%"
-  # Renames an item, can use %PLAYER%, %ITEM% (material name), and %NAME% (new name set)
+    staff: "&dSummoned nuke at %target%"
+  # Renames an item, can use %player%, %item% (material name), and %name% (new name set)
   rename:
     # Log message
-    log: "%PLAYER% renamed %ITEM% to %NAME%"
+    log: "%player% renamed %item% to %name%"
     # Response
-    staff: "&5Renamed %ITEM% to %NAME%!"
-    # Changes an items lore, can use %PLAYER%, %ITEM% (material name), and %LORE% (new lore set)
+    staff: "&5Renamed %item% to %name%!"
+    # Changes an items lore, can use %player%, %item% (material name), and %lore% (new lore set)
   lore:
     # Log message
-    log: "%PLAYER% changed %ITEM% lore to %LORE%"
+    log: "%player% changed %item% lore to %lore%"
     # Response
     staff: "&5Changed lore!"
-  # Brings item to max stack size (or 64 if non-stackable), can use %PLAYER%, %ITEM%, %AMOUNT%, and %NEWAMOUNT%
+  # Brings item to max stack size (or 64 if non-stackable), can use %player%, %item%, %amount%, and %newamount%
   more:
     # Staff message on use
     staff: "&5Gave you more!"
     # Console message
-    log: "Stacked item %ITEM% from %AMOUNT% to %NEWAMOUNT% for %PLAYER%"
-  # Skull command, can use %PLAYER%, %TARGET% (whose skull to give)
+    log: "Stacked item %item% from %amount% to %newamount% for %player%"
+  # Skull command, can use %player%, %target% (whose skull to give)
   skull:
     # Message on success
-    staff: "&5Gave you %TARGET%'s skull!"
+    staff: "&5Gave you %target%'s skull!"
     # Console message on success
-    log: "%PLAYER% got %TARGET%'s skull."
+    log: "%player% got %target%'s skull."
     # Failed lookup
     fail: "&cPlayer lookup failed"
-  # Get position command, can use %PLAYER% (executor), %VICTIM% (player being targeted), %PX% (x), %PY% (y), %PZ% (z), %PWORLD% (current world name)
-  getpos: "&d&l%VICTIM%&5 is at &e&l%PX%&e, &l%PY%&e, &l%PZ%&5 in world '&e%PWORLD%&5'"
-  # Smite command, can use %PLAYER% and %TARGET%
+  # Get position command, can use %player% (executor), %victim% (player being targeted), %x% (x), %y% (y), %z% (z), %world% (current world name)
+  getpos: "&d&l%victim%&5 is at &e&l%x%&e, &l%y%&e, &l%z%&5 in world '&e%world%&5'"
+  # Smite command, can use %player% and %target%
   smite:
-    staff: "&dThou (&e&l%TARGET%&d) hast been smitten"
-    log: "%PLAYER% smite-d %TARGET%"
+    staff: "&dThou (&e&l%target%&d) hast been smitten"
+    log: "%player% smite-d %target%"
   # Extinguish command
   extinguish:
-    staff: "&dExtinguished %TARGET%"
-    log: "%PLAYER% extinguished %TARGET%"
+    staff: "&dExtinguished %target%"
+    log: "%player% extinguished %target%"
   # Rest command
   rest:
-    staff: "&dRested %TARGET%"
-    log: "%PLAYER% rested %TARGET%"
-  # Top command, can use %TARGET%, %PLAYER%, %BX%, %BY%, %BZ% (block x, y, and z)
+    staff: "&dRested %target%"
+    log: "%player% rested %target%"
+  # Top command, can use %target%, %player%, %x%, %y%, %z% (block x, y, and z)
   top:
-    staff: "&5Brought %TARGET% up!"
-    log: "%PLAYER% put %TARGET% on top block (at x %BX% y %BY% z %BZ%)"
+    staff: "&5Brought %target% up!"
+    log: "%player% put %target% on top block (at x %x% y %y% z %z%)"
     fail: "&cCouldn't find a passable top block."
-  # Bottom command, can use %TARGET%, %PLAYER%, %BX%, %BY%, %BZ% (block x, y, and z)
+  # Bottom command, can use %target%, %player%, %x%, %y%, %z% (block x, y, and z)
   bottom:
-    staff: "&5Brought %TARGET% down!"
-    log: "%PLAYER% put %TARGET% on bottom block (at x %BX% y %BY% z %BZ%)"
+    staff: "&5Brought %target% down!"
+    log: "%player% put %target% on bottom block (at x %x% y %y% z %z%)"
     fail: "&cCouldn't find a passable bottom block."
-  # Serverstat command, can use %ONLINE% / %MAX% / %VERSION% / %MEMUSED% / %MEMFREE% / %MEMTOTAL% / %MEMMAX% / %WORLDS% / %UPTIME% / %TPS1M% / %TPS5M% / %TPS15M%
+  # Serverstat command, can use %online% / %max% / %version% / %memused% / %memfree% / %memtotal% / %memmax% / %worlds% / %uptime% / %tps1m% / %tps5m% / %tps15m%
   serverstat: |
     &5&lServer stats
-    &6Players:&e %ONLINE%&6/&e%MAX%&6
-    &6Version:&e %VERSION%
-    &6Heap usage:&e %MEMUSED%mb / %MEMTOTAL%mb (%MEMFREE%mb free, %MEMMAX%mb max)
-    &6Worlds:&e %WORLDS%
-    &6Uptime:&e %UPTIME% seconds
-    &6TPS (1m, 5m, 15m):&e %TPS1M%, %TPS5M%, %TPS15M%
+    &6Players:&e %online%&6/&e%max%&6
+    &6Version:&e %version%
+    &6Heap usage:&e %memused%mb / %memtotal%mb (%memfree%mb free, %memmax%mb max)
+    &6Worlds:&e %worlds%
+    &6Uptime:&e %uptime% seconds
+    &6TPS (1m, 5m, 15m):&e %tps1m%, %tps5m%, %tps15m%
   # Whois command, can use %target% / %ip% / %port%
   whois: |
     &5&lInformation on %target%:
@@ -378,34 +378,34 @@ msgs:
   no-item: "&cYou need to hold an item!"
 
 # Most non-command chat messages
-# Can use %PLAYER% placeholder for most
+# Can use %player% placeholder for most
 chat:
   # All chat
-  # Can use %MSG% placeholder
-  format: "&7%PLAYER%: %MSG%"
+  # Can use %msg% placeholder
+  format: "&7%player%: %msg%"
   # Joins
-  join: "&f&l[&a&l+&f&l] &7%PLAYER%"
-  firstjoin: "&a&l%PLAYER% joined the server for the first time! &5Everyone welcome &1&l%PLAYER%&5!"
-  leave: "&f&l[&c&l-&f&l] &7%PLAYER%"
+  join: "&f&l[&a&l+&f&l] &7%player%"
+  firstjoin: "&a&l%player% joined the server for the first time! &5Everyone welcome &1&l%player%&5!"
+  leave: "&f&l[&c&l-&f&l] &7%player%"
   # Death message
-  # Can use %DEATH% placeholder
-  death: "&c☠ %PLAYER% %DEATH%"
+  # Can use %death% placeholder
+  death: "&c☠ %player% %death%"
   # Messages (no placeholders)
   nolinks: "&cYou can't use links in chat!"
   disallowed: "&cThat's not appropriate!"
 
 # OpChecker logging
 ops:
-  # %CMD%, %EXECUTOR%, and %PLAYER% will be replaced where applicable
+  # %cmd%, %executor%, and %player% will be replaced where applicable
   # When op/deop are run from console (pretty reliable)
   console:
-    op: "Console op'd! %CMD%"
-    deop: "Console deop'd! %CMD%"
+    op: "Console op'd! %cmd%"
+    deop: "Console deop'd! %cmd%"
   # When a player runs op/deop (unreliable)
   player:
-    op: "Player %EXECUTOR% op'd! %CMD%"
-    deop: "Player %EXECUTOR% deop'd! %CMD%"
+    op: "Player %executor% op'd! %cmd%"
+    deop: "Player %executor% deop'd! %cmd%"
   # When the plugin detects a player has gained or lost the op permission via Bukkit API (most reliable/useful)
   detect:
-    op: "%PLAYER% was opped!"
-    deop: "%PLAYER% was deopped!"
+    op: "%player% was opped!"
+    deop: "%player% was deopped!"

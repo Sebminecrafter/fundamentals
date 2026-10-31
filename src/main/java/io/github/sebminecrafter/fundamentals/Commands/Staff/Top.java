@@ -34,11 +34,11 @@ public class Top implements FundamentalCommand {
         Block above_2 = block.getLocation().add(0, 2, 0).getBlock();
 
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", sender.getName());
-        helper.add("TARGET", target.getName());
-        helper.add("BX", Integer.toString(above_1.getX()));
-        helper.add("BY", Integer.toString(above_1.getY()));
-        helper.add("BZ", Integer.toString(above_1.getZ()));
+        helper.add("player", sender.getName());
+        helper.add("target", target.getName());
+        helper.add("x", Integer.toString(above_1.getX()));
+        helper.add("y", Integer.toString(above_1.getY()));
+        helper.add("z", Integer.toString(above_1.getZ()));
 
         if (above_1.isPassable() && above_2.isPassable()) {
             target.teleport(above_1.getLocation());

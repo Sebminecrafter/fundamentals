@@ -31,8 +31,8 @@ public class Rest implements FundamentalCommand {
         }
 
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", sender.getName());
-        helper.add("TARGET", target.getName());
+        helper.add("player", sender.getName());
+        helper.add("target", target.getName());
 
         Commands.safeSend(sender, lang.getKey("staffcmds.rest.staff", helper.getReplace()));
         logger.log(lang.getKey("staffcmds.rest.log", helper.getReplace()));

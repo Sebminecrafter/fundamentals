@@ -158,15 +158,15 @@ public class UpdateChecker {
 
             if (isNewerPluginVersion(latestVersion, currentVersion)) {
                 PlaceholderHelper helper = new PlaceholderHelper();
-                helper.add("CUR", currentVersion);
-                helper.add("NEW", latestVersion);
-                helper.add("URL", "https://modrinth.com/plugin/" + projectId);
+                helper.add("cur", currentVersion);
+                helper.add("new", latestVersion);
+                helper.add("url", "https://modrinth.com/plugin/" + projectId);
 
                 String message = """
                         Update found!
-                        Current version: %CUR%
-                        Latest: %NEW%
-                        Download it at %URL%
+                        Current version: %cur%
+                        Latest: %new%
+                        Download it at %url%
                         """;
 
                 send(sender, Level.WARNING, helper.parse(message));

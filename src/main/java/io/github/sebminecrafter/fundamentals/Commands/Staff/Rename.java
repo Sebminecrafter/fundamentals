@@ -25,7 +25,7 @@ public class Rename implements FundamentalCommand {
 
         StringBuilder newNameBuilder = new StringBuilder();
         PlaceholderHelper helper = new PlaceholderHelper();
-        helper.add("PLAYER", player.getName());
+        helper.add("player", player.getName());
 
         for (String part : args) {
             if (!newNameBuilder.isEmpty()) {
@@ -36,8 +36,8 @@ public class Rename implements FundamentalCommand {
 
         String newName = lang.formatColors(newNameBuilder.toString());
         ItemStack item = player.getInventory().getItemInMainHand();
-        helper.add("NAME", newName);
-        helper.add("ITEM", item.getType().name());
+        helper.add("name", newName);
+        helper.add("item", item.getType().name());
         if (item.getType() == Material.AIR) {
             Commands.safeSend(sender, lang.getKey("msgs.no-item", helper.getReplace()));
             return true;
