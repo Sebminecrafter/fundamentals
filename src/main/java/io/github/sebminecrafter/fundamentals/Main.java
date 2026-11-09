@@ -46,7 +46,11 @@ public final class Main extends JavaPlugin {
             opchecker = new OpChecker(this);
         }
         if (config.isEnabled("checks.updatechecker")) {
-            updateChecker.check();
+            if (config.isEnabled("checks.autoupdate")) {
+                updateChecker.update(null);
+            } else {
+                updateChecker.check();
+            }
         }
 
         // Register all commands

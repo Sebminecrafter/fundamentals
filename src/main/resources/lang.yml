@@ -418,5 +418,4 @@ update-checker:
     &dLatest: &l%new%
     &eDownload it at:
     %url%
-    &eor run &6/fundamentals update
-    &eto download it automagically.
+  hint: "&eYou can run &6/fundamentals update &eto download it automagically."

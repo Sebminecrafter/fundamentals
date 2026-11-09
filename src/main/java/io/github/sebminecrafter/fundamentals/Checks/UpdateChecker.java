@@ -185,6 +185,12 @@ public class UpdateChecker {
             }
 
             if (isNewerPluginVersion(latestVersion, currentVersion)) {
+                if (latestVersion.equals(stagedVersion)) {
+                    send(sender, Level.INFO, "Version " + latestVersion
+                            + " is already downloaded. Restart the server to apply it.");
+                    return Optional.empty();
+                }
+
                 PlaceholderHelper helper = new PlaceholderHelper();
                 helper.add("cur", currentVersion);
                 helper.add("new", latestVersion);
