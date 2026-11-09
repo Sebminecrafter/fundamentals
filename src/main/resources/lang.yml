@@ -356,7 +356,6 @@ staffcmds:
   whois: |
     &5&lInformation on %target%:
     &6IP address: %ip% (port %port%)
-    
 
 # Extra messages
 msgs:
@@ -409,3 +408,15 @@ ops:
   detect:
     op: "%player% was opped!"
     deop: "%player% was deopped!"
+
+# Update checker logging
+update-checker:
+  # Update found message, can use %cur% for current plugin version, %new% for the newest version, and %url% for the update url
+  found: |
+    &bUpdate found!
+    &5Current version: &l%cur%
+    &dLatest: &l%new%
+    &eDownload it at:
+    %url%
+    &eor run &6/fundamentals update
+    &eto download it automagically.

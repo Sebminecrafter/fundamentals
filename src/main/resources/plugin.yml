@@ -69,7 +69,7 @@ commands:
     aliases: [ ]
   fundamentals:
     description: "Plugin configuration"
-    usage: "Usage: /<command> <help/reloadconfig/enablecommand/disablecommand/update> [command]"
+    usage: "Usage: /<command> <help/reloadconfig/enablecommand/disablecommand/check/update> [command]"
     permission: fundamentals.staff.fundamentals
     aliases: [ ]
   socialspy:

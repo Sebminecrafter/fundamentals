@@ -86,8 +86,12 @@ public class Fundamentals implements FundamentalCommand {
                 Commands.safeSend(sender, lang.getKey("staffcmds.fundamentals.disablecommand.staff", helper.getReplace()));
                 return true;
             }
-            case "update" -> {
+            case "check" -> {
                 updateChecker.check(sender);
+                return true;
+            }
+            case "update" -> {
+                updateChecker.update(sender);
                 return true;
             }
             case "help" -> {
@@ -111,7 +115,7 @@ public class Fundamentals implements FundamentalCommand {
     public List<String> tabComplete(CommandSender sender, String[] args) {
         if (args.length == 1) {
             String partial = args[0].toLowerCase();
-            return Stream.of("reloadconfig", "enablecommand", "disablecommand", "help", "update")
+            return Stream.of("reloadconfig", "enablecommand", "disablecommand", "help", "check", "update")
                     .filter(s -> s.startsWith(partial))
                     .collect(Collectors.toList());
         }

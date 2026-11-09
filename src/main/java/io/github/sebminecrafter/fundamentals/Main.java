@@ -85,4 +85,8 @@ public final class Main extends JavaPlugin {
             logger.closeFileHandler();
         }
     }
+
+    public String getJarName() {
+        return getFile().getName();
+    }
 }

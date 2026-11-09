@@ -41,7 +41,7 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 - [ ] `/pausechat` to pause the chat
 - [ ] `/mute <player> [time]` mute a player
 - [ ] `/tempban <player> <time> [reason]` tempban player
-- [ ] `/fundamentals downloadupdate` command / `auto_update` flag in config to live download plugin updates
+- [X] `/fundamentals downloadupdate` command / `auto_update` flag in config to live download plugin updates
 
 ### General features
 
