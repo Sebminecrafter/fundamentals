@@ -26,6 +26,7 @@ import java.security.NoSuchAlgorithmException;
 import java.time.Duration;
 import java.util.HexFormat;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Level;
@@ -79,20 +80,19 @@ public class UpdateChecker {
 
         if (!MC_VERSION.matcher(serverVersion).matches()
                 || !VERSION.matcher(currentVersion).matches()) {
-            send(sender, Level.WARNING,
-                    "Unknown plugin/server version! MC: " + serverVersion
-                            + " Fundamentals: " + currentVersion);
+            sendKey(sender, Level.WARNING, "update-checker.unknown-version",
+                    Map.of("mc", serverVersion, "cur", currentVersion));
             return;
         }
 
         if (!busy.compareAndSet(false, true)) {
-            send(sender, Level.INFO, "An update check is already running.");
+            sendKey(sender, Level.INFO, "update-checker.already-running");
             return;
         }
 
         plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () -> {
             try {
-                Optional<JsonObject> newer = checkForUpdates(sender, serverVersion, currentVersion);
+                Optional<JsonObject> newer = checkForUpdates(sender, serverVersion, currentVersion, install);
                 if (install && newer.isPresent()) {
                     installUpdate(sender, newer.get());
                 }
@@ -112,8 +112,21 @@ public class UpdateChecker {
         }
     }
 
+    // lang key helpers
+    private void sendKey(CommandSender sender, Level level, String key) {
+        send(sender, level, lang.getKey(key));
+    }
+    private void sendKey(CommandSender sender, Level level, String key,
+                         Map<String, String> replacements) {
+        send(sender, level, lang.getKey(key, replacements));
+    }
+    private void sendKey(CommandSender sender, String key,
+                         Map<String, String> replacements, Map<String, String> literals) {
+        send(sender, Level.WARNING, lang.getKey(key, replacements, literals));
+    }
+
     private Optional<JsonObject> checkForUpdates(CommandSender sender, String serverVersion,
-                                                 String currentVersion) {
+                                                 String currentVersion, boolean install) {
         try {
             String loaders = URLEncoder.encode(
                     "[\"paper\",\"spigot\",\"bukkit\"]",
@@ -145,9 +158,8 @@ public class UpdateChecker {
             }
 
             if (response.statusCode() != 200) {
-                send(sender, Level.WARNING,
-                        "Checking for update failed! Received HTTP status code "
-                                + response.statusCode());
+                sendKey(sender, Level.WARNING, "update-checker.http-error",
+                        Map.of("code", String.valueOf(response.statusCode())));
                 return Optional.empty();
             }
 
@@ -179,15 +191,14 @@ public class UpdateChecker {
             }
 
             if (latestVersion == null) {
-                send(sender, Level.INFO,
-                        "No compatible version(s) found on Modrinth.");
+                sendKey(sender, Level.INFO, "update-checker.none-compatible");
                 return Optional.empty();
             }
 
             if (isNewerPluginVersion(latestVersion, currentVersion)) {
                 if (latestVersion.equals(stagedVersion)) {
-                    send(sender, Level.INFO, "Version " + latestVersion
-                            + " is already downloaded. Restart the server to apply it.");
+                    sendKey(sender, Level.INFO, "update-checker.already-downloaded",
+                            Map.of("new", latestVersion));
                     return Optional.empty();
                 }
 
@@ -196,15 +207,19 @@ public class UpdateChecker {
                 helper.add("new", latestVersion);
                 helper.add("url", "https://modrinth.com/plugin/" + projectId);
 
-                send(sender, Level.WARNING, lang.getKey("update-checker.found", helper.getReplace()));
+                sendKey(sender, Level.WARNING, "update-checker.found", helper.getReplace());
+                // Only hint at /fundamentals update when we're not already downloading
+                if (!install) {
+                    sendKey(sender, Level.WARNING, "update-checker.hint");
+                }
                 return Optional.of(latestObject);
             } else {
-                send(sender, Level.INFO, "No updates available :)");
+                sendKey(sender, Level.INFO, "update-checker.up-to-date");
                 return Optional.empty();
             }
         } catch (Exception e) {
-            send(sender, Level.WARNING,
-                    "Checking for update failed: " + e.getMessage());
+            sendKey(sender, "update-checker.check-failed",
+                    Map.of(), Map.of("error", String.valueOf(e.getMessage())));
             return Optional.empty();
         }
     }
@@ -315,9 +330,10 @@ public class UpdateChecker {
     private void installUpdate(CommandSender sender, JsonObject version) {
         String versionNumber = version.get("version_number").getAsString();
 
-        if (stagedVersion != null) {
-            send(sender, Level.INFO, "Version " + stagedVersion
-                    + " is already downloaded. Restart the server to apply it.");
+        // A newer release than the staged one is allowed to replace it
+        if (versionNumber.equals(stagedVersion)) {
+            sendKey(sender, Level.INFO, "update-checker.already-downloaded",
+                    Map.of("new", versionNumber));
             return;
         }
 
@@ -329,18 +345,18 @@ public class UpdateChecker {
                 throw new IOException("Primary file is not a jar: " + filename);
             }
 
-            send(sender, Level.INFO, "Downloading " + versionNumber + "...");
+            sendKey(sender, Level.INFO, "update-checker.downloading", Map.of("new", versionNumber));
             Path verified = downloadAndVerify(file);
             stageUpdate(verified);
 
             stagedVersion = versionNumber;
-            send(sender, Level.INFO, "Update " + versionNumber
-                    + " downloaded and verified. Restart the server to apply it.");
+            sendKey(sender, Level.INFO, "update-checker.downloaded", Map.of("new", versionNumber));
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
-            send(sender, Level.WARNING, "Update download was interrupted.");
+            sendKey(sender, Level.WARNING, "update-checker.interrupted");
         } catch (Exception e) {
-            send(sender, Level.WARNING, "Update failed: " + e.getMessage());
+            sendKey(sender, "update-checker.failed",
+                    Map.of(), Map.of("error", String.valueOf(e.getMessage())));
         }
     }
 
@@ -355,7 +371,7 @@ public class UpdateChecker {
         return files.get(0).getAsJsonObject();
     }
 
-    /** Downloads the file to a temp file in the update folder and verifies its SHA-512. */
+    /** downloads a file then verifies with sha512 */
     private Path downloadAndVerify(JsonObject file) throws IOException, InterruptedException {
         String url = file.get("url").getAsString();
         JsonObject hashes = file.getAsJsonObject("hashes");

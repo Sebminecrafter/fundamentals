@@ -418,4 +418,21 @@ update-checker:
     &dLatest: &l%new%
     &eDownload it at:
     %url%
+  # Shown after the found message, only when checking (not when already running /fundamentals update)
   hint: "&eYou can run &6/fundamentals update &eto download it automagically."
+  # Can use %mc% for the server's Minecraft version and %cur% for the current plugin version
+  unknown-version: "&cUnknown plugin/server version! MC: %mc% Fundamentals: %cur%"
+  already-running: "&eAn update check is already running."
+  # Can use %code% for the HTTP status code
+  http-error: "&cChecking for update failed! Received HTTP status code %code%"
+  none-compatible: "&eNo compatible version(s) found on Modrinth."
+  up-to-date: "&aNo updates available :)"
+  # Can use %error% for the reason
+  check-failed: "&cChecking for update failed: %error%"
+  # Can use %new% for the version that's staged
+  already-downloaded: "&eVersion &l%new% &eis already downloaded. Restart the server to apply it."
+  downloading: "&eDownloading version &l%new%&e..."
+  downloaded: "&aUpdate &l%new% &adownloaded and verified. Restart the server to apply it."
+  interrupted: "&cUpdate download was interrupted."
+  # Can use %error% for the reason
+  failed: "&cUpdate failed: %error%"
