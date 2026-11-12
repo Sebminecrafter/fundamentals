@@ -1,6 +1,6 @@
 # Fundamentals
 
-![Logo](logo.png)
+![Logo](docs/assets/logo.png)
 
 > [!WARNING]
 > This plugin is currently in beta.
@@ -17,33 +17,15 @@ The perfect plugin to set up your Minecraft server:
 
 Head over to the [Modrinth](https://modrinth.com/plugin/fundamentalswastaken) page or [GitHub Releases](https://github.com/Sebminecrafter/fundamentals/releases) (in-dev builds only available on GitHub releases)
 
-## Features
+## Wiki
 
-All of these and more are currently added,
-for planning and goals refer to [TODO.md](https://github.com/Sebminecrafter/fundamentals/blob/main/TODO.md)
+Head over to [the Wiki](https://sebminecrafter.github.io/fundamentals)
+for more detailed information about the plugin and using it!
 
-### Player Commands
+### Commands
 
-These are commands for players on your server to use.
-
-- Message a player with `/msg`
-- Teleport requests with `/tpa`, `/tpahere`
-- Homes with `/sethome`, `/delhome`, `/listhomes`.
-- Ignore a player's messages and requests `/ignore`
-- Welcome someone with `/welcome`
-
-### Staff Commands
-
-These are commands specifically made for moderation or server management.
-
-- Freeze player with `/freeze`
-- See a player's inventory with `/invsee`
-- Send a player a private message from "Staff" with `/staffmsg`
-- Enter *staff mode* with `/staffmode`
-- Refill your hunger with `/feed`
-- Custom `/gamemode`, with shorthands like `/gm`, `/gms`, `/gmc`, `/gma`, and `/gmsp`.
-- Teleport an offline player with `/tpo`
-- Fly in survival with `/fly`
+Fundamentals features *player*, *staff*, and *privileged* command groups.
+Almost any command you'd expect is already there.
 
 ### Custom Messages
 
@@ -65,5 +47,6 @@ Fundamentals features *Server Checks* which are run on timers to make sure no on
 or trying to mess with the server.
 
 - `OpChecker` - checks if anyone has been op'd every 5 seconds.
+- `UpdateChecker` - checks for updates for Fundamentals
 
 ![bStats statistics](https://bstats.org/signatures/bukkit/fundamentalswastaken.svg)

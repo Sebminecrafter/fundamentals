@@ -1,0 +1,36 @@
+
+{% extends "main.html" %}
+
+{% block content %}
+<style>
+    .error-page {
+        min-height: 60vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .error-page h1 {
+        font-size: clamp(7rem, 20vw, 14rem);
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: -0.08em;
+        margin: 0;
+    }
+
+    .error-page p {
+        font-size: 1.25rem;
+        opacity: 0.7;
+        margin-top: 1rem;
+    }
+</style>
+<div class="error-page">
+    <h1>404</h1>
+    <p>Not Found</p>
+    <p class="fundamentals-quote"></p>
+    <!-- suppressWarnings("resolve") -->
+    <a href="{{ 'index.html' | url }}">Home</a>
+</div>
+{% endblock %}

@@ -1,0 +1,148 @@
+[project]
+site_url = "https://sebminecrafter.github.io/fundamentals/"
+site_name = "Fundamentals"
+site_description = "Documentation for Fundamentals, a feature-rich Bukkit plugin."
+site_author = "Sebminecrafter"
+
+copyright = "Copyright &copy; 2026 Sebminecrafter and contributors"
+
+repo_url = "https://github.com/Sebminecrafter/fundamentals"
+repo_name = "Sebminecrafter/fundamentals"
+edit_uri = "edit/main/docs/"
+
+docs_dir = "docs"
+
+nav = [
+  { "Home" = "index.md" },
+  {"To-Do" = "todo.md"},
+
+  { "Getting Started" = [
+    "getting-started/index.md",
+    "getting-started/installation.md",
+    "getting-started/configuration.md",
+  ]},
+
+  { "Features" = [
+    "features/index.md",
+    "features/opchecker.md",
+    "features/updatechecker.md",
+  ]},
+
+  { "Reference" = [
+    "reference/commands.md",
+    "reference/permissions.md",
+    "reference/configuration.md",
+  ]},
+]
+
+extra_css = ["stylesheets/extra.css"]
+extra_javascript = ["javascripts/extra.js"]
+
+[project.theme]
+variant = "modern"
+custom_dir = "docs/overrides"
+favicon = "assets/logo.png"
+language = "en"
+features = [
+  "announce.dismiss",
+  # "content.action.edit",
+  # "content.action.view",
+  "content.code.annotate",
+  "content.code.copy",
+  "content.code.select",
+  # "content.footnote.tooltips",
+  "content.tabs.link",
+  # "content.tooltips",
+  # "header.autohide",
+  # "navigation.expand",
+  "navigation.footer",
+  "navigation.indexes",
+  "navigation.instant",
+  "navigation.path",
+  "navigation.sections",
+  "navigation.top",
+  "navigation.tracking",
+  "navigation.prune",
+  # "navigation.instant.prefetch",
+  # "navigation.instant.progress",
+  # "navigation.tabs",
+  # "navigation.tabs.sticky",
+  "search.highlight",
+  # "toc.follow",
+  # "toc.integrate",
+]
+
+logo = "assets/logo.png"
+
+[project.theme.icon]
+logo = "assets/logo.png"
+
+[project.theme.font]
+text = "Inter"
+code = "Jetbrains Mono"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to light mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+toggle.icon = "lucide/sun-moon"
+toggle.name = "Switch to system preference"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/github"
+link = "https://github.com/Sebminecrafter/fundamentals"
+
+[project.markdown_extensions]
+abbr = {}
+admonition = {}
+attr_list = {}
+def_list = {}
+footnotes = {}
+md_in_html = {}
+toc.permalink = true
+pymdownx.betterem = {}
+pymdownx.caret = {}
+pymdownx.details = {}
+pymdownx.emoji.emoji_generator = "zensical.extensions.emoji.to_svg"
+pymdownx.emoji.emoji_index = "zensical.extensions.emoji.twemoji"
+pymdownx.highlight.anchor_linenums = true
+pymdownx.highlight.line_spans = "__span"
+pymdownx.highlight.pygments_lang_class = true
+pymdownx.keys = {}
+pymdownx.magiclink = {}
+pymdownx.mark = {}
+# pymdownx.snippets.base_path = "includes"
+pymdownx.tabbed.alternate_style = true
+pymdownx.tabbed.combine_header_slug = true
+pymdownx.tasklist.custom_checkbox = true
+pymdownx.snippets = {}
+
+[project.theme.icon.admonition]
+note = "octicons/tag-16"
+abstract = "octicons/checklist-16"
+info = "octicons/info-16"
+tip = "octicons/squirrel-16"
+success = "octicons/check-16"
+question = "octicons/question-16"
+warning = "octicons/alert-16"
+failure = "octicons/x-circle-16"
+danger = "octicons/zap-16"
+bug = "octicons/bug-16"
+example = "octicons/beaker-16"
+quote = "octicons/quote-16"
+
+[project.plugins.minify]
+enabled = true
+minify_html = true
+minify_inline_css = true
+minify_inline_js = true

@@ -45,26 +45,16 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 
 ### General features
 
-- [ ] AFK \
-  `/afk` + AFK detection \
-  Marks players as AFK, configurable time, option to announce AFK, etc.
-
+- [ ] `/afk` + AFK detection - 
+    marks players as AFK, configurable time, option to announce AFK, etc.
 - [ ] Proper offline players (hard to implement because of nbt data storage)
-
-- [ ] Kits? Or separate plugin? lmk your ideas
-
+- [ ] Kits? Or separate plugin?
 - [ ] Commands on first join
-
 - [ ] Mail commands + system
-
 - [ ] Join MOTD / `/motd`
-
 - [ ] Custom MOTD with legacy colors + MiniMessage
-
 - [ ] Simple custom commands system
-
 - [ ] `/info` for server info, configurable
-
 - [ ] Nicknames (`/nick`, `/realname`, etc.)
 
 ## Bugs
