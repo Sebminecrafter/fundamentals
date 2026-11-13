@@ -1,6 +1,6 @@
 ---
 hide:
-  - toc
+    - toc
 ---
 
 # Fundamentals Wiki
@@ -15,4 +15,4 @@ What are you waiting for? Download it!
 
 {{ contents() }}
 
-&copy; Sebminecrafter and contributors
+(c) Sebminecrafter and contributors

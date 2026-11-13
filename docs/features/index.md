@@ -27,8 +27,8 @@ and MiniMessage (legacy translation, not all features are available).
 <!-- --8<-- [start:checks] -->
 ### Server Checks
 
-!!! important
-    Server Checks are run on a very short timer and may impact server performance by running advanced logic
+> [!important]
+> Server Checks are run on a very short timer and may impact server performance by running advanced logic
 
 Fundamentals features *Server Checks* which are run on timers to make sure no one is acting up
 or trying to mess with the server.

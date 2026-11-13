@@ -115,22 +115,20 @@ attr_list = {}
 def_list = {}
 footnotes = {}
 md_in_html = {}
-toc.permalink = true
+toc = {"permalink" = true}
 pymdownx.betterem = {}
 pymdownx.caret = {}
-pymdownx.details = {}
-pymdownx.emoji.emoji_generator = "zensical.extensions.emoji.to_svg"
-pymdownx.emoji.emoji_index = "zensical.extensions.emoji.twemoji"
-pymdownx.highlight.anchor_linenums = true
-pymdownx.highlight.line_spans = "__span"
-pymdownx.highlight.pygments_lang_class = true
-pymdownx.keys = {}
-pymdownx.magiclink = {}
 pymdownx.mark = {}
-pymdownx.snippets.base_path = [".", "docs"]
-pymdownx.tabbed.alternate_style = true
-pymdownx.tabbed.combine_header_slug = true
-pymdownx.tasklist.custom_checkbox = true
+pymdownx.tilde = {}
+pymdownx.details = {}
+pymdownx.magiclink = {}
+pymdownx.saneheaders = {}
+pymdownx.smartsymbols = {}
+pymdownx.emoji = {"emoji_generator" = "zensical.extensions.emoji.to_svg", "emoji_index" = "zensical.extensions.emoji.twemoji"}
+pymdownx.snippets = {"base_path" = [".", "docs"]}
+pymdownx.tabbed = {"combine_header_slug" = true}
+pymdownx.tasklist = {"custom_checkbox" = true}
+pymdownx.quotes = {"callouts" = true}
 
 [project.theme.icon.admonition]
 note = "octicons/tag-16"
@@ -153,4 +151,4 @@ minify_inline_css = true
 minify_inline_js = true
 
 [project.plugins.macros]
-module_name = "docs/macros"
+module_name = "docs/macros/main"

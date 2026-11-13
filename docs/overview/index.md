@@ -1,7 +1,7 @@
 # Fundamentals
 
-!!! warning
-    This plugin is currently in beta.
+> [!warning]
+> This plugin is currently in beta.
 
 A nice, featureful, everything you need Bukkit plugin.
 

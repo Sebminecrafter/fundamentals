@@ -1,1 +1,3 @@
 Docs coming soon! 
+
+{{ permissions() }}

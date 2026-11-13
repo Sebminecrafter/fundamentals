@@ -4,9 +4,6 @@ from html import escape
 from pathlib import Path
 from urllib.parse import quote
 
-SKIP = {"contents.md", "index.md"}
-
-
 def define_env(env):
     @env.macro
     def contents():
@@ -31,7 +28,6 @@ def define_env(env):
         def render(entries, level=2):
             out = []
             for entry in entries:
-                # Normalize: a bare string is a (label=None, path) pair
                 pairs = [(None, entry)] if isinstance(entry, str) else entry.items()
 
                 for label, value in pairs:
@@ -45,8 +41,18 @@ def define_env(env):
                         out.append(f"<h{level}>{heading}</h{level}>")
                         out.append(render([i for i in value if i != index], min(level + 1, 6)))
 
-                    elif isinstance(value, str) and value.endswith(".md") and value not in SKIP:
+                    elif isinstance(value, str) and value.endswith(".md") and not value == "index.md":
                         out.append(f"<p>{link(value, label or title_of(value))}</p>")
 
             return "\n".join(out)
         return render(project.get("nav", []))
+
+    @env.macro
+    def commands():
+        return "TODO"
+        # TODO
+
+    @env.macro
+    def permissions():
+        return "TODO"
+        # TODO

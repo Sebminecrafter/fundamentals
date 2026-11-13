@@ -115,3 +115,4 @@ run/
 
 # Zensical dev
 site/
+**__pycache__**
