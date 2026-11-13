@@ -76,7 +76,7 @@ public final class Main extends JavaPlugin {
 
         if (commands != null) {
             // Persist data that is only written on change/quit
-            if (commands.getCommand("home") instanceof Homes h) h.saveAll();
+            if (commands.getCommand("overview") instanceof Homes h) h.saveAll();
 
             // Cleanup commands
             if (commands.getCommand("staffmode") instanceof Staffmode s) s.restoreAll();

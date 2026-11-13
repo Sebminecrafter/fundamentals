@@ -1,4 +1,4 @@
-# TODO
+# To-Do
 
 ## Explanation
 
@@ -17,6 +17,8 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 | Already implemented | **not here** |
 |         WIP         |      ☑      |
 |     Not started     |      ☐      |
+
+## Features
 
 ### Player features/commands
 - [ ] `/back` on death and teleports
@@ -69,6 +71,6 @@ on GitHub
 
 (no other current ***known*** bugs in latest build)
 
-## Notices
+### Notices
 
 - Update Checker WIP

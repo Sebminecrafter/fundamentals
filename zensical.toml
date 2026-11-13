@@ -13,8 +13,12 @@ edit_uri = "edit/main/docs/"
 docs_dir = "docs"
 
 nav = [
-  { "Home" = "index.md" },
-  {"To-Do" = "todo.md"},
+  {"Home" = "index.md"},
+
+  { "Overview" = [
+    "overview/index.md",
+    "overview/todo.md"
+  ]},
 
   { "Getting Started" = [
     "getting-started/index.md",
@@ -32,6 +36,7 @@ nav = [
     "reference/commands.md",
     "reference/permissions.md",
     "reference/configuration.md",
+    "reference/language.md"
   ]},
 ]
 
@@ -54,7 +59,7 @@ features = [
   "content.tabs.link",
   # "content.tooltips",
   # "header.autohide",
-  # "navigation.expand",
+  "navigation.expand",
   "navigation.footer",
   "navigation.indexes",
   "navigation.instant",
@@ -63,13 +68,10 @@ features = [
   "navigation.top",
   "navigation.tracking",
   "navigation.prune",
-  # "navigation.instant.prefetch",
-  # "navigation.instant.progress",
-  # "navigation.tabs",
-  # "navigation.tabs.sticky",
+  "navigation.instant.progress",
   "search.highlight",
-  # "toc.follow",
-  # "toc.integrate",
+  "toc.follow",
+  "toc.integrate",
 ]
 
 logo = "assets/logo.png"
@@ -125,7 +127,7 @@ pymdownx.highlight.pygments_lang_class = true
 pymdownx.keys = {}
 pymdownx.magiclink = {}
 pymdownx.mark = {}
-pymdownx.snippets.base_path = "docs"
+pymdownx.snippets.base_path = [".", "docs"]
 pymdownx.tabbed.alternate_style = true
 pymdownx.tabbed.combine_header_slug = true
 pymdownx.tasklist.custom_checkbox = true
@@ -149,3 +151,6 @@ enabled = true
 minify_html = true
 minify_inline_css = true
 minify_inline_js = true
+
+[project.plugins.macros]
+module_name = "docs/macros"

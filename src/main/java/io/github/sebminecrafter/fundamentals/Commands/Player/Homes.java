@@ -88,11 +88,11 @@ public class Homes implements FundamentalCommand, Listener {
                     Commands.safeSend(player, lang.getKey("cmds.home.nohomes"));
                 }
             }
-            case "home" -> {
+            case "overview" -> {
                 if (args.length != 1)
                     return false;
                 int cooldown = config.getInt("home.cooldown");
-                long remaining = Cooldowns.remainingSeconds("home", player.getUniqueId(), cooldown);
+                long remaining = Cooldowns.remainingSeconds("overview", player.getUniqueId(), cooldown);
                 if (remaining > 0) {
                     PlaceholderHelper cooldownHelper = new PlaceholderHelper();
                     cooldownHelper.add("secs", Long.toString(remaining));
@@ -102,7 +102,7 @@ public class Homes implements FundamentalCommand, Listener {
                 Location home = homes.get(args[0]);
                 PlaceholderHelper helper = new PlaceholderHelper();
                 int homeDelay = config.getInt("home.delay");
-                helper.add("home", args[0]);
+                helper.add("overview", args[0]);
                 helper.add("secs", Integer.toString(homeDelay));
 
                 if (home != null) {
@@ -114,7 +114,7 @@ public class Homes implements FundamentalCommand, Listener {
                     org.bukkit.Location destination = new org.bukkit.Location(world, home.x(), home.y(), home.z(),
                             home.yaw(), home.pitch());
 
-                    Cooldowns.start("home", player.getUniqueId(), cooldown);
+                    Cooldowns.start("overview", player.getUniqueId(), cooldown);
                     Commands.safeSend(player, lang.getKey("cmds.home.teleporting", helper.getReplace()));
                     TeleportCountdown teleportCountdown = new TeleportCountdown(player, destination, homeDelay);
                     teleportCountdown.start(
@@ -129,7 +129,7 @@ public class Homes implements FundamentalCommand, Listener {
                 if (args.length != 1)
                     return false;
                 PlaceholderHelper helper = new PlaceholderHelper();
-                helper.add("home", args[0]);
+                helper.add("overview", args[0]);
                 if (homes.containsKey(args[0])) {
                     Commands.safeSend(player, lang.getKey("cmds.home.conflict", helper.getReplace()));
                 } else if (homes.size() >= config.getInt("home.max")) {
@@ -152,7 +152,7 @@ public class Homes implements FundamentalCommand, Listener {
                 if (args.length != 1)
                     return false;
                 PlaceholderHelper helper = new PlaceholderHelper();
-                helper.add("home", args[0]);
+                helper.add("overview", args[0]);
                 if (homes.containsKey(args[0])) {
                     homes.remove(args[0]);
                     saveHomes(player.getUniqueId());

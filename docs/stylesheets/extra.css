@@ -2,3 +2,7 @@
 .md-header__button .md-logo, .md-logo {
     image-rendering: pixelated;
 }
+/* Same-color links */
+a {
+    color: inherit !important;
+}

@@ -1,22 +1,18 @@
-# Fundamentals
+---
+hide:
+  - toc
+---
 
-!!! warning
-    This plugin is currently in beta.
+# Fundamentals Wiki
 
-A nice, featureful, everything you need Bukkit plugin.
+Welcome to the Fundamentals wiki!
 
-The perfect plugin to set up your Minecraft server:
+This wiki explains everything you need to know to install and use the Fundamentals plugin!
 
-- Configurable commands with permissions
-- Custom chat, joins/leaves, deaths
-- Everything is customizable in `lang.yml`
+What are you waiting for? Download it!
 
-## Overview
+## Contents
 
---8<-- "features/index.md:commands"
+{{ contents() }}
 
---8<-- "features/index.md:lang"
-
---8<-- "features/index.md:checks"
-
---8<-- "snippets/bstats.md"
+&copy; Sebminecrafter and contributors
