@@ -1,1 +1,3 @@
+# Configuration
+
 Docs coming soon! 

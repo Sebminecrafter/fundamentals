@@ -99,8 +99,12 @@ toggle.icon = "lucide/sun-moon"
 toggle.name = "Switch to system preference"
 
 [[project.extra.social]]
-icon = "fontawesome/brands/github"
+icon = "github"
 link = "https://github.com/Sebminecrafter/fundamentals"
+
+[[project.extra.social]]
+icon = "modrinth"
+link = "https://modrinth.com/plugin/fundamentalswastaken"
 
 [project.markdown_extensions]
 abbr = {}
@@ -121,11 +125,10 @@ pymdownx.highlight.pygments_lang_class = true
 pymdownx.keys = {}
 pymdownx.magiclink = {}
 pymdownx.mark = {}
-# pymdownx.snippets.base_path = "includes"
+pymdownx.snippets.base_path = "docs"
 pymdownx.tabbed.alternate_style = true
 pymdownx.tabbed.combine_header_slug = true
 pymdownx.tasklist.custom_checkbox = true
-pymdownx.snippets = {}
 
 [project.theme.icon.admonition]
 note = "octicons/tag-16"

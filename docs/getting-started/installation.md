@@ -1,5 +1,12 @@
 # Installation
 
-## Download
+## 1. Download
 
-Head over to the [Modrinth](https://modrinth.com/plugin/fundamentalswastaken) page or [GitHub Releases](https://github.com/Sebminecrafter/fundamentals/releases) (in-dev builds only available on GitHub releases)
+1. Head over to the [Modrinth] page or [GitHub Releases] (dev builds only available on GitHub releases)
+2. Download the latest version of Fundamentals for your Minecraft version and server software.
+
+## 2. 
+
+<!-- Links -->
+[Modrinth]: https://modrinth.com/plugin/fundamentalswastaken
+[GitHub Releases]: https://github.com/Sebminecrafter/fundamentals/releases

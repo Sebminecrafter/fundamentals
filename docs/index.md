@@ -13,10 +13,10 @@ The perfect plugin to set up your Minecraft server:
 
 ## Overview
 
---8<-- "docs/features/index.md:commands"
+--8<-- "features/index.md:commands"
 
---8<-- "docs/features/index.md:lang"
+--8<-- "features/index.md:lang"
 
---8<-- "docs/features/index.md:checks"
+--8<-- "features/index.md:checks"
 
---8<-- "docs/features/index.md:bstats"
+--8<-- "snippets/bstats.md"
