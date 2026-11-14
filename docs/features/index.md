@@ -28,13 +28,13 @@ and MiniMessage (legacy translation, not all features are available).
 ### Server Checks
 
 > [!important]
-> Server Checks are run on a very short timer and may impact server performance by running advanced logic
+> Server Checks are run on a very sh~~~~ort timer and may impact server performance by running advanced logic
 
 Fundamentals features *Server Checks* which are run on timers to make sure no one is acting up
 or trying to mess with the server.
 
-- [OpChecker](/features/opchecker) - checks if anyone has been op'd every 5 seconds.
-- [Update Checker](/features/updatechecker) - checks for updates for Fundamentals
+- [OpChecker](/fundamentals/features/opchecker) - checks if anyone has been op'd every 5 seconds.
+- [Update Checker](/fundamentals/features/updatechecker) - checks for updates for Fundamentals
 <!-- --8<-- [end:checks] -->
 
 Fundamentals also includes optional bStats metrics
