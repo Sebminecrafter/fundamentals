@@ -212,6 +212,11 @@ commands:
     usage: "Usage: /<command> <player> <time> [reason]"
     permission: fundamentals.staff.tempban
     aliases: [ ]
+  rest:
+    description: "Reset a player's time since sleeping"
+    usage: "/<command> [player]"
+    permission: fundamentals.staff.rest
+    aliases: [ ]
   # Player commands
   msg:
     description: "Message a player"
@@ -347,11 +352,6 @@ commands:
     description: "Get a player's real name from a nickname"
     usage: "Usage: /<command> <nickname>"
     permission: fundamentals.player.realname
-    aliases: [ ]
-  rest:
-    description: "Reset a player's time since sleeping"
-    usage: "/<command> [player]"
-    permission: fundamentals.staff.rest
     aliases: [ ]
   # Privileged commands
   workbench:
