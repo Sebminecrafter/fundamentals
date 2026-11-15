@@ -11,6 +11,13 @@ repo_name = "Sebminecrafter/fundamentals"
 edit_uri = "edit/main/docs/"
 
 docs_dir = "docs"
+exclude_docs = """
+/macros/
+/overrides/
+/snippets/
+"""
+use_directory_urls = true
+dev_addr = "localhost:80"
 
 nav = [
   {"Home" = "index.md"},

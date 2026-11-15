@@ -47,6 +47,7 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 
 ### General features
 
+- [ ] Update `config.yml` / `lang.yml` on new versions released
 - [ ] `/afk` + AFK detection - 
     marks players as AFK, configurable time, option to announce AFK, etc.
 - [ ] Proper offline players (hard to implement because of nbt data storage)

@@ -11,7 +11,7 @@ The perfect plugin to set up your Minecraft server:
 - Custom chat, joins/leaves, deaths
 - Everything is customizable in `lang.yml`
 
-## Overview
+## Features
 
 --8<-- "features/index.md:commands"
 

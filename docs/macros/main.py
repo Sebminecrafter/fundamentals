@@ -1,8 +1,6 @@
-"""Entry point for the docs macros (loaded by Zensical via `module_name`).
-
-Zensical loads this file with `spec_from_file_location`, so sibling modules are
-NOT importable by default. We put this directory on `sys.path` and keep the
-real code in the `docgen` package. This file only wires macros up.
+"""
+Entry point for docs macros.
+Imports modules live due to Zensical limitations.
 """
 
 import sys
