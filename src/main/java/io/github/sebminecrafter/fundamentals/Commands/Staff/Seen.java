@@ -3,13 +3,13 @@ package io.github.sebminecrafter.fundamentals.Commands.Staff;
 import io.github.sebminecrafter.fundamentals.Commands.Commands;
 import io.github.sebminecrafter.fundamentals.Commands.FundamentalCommand;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
+import io.github.sebminecrafter.fundamentals.IO.Time;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandSender;
 
 import java.time.Instant;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.util.Date;
 
 import static io.github.sebminecrafter.fundamentals.Main.lang;
 
@@ -33,32 +33,11 @@ public class Seen implements FundamentalCommand {
             return true;
         }
 
-        ZonedDateTime time = Instant.ofEpochMilli(millis)
-                .atZone(ZoneId.systemDefault());
-
-        String year       = Integer.toString(time.getYear());
-        String month      = Integer.toString(time.getMonthValue());
-        String monthStr   = time.getMonth().toString();
-        String date       = Integer.toString(time.getDayOfMonth());
-        String dayOfWeek  = time.getDayOfWeek().toString();
-        String hour       = Integer.toString(time.getHour());
-        String twelveHour = Integer.toString(time.getHour() % 12 == 0 ? 12 : time.getHour() % 12);
-        String AMPM       = time.getHour() >= 12 ? "PM" : "AM";
-        String minute     = String.format("%02d", time.getMinute());
-        String second     = String.format("%02d", time.getSecond());
+        String time_string = new Time(new Date(millis)).toString();
 
         PlaceholderHelper helper = new PlaceholderHelper();
         helper.add("player", name);
-        helper.add("year", year);
-        helper.add("monthnum", month);
-        helper.add("monthname", monthStr);
-        helper.add("date", date);
-        helper.add("weekday", dayOfWeek);
-        helper.add("24hour", hour);
-        helper.add("12hour", twelveHour);
-        helper.add("ampm", AMPM);
-        helper.add("minute", minute);
-        helper.add("second", second);
+        helper.add("time", time_string);
 
         Commands.safeSend(sender, lang.getKey("cmds.seen", helper.getReplace()));
 

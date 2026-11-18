@@ -10,6 +10,9 @@ load: STARTUP
 authors: [ "Sebminecrafter" ]
 website: "https://github.com/Sebminecrafter/Fundamentals"
 
+softdepend:
+  - "PlaceholderAPI"
+
 commands:
   # Staff commands
   broadcast:

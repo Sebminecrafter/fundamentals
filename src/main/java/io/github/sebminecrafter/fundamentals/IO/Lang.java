@@ -1,8 +1,10 @@
 package io.github.sebminecrafter.fundamentals.IO;
 
 import io.github.sebminecrafter.fundamentals.Main;
+import me.clip.placeholderapi.PlaceholderAPI;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -20,6 +22,7 @@ public class Lang {
     private final MiniMessage miniMessage;
     private final LegacyComponentSerializer legacy;
     private final Pattern GRADIENT;
+    private final boolean papi_enabled;
     private YamlConfiguration config;
 
     public Lang(JavaPlugin plugin) {
@@ -30,6 +33,7 @@ public class Lang {
                 .character('§').hexColors().useUnusualXRepeatedCharacterHexFormat().build();
         this.GRADIENT = Pattern.compile(
                 "<gradient((?::#[0-9A-Fa-f]{6})+)>(.*?)</gradient>", Pattern.DOTALL);
+        this.papi_enabled = Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI");
     }
 
     public void loadConfig() {
@@ -92,6 +96,7 @@ public class Lang {
      * */
     public String getKey(String key) {
         String string = _getKey(key);
+        string = parsePapi(string);
         string = formatColors(string);
         return string;
     }
@@ -103,6 +108,7 @@ public class Lang {
     public String getKey(String key, Map<String, String> replacements) {
         String string = _getKey(key);
         string = PlaceholderHelper.apply(string, replacements);
+        string = parsePapi(string);
         string = formatColors(string);
         return string;
     }
@@ -119,17 +125,22 @@ public class Lang {
         Map<String, String> combined = new HashMap<>(replacements);
         List<String> tokens = new ArrayList<>();
         List<String> values = new ArrayList<>();
+
         for (Map.Entry<String, String> entry : literals.entrySet()) {
             String token = "\uE001" + tokens.size() + "\uE002";
             tokens.add(token);
             values.add(entry.getValue());
             combined.put(entry.getKey(), token);
         }
+
         string = PlaceholderHelper.apply(string, combined);
+        string = parsePapi(string);
         string = formatColors(string);
+
         for (int i = 0; i < tokens.size(); i++) {
             string = string.replace(tokens.get(i), values.get(i));
         }
+
         return string;
     }
 
@@ -138,5 +149,11 @@ public class Lang {
         String crKey = config.getString(key);
         if (crKey == null) crKey = key;
         return crKey;
+    }
+
+    /** PlaceholderAPI parsing */
+    private String parsePapi(String input) {
+        if (!papi_enabled || input == null || input.isEmpty()) return input;
+        return PlaceholderAPI.setPlaceholders(null, input);
     }
 }

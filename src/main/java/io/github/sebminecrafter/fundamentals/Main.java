@@ -1,6 +1,7 @@
 package io.github.sebminecrafter.fundamentals;
 
 import io.github.sebminecrafter.fundamentals.Chat.GlobalChat;
+import io.github.sebminecrafter.fundamentals.Chat.Motd;
 import io.github.sebminecrafter.fundamentals.Checks.OpChecker;
 import io.github.sebminecrafter.fundamentals.Commands.Commands;
 import io.github.sebminecrafter.fundamentals.Commands.Player.Homes;
@@ -40,6 +41,8 @@ public final class Main extends JavaPlugin {
         commands = new Commands(this);
         chat = new GlobalChat(this, (Ignore) commands.getCommand("ignore"));
         updateChecker = new UpdateChecker(this, "fundamentalswastaken");
+
+        if (config.isEnabled("motd")) new Motd(this);
 
         // Start checks
         if (config.isEnabled("checks.opchecker")) {

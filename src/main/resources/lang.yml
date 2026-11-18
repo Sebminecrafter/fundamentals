@@ -152,8 +152,8 @@ cmds:
     # Log message
     log: "%player% took the hard way out"
 
-  # Seen command, can use placeholders: %player%, %year%, %monthnum%, %monthname%, %date%, %weekday%, %24hour%, %12hour%, %ampm%, %minute%, %second%
-  seen: "&5&lPlayer&5 was last seen on&e %monthnum%/%date%/%year%, at %12hour%:%minute%:%second% %ampm%"
+  # Seen command, can use placeholders: %player%, %time%
+  seen: "&5&lPlayer&5 was last seen at &e%time%"
 
   # Hat command, puts item in hand on head
   hat: "&5Plop!"
@@ -375,6 +375,12 @@ msgs:
   noperms: "&cYou don't have permission to do that."
   nullmeta: "&cThis item has invalid metadata, sorry!"
   no-item: "&cYou need to hold an item!"
+
+# Message of the day (sent to a player when they join)
+# Can use %player% and %time% placeholders
+motd: |
+  &dWelcome back &5%player%&d!
+  &dIt is &e&l%time%&d.
 
 # Most non-command chat messages
 # Can use %player% placeholder for most

@@ -74,6 +74,7 @@ public class Commands implements CommandExecutor, TabCompleter {
         commands.put("suicide", new Suicide());
         commands.put("seen", new Seen());
         commands.put("depth", new Depth());
+        commands.put("motd", new Motd());
 
         // Privileged commands
         commands.put("workbench", new Workbench());

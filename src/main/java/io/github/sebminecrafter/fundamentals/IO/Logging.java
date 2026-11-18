@@ -54,8 +54,10 @@ public class Logging {
     }
 
     public void log(Level level, String message) {
-        if (logger != null) {
+        if (logger != null && logger.isLoggable(level)) {
             logger.log(level, message);
+        } else {
+            System.out.println("[Fundamentals - " + level + "]: " + message);
         }
     }
     public void log(String message) {
