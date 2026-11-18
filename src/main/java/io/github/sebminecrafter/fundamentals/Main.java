@@ -23,7 +23,7 @@ public final class Main extends JavaPlugin {
     public static GlobalChat chat;
     public static Commands commands;
     public static UpdateChecker updateChecker;
-    public static int pluginId = 34782;
+    public final static int pluginId = 34782;
     private OpChecker opchecker;
     private Metrics metrics;
 
