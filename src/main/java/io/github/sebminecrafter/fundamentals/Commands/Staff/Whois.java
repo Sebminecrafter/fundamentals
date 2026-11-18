@@ -5,6 +5,7 @@ import io.github.sebminecrafter.fundamentals.Commands.FundamentalCommand;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
 import io.github.sebminecrafter.fundamentals.IO.PlayerInfo;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
@@ -25,9 +26,18 @@ public class Whois implements FundamentalCommand {
         PlayerInfo playerInfo = new PlayerInfo(target);
         PlaceholderHelper helper = new PlaceholderHelper();
 
+        Location loc = target.getLocation();
+
+        String position =
+                loc.getBlockX() + ", " +
+                loc.getBlockY() + ", " +
+                loc.getBlockZ() + ", in world: " +
+                target.getWorld().getName();
+
         helper.add("target", playerInfo.getName());
         helper.add("ip", playerInfo.getIP());
         helper.add("port", Integer.toString(playerInfo.getPort()));
+        helper.add("pos", position);
 
         Commands.safeSend(sender, lang.getKey("staffcmds.whois", helper.getReplace()));
 

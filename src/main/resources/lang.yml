@@ -352,10 +352,11 @@ staffcmds:
     &6Worlds:&e %worlds%
     &6Uptime:&e %uptime% seconds
     &6TPS (1m, 5m, 15m):&e %tps1m%, %tps5m%, %tps15m%
-  # Whois command, can use %target% / %ip% / %port%
+  # Whois command, can use %target% / %ip% / %port% / %pos%
   whois: |
     &5&lInformation on %target%:
-    &6IP address: %ip% (port %port%)
+    &6IP address: &e%ip% (port %port%)
+    &6Position: &e%pos%
 
 # Extra messages
 msgs:
@@ -442,3 +443,6 @@ update-checker:
   interrupted: "&cUpdate download was interrupted."
   # Can use %error% for the reason
   failed: "&cUpdate failed: %error%"
+
+# Do not change, used for updates
+version: 1

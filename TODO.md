@@ -21,6 +21,7 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 ## Features
 
 ### Player features/commands
+
 - [ ] `/back` on death and teleports
 - [ ] `/playtime [player]` see playtime of self or other
 - [ ] `/tptoggle` to enable/disable tp requests (toggle)
@@ -33,7 +34,7 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 (suggest some!)
 
 ### Staff features/commands
-- [X] `/whois` to get player info
+
 - [ ] `/remove` remove entities
 - [ ] `/world <world>` to switch worlds
 - [ ] `/near` to see nearby players within configured range
@@ -43,15 +44,14 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 - [ ] `/pausechat` to pause the chat
 - [ ] `/mute <player> [time]` mute a player
 - [ ] `/tempban <player> <time> [reason]` tempban player
-- [X] `/fundamentals downloadupdate` command / `auto_update` flag in config to live download plugin updates
 
 ### General features
 
-- [ ] Update `config.yml` / `lang.yml` on new versions released
+- [X] Config updater - not fully tested
 - [ ] `/afk` + AFK detection - 
     marks players as AFK, configurable time, option to announce AFK, etc.
 - [ ] Proper offline players (hard to implement because of nbt data storage)
-- [ ] Kits? Or separate plugin?
+- [ ] Kits? - Feedback wanted
 - [ ] Commands on first join
 - [ ] Teams (`/factions`)
 - [ ] Mail commands + system
