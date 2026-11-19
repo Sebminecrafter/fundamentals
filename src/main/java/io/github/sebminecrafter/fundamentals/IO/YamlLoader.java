@@ -16,6 +16,10 @@ import java.util.logging.Level;
 public final class YamlLoader {
     private static final int CONFIG_VERSION = 1;
 
+    public YamlLoader() {
+        throw new UnsupportedOperationException("Cannot instantiate utility class");
+    }
+
     public static YamlConfiguration load(JavaPlugin plugin, Logging logger, String resourceName) {
         File file = new File(plugin.getDataFolder() + File.separator + resourceName);
 

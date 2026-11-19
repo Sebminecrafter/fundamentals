@@ -5,10 +5,11 @@
 This is not a list of features in the plugin!
 
 These are not final, but **ideas** that are likely to be implemented.
+
 They may or may not be added, and are probably not yet in the plugin.
-Most of these are copied from Essentials, as to create a more seamless transition,
-  but some have been removed as they replaced completely fine vanilla commands or were
-  no longer relevant in current versions of Minecraft.
+
+Full Essentials compatibility is not guaranteed as to not replace default
+Minecraft commands
 
 ### Key
 
@@ -47,7 +48,6 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 
 ### General features
 
-- [X] Config updater - not fully tested
 - [ ] `/afk` + AFK detection - 
     marks players as AFK, configurable time, option to announce AFK, etc.
 - [ ] Proper offline players (hard to implement because of nbt data storage)
@@ -55,7 +55,6 @@ Most of these are copied from Essentials, as to create a more seamless transitio
 - [ ] Commands on first join
 - [ ] Teams (`/factions`)
 - [ ] Mail commands + system
-- [ ] Custom MOTD with legacy colors + MiniMessage
 - [ ] Simple custom commands system
 - [ ] `/info` for server info, configurable
 - [ ] Nicknames (`/nick`, `/realname`, etc.)

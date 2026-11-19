@@ -7,7 +7,9 @@ import java.util.UUID;
 public final class Cooldowns {
     private static final Map<String, Map<UUID, Long>> COOLDOWNS = new HashMap<>();
 
-    private Cooldowns() {}
+    private Cooldowns() {
+        throw new UnsupportedOperationException("Cannot instantiate utility class");
+    }
 
     public static long remainingSeconds(String key, UUID player, int cooldownSeconds) {
         if (cooldownSeconds <= 0) return 0;

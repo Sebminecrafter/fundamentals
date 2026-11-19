@@ -12,6 +12,7 @@ import io.github.sebminecrafter.fundamentals.IO.Config;
 import io.github.sebminecrafter.fundamentals.IO.Lang;
 import io.github.sebminecrafter.fundamentals.IO.Logging;
 import io.github.sebminecrafter.fundamentals.Checks.UpdateChecker;
+import io.github.sebminecrafter.fundamentals.Other.ServerMotd;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.command.PluginCommand;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -42,7 +43,8 @@ public final class Main extends JavaPlugin {
         chat = new GlobalChat(this, (Ignore) commands.getCommand("ignore"));
         updateChecker = new UpdateChecker(this, "fundamentalswastaken");
 
-        if (config.isEnabled("motd")) new Motd(this);
+        if (config.isEnabled("chat.motd")) new Motd(this);
+        if (config.isEnabled("server-motd")) new ServerMotd(this) ;
 
         // Start checks
         if (config.isEnabled("checks.opchecker")) {
