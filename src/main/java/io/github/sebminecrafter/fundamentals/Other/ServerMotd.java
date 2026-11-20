@@ -17,10 +17,12 @@ public class ServerMotd implements Listener {
 
     @EventHandler
     public void onServerListPing(@NotNull ServerListPingEvent event) {
-        String motd = config.getString("motd.default");
+        String motd = null;
+        String defaultMotd = config.getString("motd.default");
         if (Bukkit.getServer().getOnlinePlayers().size() >= Bukkit.getServer().getMaxPlayers()) {
             motd = config.getString("motd.full");
         }
+        if (motd == null || motd.isEmpty()) motd = defaultMotd;
         motd = lang.formatColors(motd);
         event.setMotd(motd);
     }

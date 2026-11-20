@@ -42,7 +42,17 @@ nav = [
   { "Reference" = [
     "reference/commands.md",
     "reference/permissions.md",
-    "reference/configuration.md",
+    { "Configuration" = [
+      "reference/configuration/index.md",
+      "reference/configuration/enabled.md",
+      "reference/configuration/chat.md",
+      "reference/configuration/teleports.md",
+      "reference/configuration/rtp.md",
+      "reference/configuration/sounds.md",
+      "reference/configuration/bignuke.md",
+      "reference/configuration/motd.md",
+      "reference/configuration/misc.md"
+    ]},
     "reference/language.md"
   ]},
 ]
