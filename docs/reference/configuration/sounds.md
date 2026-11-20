@@ -23,4 +23,4 @@ No file or resource pack is required.
 For common Minecraft sound IDs, the plugin uses
 [minecraft-sounds.vercel.app](https://minecraft-sounds.vercel.app/) as a lookup reference.
 
-The teleport countdown keys also apply to [TPA and home settings](../teleports/).
+The teleport countdown keys also apply to [TPA and home settings](teleports/).

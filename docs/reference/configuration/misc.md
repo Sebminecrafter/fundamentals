@@ -24,6 +24,6 @@ version: 1
 ```
 
 The `version` key is used for plugin update tracking.
-Do not change it unless migration instructions explicitly require it.
+It is highly advised not to change this.
 
 The [configuration index](../) contains links to all dedicated settings pages.
