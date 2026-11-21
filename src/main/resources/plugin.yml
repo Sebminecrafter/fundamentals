@@ -356,6 +356,11 @@ commands:
     usage: "Usage: /<command> <nickname>"
     permission: fundamentals.player.realname
     aliases: [ ]
+  exit:
+    description: "Exit the game"
+    usage: "Usage: /<command>"
+    permission: fundamentals.player.exit
+    aliases: [ 'quit' ]
   # Privileged commands
   workbench:
     description: "Open a crafting table"
@@ -559,6 +564,8 @@ permissions:
         description: "Find a player's real name"
       fundamentals.player.chat.colors:
         description: "Use color codes and formatting in chat"
+      fundamentals.player.exit:
+        description: "Exit the game"
   fundamentals.privileged:
     description: "Privileged commands parent permission"
     default: op

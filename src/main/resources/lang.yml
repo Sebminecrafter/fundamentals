@@ -161,6 +161,15 @@ cmds:
   # Depth command, can use %depth% placeholder
   depth: "&5Your current distance from sea level is: &e&l%depth%"
 
+  # Exit command, kicks player or stop server
+  exit:
+    # When a player runs the command (kicks themselves)
+    kick: "Left the game!"
+    # When the console runs the command (stops server)
+    stop: "Stopping the server..."
+    # Other command source, like a mob
+    other: "&cInvalid command source!"
+
 # Staff commands
 # Placeholders: %player%, and sometimes %victim% (Player might show up as "CONSOLE" in some cases)
 staffcmds:

@@ -41,6 +41,7 @@ enabled:
     info: true       # Show server information
     nick: true       # Set or clear a nickname
     realname: true   # Find a player's real name
+    exit: true       # Exit the game (kicks player that runs it or stops server if run by console)
 
     # Staff commands
     broadcast: true      # Broadcast a message to everyone
