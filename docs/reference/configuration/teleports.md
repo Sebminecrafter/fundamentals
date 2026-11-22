@@ -4,11 +4,11 @@ TPA, home, and warp behavior is configured by separate sections.
 
 ## TPA
 
-| Key | Default | Purpose |
-| --- | --- | --- |
-| `tpa.delay` | `5` | Countdown before teleporting, in seconds |
-| `tpa.cooldown` | `30` | Per-player cooldown, in seconds |
-| `tpa.expiresafter` | `600` | Request lifetime in ticks (30 seconds) |
+| Key                | Default | Purpose                                  |
+|--------------------|---------|------------------------------------------|
+| `tpa.delay`        | `5`     | Countdown before teleporting, in seconds |
+| `tpa.cooldown`     | `30`    | Per-player cooldown, in seconds          |
+| `tpa.expiresafter` | `600`   | Request lifetime in ticks (30 seconds)   |
 
 Set a delay or cooldown to `0` to remove that wait.
 

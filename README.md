@@ -2,8 +2,12 @@
 
 ![Logo](docs/assets/logo.png)
 
+<!-- --8<-- [start:notice] -->
 > [!WARNING]
 > This plugin is currently in beta.
+> Also, as of the current dev build, Fundamentals targets Spigot API Version 1.21.3
+> to ensure compatibility with Paper after the hard fork.
+<!-- --8<-- [end:notice] -->
 
 A nice, featureful, everything you need Bukkit plugin.
 

@@ -180,6 +180,16 @@ bignuke:
   # Distance/size of the nuke in a circular pattern (hard capped at 50)
   distance: 20
 
+remove:
+  # Default distance for entities to remove
+  distance: 30
+  # Entities not to remove (players are always exempt)
+  exempt: ["minecraft:armor_stand", "minecraft:villager"]
+
+near:
+  # Default distance for player search
+  distance: 64
+
 # Change the server motd (message of the day) based on certain factors.
 # Supports color!
 # Separate from the join motd / motd command
