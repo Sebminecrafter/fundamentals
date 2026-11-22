@@ -53,6 +53,8 @@ public class Commands implements CommandExecutor, TabCompleter {
         commands.put("bottom", new Bottom());
         commands.put("serverstat", new ServerStat());
         commands.put("whois", new Whois());
+        commands.put("remove", new Remove());
+        commands.put("near", new Near());
 
         // Player commands
         commands.put("ignore", new Ignore(plugin));

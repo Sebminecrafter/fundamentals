@@ -20,11 +20,11 @@ They may or may not be added, and are probably not yet in the plugin.
 
 ### Player features/commands
 
-- [ ] `/back` on death and teleports
-- [ ] `/tptoggle` to enable/disable tp requests (toggle)
 - [ ] `/helpop` to message admins
-- [ ] `/msgtoggle` to toggle receiving messages
 - [ ] `/tpauto` to auto-accept tpa requests
+- [ ] `/tptoggle` to enable/disable tp requests (toggle)
+- [ ] `/msgtoggle` to toggle receiving messages
+- [ ] `/back` on death and teleports
 
 ### Privileged Commands
 
@@ -32,9 +32,7 @@ They may or may not be added, and are probably not yet in the plugin.
 
 ### Staff features/commands
 
-- [ ] `/remove` remove entities
 - [ ] `/world <world>` to switch worlds
-- [ ] `/near` to see nearby players within configured range
 - [ ] `/vanish` to become invisible to other players
 - [ ] `/staffchat` and `/alert` for staff messaging
 - [ ] `/god [player]` toggles "god mode"

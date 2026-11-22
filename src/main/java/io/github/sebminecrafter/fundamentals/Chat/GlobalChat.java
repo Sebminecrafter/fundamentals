@@ -1,5 +1,6 @@
 package io.github.sebminecrafter.fundamentals.Chat;
 
+import io.github.sebminecrafter.fundamentals.Commands.Commands;
 import io.github.sebminecrafter.fundamentals.Commands.Player.Ignore;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
 import org.bukkit.Bukkit;
@@ -61,7 +62,7 @@ public class GlobalChat implements Listener {
         logger.log(formattedMessage);
         for (Player p : new ArrayList<>(event.getRecipients())) {
             if (ignore.isIgnoring(p.getUniqueId(), player.getUniqueId())) continue;
-            p.sendMessage(formattedMessage);
+            Commands.safeSend(p, formattedMessage);
         }
     }
 
@@ -103,12 +104,12 @@ public class GlobalChat implements Listener {
 
         matcher = urlRegex.matcher(message);
         if (matcher.find() && !config.isEnabled("chat.allowlinks")) {
-            player.sendMessage(lang.getKey("chat.nolinks"));
+            Commands.safeSend(player, lang.getKey("chat.nolinks"));
             return true;
         }
 
         if (disallowedRegex != null && disallowedRegex.matcher(message).find()) {
-            player.sendMessage(lang.getKey("chat.disallowed"));
+            Commands.safeSend(player, lang.getKey("chat.disallowed"));
             return true;
         }
 

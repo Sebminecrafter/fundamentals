@@ -37,7 +37,7 @@ public class BroadcastWorld implements FundamentalCommand {
         String text = lang.getKey("staffcmds.broadcastworld.player", helper.getReplace());
         for (Player player : world.getPlayers()) {
             FundamentalSounds.tPSFCSimpler(player, "sounds.broadcastworld");
-            player.sendMessage(text);
+            Commands.safeSend(player, text);
             player.sendTitle(text, null, 20, 60, 20);
         }
         return true;

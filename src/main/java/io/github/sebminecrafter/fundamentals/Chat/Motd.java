@@ -1,5 +1,6 @@
 package io.github.sebminecrafter.fundamentals.Chat;
 
+import io.github.sebminecrafter.fundamentals.Commands.Commands;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
 import io.github.sebminecrafter.fundamentals.IO.Time;
 import org.bukkit.Bukkit;
@@ -30,6 +31,6 @@ public class Motd implements Listener {
         helper.add("player", sender.getName());
         helper.add("time", Time.now());
 
-        sender.sendMessage(lang.getKey("motd", helper.getReplace()));
+        Commands.safeSend(sender, lang.getKey("motd", helper.getReplace()));
     }
 }

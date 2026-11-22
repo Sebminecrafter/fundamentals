@@ -167,9 +167,9 @@ commands:
     aliases: [ ]
   remove:
     description: "Remove entities nearby"
-    usage: "Usage: /<command> [radius]"
+    usage: "Usage: /<command> [distance]"
     permission: fundamentals.staff.remove
-    aliases: [ ]
+    aliases: [ 'removeentities', 'clearmobs', 'clearentities' ]
   world:
     description: "Switch to a different world"
     usage: "Usage: /<command> <world>"
@@ -177,9 +177,9 @@ commands:
     aliases: [ ]
   near:
     description: "Show nearby players within a configured range"
-    usage: "/<command>"
+    usage: "/<command> [distance] [player]"
     permission: fundamentals.staff.near
-    aliases: [ ]
+    aliases: [ 'nearby' ]
   vanish:
     description: "Toggle vanish mode"
     usage: "/<command> [player]"

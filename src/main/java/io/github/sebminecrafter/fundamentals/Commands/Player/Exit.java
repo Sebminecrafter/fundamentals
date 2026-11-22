@@ -1,5 +1,6 @@
 package io.github.sebminecrafter.fundamentals.Commands.Player;
 
+import io.github.sebminecrafter.fundamentals.Commands.Commands;
 import io.github.sebminecrafter.fundamentals.Commands.FundamentalCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -17,11 +18,11 @@ public class Exit implements FundamentalCommand {
             player.kickPlayer(lang.getKey("cmds.exit.kick"));
             return true;
         } else if (sender instanceof ConsoleCommandSender) {
-            sender.sendMessage(lang.getKey("cmds.exit.stop"));
+            Commands.safeSend(sender, lang.getKey("cmds.exit.stop"));
             Bukkit.getServer().shutdown();
             return true;
         }
-        sender.sendMessage(lang.getKey("cmds.exit.other"));
+        Commands.safeSend(sender, lang.getKey("cmds.exit.other"));
         return true;
     }
 

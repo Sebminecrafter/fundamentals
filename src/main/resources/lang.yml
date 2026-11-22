@@ -376,6 +376,17 @@ staffcmds:
     &6IP address: &e%ip% (port %port%)
     &6Position: &e%pos%
 
+  # Remove command removes nearby entities, can use %player% and %entities% for count
+  remove:
+    staff: "&5Removed &e%entities%&5 entities!"
+    log: "%player% removed %entities% entities."
+
+  # Near command shows nearby players, can use %player%, %count%,
+  # %players% will look something like "Player1, Player2, Player3"
+  near:
+    staff: "&5Nearby players (%count%): &e%players%"
+    log: "%player% checked for nearby players and found %count%."
+
 # Extra messages
 msgs:
   playeronly: "&cThis command can only be run by a player."
