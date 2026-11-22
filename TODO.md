@@ -68,3 +68,16 @@ on GitHub
 - Update Checker WIP
 
 - Full Essentials compatibility is not guaranteed as to not replace default Minecraft commands
+
+### Future Plans / Roadmap
+
+> [!note]
+> These are future plans, not the current state of the project.
+
+I plan to hopefully migrate this whole project to the Paper API in the future.
+I have started to notice that, first of all, I and a lot of other peoples
+servers use Paper, and transitioning to Paper API is a reasonable option.
+It would definitely help to reach the Folia and modern paper ecosystem.
+Please note that if you are using a Bukkit/Spigot server you will always be able to use
+Fundamentals, but at some point you will be stuck on some sort of "Legacy" branch.
+I would appreciate any help or thoughts on this!
