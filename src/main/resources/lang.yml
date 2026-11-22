@@ -153,7 +153,7 @@ cmds:
     log: "%player% took the hard way out"
 
   # Seen command, can use placeholders: %player%, %time%
-  seen: "&5&l%player%&5 was last seen at &e%time%"
+  seen: "&d%player%&5 was last seen at &e%time%"
 
   # Hat command, puts item in hand on head
   hat: "&5Plop!"
@@ -169,6 +169,15 @@ cmds:
     stop: "Stopping the server..."
     # Other command source, like a mob
     other: "&cInvalid command source!"
+
+  # Playtime command, can use %player%, %seconds%, %hours%, %minutes%, %days% (meant to be used together)
+  # %total-seconds%, %total-minutes%, %total-hours% can be used at the end if you want to stop at a different unit
+  # e.g. hours instead of days would be: %total-hours%h %minutes%m %seconds%s
+  playtime:
+    # When used on self (/playtime)
+    self: "&5Your playtime is &e%days%d %hours%h %minutes%m %seconds%s"
+    # When used on another player (/playtime player)
+    other: "&d%player%&5's playtime is &e%days%d %hours%h %minutes%m %seconds%s"
 
 # Staff commands
 # Placeholders: %player%, and sometimes %victim% (Player might show up as "CONSOLE" in some cases)
