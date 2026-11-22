@@ -8,6 +8,11 @@ These are not final, but **ideas** that are likely to be implemented.
 
 They may or may not be added, and are probably not yet in the plugin.
 
+Each specific category is ordered from
+\[easiest to implement\] / \[most likely to be added\]
+to
+\[hardest to implement\] / \[least likely to be added\]
+
 ### Key
 
 |       Meaning       |    Symbol    |
@@ -25,6 +30,7 @@ They may or may not be added, and are probably not yet in the plugin.
 - [ ] `/tptoggle` to enable/disable tp requests (toggle)
 - [ ] `/msgtoggle` to toggle receiving messages
 - [ ] `/back` on death and teleports
+- [ ] `/trade` to trade between players
 
 ### Privileged Commands
 
@@ -42,16 +48,16 @@ They may or may not be added, and are probably not yet in the plugin.
 
 ### General features
 
-- [ ] `/afk` + AFK detection - 
-    marks players as AFK, configurable time, option to announce AFK, etc.
-- [ ] Proper offline players (hard to implement because of nbt data storage)
-- [ ] Kits? - Feedback wanted
-- [ ] Commands on first join
-- [ ] Teams (`/faction`(s) or `/group`(s))
-- [ ] Mail commands + system
-- [ ] Simple custom commands system
 - [ ] `/info` for server info, configurable
 - [ ] Nicknames (`/nick`, `/realname`, etc.)
+- [ ] Commands on first join
+- [ ] Simple custom commands system
+- [ ] Proper offline players for invsee/ecsee (hard to implement because of nbt data storage)
+- [ ] Teams (`/faction`(s) or `/group`(s))
+- [ ] Mail commands + system
+- [ ] `/afk` + AFK detection -
+  marks players as AFK, configurable time, option to announce AFK, etc.
+- [ ] Kits? - Feedback wanted
 
 ## Known Bugs (latest dev build)
 
