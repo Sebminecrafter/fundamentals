@@ -3,14 +3,15 @@ package io.github.sebminecrafter.fundamentals.Commands.Staff;
 import io.github.sebminecrafter.fundamentals.Commands.Commands;
 import io.github.sebminecrafter.fundamentals.Commands.FundamentalCommand;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
+import org.bukkit.NamespacedKey;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 import java.util.List;
+import java.util.logging.Level;
 
-import static io.github.sebminecrafter.fundamentals.Main.lang;
-import static io.github.sebminecrafter.fundamentals.Main.logger;
+import static io.github.sebminecrafter.fundamentals.Main.*;
 
 public class Remove implements FundamentalCommand {
     @Override
@@ -20,7 +21,7 @@ public class Remove implements FundamentalCommand {
             return true;
         }
         if (args.length > 1) return false;
-        int distance = 10;
+        int distance = config.getInt("remove.distance");
         if (args.length == 1) {
             try {
                 distance = Integer.parseInt(args[0]);
@@ -29,8 +30,20 @@ public class Remove implements FundamentalCommand {
             }
         }
         int count = 0;
+        List<String> exempt = config.getStringList("remove.exempt");
+
         for (Entity entity : player.getNearbyEntities(distance, distance, distance)) {
             if (entity instanceof Player) continue;
+
+            try {
+                NamespacedKey key = entity.getType().getKey();
+
+                if (exempt.contains(key.toString())) continue;
+            } catch (IllegalArgumentException | IllegalStateException e) {
+                logger.log(Level.WARNING, "/remove - entity key error: " + e.getMessage());
+                // ignore and skip check
+            }
+
             entity.remove();
             count++;
         }

@@ -11,13 +11,12 @@ import org.bukkit.entity.Player;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static io.github.sebminecrafter.fundamentals.Main.lang;
-import static io.github.sebminecrafter.fundamentals.Main.logger;
+import static io.github.sebminecrafter.fundamentals.Main.*;
 
 public class Near implements FundamentalCommand {
     @Override
     public boolean execute(CommandSender sender, String[] args, String label) {
-        int distance = 50;
+        int distance = config.getInt("near.distance");
         Player player;
         if (args.length == 0 && sender instanceof Player p) {
             player = p;
