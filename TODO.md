@@ -8,9 +8,6 @@ These are not final, but **ideas** that are likely to be implemented.
 
 They may or may not be added, and are probably not yet in the plugin.
 
-Full Essentials compatibility is not guaranteed as to not replace default
-Minecraft commands
-
 ### Key
 
 |       Meaning       |    Symbol    |
@@ -24,7 +21,6 @@ Minecraft commands
 ### Player features/commands
 
 - [ ] `/back` on death and teleports
-- [ ] `/playtime [player]` see playtime of self or other
 - [ ] `/tptoggle` to enable/disable tp requests (toggle)
 - [ ] `/helpop` to message admins
 - [ ] `/msgtoggle` to toggle receiving messages
@@ -53,24 +49,24 @@ Minecraft commands
 - [ ] Proper offline players (hard to implement because of nbt data storage)
 - [ ] Kits? - Feedback wanted
 - [ ] Commands on first join
-- [ ] Teams (`/factions`)
+- [ ] Teams (`/faction`(s) or `/group`(s))
 - [ ] Mail commands + system
 - [ ] Simple custom commands system
 - [ ] `/info` for server info, configurable
 - [ ] Nicknames (`/nick`, `/realname`, etc.)
 
-## Bugs
-
-- Interacting with workstations accessed via commands is slightly buggy,
-  items may disappear when shift-clicked or gui is closed
-- `/serverstat`'s TPS doesn't work on Spigot
+## Known Bugs (latest dev build)
 
 Please submit bugs via the
 [Issues tab](https://github.com/Sebminecrafter/Fundamentals/issues)
 on GitHub
 
-(no other current ***known*** bugs in latest build)
+- Interacting with workstations accessed via commands is slightly buggy,
+  items may disappear when shift-clicked or gui is closed
+- `/serverstat`'s TPS doesn't work on Spigot
 
 ### Notices
 
 - Update Checker WIP
+
+- Full Essentials compatibility is not guaranteed as to not replace default Minecraft commands

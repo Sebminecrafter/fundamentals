@@ -76,6 +76,7 @@ public class Commands implements CommandExecutor, TabCompleter {
         commands.put("depth", new Depth());
         commands.put("motd", new Motd());
         commands.put("exit", new Exit());
+        commands.put("playtime", new Playtime());
 
         // Privileged commands
         commands.put("workbench", new Workbench());
