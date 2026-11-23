@@ -43,8 +43,14 @@ public class Logging {
         }
     }
 
+    private String stripColors(String message) {
+        return message.replaceAll("(?i)§[0-9A-FK-ORX]", "");
+    }
+
     public void logBoth(Level level, String message) {
-        logger.log(level, message);
+        message = stripColors(message);
+
+        log(level, message);
         if (secondaryLogger != null && secondaryLogger.isLoggable(level)) {
             secondaryLogger.log(level, message);
         }
@@ -54,6 +60,8 @@ public class Logging {
     }
 
     public void log(Level level, String message) {
+        message = stripColors(message);
+
         if (logger != null && logger.isLoggable(level)) {
             logger.log(level, message);
         } else {
