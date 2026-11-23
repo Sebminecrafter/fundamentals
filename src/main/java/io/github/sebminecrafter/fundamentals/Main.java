@@ -11,6 +11,7 @@ import io.github.sebminecrafter.fundamentals.Commands.Staff.Staffmode;
 import io.github.sebminecrafter.fundamentals.IO.Config;
 import io.github.sebminecrafter.fundamentals.IO.Lang;
 import io.github.sebminecrafter.fundamentals.IO.Logging;
+import io.github.sebminecrafter.fundamentals.IO.PlayerData.PlayerDataStore;
 import io.github.sebminecrafter.fundamentals.Checks.UpdateChecker;
 import io.github.sebminecrafter.fundamentals.Other.ServerMotd;
 import org.bstats.bukkit.Metrics;
@@ -21,6 +22,7 @@ public final class Main extends JavaPlugin {
     public static Logging logger;
     public static Lang lang;
     public static Config config;
+    public static PlayerDataStore playerData;
     public static GlobalChat chat;
     public static Commands commands;
     public static UpdateChecker updateChecker;
@@ -39,6 +41,13 @@ public final class Main extends JavaPlugin {
         logger = new Logging(this);
         lang = new Lang(this);
         config = new Config(this);
+        try {
+            playerData = new PlayerDataStore(this);
+        } catch (java.io.IOException e) {
+            logger.log(java.util.logging.Level.SEVERE, "Could not create playerdata folder, disabling. Error:" + e.getMessage());
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
         commands = new Commands(this);
         chat = new GlobalChat(this, (Ignore) commands.getCommand("ignore"));
         updateChecker = new UpdateChecker(this, "fundamentalswastaken");
@@ -78,6 +87,8 @@ public final class Main extends JavaPlugin {
         // Stop tasks
         if (opchecker != null) opchecker.stopTask();
         if (metrics != null) metrics.shutdown();
+
+        if (playerData != null) playerData.saveAll();
 
         if (commands != null) {
             // Persist data that is only written on change/quit

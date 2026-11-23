@@ -5,38 +5,13 @@ import io.github.sebminecrafter.fundamentals.Commands.FundamentalCommand;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.InvalidConfigurationException;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
-import java.util.logging.Level;
 
-import static io.github.sebminecrafter.fundamentals.Main.lang;
-import static io.github.sebminecrafter.fundamentals.Main.logger;
+import static io.github.sebminecrafter.fundamentals.Main.*;
 
 public class Ignore implements FundamentalCommand {
-    private final File ignorelistFile;
-    private final YamlConfiguration ignorelist;
-
-    public Ignore(JavaPlugin plugin) {
-        this.ignorelistFile = new File(plugin.getDataFolder(), "ignorelist.yml");
-        this.ignorelist = new YamlConfiguration();
-
-        if (ignorelistFile.exists()) {
-            try {
-                ignorelist.load(ignorelistFile);
-            } catch (IOException | InvalidConfigurationException e) {
-                logger.log(Level.SEVERE, "ignorelist.yml could not be loaded!");
-            }
-        }
-    }
-
     @Override
     public boolean execute(CommandSender sender, String[] args, String label) {
         if (args.length != 1) {
@@ -60,52 +35,21 @@ public class Ignore implements FundamentalCommand {
         helper.add("player", sender.getName());
         helper.add("other", other.getName());
         if (isIgnoring(playerUUID, otherUUID)) {
-            unignore(playerUUID, otherUUID);
+            playerData.get(playerUUID).unignore(otherUUID);
             logger.log(lang.getKey("cmds.ignore.unignore.log", helper.getReplace()));
             Commands.safeSend(player, lang.getKey("cmds.ignore.unignore.send", helper.getReplace()));
         } else {
-            ignore(playerUUID, otherUUID);
+            playerData.get(playerUUID).ignore(otherUUID);
             logger.log(lang.getKey("cmds.ignore.ignore.log", helper.getReplace()));
             Commands.safeSend(player, lang.getKey("cmds.ignore.ignore.send", helper.getReplace()));
         }
-        if (!saveFile()) {
+        if (!playerData.save(playerUUID)) {
             Commands.safeSend(sender, lang.getKey("msgs.fileerror"));
         }
         return true;
     }
 
-    public synchronized boolean isIgnoring(UUID player, UUID other) {
-        return (ignorelist.contains(player.toString()) &&
-                Objects.requireNonNull(
-                    ignorelist.getList(player.toString()))
-                        .contains(other.toString()));
-    }
-
-    private synchronized void ignore(UUID player, UUID other) {
-        if (ignorelist.contains(player.toString())) {
-            List<String> list = ignorelist.getStringList(player.toString());
-            list.add(other.toString());
-            ignorelist.set(player.toString(), list);
-        } else {
-            ignorelist.set(player.toString(), List.of(other.toString()));
-        }
-    }
-
-    private synchronized void unignore(UUID player, UUID other) {
-        if (ignorelist.contains(player.toString())) {
-            List<String> list = ignorelist.getStringList(player.toString());
-            list.remove(other.toString());
-            ignorelist.set(player.toString(), list);
-        }
-    }
-
-    private synchronized boolean saveFile() {
-        try {
-            ignorelist.save(ignorelistFile);
-        } catch (IOException e) {
-            logger.log(Level.SEVERE, "ignorelist.yml could not be saved!");
-            return false;
-        }
-        return true;
+    public boolean isIgnoring(UUID player, UUID other) {
+        return playerData.get(player).isIgnoring(other);
     }
 }
