@@ -8,10 +8,8 @@ These are not final, but **ideas** that are likely to be implemented.
 
 They may or may not be added, and are probably not yet in the plugin.
 
-Each specific category is ordered from
-\[easiest to implement\] / \[most likely to be added\]
-to
-\[hardest to implement\] / \[least likely to be added\]
+Each specific category is ordered from easiest to implement to hardest to implement
+(most likely to be added to least likely to be added).
 
 ### Key
 
@@ -48,10 +46,10 @@ to
 
 ### General features
 
-- [ ] `/info` for server info, configurable
 - [ ] Nicknames (`/nick`, `/realname`, etc.)
 - [ ] Commands on first join
 - [ ] Simple custom commands system
+- [ ] Better target selectors (`@a`, `@s`, `x y z`, `~ ~ ~`, etc.)
 - [ ] Proper offline players for invsee/ecsee (hard to implement because of nbt data storage)
 - [ ] Teams (`/faction`(s) or `/group`(s))
 - [ ] Mail commands + system
