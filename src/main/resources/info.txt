@@ -1,0 +1,17 @@
+<dark_purple><bold>Cool Server
+<reset>
+NEW_LINE
+<aqua>This is my cool epic server with
+<#FF4714>Fundamentals!
+
+NEXT_PAGE
+<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█ NEW_LINE
+<#FF4714><bold>█<#FFFFFF><bold>█<#FFFFFF><bold>█<#FFFFFF><bold>█<#FFFFFF><bold>█<#FFFFFF><bold>█<#FFFFFF><bold>█<#FF4714><bold>█ NEW_LINE
+<#FF4714><bold>█<#FF4714><bold>█<#FFFFFF><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█ NEW_LINE
+<#FF4714><bold>█<#FF4714><bold>█<#FFFFFF><bold>█<#FFFFFF><bold>█<#FFFFFF><bold>█<#FFFFFF><bold>█<#FFFFFF><bold>█<#FF4714><bold>█ NEW_LINE
+<#FF4714><bold>█<#FF4714><bold>█<#FFFFFF><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█ NEW_LINE
+<#FF4714><bold>█<#FF4714><bold>█<#FFFFFF><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█ NEW_LINE
+<#FF4714><bold>█<#FFFFFF><bold>█<#FFFFFF><bold>█<#FFFFFF><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█ NEW_LINE
+<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█<#FF4714><bold>█ NEW_LINE
+<#FF4714><bold>Fundamentals NEW_LINE
+<#32AAFF>by Sebminecrafter

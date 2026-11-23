@@ -133,6 +133,11 @@ cmds:
     title: "Server Rules"
     author: "Fundamentals/Server"
 
+  # Info command, opens book
+  info:
+    title: "Server Info"
+    author: "Fundamentals/Server"
+
   # Trash command and gui
   trash:
     # Title for inventory

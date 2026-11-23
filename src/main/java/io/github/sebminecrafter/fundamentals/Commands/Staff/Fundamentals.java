@@ -2,6 +2,7 @@ package io.github.sebminecrafter.fundamentals.Commands.Staff;
 
 import io.github.sebminecrafter.fundamentals.Commands.Commands;
 import io.github.sebminecrafter.fundamentals.Commands.FundamentalCommand;
+import io.github.sebminecrafter.fundamentals.Commands.Player.Info;
 import io.github.sebminecrafter.fundamentals.Commands.Player.Rules;
 import io.github.sebminecrafter.fundamentals.IO.PlaceholderHelper;
 import org.bukkit.Bukkit;
@@ -32,6 +33,7 @@ public class Fundamentals implements FundamentalCommand {
                 config.loadConfig();
                 lang.loadConfig();
                 ((Rules) commands.getCommand("rules")).reload();
+                ((Info) commands.getCommand("info")).reload();
                 logger.log(lang.getKey("staffcmds.fundamentals.reloadconfig.log", helper.getReplace()));
                 Commands.safeSend(sender, lang.getKey("staffcmds.fundamentals.reloadconfig.staff", helper.getReplace()));
                 Commands.safeSend(sender, lang.getKey("staffcmds.fundamentals.reloadconfig.notice", helper.getReplace()));
