@@ -80,6 +80,7 @@ public class Commands implements CommandExecutor, TabCompleter {
         commands.put("exit", new Exit());
         commands.put("playtime", new Playtime());
         commands.put("info", new Info(plugin));
+        commands.put("back", new Back(plugin));
 
         // Privileged commands
         commands.put("workbench", new Workbench());

@@ -13,9 +13,11 @@ cmds:
     log: "%player% said to %other%: %msg%"
     send: "&5&lYou &9-> &1&l%other%&9: &r%msg%"
     receive: "&1&l%player% &9-> &5&lYou&9: &r%msg%"
+
   # Reply (only has error messages, rest is same as msg)
   reply:
     none: "&cNo one to reply to!"
+
   # Tpa/Tpahere/Tpaccept/Tpdeny/Tpacancel
   # Extra placeholders: %other%
   tpa:
@@ -50,6 +52,7 @@ cmds:
     teleporting: "&eDon't move! &dTeleporting in %secs% seconds!"
     # Countdown: will show in actionbar and can use %secs% placeholder
     countdown: "&5Teleporting in &l%secs%&5..."
+
   # Ignore
   # Extra placeholders: %other%
   ignore:
@@ -59,6 +62,7 @@ cmds:
     unignore:
       log: "%player% unignored %other%"
       send: "&5Stopped ignoring &1&l%other%"
+
   # Welcome
   # Extra placeholders: %other%
   welcome:
@@ -66,6 +70,7 @@ cmds:
     send: "&1%player% &5welcomes &1&l%other%&5!"
     # No placeholders, error message
     hasplayedbefore: "&cIt's not the player's first time!"
+
   # Home command
   home:
     # /homes and /listhomes - comma separated list of homes will be appended after
@@ -86,6 +91,7 @@ cmds:
     # All
     error: "&cUnable to load homes, please restart the server." # If homes storage fails to load
     teleporting: "&eDon't move! &dTeleporting in %secs% seconds!" # Teleporting warning
+
   # Warp command
   warp:
     # /warp and /listwarps - comma separated list of warps will be appended after
@@ -105,6 +111,7 @@ cmds:
     deletedlog: "%player% deleted warp %warp%" # Can use %player% placeholder for log
     # All
     teleporting: "&eDon't move! &dTeleporting in %secs% seconds!" # Teleporting warning
+
   # Random teleport command
   rtp:
     # Countdown for rtp - can use %secs% placeholder
@@ -122,6 +129,17 @@ cmds:
       found: "Found safe location for RTP in %attempts% attempts."
       # Couldn't find a safe location, can use %attempts% placeholder
       failed: "Couldn't find safe location for RTP in %attempts% attempts."
+
+  # Back command, returns to previous location
+  back:
+    # Countdown for back - can use %secs% placeholder
+    countdown: "&5Teleporting in &l%secs%&5..."
+    # Teleporting warning
+    teleporting: "&eDon't move! &dTeleporting in %secs% seconds!"
+    # No previous location saved
+    none: "&cYou have no previous location to return to!"
+    # World of the saved location is no longer loaded
+    world-unloaded: "&cThe world of your previous location is no longer loaded!"
 
   # Ping command, can use %ping% and %player% placeholder
   ping:

@@ -16,6 +16,7 @@ Fundamentals' commands and checks are configured via `config.yml`
 - [Chat](chat/)
 - [Teleport settings](teleports/)
 - [Random teleport](rtp/)
+- [Back](back/)
 - [Sounds](sounds/)
 - [BigNuke](bignuke/)
 - [Server MOTD](motd/)

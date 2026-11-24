@@ -48,6 +48,7 @@ nav = [
       "reference/configuration/chat.md",
       "reference/configuration/teleports.md",
       "reference/configuration/rtp.md",
+      "reference/configuration/back.md",
       "reference/configuration/sounds.md",
       "reference/configuration/bignuke.md",
       "reference/configuration/motd.md",

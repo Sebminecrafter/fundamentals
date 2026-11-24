@@ -27,7 +27,6 @@ Each specific category is ordered from easiest to implement to hardest to implem
 - [ ] `/tpauto` to auto-accept tpa requests
 - [ ] `/tptoggle` to enable/disable tp requests (toggle)
 - [ ] `/msgtoggle` to toggle receiving messages
-- [ ] `/back` on death and teleports
 - [ ] `/trade` to trade between players
 
 ### Privileged Commands

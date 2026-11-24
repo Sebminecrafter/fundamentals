@@ -538,6 +538,9 @@ permissions:
         description: "Kills you"
       fundamentals.player.back:
         description: "Teleport back to your previous location"
+      fundamentals.player.back.ondeath:
+        description: "Remember your death location for /back"
+        default: false
       fundamentals.player.seen:
         description: "See a player's last online time"
       fundamentals.player.playtime:

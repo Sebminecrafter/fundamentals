@@ -143,6 +143,19 @@ rtp:
   # Max location search attempts
   max-attempts: 20
 
+back:
+  # Delay before teleporting back (seconds, can be 0)
+  delay: 5
+  # Cooldown on command (seconds, can be 0)
+  cooldown: 30
+  # Remember the death location (also requires 'fundamentals.player.back.ondeath')
+  on-death: true
+  # Teleport causes that should NOT update the /back location
+  # See: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/event/player/PlayerTeleportEvent.TeleportCause.html
+  ignored-causes: ["CHORUS_FRUIT", "DISMOUNT",
+     "END_GATEWAY", "END_PORTAL",    "ENDER_PEARL",
+     "EXIT_BED",    "NETHER_PORTAL", "SPECTATE"]
+
 # Uses Minecraft sound IDs. This site can help: https://minecraft-sounds.vercel.app/
 sounds:
   # Tpa/home teleport + countdown + canceled
